@@ -1,0 +1,14 @@
+{
+    "requisitionType": "Pre Purchase Requisition",
+    "natureOfRequisition": "Non-Project",
+    "currencyCode": "Cambodian Riel (+KHR)",
+    "pprTitle": "auto PPR title ", 
+    "procurementType": "Goods",
+    "approvalRoute": "auto approval PPR 2",
+    "deliveryAddress": "address auto",
+    "note": "auto test note",
+    "itemCode": "auto item code 1",
+    "itemQuantity": "2000",
+    "requesterName": "auto creator",
+    "procurementTypePPRList": "GOODS"
+}

@@ -1,0 +1,14 @@
+{
+    "requisitionType": "Pre Purchase Requisition",
+    "natureOfRequisition": "Project",
+    "projectCode": "auto Prj 1",
+    "pprTitle": "auto PPR title ", 
+    "procurementType": "Goods",
+    "approvalRoute": "auto approval PPR 1",
+    "deliveryAddress": "address auto",
+    "note": "auto test note",
+    "itemCode": "auto item code 1",
+    "itemQuantity": "2000",
+    "procurementTypePPRList": "GOODS",
+    "requesterName": "auto creator"
+}

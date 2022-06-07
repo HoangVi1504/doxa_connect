@@ -1,0 +1,22 @@
+{
+    "requisitionType": "Purchase Requisition",
+    "natureOfRequisition": "Non-Project",
+    "currencyCode": "Chinese Renminbi (+CNY)",
+    "vendor1": "AUTO SUPPLIER 1 (1105)",
+    "rfqTitle": "auto RFQ title ",
+    "procurementType": "Service",
+    "rfqType": "Contract",
+    "deliveryAddress": "address auto",
+    "note": "auto test note",
+    "itemCode": "auto item code 3",
+    "itemName": "auto item name 3",
+    "itemDescription": "auto item description 3",
+    "itemModel": "auto model 3",
+    "itemSize": "70",
+    "itemBrand": "SHARP",
+    "uom": "CEN",
+    "itemQuantity": "150",
+    "currencyItem": "CNY",
+    "price": "1000",
+    "rfqTitleInList": "AUTO RFQ TITLE "
+}

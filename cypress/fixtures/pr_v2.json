@@ -1,0 +1,14 @@
+{
+    "requisitionType": "Purchase Requisition",
+    "natureOfRequisition": "Non-Project",
+    "currencyCode": "Canadian Dollar (+CAD)",
+    "prTitle": "auto PR title ", 
+    "procurementType": "Service",
+    "approvalRoute": "auto approval PR 2",
+    "deliveryAddress": "address auto",
+    "note": "auto test note",
+    "itemCode": "item code 1",
+    "itemQuantity": "3500",
+    "requesterName": "auto creator",
+    "procurementTypePRList": "SERVICE"
+}

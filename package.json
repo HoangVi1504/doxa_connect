@@ -1,0 +1,41 @@
+{
+  "name": "cypress_cucumber_framework",
+  "version": "1.0.0",
+  "description": "End-to-end Test Framework with Cypress and Cucumber is developed by Quynh Le",
+  "main": "index.js",
+  "scripts": {
+    "cy:run": "npx cypress run --env allure=true",
+    "allure:report": "allure generate ./allure-results --clean -o ./allure-report",
+    "pretest": "rimraf allure-results && rimraf allure-report && rimraf cypress/screenshots && mkdir cypress/screenshots",
+    "test": "npm run pretest && npm run cy:run",
+    "post-test": "npm run allure:report",
+    "open-report": "allure open",
+    "sync-testlink": "npm run test;node sync_report_testlink.js",
+    "rfq": "npm run pretest && npx cypress-tags run -e TAGS=\"@rfq\" --env allure=true",
+    "ppr": "npm run pretest && npx cypress-tags run -e TAGS=\"@ppr\" --env allure=true", 
+    "rerun": "npm run pretest && npx cypress-tags run -e TAGS=\"@rerun\" --env allure=true"
+  },
+  "author": "Quynh Le",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^7.1.0",
+    "@shelex/cypress-allure-plugin": "^2.26.5",
+    "@types/faker": "^5.5.8",
+    "cypress": "^6.9.1",
+    "cypress-cucumber-preprocessor": "^4.3.1",
+    "cypress-file-upload": "^5.0.7",
+    "cypress-xpath": "^1.6.2"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinition": true,
+    "step_definitions": "cypress/integration/step_definitions/**/"
+  },
+  "dependencies": {
+    "clipboardy": "^2.3.0",
+    "faker": "^5.5.3",
+    "moment": "^2.29.1",
+    "printf": "^0.6.1",
+    "rimraf": "^3.0.2",
+    "testlink-xmlrpc": "^1.9.18-5"
+  }
+}

@@ -1,0 +1,14 @@
+{
+    "requisitionType": "Purchase Requisition",
+    "natureOfRequisition": "Project",
+    "projectCode" : "auto Prj 1",
+    "vendor1": "AUTO SUPPLIER 1 (1105)",
+    "rfqTitle": "auto RFQ title ",
+    "procurementType": "Service",
+    "rfqType": "Contract",
+    "deliveryAddress": "address auto",
+    "note": "auto test note",
+    "itemCode": "auto item code 1",
+    "itemQuantity": "100",
+    "rfqTitleInList": "AUTO RFQ TITLE "
+}

@@ -1,0 +1,14 @@
+{
+    "requisitionType": "Purchase Requisition",
+    "natureOfRequisition": "Project",
+    "projectCode" : "auto Prj 1",
+    "vendor1": "AUTO COMPANY 1 (COMPANY CODE 1)",
+    "rfqTitle": "auto RFQ title ",
+    "procurementType": "Goods",
+    "rfqType": "One-off quotation",
+    "deliveryAddress": "address auto", 
+    "note": "auto test note",
+    "itemCode": "auto item code 1", 
+    "itemQuantity": "100",
+    "rfqTitleInList": "AUTO RFQ TITLE "
+}

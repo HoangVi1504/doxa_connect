@@ -1,0 +1,21 @@
+{
+    "requisitionType": "Pre Purchase Requisition",
+    "natureOfRequisition": "Project",
+    "projectCode": "auto Prj 1",
+    "pprTitle": "auto PPR title ", 
+    "procurementType": "Service",
+    "approvalRoute": "auto approval PPR 1",
+    "deliveryAddress": "address auto",
+    "note": "auto test note",
+    "itemCode": "item code 4",
+    "itemName": "auto item name 4",
+    "itemDescription": "auto item description 4",
+    "itemCategory": "AUTO EQUIPMENT",
+    "itemModel": "auto model 4",
+    "itemSize": "20",
+    "itemBrand": "Panasonic",
+    "uom": "CENTIMETER",
+    "itemQuantity": "3000",
+    "requesterName": "auto creator",
+    "procurementTypePPRList": "SERVICE"
+}

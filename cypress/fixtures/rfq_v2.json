@@ -1,0 +1,14 @@
+{
+    "requisitionType": "Purchase Requisition",
+    "natureOfRequisition": "Non-Project",
+    "currencyCode": "Canadian Dollar (+CAD)",
+    "vendor1": "AUTO SUPPLIER 1 (1105)",
+    "rfqTitle": "auto RFQ title ",
+    "procurementType": "Service",
+    "rfqType": "One-off quotation",
+    "deliveryAddress": "address auto", 
+    "note": "auto test note",
+    "itemCode": "auto item code 1",
+    "itemQuantity": "100",
+    "rfqTitleInList": "AUTO RFQ TITLE "
+}

@@ -1,0 +1,22 @@
+{
+    "requisitionType": "Purchase Requisition",
+    "natureOfRequisition": "Project",
+    "projectCode" : "auto Prj 1",
+    "vendor1": "AUTO SUPPLIER 1 (1105)",
+    "rfqTitle": "auto RFQ title ",
+    "procurementType": "Service",
+    "rfqType": "One-off quotation",
+    "deliveryAddress": "address auto",
+    "note": "auto test note",
+    "itemCode": "auto item code 5",
+    "itemName": "auto item name 5",
+    "itemDescription": "auto item description 5",
+    "itemModel": "auto model 5",
+    "itemSize": "70",
+    "itemBrand": "SHARP",
+    "uom": "IN",
+    "itemQuantity": "100",
+    "currencyItem": "VND",
+    "price": "1000000",
+    "rfqTitleInList": "AUTO RFQ TITLE "
+}
