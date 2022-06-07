@@ -1,0 +1,22 @@
+{
+    "requisitionType": "Purchase Requisition",
+    "natureOfRequisition": "Non-Project",
+    "currencyCode": "Singapore Dollar (+SGD)",
+    "prTitle": "auto PR title ", 
+    "procurementType": "Goods",
+    "approvalRoute": "auto approval PR 1",
+    "deliveryAddress": "address auto",
+    "note": "auto test note",
+    "itemCode": "item code 1",
+    "itemName": "auto item name 1",
+    "itemDescription": "auto item description 1",
+    "itemCategory": "AUTO EQUIPMENT",
+    "itemModel": "auto model 1",
+    "itemSize": "50",
+    "itemBrand": "AQUA",
+    "supplier": "AUTO SUPPLIER 1",
+    "uom": "IN",
+    "itemQuantity": "1000",
+    "requesterName": "auto creator",
+    "procurementTypePRList": "GOODS"
+}  

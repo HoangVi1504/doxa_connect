@@ -1,4 +1,3 @@
-@ppr
 Feature: 0024 Raise PPR with Project, add catalogue item and 2 approver
 
 Scenario: 01 Raise PPR with Project, add catalogue item and 2 approver

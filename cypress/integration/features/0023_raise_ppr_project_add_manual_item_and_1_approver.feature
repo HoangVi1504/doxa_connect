@@ -1,4 +1,3 @@
-@ppr
 Feature: 0023 Raise PPR with Project, add manual item and 1 approver
 
 Scenario: 01 Raise PPR with Project, add manual item and 1 approver

@@ -1,4 +1,3 @@
-@ppr
 Feature: 0025 Submit PPR in Pending submission status after save as draft PPR then cancel PPR in Pending Approval status
 
 Scenario: 01 Save as draft PPR

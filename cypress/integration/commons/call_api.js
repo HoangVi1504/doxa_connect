@@ -1,26 +1,36 @@
-import CommonAction from './common_action'
+import CommonAction from '../commons/common_actions'
 const commonAction = new CommonAction()
 
 class ApiAction {
-    callApiDoubleClickToPprInPprList(approverName, pprTitle){
-        let token
-        if(approverName == "auto approver"){
-        token = "Bearer eyJraWQiOiJkb3hhLWNvbm5leDIiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI0OGYzODg5My1jNDVjLTQxMDQtOTgxMS00MjZiMTg1ODI4YjYiLCJjdHgiOiJwZXJzb25hbCIsInJvbGVzIjoiRU5USVRZX1VTRVIiLCJpc3MiOiJodHRwOlwvXC9vYXV0aC1zZXJ2aWNlIiwibG9jYWxlIjoiZW4iLCJjbGllbnRfaWQiOiI2YTliNGE1Ni1hMzc1LTQzNDMtYWE2OS1iNzhmYzkzYmQzZmUiLCJhdWQiOiI2YTliNGE1Ni1hMzc1LTQzNDMtYWE2OS1iNzhmYzkzYmQzZmUiLCJjb21wYW5pZXMiOlt7InJvbGVzIjoiRU5USVRZX1VTRVIiLCJ1dWlkIjoiNjg5ZmJhYzUtNzI5MS00Y2FkLWI4NGMtNTJlOTVkNDQ5OWE4IiwiYXV0aG9yaXRpZXMiOm51bGx9XSwibmJmIjoxNjUzNTU0NjAyLCJ1c2VyX2lkIjo4ODgsIm5hbWUiOiJhdXRvIGFwcHJvdmVyIiwiZGVzaWduYXRpb24iOiJhcHByb3ZlciIsImV4cCI6MTY1MzY0MTAwMiwiaWF0IjoxNjUzNTU0NjAyLCJqdGkiOiJkNGI0OGI4NC04YjMzLTQwODItODBhMS0yMGUzNjlhNjBlNjMifQ.JZf-s0KnC9CtCFpG3Y5UXkCsS6qMvO6VQBu4jY-lndpQZSoGwQhDluAED23wDgLs0RYp0Of1a1e2af4NTx2fJBcaT432799cHWAFDT2SPKXT6Uo0SduBip7r9HC6QVzi9geGImqOy_RfNCjr6bb-xg2XIyah8D1gIPQ00ANEFWvMjs_CiVU9GA5Cu-6wf7Mj2nKv82iWXw50YgWwekmorUVI7eVvdOk-GBj0vlmkUWXuXsV9JsIh0BDf-Xb7SpXFNwe7SONvUKlQ6X-SECDPq9v0Iu6AuhmvVAdfhMdL9Rw3MeqMb06lQhbKG61yM6cyA_YK-3p3nPF6OSW7Rg1l8g"
-        }
-        else if(approverName == "auto approver 2"){
-            token = "Bearer eyJraWQiOiJkb3hhLWNvbm5leDIiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJiZWQ4OTgxOS1kODY3LTRjNzYtYjRmNS0xODE5MmZiMWRiMDkiLCJjdHgiOiJwZXJzb25hbCIsInJvbGVzIjoiRU5USVRZX1VTRVIiLCJpc3MiOiJodHRwOlwvXC9vYXV0aC1zZXJ2aWNlIiwibG9jYWxlIjoiZW4iLCJjbGllbnRfaWQiOiI2YTliNGE1Ni1hMzc1LTQzNDMtYWE2OS1iNzhmYzkzYmQzZmUiLCJhdWQiOiI2YTliNGE1Ni1hMzc1LTQzNDMtYWE2OS1iNzhmYzkzYmQzZmUiLCJjb21wYW5pZXMiOlt7InJvbGVzIjoiRU5USVRZX1VTRVIiLCJ1dWlkIjoiNjg5ZmJhYzUtNzI5MS00Y2FkLWI4NGMtNTJlOTVkNDQ5OWE4IiwiYXV0aG9yaXRpZXMiOm51bGx9XSwibmJmIjoxNjUzNTU2NjMwLCJ1c2VyX2lkIjoxMDgwLCJuYW1lIjoiYXV0byBhcHByb3ZlciAyIiwiZGVzaWduYXRpb24iOiJhdXRvIGFwcHJvdmVyIDIiLCJleHAiOjE2NTM2NDMwMzAsImlhdCI6MTY1MzU1NjYzMCwianRpIjoiYTFjMzdjMjMtNTEwZC00NDZiLTkwOTgtYTAxN2RjNDY1MWI4In0.D7J0h8vYMI16v_4viZwcKcVyK8y3S8d27Bntr0b5PqMvEsfytD9TMyyBoDoLWoKo1hJ5AVgZq5_vUsVPc2WRm2FiwktNYkK7LmwPnKL_YVmRDYvk8I5txgoWKmDrIbc3-9uDm2fOwsJ7kD2FAYjDC_XZTRw4wmEkaj9NU2nzAZqgoQYQ38MzYGIrTq-LE-Xt_S-J6d7Ktiq-QT7ZU5WHQmBaBM9DkNa24V1dAi_EuCEoAsIbjGjD63hbZexMD7OS9q6Tqn6OIHHeQ3-eeFM8MUIFKUbYZdZVNU0P-G2UYYeXZ7uGoZqakh8YIaMFJab4S-WfH3iQL2VoSi0k99rd1A"
-        }
+    callApiDoubleClickToPprInPprList(pprTitle){
+        let token = window.localStorage.getItem("token")
         cy.request({
             method: 'GET',
             url: 'https://api-connex-dev.doxa-holdings.com/purchase/689fbac5-7291-4cad-b84c-52e95d4499a8/prerequisition/list/',
             headers: {
-                authorization: token,
+                authorization: "Bearer " + token,
             }
        }).its('body').then((body) => {
             const array = body.data;
             const elementRoot = array.find(element => element.pprTitle === pprTitle);
             const uuidRoot = elementRoot.pprUuid;
             commonAction.navigateTo(`https://connex-dev.doxa-holdings.com/pre-requisitions/details?uuid=${uuidRoot}`)
+        })
+    }
+
+    callApiNavigateToPrDetailPage(prNumber){
+        let token = window.localStorage.getItem("token")
+        cy.request({
+            method: 'GET',
+            url: 'https://api-connex-dev.doxa-holdings.com/purchase/689fbac5-7291-4cad-b84c-52e95d4499a8/purchase-requisition/list',
+            headers: {
+                authorization: "Bearer " + token,
+            }
+       }).its('body').then((body) => {
+            const array = body.data;
+            const elementRoot = array.find(element => element.prNumber === prNumber);
+            const uuidRoot = elementRoot.uuid;
+            commonAction.navigateTo(`https://connex-dev.doxa-holdings.com/requisition/pr-details?uuid=${uuidRoot}`)
         })
     }
 
@@ -154,5 +164,5 @@ class ApiAction {
                 procurementType: "GOODS"
             }
        })
-    }
+    } 
 }export default ApiAction

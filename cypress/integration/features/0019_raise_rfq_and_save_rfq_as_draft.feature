@@ -1,4 +1,3 @@
-@rfq
 Feature: 0019 Raise RFQ and save RFQ as draft
 
 Scenario: Raise RFQ and save RFQ as draft

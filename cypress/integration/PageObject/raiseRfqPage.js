@@ -64,7 +64,6 @@ class RaiseRFQPage{
             commonAction.checkCheckbox('[ref="eCheckbox"]>div>[type="checkbox"]')
             commonAction.clickToElementByXpath(printf(commonPageLocator.button_format_1_xpath, "Add"))
             this.verifyItemDeleteButtonDisplay()
-            this.clickToFilterSizeInItemTable()
             this.clickToFilterBrandInItemTable()
             this.clickToFilterUomInItemTable()
             this.clickToItemQuantityInItemTable()
@@ -137,7 +136,7 @@ class RaiseRFQPage{
 
     enterValueToItemDescriptionInItemTable(description){
         commonAction.enterValueToTextboxByXpath(raiseRFQPageLocator.item_description_xpath, description)
-        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Item Name"))
+        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Item Description"))
     }
 
     enterValueToItemModelInItemTable(model){
@@ -218,11 +217,6 @@ class RaiseRFQPage{
 
     clickToRfqTitleTextbox(){
         commonAction.clickToElement('[name="rfqTitle"]')
-    }
-
-    clickToFilterSizeInItemTable(){
-        commonAction.wait(3)
-        commonAction.clickToElement('[aria-label="Size Filter Input"]')
     }
 
     clickToFilterBrandInItemTable(){

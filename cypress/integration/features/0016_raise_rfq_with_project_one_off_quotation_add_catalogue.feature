@@ -1,4 +1,3 @@
-@rfq
 Feature: 0016 Raise Request for Quotations with Project, One-off-Quotation and add catalogue item
 
 Scenario: Raise Request for Quotations with Project, One-off-Quotation and add catalogue item

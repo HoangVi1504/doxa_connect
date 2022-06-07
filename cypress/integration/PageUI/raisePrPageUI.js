@@ -5,6 +5,7 @@ class RaisePrPageLocator{
         this.item_size_xpath = "(//*[@col-id='itemSize'])[2]";
         this.item_brand_xpath = "(//*[@col-id='itemBrand'])[2]";
         this.item_model_xpath = "(//*[@col-id='itemModel'])[2]";
+        this.item_uom_code_xpath = "(//*[@col-id='uom'])[2]";
         this.item_category_xpath = "(//*[@col-id='itemCategory'])[2]";
         this.item_quantity_xpath = "(//*[@col-id='itemQuantity'])[2]";
         this.item_currency_xpath = "(//*[@col-id='sourceCurrency'])[2]";

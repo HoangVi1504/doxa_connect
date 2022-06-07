@@ -1,4 +1,3 @@
-@rfq
 Feature: 0011 Raise Request for Quotations with non-project, One-off-Quotation and add manual items
 
 Scenario: Raise Request for Quotations with non-project, One-off quotation, add manual item
