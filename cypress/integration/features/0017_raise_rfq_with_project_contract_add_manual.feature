@@ -1,3 +1,4 @@
+@rfq
 Feature: 0017 Raise Request for Quotations with Project, Contract and add manual items
 
 Scenario: Raise Request for Quotations with Project, Contract and add manual items

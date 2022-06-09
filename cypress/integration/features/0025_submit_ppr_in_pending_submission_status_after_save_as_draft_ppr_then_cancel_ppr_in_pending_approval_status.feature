@@ -1,3 +1,4 @@
+@ppr
 Feature: 0025 Submit PPR in Pending submission status after save as draft PPR then cancel PPR in Pending Approval status
 
 Scenario: 01 Save as draft PPR
@@ -68,7 +69,6 @@ Scenario: 02 Submit PPR in Pending Submission status after save as draft PPR
     When I click to "I Understand" button format_1
     And I input PPR title from "ppr_v5" json file to 'Search PPR' textbox
     Then I see PPR status in PPR list is "PENDING APPROVAL"
-
 
 Scenario: 03 Cancel PPR in Pending Approval status after Submit PPR in Pending Submission status
     Given Navigate to Doxa Connect 2.0 site

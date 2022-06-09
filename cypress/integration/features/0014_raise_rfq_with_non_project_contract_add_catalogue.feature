@@ -1,3 +1,4 @@
+@rfq
 Feature: 0014 Raise Request for Quotations with non-project, Contrat and add catalogue item
 
 Scenario: Raise Request for Quotations with non-project, Contrat and add catalogue item

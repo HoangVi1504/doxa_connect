@@ -1,3 +1,4 @@
+@rfq
 Feature: 0015 Raise Request for Quotations with Project, One-off-Quotation and add manual items
 
 Scenario: Raise Request for Quotations with Project, One-off quotation, add manual item

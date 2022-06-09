@@ -1,3 +1,4 @@
+@rfq
 Feature: 0013 Raise Request for Quotations with non-project, Contract and add manual items
 
 Scenario: Raise Request for Quotations with non-project, Contract and add manual items

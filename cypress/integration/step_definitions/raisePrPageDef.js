@@ -225,6 +225,17 @@ When(/^I double click to PR title in PR list from "([^"]*)" json file$/, (keyWor
     raisePrPage.doubleClickToPrTitleInPrList(fileName, sessionStorage.getItem("numberPrTitle"))
 })
 
+When(/^I click to PR title textbox at Raise PR page$/, () => {
+    raisePrPage.clickToPrTitleTextbox()
+})
+
+When(/^I click to Item delete button at Raise PR page$/, () => {
+    raisePrPage.clickToItemDeleteButton()
+})
+
+Then(/^I see Item delete button at Raise PR page$/, () => {
+    raisePrPage.verifyItemDeleteButtonDisplay()
+})
 Then(/^I see PR title in PR list from "([^"]*)" json file$/, (keyWord) => {
     let fileName;
     switch (keyWord) {
@@ -370,6 +381,23 @@ Then(/^I see PR title at PR detail page from "([^"]*)" json file$/, (keyWord) =>
     raisePrPage.verifyValueInPrTitleTextboxExits(fileName, sessionStorage.getItem("numberPrTitle"))
 })
 
+Then(/^I see Project code with status "([^"]*)" at PR detail page from "([^"]*)" json file$/, (status, keyWord) => {
+    let fileName;
+    switch (keyWord) {
+        case "pr_v4":
+            fileName = 'pr_v4.json'
+            break;
+
+        case "pr_v5":
+            fileName = 'pr_v5.json'
+            break;
+
+        default:
+            break;
+    }
+    raisePrPage.verifyValueInProjectCodeExits(fileName, status)
+})
+
 Then(/^I see PR status in PR list is "([^"]*)"$/, (prStatus) => {
     raisePrPage.verifyPrStatusInPrListDisplay(prStatus)
 })
@@ -380,4 +408,28 @@ Then(/^I see 'Raise Requisition' page title$/, () => {
 
 Then(/^I see 'PR detail' page title$/, () => {
     raisePrPage.verifyPrDetailPageDisplay()
+})
+
+Then(/^I see a validation text of 'Requisition Type' at 'Raise PR' page "([^"]*)" appears$/, (validation) => {
+    raisePrPage.verifyValidationTextRequisitionTypeDisplay(validation)
+})
+
+Then(/^I see a validation text of 'PR title' at 'Raise PR' page "([^"]*)" appears$/, (validation) => {
+    raisePrPage.verifyValidationTextPprTitleDisplay(validation)
+})
+
+Then(/^I see a validation text of 'Procurement Type' at 'Raise PR' page "([^"]*)" appears$/, (validation) => {
+    raisePrPage.verifyValidationTextProcurementTypeDisplay(validation)
+})
+
+Then(/^I see a validation text of 'Approval Route' at 'Raise PR' page "([^"]*)" appears$/, (validation) => {
+    raisePrPage.verifyValidationTextApprovalRouteDisplay(validation)
+})
+
+Then(/^I see a validation text of 'Delivery Address' at 'Raise PR' page "([^"]*)" appears$/, (validation) => {
+    raisePrPage.verifyValidationTextDeliveryAddressDisplay(validation)
+})
+
+Then(/^I see a validation text of 'Delivery Date' at 'Raise PR' page "([^"]*)" appears$/, (validation) => {
+    raisePrPage.verifyValidationTextDeliveryDateDisplay(validation)
 })

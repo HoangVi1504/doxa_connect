@@ -401,4 +401,3 @@ Then(/^I see a validation text of 'Delivery Address' at 'Raise PPR' page "([^"]*
 Then(/^I see a validation text of 'Delivery Date' at 'Raise PPR' page "([^"]*)" appears$/, (validation) => {
     raisePprPage.verifyValidationTextDeliveryDateDisplay(validation)
 })
-

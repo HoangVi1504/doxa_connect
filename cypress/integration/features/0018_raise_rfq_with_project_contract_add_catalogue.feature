@@ -1,3 +1,4 @@
+@rfq
 Feature: 0018 Raise Request for Quotations with Project, Contrat and add catalogue item
 
 Scenario: Raise Request for Quotations with Project, Contrat and add catalogue item

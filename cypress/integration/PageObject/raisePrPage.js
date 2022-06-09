@@ -187,6 +187,10 @@ class RaisePrPage{
         })
     }
 
+    clickToPrTitleTextbox(){
+        commonAction.clickToElement('[name="prTitle"]')
+    }
+
     clickToFilterSizeInItemTable(){
         commonAction.clickToElement('[aria-label="Size Filter Input"]')
     }
@@ -268,6 +272,47 @@ class RaisePrPage{
         cy.fixture(fileName).then((fileName) =>{
             commonAction.verifyValueInTextboxExist('[name="prTitle"]', fileName.prTitle + numberPrTitle)
         })
+    }
+
+    verifyValueInProjectCodeExits(fileName, status){
+        cy.fixture(fileName).then((fileName) =>{
+            switch (status) {
+                case "PENDING SUBMISSION":
+                    commonAction.verifyValueInDropdownExits('[name="projectCode"]', fileName.projectCode)
+                    break;
+    
+                case "PENDING APPROVAL":
+                    commonAction.verifyValueInTextboxExist('[name="projectCode"]', fileName.projectCode)
+                    break;
+            
+                default:
+                    break;
+            } 
+        })
+    }
+
+    verifyValidationTextRequisitionTypeDisplay(validation){
+        commonAction.verifyElementByXpathVisible(printf(raisePrPageLocator.validation_text_requisition_type_xpath, validation))
+    }
+
+    verifyValidationTextPrTitleDisplay(validation){
+        commonAction.verifyElementByXpathVisible(printf(raisePrPageLocator.validation_text_ppr_title_xpath, validation))
+    }
+
+    verifyValidationTextProcurementTypeDisplay(validation){
+        commonAction.verifyElementByXpathVisible(printf(raisePrPageLocator.validation_text_procurement_type_xpath, validation))
+    }
+
+    verifyValidationTextApprovalRouteDisplay(validation){
+        commonAction.verifyElementByXpathVisible(printf(raisePprPageLocator.validation_text_approval_route_xpath, validation))
+    }
+
+    verifyValidationTextDeliveryAddressDisplay(validation){
+        commonAction.verifyElementByXpathVisible(printf(raisePrPageLocator.validation_text_delivery_address_xpath, validation))
+    }
+
+    verifyValidationTextDeliveryDateDisplay(validation){
+        commonAction.verifyElementByXpathVisible(printf(raisePrPageLocator.validation_text_delivery_date_xpath, validation))
     }
 
     scrollToElement(position){

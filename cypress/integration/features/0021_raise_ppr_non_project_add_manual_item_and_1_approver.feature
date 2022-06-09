@@ -1,3 +1,4 @@
+@ppr
 Feature: 0021 Raise PPR with Non-project, add manual item and 1 approver
 
 Scenario: 01 Raise PPR with Non-project, add manual item and 1 approver
