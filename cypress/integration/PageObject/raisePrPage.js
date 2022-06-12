@@ -13,7 +13,7 @@ class RaisePrPage{
             this.selectValueFromRequisitionTypeDropdown(fileName.requisitionType)
             this.selectValueFromNatureRequisitionDropdown(fileName.natureOfRequisition)
             if(fileName.natureOfRequisition == "Non-Project"){
-                this.verifyProjectCodeFieldNotDisplay()
+                // this.verifyProjectCodeFieldNotDisplay()
                 this.selectValueFromCurrencyCodeDropdown(fileName.currencyCode)
             }else if(fileName.natureOfRequisition == "Project"){
                 this.verifyProjectCodeFieldDisplay()
@@ -45,6 +45,7 @@ class RaisePrPage{
             commonAction.checkCheckbox('[ref="eCheckbox"]>div>[type="checkbox"]')
             commonAction.clickToElementByXpath(printf(commonPageLocator.button_format_1_xpath, "Add"))
             this.verifyItemDeleteButtonDisplay()
+            commonAction.wait(2)
             this.clickToFilterSizeInItemTable()
             this.clickToFilterBrandInItemTable()
             this.scrollToElement("50%")
@@ -115,8 +116,8 @@ class RaisePrPage{
         commonAction.enterValueToTextbox('[type="search"]', keyWord)
     }
 
-    enterValueToPprTitleTextbox(pprTitle){
-        commonAction.enterValueToTextbox('[name="prTitle"]', pprTitle)
+    enterValueToPrTitleTextbox(prTitle){
+        commonAction.enterValueToTextbox('[name="prTitle"]', prTitle)
     }
 
     enterValueToDeliveryDateTextbox(date){
@@ -128,14 +129,16 @@ class RaisePrPage{
         commonAction.enterValueToTextbox('[name="note"]', note)
     }
 
-    enterValueToSearchPrTitleTextbox(fileName, number){
-        cy.fixture(fileName).then((fileName) =>{
-            commonAction.enterValueToTextbox('[aria-label="Purchase Request Title Filter Input"]', fileName.prTitle + number)
-        })
+    enterValueToSearchPrTitleTextbox(prTitle){
+        commonAction.enterValueToTextbox('[aria-label="Purchase Request Title Filter Input"]', prTitle)
     }
 
     enterValueToPrTitleTextbox(prTitle){
         commonAction.enterValueToTextbox('[name="prTitle"]', prTitle)
+    }
+
+    enterValueToSendBackReasonTextbox(reason){
+        commonAction.enterValueToTextbox('[name="sendBackReason"]', reason)
     }
 
     selectValueFromItemCategoryDropdown(category){
@@ -181,10 +184,16 @@ class RaisePrPage{
         commonAction.selectValueFromElement('[name="approvalRouteUuid"]', value)
     }
 
-    doubleClickToPrTitleInPrList(fileName, numberPrTitle){
-        cy.fixture(fileName).then((fileName) =>{
-            commonAction.doubleClickToElementByXpath(printf(raisePrPageLocator.pr_title_in_pr_list_xpath, fileName.prTitle + numberPrTitle))
-        })
+    doubleClickToPrTitleInPrList(prTitle){
+        commonAction.doubleClickToElementByXpath(printf(raisePrPageLocator.pr_title_in_pr_list_xpath, prTitle))
+    }
+
+    clickToRejectPrButton(){
+        commonAction.clickToElementByXpath(raisePrPageLocator.reject_pr_button_xpath)
+    }
+
+    clickToSendBackPrButton(){
+        commonAction.clickToElementByXpath(raisePrPageLocator.send_back_button_xpath)
     }
 
     clickToPrTitleTextbox(){
@@ -217,6 +226,10 @@ class RaisePrPage{
 
     clickToItemDeleteButton(){
         commonAction.clickToElementByXpath(raisePrPageLocator.item_delete_button_xpath)
+    }
+
+    verifyNotificationPrDisplay(notification){
+        commonAction.verifyElementByXpathVisible(printf(raisePrPageLocator.notification_pr_xpath, notification))
     }
 
     verifyProjectCodeFieldNotDisplay(){
@@ -274,29 +287,12 @@ class RaisePrPage{
         })
     }
 
-    verifyValueInProjectCodeExits(fileName, status){
-        cy.fixture(fileName).then((fileName) =>{
-            switch (status) {
-                case "PENDING SUBMISSION":
-                    commonAction.verifyValueInDropdownExits('[name="projectCode"]', fileName.projectCode)
-                    break;
-    
-                case "PENDING APPROVAL":
-                    commonAction.verifyValueInTextboxExist('[name="projectCode"]', fileName.projectCode)
-                    break;
-            
-                default:
-                    break;
-            } 
-        })
-    }
-
     verifyValidationTextRequisitionTypeDisplay(validation){
         commonAction.verifyElementByXpathVisible(printf(raisePrPageLocator.validation_text_requisition_type_xpath, validation))
     }
 
     verifyValidationTextPrTitleDisplay(validation){
-        commonAction.verifyElementByXpathVisible(printf(raisePrPageLocator.validation_text_ppr_title_xpath, validation))
+        commonAction.verifyElementByXpathVisible(printf(raisePrPageLocator.validation_text_pr_title_xpath, validation))
     }
 
     verifyValidationTextProcurementTypeDisplay(validation){
@@ -304,7 +300,7 @@ class RaisePrPage{
     }
 
     verifyValidationTextApprovalRouteDisplay(validation){
-        commonAction.verifyElementByXpathVisible(printf(raisePprPageLocator.validation_text_approval_route_xpath, validation))
+        commonAction.verifyElementByXpathVisible(printf(raisePrPageLocator.validation_text_approval_route_xpath, validation))
     }
 
     verifyValidationTextDeliveryAddressDisplay(validation){

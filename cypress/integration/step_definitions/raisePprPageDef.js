@@ -1,10 +1,31 @@
 import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
 import CommonAction from '../commons/common_actions'
 import RaisePprPage from "../PageObject/raisePprPage";
+import ApiAction from "../commons/call_api"
 import { faker } from '@faker-js/faker';
 
+const apiAction = new ApiAction()
 const commonAction = new CommonAction()
 const raisePprPage = new RaisePprPage()
+
+When(/^Call API approver PPR random$/, () => {
+    apiAction.callApiApproverPpr()
+})
+
+When(/^Call API Raise PPR random$/, () => {
+    let number = faker.random.alphaNumeric(5)
+    let pprTitleRandom = "auto PPR " + number
+    sessionStorage.setItem("pprTitleRandom", pprTitleRandom)
+    apiAction.callApiRaisePpr(sessionStorage.getItem("pprTitleRandom"))
+})
+
+When(/^Call API navigate to "([^"]*)" page of PPR random$/, (pageName) => {
+    apiAction.callApiNavigateToPprPage(pageName, sessionStorage.getItem("pprTitleRandom"))
+})
+
+When(/^Call API get value in convert to PR page$/, () => {
+    apiAction.callApiGetValueInPrPage()
+})
 
 When(/^I fill data in Raise Requisition tab from "([^"]*)" json file at Raise PPR page$/, (keyWord) => {
     let fileName;
@@ -179,7 +200,13 @@ When(/^I input PPR title from "([^"]*)" json file to 'Search PPR' textbox$/, (ke
         default:
             break;
     }
-    raisePprPage.enterValueToSearchPPRTitleTextbox(fileName, number)
+    cy.fixture(fileName).then((fileName) =>{
+        raisePprPage.enterValueToSearchPPRTitleTextbox(fileName.pprTitle + number)
+    })
+})
+
+When(/^I input PPR random to 'Search PPR' textbox$/, () => {
+    raisePprPage.enterValueToSearchPPRTitleTextbox(sessionStorage.getItem("pprTitleRandom"))
 })
 
 When(/^I double click to PPR title in PPR list from "([^"]*)" json file$/, (keyWord) => {
@@ -210,6 +237,10 @@ When(/^I double click to PPR title in PPR list from "([^"]*)" json file$/, (keyW
             break;
     }
     raisePprPage.doubleClickToPprTitleInPprList(fileName, number)
+})
+
+When(/^I double click to PPR title random in PPR list$/, () => {
+    raisePprPage.doubleClickToPprTitleRandomInPprList(sessionStorage.getItem("pprTitleRandom"))
 })
 
 When(/^I click to Item delete button at Raise PPR page$/, () => {
@@ -338,7 +369,13 @@ Then(/^I see PPR title at PPR detail page from "([^"]*)" json file$/, (keyWord) 
         default:
             break;
     }
-    raisePprPage.verifyValueInPprTitleTextboxExits(fileName, number)
+    cy.fixture(fileName).then((fileName) =>{
+        raisePprPage.verifyValueInPprTitleTextboxExits(fileName.pprTitle + number)
+    })
+})
+
+Then(/^I see PPR title random at PPR detail page$/, () => {
+    raisePprPage.verifyValueInPprTitleTextboxExits(sessionStorage.getItem("pprTitleRandom"))
 })
 
 Then(/^I see Project code with status "([^"]*)" at PPR detail page from "([^"]*)" json file$/, (status, keyWord) => {

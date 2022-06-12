@@ -12,12 +12,72 @@ When(/^Get PR number in PR list$/, () => {
     commonAction.getPrNumberInPrList()
 })
 
-When(/^Call API double click to PR title "([^"]*)" in PR list$/, (prNumber) => {
-    apiAction.callApiNavigateToPrDetailPage(prNumber)
+When(/^Call API approver PR random$/, () => {
+    apiAction.callApiApproverPr()
 })
 
-When(/^Call API navigate to PR detail page of PR just created$/, () => {
-    apiAction.callApiNavigateToPrDetailPage(sessionStorage.getItem("prNumber"), sessionStorage.getItem("numberPrTitle"))
+When(/^Call API Raise PR with PR title "([^"]*)"$/, (prTitle) => {
+    apiAction.callApiRaisePr(prTitle)
+})
+
+When(/^Call API Raise PR random$/, () => {
+    let number = faker.random.alphaNumeric(5)
+    let prTitleRandom = "auto PR " + number
+    sessionStorage.setItem("prTitleRandom", prTitleRandom)
+    apiAction.callApiRaisePr(sessionStorage.getItem("prTitleRandom"))
+})
+
+When(/^Call API Save draft PR random$/, () => {
+    let number = faker.random.alphaNumeric(5)
+    let prTitleRandom = "auto save draft PR " + number
+    sessionStorage.setItem("prTitleRandom", prTitleRandom)
+    apiAction.callApiSaveAsDraftPr(sessionStorage.getItem("prTitleRandom"))
+})
+
+When(/^Call API navigate to "([^"]*)" page of PR number "([^"]*)" in PR list$/, (pageName, prNumber) => {
+    apiAction.callApiNavigateToPrPage(pageName, prNumber)
+})
+
+When(/^Call API navigate to "([^"]*)" page of PR random$/, (pageName) => {
+    apiAction.callApiNavigateToPrPage(pageName, sessionStorage.getItem("prNumber"))
+})
+
+When(/^I select delivery address from "([^"]*)" json file at Raise PR page$/, (keyWord) => {
+    let fileName;
+    switch (keyWord) {
+        case "pr_v1":
+            fileName = 'pr_v1.json'
+            break;
+
+        case "pr_v2":
+            fileName = 'pr_v2.json'
+            break;
+
+        default:
+            break;
+    }
+    cy.fixture(fileName).then((fileName) =>{
+        raisePrPage.selectValueToDeliveryAddressDropdown(fileName.deliveryAddress)
+    })
+})
+
+When(/^I select approval route from "([^"]*)" json file at Raise PR page$/, (keyWord) => {
+    let fileName;
+    switch (keyWord) {
+        case "pr_v1":
+            fileName = 'pr_v1.json'
+            break;
+
+        case "pr_v2":
+            fileName = 'pr_v2.json'
+            break;
+
+        default:
+            break;
+    }
+    cy.fixture(fileName).then((fileName) =>{
+        raisePrPage.selectValueFromApprovalRouteDropdown(fileName.approvalRoute)
+    })
 })
 
 When(/^I fill data in Raise Requisition tab from "([^"]*)" json file at Raise PR page$/, (keyWord) => {
@@ -193,7 +253,17 @@ When(/^I input PR title from "([^"]*)" json file to 'Search PR' textbox$/, (keyW
         default:
             break;
     }
-    raisePrPage.enterValueToSearchPrTitleTextbox(fileName, sessionStorage.getItem("numberPrTitle"))
+    cy.fixture(fileName).then((fileName) =>{
+        raisePrPage.enterValueToSearchPrTitleTextbox(fileName.prTitle + sessionStorage.getItem("numberPrTitle"))
+    })
+})
+
+When(/^I input PR random to 'Search PR' textbox$/, () => {
+    raisePrPage.enterValueToSearchPrTitleTextbox(sessionStorage.getItem("prTitleRandom"))
+})
+
+When(/^I input PPR random to 'Search PR' textbox$/, () => {
+    raisePrPage.enterValueToSearchPrTitleTextbox(sessionStorage.getItem("pprTitleRandom"))
 })
 
 When(/^I double click to PR title in PR list from "([^"]*)" json file$/, (keyWord) => {
@@ -222,7 +292,13 @@ When(/^I double click to PR title in PR list from "([^"]*)" json file$/, (keyWor
         default:
             break;
     }
-    raisePrPage.doubleClickToPrTitleInPrList(fileName, sessionStorage.getItem("numberPrTitle"))
+    cy.fixture(fileName).then((fileName) =>{
+        raisePrPage.doubleClickToPrTitleInPrList(fileName.prTitle + sessionStorage.getItem("numberPrTitle"))
+    })
+})
+
+When(/^I input reason send back or reject "([^"]*)" at Raise PR page$/, (reason) => {
+    raisePrPage.enterValueToSendBackReasonTextbox(reason)
 })
 
 When(/^I click to PR title textbox at Raise PR page$/, () => {
@@ -233,9 +309,22 @@ When(/^I click to Item delete button at Raise PR page$/, () => {
     raisePrPage.clickToItemDeleteButton()
 })
 
+When(/^I click to Reject PR button at Raise PR page$/, () => {
+    raisePrPage.clickToRejectPrButton()
+})
+
+When(/^I click to Send Back PR button at Raise PR page$/, () => {
+    raisePrPage.clickToSendBackPrButton()
+})
+
+Then(/^I see notification PR "([^"]*)" display at PR detail page$/, (notification) => {
+    raisePrPage.verifyNotificationPrDisplay(notification)
+})
+
 Then(/^I see Item delete button at Raise PR page$/, () => {
     raisePrPage.verifyItemDeleteButtonDisplay()
 })
+
 Then(/^I see PR title in PR list from "([^"]*)" json file$/, (keyWord) => {
     let fileName;
     switch (keyWord) {
@@ -381,23 +470,6 @@ Then(/^I see PR title at PR detail page from "([^"]*)" json file$/, (keyWord) =>
     raisePrPage.verifyValueInPrTitleTextboxExits(fileName, sessionStorage.getItem("numberPrTitle"))
 })
 
-Then(/^I see Project code with status "([^"]*)" at PR detail page from "([^"]*)" json file$/, (status, keyWord) => {
-    let fileName;
-    switch (keyWord) {
-        case "pr_v4":
-            fileName = 'pr_v4.json'
-            break;
-
-        case "pr_v5":
-            fileName = 'pr_v5.json'
-            break;
-
-        default:
-            break;
-    }
-    raisePrPage.verifyValueInProjectCodeExits(fileName, status)
-})
-
 Then(/^I see PR status in PR list is "([^"]*)"$/, (prStatus) => {
     raisePrPage.verifyPrStatusInPrListDisplay(prStatus)
 })
@@ -415,7 +487,7 @@ Then(/^I see a validation text of 'Requisition Type' at 'Raise PR' page "([^"]*)
 })
 
 Then(/^I see a validation text of 'PR title' at 'Raise PR' page "([^"]*)" appears$/, (validation) => {
-    raisePrPage.verifyValidationTextPprTitleDisplay(validation)
+    raisePrPage.verifyValidationTextPrTitleDisplay(validation)
 })
 
 Then(/^I see a validation text of 'Procurement Type' at 'Raise PR' page "([^"]*)" appears$/, (validation) => {

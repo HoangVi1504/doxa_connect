@@ -40,14 +40,14 @@ Scenario: 02 Approver approval PR
 
     # When I double click to PR title in PR list from "pr_v1" json file
     # work around
-    When Call API navigate to PR detail page of PR just created
+    When Call API navigate to "PR detail" page of PR random
     And Wait for "10" seconds
     # end work round
     Then I see 'PR detail' page title
     And I see PR title at PR detail page from "pr_v1" json file
 
     When I click to "Approve" button format_2
-    Then I see a message "Purchase requisition successfully approved" appears   
+    Then I see a message "Purchase requisition successfully approved" appears
 
     When I click to "I Understand" button format_1
     And I input PR title from "pr_v1" json file to 'Search PR' textbox

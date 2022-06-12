@@ -116,10 +116,8 @@ class RaisePprPage{
     }
 
     // Raise PPR
-    enterValueToSearchPPRTitleTextbox(fileName, number){
-        cy.fixture(fileName).then((fileName) =>{
-            commonAction.enterValueToTextbox('[aria-label="Purchase Pre-requisition Title Filter Input"]', fileName.pprTitle + number)
-        })
+    enterValueToSearchPPRTitleTextbox(pprTitle){
+        commonAction.enterValueToTextbox('[aria-label="Purchase Pre-requisition Title Filter Input"]', pprTitle)
     }
 
     enterValueToPprTitleTextbox(pprTitle){
@@ -183,6 +181,10 @@ class RaisePprPage{
         })
     }
 
+    doubleClickToPprTitleRandomInPprList(pprTitle){
+        commonAction.doubleClickToElementByXpath(printf(raisePprPageLocator.ppr_title_in_ppr_list_xpath, pprTitle))
+    }
+
     clickToFilterBrandInItemTable(){
         commonAction.clickToElement('[aria-label="Brand Filter Input"]')
     }
@@ -217,10 +219,8 @@ class RaisePprPage{
         commonAction.verifyElementVisible('[name="projectCode"]')
     }
 
-    verifyValueInPprTitleTextboxExits(fileName, number){
-        cy.fixture(fileName).then((fileName) =>{
-            commonAction.verifyValueInTextboxExist('[name="pprTitle"]', fileName.pprTitle + number)
-        })
+    verifyValueInPprTitleTextboxExits(pprTitle){
+        commonAction.verifyValueInTextboxExist('[name="pprTitle"]', pprTitle)
     }
 
     verifyValueInProjectCodeExits(fileName, status){

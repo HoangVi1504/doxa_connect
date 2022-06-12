@@ -40,7 +40,7 @@ Scenario: 02 Approver approval PR
 
     # When I double click to PR title in PR list from "pr_v2" json file
     # work around
-    When Call API navigate to PR detail page of PR just created
+    When Call API navigate to "PR detail" page of PR random
     And Wait for "10" seconds
     # end work round
     Then I see 'PR detail' page title
@@ -63,7 +63,7 @@ Scenario: 02 Approver approval PR
 
     # When I double click to PR title in PR list from "pr_v2" json file
     # work around
-    When Call API navigate to PR detail page of PR just created
+    When Call API navigate to "PR detail" page of PR random
     And Wait for "10" seconds
     # end work round
     Then I see 'PR detail' page title
