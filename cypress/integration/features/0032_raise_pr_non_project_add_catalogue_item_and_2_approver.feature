@@ -38,11 +38,8 @@ Scenario: 02 Approver approval PR
     Then I see PR title in PR list from "pr_v2" json file 
     And I see PR status in PR list is "PENDING APPROVAL"
 
-    # When I double click to PR title in PR list from "pr_v2" json file
-    # work around
     When Call API navigate to "PR detail" page of PR random
-    And Wait for "10" seconds
-    # end work round
+    And Wait for "6" seconds
     Then I see 'PR detail' page title
     And I see PR title at PR detail page from "pr_v2" json file
 
@@ -61,11 +58,8 @@ Scenario: 02 Approver approval PR
     And I input PR title from "pr_v2" json file to 'Search PR' textbox
     Then I see PR title in PR list from "pr_v2" json file
 
-    # When I double click to PR title in PR list from "pr_v2" json file
-    # work around
     When Call API navigate to "PR detail" page of PR random
-    And Wait for "10" seconds
-    # end work round
+    And Wait for "6" seconds
     Then I see 'PR detail' page title
     And I see PR title at PR detail page from "pr_v2" json file
 

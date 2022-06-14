@@ -171,60 +171,47 @@ When(/^I fill data in Request Terms tab from "([^"]*)" json file at Raise PR pag
 
 When(/^I add manual item from "([^"]*)" json file at Raise PR page$/, (keyWord) => {
     let fileName;
+    let natureOfRequisition;
     switch (keyWord) {
         case "pr_v1":
             fileName = 'pr_v1.json'
-            break;
-
-        case "pr_v2":
-            fileName = 'pr_v2.json'
+            natureOfRequisition = "non-project"
             break;
 
         case "pr_v3":
             fileName = 'pr_v3.json'
-            break;
-
-        case "pr_v4":
-            fileName = 'pr_v4.json'
-            break;
-
-        case "pr_v5":
-            fileName = 'pr_v5.json'
+            natureOfRequisition = "project"
             break;
 
         default:
             break;
     }
-    raisePrPage.addManualItem(fileName)
+    raisePrPage.addManualItem(fileName, natureOfRequisition)
 })
 
 When(/^I add catalogue item from "([^"]*)" json file at Raise PR page$/, (keyWord) => {
     let fileName;
+    let natureOfRequisition;
     switch (keyWord) {
-        case "pr_v1":
-            fileName = 'pr_v1.json'
-            break;
-
         case "pr_v2":
             fileName = 'pr_v2.json'
+            natureOfRequisition = "non-project"
             break;
         
-        case "pr_v3":
-            fileName = 'pr_v3.json'
-            break;
-
         case "pr_v4":
             fileName = 'pr_v4.json'
+            natureOfRequisition = "project"
             break;
 
         case "pr_v5":
             fileName = 'pr_v5.json'
+            natureOfRequisition = "non-project"
             break;
 
         default:
             break;
     }
-    raisePrPage.addCatalogueItem(fileName)
+    raisePrPage.addCatalogueItem(fileName, natureOfRequisition)
 })
 
 When(/^I input PR title from "([^"]*)" json file to 'Search PR' textbox$/, (keyWord) => {
@@ -386,8 +373,8 @@ Then(/^I see Requester name in PR list from "([^"]*)" json file$/, (keyWord) => 
 Then(/^I see Procurement type in PR list from "([^"]*)" json file$/, (keyWord) => {
     let fileName;
     switch (keyWord) {
-        case "pr_":
-            fileName = 'pr_.json'
+        case "pr_v1":
+            fileName = 'pr_v1.json'
             break;
 
         case "pr_v2":

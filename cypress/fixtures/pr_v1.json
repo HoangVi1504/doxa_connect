@@ -14,9 +14,12 @@
     "itemModel": "auto model 1",
     "itemSize": "50",
     "itemBrand": "AQUA",
-    "supplier": "AUTO SUPPLIER 1",
+    "supplierName": "AUTO SUPPLIER 1",
     "uom": "IN",
     "itemQuantity": "1000",
+    "itemCurrency": "SGD",
+    "itemUnitPrice": "3000",
+    "exchangeRate": "2",
     "requesterName": "auto creator",
     "procurementTypePRList": "GOODS"
 }  

@@ -59,11 +59,8 @@ Scenario: 02 Submit PR in Pending Submission status after save as draft PR
     Then I see PR title in PR list from "pr_v1" json file 
     And I see PR status in PR list is "PENDING SUBMISSION"
 
-    # When I double click to PR title in PR list from "pr_v1" json file
-    # work around
     When Call API navigate to "Edit draft PR" page of PR random
     And Wait for "6" seconds
-    # end work round
     Then I see 'PR detail' page title
     And I see PR title at PR detail page from "pr_v5" json file
 
@@ -76,7 +73,7 @@ Scenario: 02 Submit PR in Pending Submission status after save as draft PR
 
 Scenario: 03 Cancel PR in Pending Approval status after Submit PR in Pending Submission status
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "Creator"
+    When I login with role "creator"
     And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Requisitions" link on header menu
     And I click to "Requisitions" link on the left menu
@@ -85,11 +82,8 @@ Scenario: 03 Cancel PR in Pending Approval status after Submit PR in Pending Sub
     Then I see PR title in PR list from "pr_v5" json file 
     And I see PR status in PR list is "PENDING APPROVAL"
 
-    # When I double click to PR title in PR list from "pr_v5" json file
-    # work around
     When Call API navigate to "PR detail" page of PR random
     And Wait for "6" seconds
-    # end work round
     Then I see 'PR detail' page title
     And I see PR title at PR detail page from "pr_v5" json file
 

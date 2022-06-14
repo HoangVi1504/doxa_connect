@@ -138,6 +138,12 @@ class BaseAction {
         this.clickToElementByXpath(optionXpath)
     }
 
+    selectOptionFromDropdownWithSearch(dropdownXpath, searchXpath, optionXpath, option){
+        this.clickToElementByXpath(dropdownXpath)
+        this.enterValueToTextboxByXpath(searchXpath, option)
+        this.clickToElementByXpath(optionXpath)
+    }
+
     doubleClickToElementByXpath(xpath){
         cy.xpath(xpath).dblclick({force: true})
     }

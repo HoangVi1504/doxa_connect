@@ -48,9 +48,16 @@ Scenario: 02 Submit PR converted from PPR
     And I input PPR random to 'Search PPR' textbox
     Then I see PPR status in PPR list is "PENDING PURCHASER REVIEW"
 
-    When Call API navigate to "Convert to PR" page of PPR random
-    And Call API get value in convert to PR page
-    And Wait for "5" seconds
+    When I logout account
+    Then I see Doxa Connect 2.0 title
+
+    When I login with role "creator"
+    And I click to 'Dashboard' link on Header menu if it not be selected
+    And I click to "Requisitions" link on header menu
+    And I click to "Pre Purchase Requisition" link on the left menu
+    And I click to "Purchase Pre-Requisitions List" link on the left sub menu
+    And Call API navigate to "Convert to PR" page of PPR random
+    And Wait for "6" seconds
     Then I see PPR title random at PPR detail page
 
     When I click to "Convert To Request" button format_1
@@ -62,7 +69,8 @@ Scenario: 02 Submit PR converted from PPR
     And I input PPR random to 'Search PPR' textbox
     Then I see PPR status in PPR list is "CONVERTED TO PR"
 
-    When I click to "PRs List" link on the left sub menu
+    When I click to "Requisitions" link on the left menu
+    And I click to "PRs List" link on the left sub menu
     And I input PPR random to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING SUBMISSION"
 

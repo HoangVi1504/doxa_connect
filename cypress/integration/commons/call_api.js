@@ -66,13 +66,13 @@ class ApiAction{
             method: 'POST',
             url: urlPageLocator.create_ppr_url,
             headers: {
-                authorization:  "Bearer " + token,
+                authorization: "Bearer " + token,
             }, 
             body: {
                 approvalCodeUuid: "b921fa2d-e79f-458d-a7c8-726ac3bae307",
                 approvalSequence: "auto.approver [auto.approver@getnada.com]",
                 companyUuid: "689fbac5-7291-4cad-b84c-52e95d4499a8",
-                currencyCode: "AOA",
+                currencyCode: "SGD",
                 pprItemDtoList: [
                     {
                     categoryDto: 
@@ -150,6 +150,7 @@ class ApiAction{
                             postalCode: "4000",
                             state: "Singapore"
                         },
+                        exchangeRate: "0.7190623427051125",
                         itemCategory: "AUTO EQUIPMENT",
                         itemCode: "auto item code 1",
                         itemName: "auto item name 1",
@@ -204,15 +205,27 @@ class ApiAction{
                         state: "Singapore",
                         uuid: "f9cdfeca-c150-47ed-8840-f17bdd6ff797"
                     },
+                    isActive: true,
+                    isEditable: true,
+                    itemCategory: "AUTO EQUIPMENT",
+                    itemCode: "auto item code 1",
+                    itemName: "auto item name 1",
                     quantity: "100",
                     requestDeliveryDate: commonAction.getDateFormat5(1),
                     supplierName: "AUTO SUPPLIER 1",
-                    supplierUuid: "3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",         
+                    supplierUuid: "3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",
+                    taxCode: "11052022",
+                    taxRate: "0.5",
+                    unitPrice: "5000",
+                    uomCode: "CEN",      
                     uuid: "ac4e3ff8-1ee4-4596-ad0f-f63981ea5d61"
                     }
                 ],
                 pprTitle: pprTitle,
-                procurementType: "GOODS"
+                procurementType: "GOODS",
+                requesterName: "auto creator",
+                requesterUuid: "b809048e-d96c-4897-b5a4-8099f57b53a1",
+                status: "SAVED_AS_DRAFT"
             }
        })
     }
@@ -242,6 +255,7 @@ class ApiAction{
                             postalCode: "4000",
                             state: "Singapore"
                         },
+                        exchangeRate: "0.7190623427051125",
                         itemCategory: "AUTO EQUIPMENT",
                         itemCode: "auto item code 1",
                         itemName: "auto item name 1",
@@ -250,8 +264,6 @@ class ApiAction{
                         requestedDeliveryDate: commonAction.getDateFormat5(1),
                         sourceCurrency: "SGD",
                         supplierName: "AUTO SUPPLIER 1",
-                        supplierUuid: "3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",
-                    supplierUuid: "3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",         
                         supplierUuid: "3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",
                         taxCode: "11052022",
                         taxRate: 0.5,

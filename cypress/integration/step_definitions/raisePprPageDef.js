@@ -23,10 +23,6 @@ When(/^Call API navigate to "([^"]*)" page of PPR random$/, (pageName) => {
     apiAction.callApiNavigateToPprPage(pageName, sessionStorage.getItem("pprTitleRandom"))
 })
 
-When(/^Call API get value in convert to PR page$/, () => {
-    apiAction.callApiGetValueInPrPage()
-})
-
 When(/^I fill data in Raise Requisition tab from "([^"]*)" json file at Raise PPR page$/, (keyWord) => {
     let fileName;
     switch (keyWord) {

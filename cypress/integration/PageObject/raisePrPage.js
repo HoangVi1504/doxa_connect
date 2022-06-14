@@ -38,7 +38,7 @@ class RaisePrPage{
         })
     }
 
-    addCatalogueItem(fileName){
+    addCatalogueItem(fileName, natureOfRequisition){
         cy.fixture(fileName).then((fileName) =>{
             commonAction.clickToElementByXpath(printf(commonPageLocator.button_format_2_xpath, "Add Catalogue"))
             this.enterValueToSearchTextboxInItemTable(fileName.itemCode)
@@ -48,16 +48,16 @@ class RaisePrPage{
             commonAction.wait(2)
             this.clickToFilterSizeInItemTable()
             this.clickToFilterBrandInItemTable()
-            this.scrollToElement("50%")
+            if(natureOfRequisition == "project"){
+                this.clickToFilterTradeInItemTable()
+            }
             this.clickToFilterCategoryInItemTable()
-            this.clickToFilterSupplierTextbox()
+            this.clickToFilterSupplierInItemTable()
             this.clickToFilterUomInItemTable()
-            this.clickToItemQuantityInItemTable()
             this.enterValueToItemQuantityInItemTable(fileName.itemQuantity)
         })
     }
-
-    addManualItem(fileName){
+    addManualItem(fileName, natureOfRequisition){
         cy.fixture(fileName).then((fileName) =>{
             commonAction.clickToElementByXpath(printf(commonPageLocator.button_format_2_xpath, "Add Manual"))
             this.verifyItemDeleteButtonDisplay()
@@ -67,12 +67,28 @@ class RaisePrPage{
             this.enterValueToItemModelInItemTable(fileName.itemModel)
             this.enterValueToItemSizeInItemTable(fileName.itemSize)
             this.enterValueToItemBrandInItemTable(fileName.itemBrand)
+            if(natureOfRequisition == "project"){
+                this.clickToFilterTradeInItemTable()
+            }
+            this.clickToFilterCategoryInItemTable()
             this.selectValueFromItemCategoryDropdown(fileName.itemCategory)
-            this.clickToFilterSupplierTextbox()
-            // this.selectValueFromSupplierDropdown()
+            this.clickToFilterSupplierInItemTable()
+            this.selectValueFromItemSupplierDropdown(fileName.supplierName)
             this.clickToFilterUomInItemTable()
             this.selectValueFromItemUomDropdown(fileName.uom)
             this.enterValueToItemQuantityInItemTable(fileName.itemQuantity)
+            this.selectValueFromItemCurrencyCodeDropdown(fileName.itemCurrency)
+            this.clickToFilterUnitPriceInItemTable()
+            this.enterValueToItemUnitPriceInItemTable(fileName.itemUnitPrice)
+            this.clickToFilterPriceTypeInItemTable()
+            if(natureOfRequisition == "project"){
+                this.clickToFilterUomForecastInItemTable()
+                this.clickToFilterUnitPriceForecastedInItemTable()
+            }
+            this.clickToFilterTaxCodeInItemTable()
+            this.clickToFilterTaxPercentageInItemTable()
+            this.clickToFilterInSourceCurrencyInItemTable()
+            this.enterValueToExchangeRateInItemTable(fileName.exchangeRate)
         })
     }
 
@@ -112,76 +128,88 @@ class RaisePrPage{
         commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Quantity"))
     }
 
+    enterValueToItemUnitPriceInItemTable(unitPrice){
+        commonAction.clickToElementByXpath(raisePrPageLocator.item_unit_price_xpath)
+        commonAction.enterValueToTextboxByXpath(raisePrPageLocator.item_unit_price_xpath, unitPrice)
+    }
+
+    enterValueToExchangeRateInItemTable(exchangeRate){
+        commonAction.clickToElementByXpath(raisePrPageLocator.item_exchange_rate_xpath)
+        commonAction.enterValueToTextboxByXpath(raisePrPageLocator.item_exchange_rate_xpath, exchangeRate)
+    }
+
     enterValueToSearchTextboxInItemTable(keyWord){
-        commonAction.enterValueToTextbox('[type="search"]', keyWord)
+        commonAction.enterValueToTextbox(raisePrPageLocator.search_catalogue_txb_css, keyWord)
     }
 
     enterValueToPrTitleTextbox(prTitle){
-        commonAction.enterValueToTextbox('[name="prTitle"]', prTitle)
+        commonAction.enterValueToTextbox(raisePrPageLocator.pr_title_txb_css, prTitle)
     }
 
     enterValueToDeliveryDateTextbox(date){
-        commonAction.enterValueToTextbox('[name="deliveryDate"]', date)
+        commonAction.enterValueToTextbox(raisePrPageLocator.delivery_date_txb_css, date)
         commonAction.clickToElementByXpath(printf(commonPageLocator.label_xpath, "Delivery Date"))
     }
 
     enterValueToNoteTextbox(note){
-        commonAction.enterValueToTextbox('[name="note"]', note)
+        commonAction.enterValueToTextbox(raisePrPageLocator.note_txb_css, note)
     }
 
     enterValueToSearchPrTitleTextbox(prTitle){
-        commonAction.enterValueToTextbox('[aria-label="Purchase Request Title Filter Input"]', prTitle)
-    }
-
-    enterValueToPrTitleTextbox(prTitle){
-        commonAction.enterValueToTextbox('[name="prTitle"]', prTitle)
+        commonAction.enterValueToTextbox(raisePrPageLocator.filter_pr_txb_css, prTitle)
     }
 
     enterValueToSendBackReasonTextbox(reason){
-        commonAction.enterValueToTextbox('[name="sendBackReason"]', reason)
+        commonAction.enterValueToTextbox(raisePrPageLocator.send_back_reason_txb_css, reason)
+    }
+
+    selectValueFromItemSupplierDropdown(supplierName){
+        commonAction.selectOptionFromDropdownByXpath(raisePrPageLocator.item_supplier_xpath, printf(raisePrPageLocator.option_item_from_dropdown_xpath, supplierName))
+    }
+
+    selectValueFromItemCurrencyCodeDropdown(currencyCode){
+        commonAction.selectOptionFromDropdownByXpath(raisePrPageLocator.item_currency_xpath, printf(raisePrPageLocator.option_item_from_dropdown_xpath, currencyCode))
+        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Unit Price"))
     }
 
     selectValueFromItemCategoryDropdown(category){
-        commonAction.clickToElementByXpath(raisePrPageLocator.item_category_xpath)
-        commonAction.selectOptionFromDropdownByXpath(raisePrPageLocator.item_category_xpath, printf(commonPageLocator.text_xpath, category))
+        // commonAction.clickToElementByXpath(raisePrPageLocator.item_category_xpath)
+        commonAction.selectOptionFromDropdownByXpath(raisePrPageLocator.item_category_xpath, printf(raisePrPageLocator.option_item_from_dropdown_xpath, category))
         commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Category"))
     }
 
     selectValueFromItemUomDropdown(uom){
-        commonAction.selectOptionFromDropdownByXpath(raisePrPageLocator.item_uom_code_xpath, printf(commonPageLocator.text_xpath, uom))
+        commonAction.wait(1)
+        commonAction.selectOptionFromDropdownByXpath(raisePrPageLocator.item_uom_code_xpath, printf(raisePrPageLocator.option_item_from_dropdown_xpath, uom))
         commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "UOM"))
     }
 
     selectValueFromProcurementTypeDropdown(value){
-        commonAction.selectValueFromElement('[name="procurementType"]', value)
+        commonAction.selectValueFromElement(raisePrPageLocator.procurement_type_dropdown_css, value)
     }
 
     selectValueFromApprovalRouteDropdown(value){
-        commonAction.selectValueFromElement('[name="approvalRouteUuid"]', value)
+        commonAction.selectValueFromElement(raisePrPageLocator.approval_route_dropdown_css, value)
     }
 
     selectValueFromProjectCodeDropdown(value){
-        commonAction.selectValueFromElement('[name="projectCode"]', value)
+        commonAction.selectValueFromElement(raisePrPageLocator.project_code_dropdown_css, value)
     }
 
     selectValueFromCurrencyCodeDropdown(value){
-        commonAction.selectValueFromElement('[name="currencyCode"]', value)
+        commonAction.selectValueFromElement(raisePrPageLocator.currency_code_dropdown_css, value)
     }
 
     selectValueFromRequisitionTypeDropdown(value){
-        commonAction.selectValueFromElement('[name="requisitionType"]', value)
+        commonAction.selectValueFromElement(raisePrPageLocator.requisition_type_dropdown_css, value)
     }
 
     selectValueFromNatureRequisitionDropdown(value){
-        commonAction.selectValueFromElement('[name="project"]', value)
+        commonAction.selectValueFromElement(raisePrPageLocator.nature_requisition_dropdown_css, value)
     }
 
     selectValueToDeliveryAddressDropdown(address){
-        commonAction.selectValueFromElement('[name="deliveryAddress"]', address)
-    }
-
-    selectValueFromPrApprovalRouteDropdown(value){
-        commonAction.selectValueFromElement('[name="approvalRouteUuid"]', value)
+        commonAction.selectValueFromElement(raisePrPageLocator.delivery_address_dropdown_css, address)
     }
 
     doubleClickToPrTitleInPrList(prTitle){
@@ -197,31 +225,59 @@ class RaisePrPage{
     }
 
     clickToPrTitleTextbox(){
-        commonAction.clickToElement('[name="prTitle"]')
+        commonAction.clickToElement(raisePrPageLocator.pr_title_txb_css)
     }
 
     clickToFilterSizeInItemTable(){
-        commonAction.clickToElement('[aria-label="Size Filter Input"]')
+        commonAction.clickToElement(raisePrPageLocator.filter_size_in_table_css)
     }
 
     clickToFilterBrandInItemTable(){
-        commonAction.clickToElement('[aria-label="Brand Filter Input"]')
+        commonAction.clickToElement(raisePrPageLocator.filter_branch_in_table_css)
+    }
+
+    clickToFilterTradeInItemTable(){
+        commonAction.clickToElement(raisePrPageLocator.filter_trade_in_table_css)
     }
 
     clickToFilterCategoryInItemTable(){
-        commonAction.clickToElement('[aria-label="Category Filter Input"]')
+        commonAction.clickToElement(raisePrPageLocator.filter_category_in_table_css)
     }
 
     clickToFilterUomInItemTable(){
-        commonAction.clickToElement('[aria-label="UOM Filter Input"]')
+        commonAction.clickToElement(raisePrPageLocator.filter_uom_in_table_css)
     }
 
-    clickToFilterSupplierTextbox(){
-        commonAction.clickToElement('[aria-label="Supplier Filter Input"]')
+    clickToFilterSupplierInItemTable(){
+        commonAction.clickToElement(raisePrPageLocator.filter_supplier_in_table_css)
     }
 
-    clickToItemQuantityInItemTable(){
-        commonAction.clickToElementByXpath(raisePrPageLocator.item_quantity_xpath)
+    clickToFilterUnitPriceInItemTable(){
+        commonAction.clickToElement(raisePrPageLocator.filter_unit_price_in_table_css)
+    }
+
+    clickToFilterPriceTypeInItemTable(){
+        commonAction.clickToElement(raisePrPageLocator.filter_price_type_in_table_css)
+    }
+
+    clickToFilterUomForecastInItemTable(){
+        commonAction.clickToElement(raisePrPageLocator.filter_uom_forecasted_in_table_css)
+    }
+
+    clickToFilterUnitPriceForecastedInItemTable(){
+        commonAction.clickToElement(raisePrPageLocator.filter_unit_price_forecasted_in_table_css)
+    }
+
+    clickToFilterTaxCodeInItemTable(){
+        commonAction.clickToElement(raisePrPageLocator.filter_tax_code_in_table_css)
+    }
+
+    clickToFilterTaxPercentageInItemTable(){
+        commonAction.clickToElement(raisePrPageLocator.filter_tax_percentage_in_table_css)
+    }
+
+    clickToFilterInSourceCurrencyInItemTable(){
+        commonAction.clickToElement(raisePrPageLocator.filter_source_currency_code_in_table_css)
     }
 
     clickToItemDeleteButton(){
@@ -233,11 +289,11 @@ class RaisePrPage{
     }
 
     verifyProjectCodeFieldNotDisplay(){
-        commonAction.verifyElementNotExist('[name="projectCode"]')
+        commonAction.verifyElementNotExist(raisePrPageLocator.project_code_dropdown_css)
     }
 
     verifyProjectCodeFieldDisplay(){
-        commonAction.verifyElementVisible('[name="projectCode"]')
+        commonAction.verifyElementVisible(raisePrPageLocator.project_code_dropdown_css)
     }
 
     verifyItemDeleteButtonDisplay(){
@@ -276,14 +332,14 @@ class RaisePrPage{
 
     verifyApprovalRouteInPrListDisplay(fileName){
         cy.fixture(fileName).then((fileName) =>{
-            commonAction.clickToElement('[aria-label="Approval Route Filter Input"]')
+            commonAction.clickToElement(raisePrPageLocator.filter_approval_route_in_table_css)
             commonAction.verifyElementByXpathExist(printf(raisePrPageLocator.approval_route_in_pr_list_xpath, fileName.approvalRoute))
         })
     }
 
     verifyValueInPrTitleTextboxExits(fileName, numberPrTitle){
         cy.fixture(fileName).then((fileName) =>{
-            commonAction.verifyValueInTextboxExist('[name="prTitle"]', fileName.prTitle + numberPrTitle)
+            commonAction.verifyValueInTextboxExist(raisePrPageLocator.pr_title_txb_css, fileName.prTitle + numberPrTitle)
         })
     }
 
