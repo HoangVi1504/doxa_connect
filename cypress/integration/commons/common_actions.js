@@ -18,7 +18,6 @@ class BaseAction {
         cy.get('[role="rowgroup"]').last().find('>div').eq(0).find('>div').eq(0).then(($el) => {
             let text = $el.text()
             sessionStorage.setItem("prNumber", text)
-            cy.log(sessionStorage.getItem("prNumber"))
         });
     }
 
