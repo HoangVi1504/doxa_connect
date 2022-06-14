@@ -55,6 +55,10 @@ When(/^I click to 'Dashboard' link on Header menu if it not be selected$/, () =>
     }) 
 })
 
+When(/^Wait for "([^"]*)" seconds$/, (time) => {
+    commonPage.waitTime(time)
+})
+
 Then(/^I see a message "([^"]*)" appears$/, (message) => {
     commonPage.verifyMediaHeadingMessageDisplay(message)
 });

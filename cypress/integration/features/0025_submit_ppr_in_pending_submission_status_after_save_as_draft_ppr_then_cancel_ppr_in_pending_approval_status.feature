@@ -70,7 +70,6 @@ Scenario: 02 Submit PPR in Pending Submission status after save as draft PPR
     And I input PPR title from "ppr_v5" json file to 'Search PPR' textbox
     Then I see PPR status in PPR list is "PENDING APPROVAL"
 
-
 Scenario: 03 Cancel PPR in Pending Approval status after Submit PPR in Pending Submission status
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
