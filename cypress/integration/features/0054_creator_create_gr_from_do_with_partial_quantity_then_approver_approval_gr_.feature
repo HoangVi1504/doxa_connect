@@ -21,13 +21,13 @@ Scenario: 01 Creator convert PR to PO then issue PO
 
     When Get PO number in list
     And I double click to PO No in list
-    Then I see PO detail page
+    Then I see 'PO Detail' page
 
     When I click to "Issue" button format_1
     Then I see a message "PO has been issued to supplier" appears
 
     When I click to "I Understand" button format_1
-    And I input PO No to filter 'PO No' in list
+    And I input PO No to filter PO in list
     Then I see PO status in list is "ISSUED"
     And I see Supplier Ack status is "NOT VIEWED"
 
@@ -38,14 +38,14 @@ Scenario: 02 Connected supplier create DO from PO with partial quantity then iss
     And I click to "Orders" link on header menu
     And I click to "Orders List" link on the left menu
     And I click to "POs List" link on the left sub menu
-    And I input PO No to filter 'PO No' in list
+    And I input PO No to filter PO in list
     And I double click to PO No in list
-    Then I see PO detail page
+    Then I see 'PO Detail' page
     And I see "View PO" button format_1
 
     When Call API view PO
     And I click to "Back" button format_1
-    And I input PO No to filter 'PO No' in list
+    And I input PO No to filter PO in list
     Then I see PO status in list is "ISSUED"
     And I see Supplier Ack status is "VIEWED"
 

@@ -6,3 +6,7 @@ const headerPage = new HeaderPage()
 When(/^I logout account$/, () => {
     headerPage.logOut()
 })
+
+When(/^I click to "Orders" link on header menu$/, () => {
+    headerPage.clickToOrdersLink()
+})

@@ -21,7 +21,7 @@ Scenario: 01 Creator create GR from PO with partial PO quantity
 
     When Get PO number in list
     And I double click to PO No in list
-    Then I see PO detail page
+    Then I see 'PO Detail' page
 
     When I click to "Issue" button format_1
     Then I see a message "PO has been issued to supplier" appears 
@@ -135,7 +135,7 @@ Scenario: 04 Approver approval GR then creator close PO
     Then I see PO status in PO list is "PARTIALLY DELIVERED"
 
     When I double click to PO No in list
-    Then I see PO detail page
+    Then I see 'PO Detail' page
 
     When I click to "Mark Completed" button format_1
     And I input reason close PO at PO detail page

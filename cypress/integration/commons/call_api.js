@@ -60,6 +60,100 @@ class ApiAction{
         })
     }
 
+    callApiNavigateToConvertPrToPoPage(prNumber){
+        let token = window.localStorage.getItem("token")
+        cy.request({
+            method: 'GET',
+            url: urlPageLocator.pr_to_be_converted_list_url,
+            headers: {
+                authorization: "Bearer " + token,
+            }
+       }).then((response) => {
+            const array = response.body.data;
+            return array
+        }).then((array) =>{
+            const elementRoot = array.find(element => element.prNumber === prNumber);
+            const uuidRoot = elementRoot.uuid;
+            urlPage.navigateToConvertPrToPoPage(uuidRoot)
+        })
+    }
+
+    callApiNavigateToPoDetailPage(roleName, poNumber){
+        let token = window.localStorage.getItem("token")
+        let url;
+        switch (roleName) {
+            case "Buyer":
+                url = urlPageLocator.buyer_po_list_url
+                break;
+
+            case "Supplier":
+                url = urlPageLocator.supplier_po_list_url
+                break;
+        
+            default:
+                break;
+        }
+        cy.request({
+            method: 'GET',
+            url: url,
+            headers: {
+                authorization: "Bearer " + token,
+            }
+       }).then((response) => {
+            const array = response.body.data;
+            return array
+        }).then((array) =>{
+            const elementRoot = array.find(element => element.poNumber === poNumber);
+            const uuidRoot = elementRoot.poUuid;
+            sessionStorage.setItem("poUuid", uuidRoot)
+            urlPage.navigateToPoDetailPage(uuidRoot)
+        })
+    }
+
+    callApiViewPo(roleName){
+        let token = window.localStorage.getItem("token")
+        let uuid = sessionStorage.getItem("poUuid")
+        let url
+        switch (roleName) {
+            case "Buyer":
+                url = printf(urlPageLocator.buyer_view_po_url, uuid)
+                break;
+
+            case "Supplier":
+                url = printf(urlPageLocator.supplier_view_po_url, uuid)
+                break;
+        
+            default:
+                break;
+        }
+        cy.request({
+            method: 'GET',
+            url: url,
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) =>{
+            expect(response.body).has.property("status", "OK")
+        })
+    }
+
+    callApiAcknowledgePo(){
+        let token = window.localStorage.getItem("token")
+        let uuid = sessionStorage.getItem("poUuid")
+        cy.request({
+            method: 'PUT',
+            url: printf(urlPageLocator.acknowledge_po_url, uuid),
+            headers: {
+                authorization: "Bearer " + token,
+            },
+            body: {
+                "poDocumentDtoList": []
+            }
+        }).then((response) =>{
+            expect(response.body).has.property("message", "Supplier has successfully acknowledge the purchase order")
+        })
+    }
+
     callApiRaisePpr(pprTitle){
         let token = window.localStorage.getItem("token")
         cy.request({

@@ -92,6 +92,10 @@ class RaisePrPage{
         })
     }
 
+    enterValueToFilterPRInList(prNumber){
+        commonAction.enterValueToTextbox(raisePrPageLocator.filter_pr_in_list_css, prNumber)
+    }
+
     enterValueToItemCodeInItemTable(code){
         commonAction.enterValueToTextboxByXpath(raisePrPageLocator.item_code_xpath, code)
     }
@@ -229,55 +233,55 @@ class RaisePrPage{
     }
 
     clickToFilterSizeInItemTable(){
-        commonAction.clickToElement(raisePrPageLocator.filter_size_in_table_css)
+        commonAction.clickToElement(raisePrPageLocator.filter_size_in_list_css)
     }
 
     clickToFilterBrandInItemTable(){
-        commonAction.clickToElement(raisePrPageLocator.filter_branch_in_table_css)
+        commonAction.clickToElement(raisePrPageLocator.filter_branch_in_list_css)
     }
 
     clickToFilterTradeInItemTable(){
-        commonAction.clickToElement(raisePrPageLocator.filter_trade_in_table_css)
+        commonAction.clickToElement(raisePrPageLocator.filter_trade_in_list_css)
     }
 
     clickToFilterCategoryInItemTable(){
-        commonAction.clickToElement(raisePrPageLocator.filter_category_in_table_css)
+        commonAction.clickToElement(raisePrPageLocator.filter_category_in_list_css)
     }
 
     clickToFilterUomInItemTable(){
-        commonAction.clickToElement(raisePrPageLocator.filter_uom_in_table_css)
+        commonAction.clickToElement(raisePrPageLocator.filter_uom_in_list_css)
     }
 
     clickToFilterSupplierInItemTable(){
-        commonAction.clickToElement(raisePrPageLocator.filter_supplier_in_table_css)
+        commonAction.clickToElement(raisePrPageLocator.filter_supplier_in_list_css)
     }
 
     clickToFilterUnitPriceInItemTable(){
-        commonAction.clickToElement(raisePrPageLocator.filter_unit_price_in_table_css)
+        commonAction.clickToElement(raisePrPageLocator.filter_unit_price_in_list_css)
     }
 
     clickToFilterPriceTypeInItemTable(){
-        commonAction.clickToElement(raisePrPageLocator.filter_price_type_in_table_css)
+        commonAction.clickToElement(raisePrPageLocator.filter_price_type_in_list_css)
     }
 
     clickToFilterUomForecastInItemTable(){
-        commonAction.clickToElement(raisePrPageLocator.filter_uom_forecasted_in_table_css)
+        commonAction.clickToElement(raisePrPageLocator.filter_uom_forecasted_in_list_css)
     }
 
     clickToFilterUnitPriceForecastedInItemTable(){
-        commonAction.clickToElement(raisePrPageLocator.filter_unit_price_forecasted_in_table_css)
+        commonAction.clickToElement(raisePrPageLocator.filter_unit_price_forecasted_in_list_css)
     }
 
     clickToFilterTaxCodeInItemTable(){
-        commonAction.clickToElement(raisePrPageLocator.filter_tax_code_in_table_css)
+        commonAction.clickToElement(raisePrPageLocator.filter_tax_code_in_list_css)
     }
 
     clickToFilterTaxPercentageInItemTable(){
-        commonAction.clickToElement(raisePrPageLocator.filter_tax_percentage_in_table_css)
+        commonAction.clickToElement(raisePrPageLocator.filter_tax_percentage_in_list_css)
     }
 
     clickToFilterInSourceCurrencyInItemTable(){
-        commonAction.clickToElement(raisePrPageLocator.filter_source_currency_code_in_table_css)
+        commonAction.clickToElement(raisePrPageLocator.filter_source_currency_code_in_list_css)
     }
 
     clickToItemDeleteButton(){
@@ -332,7 +336,7 @@ class RaisePrPage{
 
     verifyApprovalRouteInPrListDisplay(fileName){
         cy.fixture(fileName).then((fileName) =>{
-            commonAction.clickToElement(raisePrPageLocator.filter_approval_route_in_table_css)
+            commonAction.clickToElement(raisePrPageLocator.filter_approval_route_in_list_css)
             commonAction.verifyElementByXpathExist(printf(raisePrPageLocator.approval_route_in_pr_list_xpath, fileName.approvalRoute))
         })
     }

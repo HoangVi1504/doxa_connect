@@ -9,7 +9,7 @@ Scenario: 01 Approver Reject PR in PENDING APPROVAL status
     And I click to "Requisitions" link on header menu
     And I click to "Requisitions" link on the left menu
     And I click to "PRs List" link on the left sub menu
-    And I input PR random to 'Search PR' textbox
+    And I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING APPROVAL"
 
     When Get PR number in PR list
@@ -19,7 +19,7 @@ Scenario: 01 Approver Reject PR in PENDING APPROVAL status
     And I click to "Requisitions" link on header menu
     And I click to "Requisitions" link on the left menu
     And I click to "PRs List" link on the left sub menu
-    And I input PR random to 'Search PR' textbox
+    And I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING APPROVAL"
 
     When Call API navigate to "PR detail" page of PR random
@@ -30,7 +30,7 @@ Scenario: 01 Approver Reject PR in PENDING APPROVAL status
     Then I see a message "Purchase requisition successfully rejected" appears
 
     When I click to "I Understand" button format_1
-    And I input PR random to 'Search PR' textbox
+    And I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "REJECTED"
 
 Scenario: 02 Approver Send back PR in PENDING APPROVAL status
@@ -41,7 +41,7 @@ Scenario: 02 Approver Send back PR in PENDING APPROVAL status
     And I click to "Requisitions" link on header menu
     And I click to "Requisitions" link on the left menu
     And I click to "PRs List" link on the left sub menu
-    And I input PR random to 'Search PR' textbox
+    And I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING APPROVAL"
 
     When Get PR number in PR list
@@ -51,7 +51,7 @@ Scenario: 02 Approver Send back PR in PENDING APPROVAL status
     And I click to "Requisitions" link on header menu
     And I click to "Requisitions" link on the left menu
     And I click to "PRs List" link on the left sub menu
-    And I input PR random to 'Search PR' textbox
+    And I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING APPROVAL"
 
     When Call API navigate to "PR detail" page of PR random
@@ -62,7 +62,7 @@ Scenario: 02 Approver Send back PR in PENDING APPROVAL status
     Then I see a message "Purchase requisition successfully sent back" appears
 
     When I click to "I Understand" button format_1
-    And I input PR random to 'Search PR' textbox
+    And I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "SENT BACK"
 
 Scenario: 03 Creator recall PR in Pending Approval status then submit PR in Recalled status
@@ -73,7 +73,7 @@ Scenario: 03 Creator recall PR in Pending Approval status then submit PR in Reca
     And I click to "Requisitions" link on header menu
     And I click to "Requisitions" link on the left menu
     And I click to "PRs List" link on the left sub menu
-    And I input PR random to 'Search PR' textbox
+    And I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING APPROVAL"
 
     When Get PR number in PR list
@@ -86,7 +86,7 @@ Scenario: 03 Creator recall PR in Pending Approval status then submit PR in Reca
     Then I see a message "Purchase requisition successfully recalled" appears
 
     When I click to "I Understand" button format_1
-    And I input PR random to 'Search PR' textbox
+    And I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "RECALLED"
 
     When Get PR number in PR list
@@ -99,5 +99,5 @@ Scenario: 03 Creator recall PR in Pending Approval status then submit PR in Reca
     Then I see a message "Purchase requisition have been successfully editted" appears
 
     When I click to "I Understand" button format_1
-    And I input PR random to 'Search PR' textbox
+    And I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING APPROVAL"

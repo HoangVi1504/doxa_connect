@@ -42,6 +42,10 @@ When(/^Call API navigate to "([^"]*)" page of PR random$/, (pageName) => {
     apiAction.callApiNavigateToPrPage(pageName, sessionStorage.getItem("prNumber"))
 })
 
+When(/^I input PR No to filter PR in list$/, () => {
+    raisePrPage.enterValueToFilterPRInList(sessionStorage.getItem("prNumber"))
+})
+
 When(/^I select delivery address from "([^"]*)" json file at Raise PR page$/, (keyWord) => {
     let fileName;
     switch (keyWord) {
@@ -245,11 +249,11 @@ When(/^I input PR title from "([^"]*)" json file to 'Search PR' textbox$/, (keyW
     })
 })
 
-When(/^I input PR random to 'Search PR' textbox$/, () => {
+When(/^I input PR title random to 'Search PR' textbox$/, () => {
     raisePrPage.enterValueToSearchPrTitleTextbox(sessionStorage.getItem("prTitleRandom"))
 })
 
-When(/^I input PPR random to 'Search PR' textbox$/, () => {
+When(/^I input PPR title random to 'Search PR' textbox$/, () => {
     raisePrPage.enterValueToSearchPrTitleTextbox(sessionStorage.getItem("pprTitleRandom"))
 })
 

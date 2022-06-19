@@ -9,7 +9,7 @@ Scenario: 01 Cancel draft PR in Pending Submission status
     And I click to "Requisitions" link on header menu
     And I click to "Requisitions" link on the left menu
     And I click to "PRs List" link on the left sub menu
-    And I input PR random to 'Search PR' textbox
+    And I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING SUBMISSION"
 
     When Get PR number in PR list
@@ -22,7 +22,7 @@ Scenario: 01 Cancel draft PR in Pending Submission status
     Then I see a message "Purchase requisition successfully cancelled" appears
 
     When I click to "I Understand" button format_1
-    And I input PR random to 'Search PR' textbox
+    And I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "CANCELLED"
 
 Scenario: 02 Submit PR converted from PPR
@@ -71,7 +71,7 @@ Scenario: 02 Submit PR converted from PPR
 
     When I click to "Requisitions" link on the left menu
     And I click to "PRs List" link on the left sub menu
-    And I input PPR random to 'Search PR' textbox
+    And I input PPR title random to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING SUBMISSION"
 
     When Get PR number in PR list
@@ -86,5 +86,5 @@ Scenario: 02 Submit PR converted from PPR
     Then I see a message "Purchase requisition successfully submitted" appears
 
     When I click to "I Understand" button format_1
-    And I input PPR random to 'Search PR' textbox
+    And I input PPR title random to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING APPROVAL"

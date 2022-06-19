@@ -9,7 +9,7 @@ Scenario: 01 Creator create GR from PO with full PO quantity
     And I click to "Requisitions" link on header menu
     And I click to "Requisitions" link on the left menu
     And I click to "PRs List" link on the left sub menu
-    And I input PR random to 'Search PR' textbox
+    And I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING APPROVAL"
 
     When Get PR number in PR list
@@ -22,11 +22,11 @@ Scenario: 01 Creator create GR from PO with full PO quantity
     And I click to "Orders" link on header menu
     And I click to "Requests Pending Conversion" link on the left menu
     And I click to "PRs To Be Converted" link on the left sub menu
-    And I input PR number to filter 'PR No' in list
+    And I input PR No to filter PR in list
     Then I see PR status in PR list is "PENDING CONVERSION TO PO"
 
     When I double click to PR No in list
-    Then I see PR to convert detail page 
+    Then I see 'PR Convert Detail' page 
     
     When I click to "Convert to PO" button format_1
     Then I see a message "Converted to PO successfully" appears
@@ -35,13 +35,13 @@ Scenario: 01 Creator create GR from PO with full PO quantity
     And I click to "Back" button format_1
     And I click to "Orders List" link on the left menu
     And I click to "POs List" link on the left sub menu
-    And I input PR number to filter 'PR No' in list
+    And I input PR No to filter PR in list
     Then I see PO status in list is "PENDING ISSUE"
     And I see Supplier Ack status is "NOT VIEWED"
 
     When Get PO number in list
     And I double click to PO No in list
-    Then I see PO detail page
+    Then I see 'PO Detail' page
 
     When I click to "Issue" button format_1
     Then I see a message "PO has been issued to supplier" appears
