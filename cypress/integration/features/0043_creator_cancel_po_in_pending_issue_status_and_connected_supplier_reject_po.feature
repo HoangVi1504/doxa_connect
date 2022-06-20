@@ -25,7 +25,7 @@ Scenario: 01 Creator cancel PO in Pending Issue status
     And I input PR No to filter PR in list
     Then I see PR status in PR list is "PENDING CONVERSION TO PO"
 
-    When I double click to PR No in PR To Be Converted list
+    When I double click to PR No in 'PR To Be Converted' list
     And Wait for "6" seconds
     Then I see 'PR Convert Detail' page
     And I see PR No in 'PR No' textbox at 'PR Convert Detail' page
@@ -49,7 +49,7 @@ Scenario: 01 Creator cancel PO in Pending Issue status
     And I see PO No in 'PO No' textbox at 'PO Detail' page
 
     When I click to "Cancel" button format_1
-    Then I see notification PO "Do you wish to cancel this order?" display at PO detail page
+    Then I see notification PO "Do you wish to cancel this order?" display at 'PO Detail' page
 
     When I click to "Yes" button format_1
     Then I see a message "The purchase order has successfully been cancelled" appears
@@ -82,7 +82,7 @@ Scenario: 02 Connected supplier reject PO
     And I input PR No to filter PR in list
     Then I see PR status in PR list is "PENDING CONVERSION TO PO"
 
-    When I double click to PR No in PR To Be Converted list
+    When I double click to PR No in 'PR To Be Converted' list
     And Wait for "6" seconds
     Then I see 'PR Convert Detail' page
     And I see PR No in 'PR No' textbox at 'PR Convert Detail' page
@@ -130,8 +130,8 @@ Scenario: 02 Connected supplier reject PO
     And I see PO No in 'PO No' textbox at 'PO Detail' page
 
     When I click to "Reject" button format_2
-    And I input reason reject PO at PO detail page is "auto reject this PO"
-    And I click to Reject button at PO detail page
+    And I input reason reject PO at 'PO Detail' page is "auto reject this PO"
+    And I click to Reject button at 'PO Detail' page
     Then I see a message "The purchase order has successfully been rejected" appears
 
     When I click to "I Understand" button format_1

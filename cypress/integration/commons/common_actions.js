@@ -25,7 +25,21 @@ class BaseAction {
         cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="poNumber"]').then(($el) => {
             let text = $el.text()
             sessionStorage.setItem("poNumber", text)
-            cy.log(sessionStorage.getItem("poNumber"))
+        });
+    }
+
+    getPoNumberInGrList(){
+        cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="grNumber"]').then(($el) => {
+            let text = $el.text()
+            sessionStorage.setItem("grNumber", text)
+        });
+    }
+
+    getDoNumberInDoList(){
+        cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="deliveryOrderNumber"]').then(($el) => {
+            let text = $el.text()
+            sessionStorage.setItem("doNumberDoList", text)
+            cy.log(sessionStorage.getItem("doNumberDoList"))
         });
     }
 
@@ -86,6 +100,10 @@ class BaseAction {
         cy.get(locator).click()
     }
 
+    getTextElement(locator){
+        return cy.get(locator)
+    }
+
     verifyElementVisible(locator){
         cy.get(locator).should('be.visible')
     }
@@ -118,6 +136,10 @@ class BaseAction {
         cy.get(locator)
           .should(($option) =>{expect($option).to.contain(value)})
           .select(value)
+    }
+
+    selectValueFromElement1(locator, option){
+        cy.get(locator).select(option).should('have.value', option)
     }
 
     submitForm(){

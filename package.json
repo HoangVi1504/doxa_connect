@@ -11,7 +11,9 @@
     "post-test": "npm run allure:report",
     "open-report": "allure open",
     "po": "npm run pretest && npx cypress-tags run -e TAGS=\"@po\" --env allure=true",
+    "gr": "npm run pretest && npx cypress-tags run -e TAGS=\"@gr\" --env allure=true",
     "pr": "npm run pretest && npx cypress-tags run -e TAGS=\"@pr\" --env allure=true",
+    "inv": "npm run pretest && npx cypress-tags run -e TAGS=\"@inv\" --env allure=true",
     "rfq": "npm run pretest && npx cypress-tags run -e TAGS=\"@rfq\" --env allure=true",
     "ppr": "npm run pretest && npx cypress-tags run -e TAGS=\"@ppr\" --env allure=true",
     "rerun": "npm run pretest && npx cypress-tags run -e TAGS=\"@rerun\" --env allure=true"

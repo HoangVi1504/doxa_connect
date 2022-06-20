@@ -108,8 +108,8 @@ Scenario: 03 Creator close PO in Issued status
     And I see PO No in 'PO No' textbox at 'PO Detail' page
 
     When I click to "Mark Completed" button format_1
-    And I input reason close PO at PO detail page is "auto cancel this PO"
-    And I click to Mark Complete button at PO detail page
+    And I input reason close PO at 'PO Detail' page is "auto cancel this PO"
+    And I click to Mark Complete button at 'PO Detail' page
     Then I see a message "PO was closed successfully" appears
 
     When I click to "I Understand" button format_1
