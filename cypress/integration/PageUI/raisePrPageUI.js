@@ -8,20 +8,21 @@ class RaisePrPageLocator{
         this.search_catalogue_txb_css = '[type="search"]';
         this.send_back_reason_txb_css = '[name="sendBackReason"]';
 
-        this.filter_uom_in_table_css = '[aria-label="UOM Filter Input"]';
-        this.filter_size_in_table_css = '[aria-label="Size Filter Input"]';
-        this.filter_trade_in_table_css = '[aria-label="Trade Filter Input"]';
-        this.filter_branch_in_table_css = '[aria-label="Brand Filter Input"]';
-        this.filter_supplier_in_table_css = '[aria-label="Supplier Filter Input"]';
-        this.filter_category_in_table_css = '[aria-label="Category Filter Input"]';
-        this.filter_unit_price_in_table_css = '[aria-label="Unit Price Filter Input"]';
-        this.filter_price_type_in_table_css = '[aria-label="Price Type Filter Input"]';
-        this.filter_tax_code_in_table_css = '[aria-label="Tax Code Filter Input"]';
-        this.filter_tax_percentage_in_table_css = '[aria-label="Tax Percentage Filter Input"]';
-        this.filter_uom_forecasted_in_table_css = '[aria-label="UOM (Forecast) Filter Input"]';
-        this.filter_approval_route_in_table_css = '[aria-label="Approval Route Filter Input"]';
-        this.filter_source_currency_code_in_table_css = '[aria-label="In Source Currency (Before Tax) Filter Input"]';
-        this.filter_unit_price_forecasted_in_table_css = '[aria-label="Unit Price (Forecasted) Filter Input"]';
+        this.filter_pr_in_list_css = '[aria-label="Purchase Requisition No. Filter Input"]'
+        this.filter_uom_in_list_css = '[aria-label="UOM Filter Input"]';
+        this.filter_size_in_list_css = '[aria-label="Size Filter Input"]';
+        this.filter_trade_in_list_css = '[aria-label="Trade Filter Input"]';
+        this.filter_branch_in_list_css = '[aria-label="Brand Filter Input"]';
+        this.filter_supplier_in_list_css = '[aria-label="Supplier Filter Input"]';
+        this.filter_category_in_list_css = '[aria-label="Category Filter Input"]';
+        this.filter_tax_code_in_list_css = '[aria-label="Tax Code Filter Input"]';
+        this.filter_unit_price_in_list_css = '[aria-label="Unit Price Filter Input"]';
+        this.filter_price_type_in_list_css = '[aria-label="Price Type Filter Input"]';
+        this.filter_tax_percentage_in_list_css = '[aria-label="Tax Percentage Filter Input"]';
+        this.filter_uom_forecasted_in_list_css = '[aria-label="UOM (Forecast) Filter Input"]';
+        this.filter_approval_route_in_list_css = '[aria-label="Approval Route Filter Input"]';
+        this.filter_source_currency_code_in_list_css = '[aria-label="In Source Currency (Before Tax) Filter Input"]';
+        this.filter_unit_price_forecasted_in_list_css = '[aria-label="Unit Price (Forecasted) Filter Input"]';
 
         this.project_code_dropdown_css = '[name="projectCode"]';
         this.currency_code_dropdown_css = '[name="currencyCode"]';

@@ -45,4 +45,11 @@ class UrlPage{
         commonAction.navigateTo(url)
     }
 
+    navigateToPoDetailPage(uuid){
+        commonAction.navigateTo(printf(urlPageLocator.po_detail_url, uuid))
+    }
+
+    navigateToConvertPrToPoPage(uuid){
+        commonAction.navigateTo(printf(urlPageLocator.convert_pr_to_po_url, uuid))
+    }
 }export default UrlPage

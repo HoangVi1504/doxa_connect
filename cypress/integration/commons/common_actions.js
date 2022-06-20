@@ -15,10 +15,17 @@ class BaseAction {
     }
 
     getPrNumberInPrList(){
-        cy.get('[role="rowgroup"]').last().find('>div').eq(0).find('>div').eq(0).then(($el) => {
+        cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="prNumber"]').then(($el) => {
             let text = $el.text()
             sessionStorage.setItem("prNumber", text)
-            cy.log(sessionStorage.getItem("prNumber"))
+        });
+    }
+
+    getPoNumberInPoList(){
+        cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="poNumber"]').then(($el) => {
+            let text = $el.text()
+            sessionStorage.setItem("poNumber", text)
+            cy.log(sessionStorage.getItem("poNumber"))
         });
     }
 
