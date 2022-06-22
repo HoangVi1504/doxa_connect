@@ -10,14 +10,13 @@ class CommonPage{
         commonAction.navigateTo(url)
     }
 
-    navigateToRequestForQuotation(){
-        this.clickToOptionLinkOnHeaderMenu("Request for Quotations")
-        this.clickToOptionLinkLeftMenu("Request for Quotation")
+    navigateToLinkLeftMenu(linkMenu, linkLeftMenu){
+        this.clickToOptionLinkOnHeaderMenu(linkMenu)
+        this.clickToOptionLinkLeftMenu(linkLeftMenu)
     }
 
     navigateToLinkLeftSubMenu(linkMenu, linkLeftMenu, linkSubLeftMenu){
-        this.clickToOptionLinkOnHeaderMenu(linkMenu)
-        this.clickToOptionLinkLeftMenu(linkLeftMenu)
+        this.navigateToLinkLeftMenu(linkMenu, linkLeftMenu)
         this.clickToOptionLinkSubMenu(linkSubLeftMenu)
     }
 

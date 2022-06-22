@@ -16,6 +16,7 @@ class DoPage{
     }
 
     enterValueToQuantityConvertTextbox(quantity){
+        commonAction.clickToElement(doPageLocator.quantity_to_convert_txb_css)
         commonAction.enterValueToTextbox(doPageLocator.quantity_to_convert_txb_css, quantity)
     }
 

@@ -1,12 +1,22 @@
 import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
 import CommonAction from '../commons/common_actions'
+import ApiAction from "../commons/call_api"
 import DoPage from "../PageObject/doPage"
 
 const commonAction = new CommonAction()
+const apiAction = new ApiAction()
 const doPage = new DoPage()
 
 When(/^Get DO number in list$/, () => {
     commonAction.getDoNumberInDoList()
+})
+
+When(/^Call API create DO from PO No just created$/, () => {
+    apiAction.callApiCreateDO(sessionStorage.getItem("poNumber"))
+})
+
+When(/^Call API Issue DO just created$/, () => {
+    apiAction.callApiIssueDo(sessionStorage.getItem("poNumber"), sessionStorage.getItem("doNumberDoList"))
 })
 
 When(/^I input delivery date as next "([^"]*)" days to 'Delivery Date' textbox at 'Create DO' page$/, (date) => {

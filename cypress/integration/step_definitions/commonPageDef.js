@@ -1,8 +1,8 @@
 import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
+import CommonPageLocator from '../PageUI/commonPageUI'
 import CommonAction from '../commons/common_actions'
 import CommonPage from "../PageObject/commonPage"
 import LoginPage from "../PageObject/loginPage";
-import CommonPageLocator from '../PageUI/commonPageUI'
 import { faker } from '@faker-js/faker';
 
 var printf = require('printf')
@@ -11,10 +11,6 @@ const commonPage = new CommonPage()
 const commonAction = new CommonAction()
 const commonPageLocator = new CommonPageLocator()
 const globalVariables = require("../commons/global_variables");
-
-When(/^Navigate to link$/, () => {
-    commonPage.navigateTo("https://connex-dev.doxa-holdings.com/po-details?uuid=dda677a1-ff9f-4013-8f8d-a8c4f37ac76a")
-});
 
 Given(/^Navigate to Doxa Connect 2.0 site$/, () => {
     commonPage.navigateTo(globalVariables.url)

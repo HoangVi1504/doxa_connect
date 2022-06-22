@@ -18,6 +18,7 @@ class BaseAction {
         cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="prNumber"]').then(($el) => {
             let text = $el.text()
             sessionStorage.setItem("prNumber", text)
+            cy.log(sessionStorage.getItem("prNumber"))
         });
     }
 
@@ -39,7 +40,14 @@ class BaseAction {
         cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="deliveryOrderNumber"]').then(($el) => {
             let text = $el.text()
             sessionStorage.setItem("doNumberDoList", text)
-            cy.log(sessionStorage.getItem("doNumberDoList"))
+        });
+    }
+
+    getInvNoInList(){
+        cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="invoiceNo"]').then(($el) => {
+            let text = $el.text()
+            sessionStorage.setItem("invNumberList", text)
+            cy.log(sessionStorage.getItem("invNumberList"))
         });
     }
 
@@ -175,6 +183,10 @@ class BaseAction {
 
     doubleClickToElementByXpath(xpath){
         cy.xpath(xpath).dblclick({force: true})
+    }
+
+    checkCheckboxByXpath(xpath){
+        cy.xpath(xpath).check({force: true})
     }
 
     clickToElementByXpath(xpath){

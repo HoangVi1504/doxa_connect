@@ -11,6 +11,14 @@ When(/^Get GR number in list$/, () => {
     commonAction.getPoNumberInGrList()
 })
 
+When(/^Call API create GR from DO$/, () => {
+    apiAction.callApiCreateGrFromDo(sessionStorage.getItem("doNumberDoList"))
+})
+
+When(/^Call API approval GR$/, () => {
+    apiAction.callApiApprovalGr(sessionStorage.getItem("grNumber"))
+})
+
 When(/^I input random DO No to DO textbox at 'Create GR' page$/, () => {
     let number = commonAction.getTime()
     let doNumber = "DO "+ number
