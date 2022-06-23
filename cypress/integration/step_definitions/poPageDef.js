@@ -20,22 +20,26 @@ When(/^"([^"]*)" call API navigate to PO detail page$/, (roleName) => {
 })
 
 When(/^"([^"]*)" call API view PO$/, (roleName) => {
-    apiAction.callApiViewPo(roleName)
+    apiAction.callApiViewPo(roleName, sessionStorage.getItem("poNumber"))
 })
 
 When(/^Supplier call API Acknowledge PO$/, () => {
     apiAction.callApiAcknowledgePo()
 })
 
+When(/^Call API convert PR just created random to PO$/, () => {
+    apiAction.callApiConvertPrToPo(sessionStorage.getItem("prTitleRandom"))
+})
+
 When(/^I input PO No to filter PO in list$/, () => {
     poPage.enterValueToFilterPoInList(sessionStorage.getItem("poNumber"))
 })
 
-When(/^I input reason close PO at PO detail page is "([^"]*)"$/, (reason) => {
+When(/^I input reason close PO at 'PO Detail' page is "([^"]*)"$/, (reason) => {
     poPage.enterValueToCancelReasonTextbox(reason)
 })
 
-When(/^I input reason reject PO at PO detail page is "([^"]*)"$/, (reason) => {
+When(/^I input reason reject PO at 'PO Detail' page is "([^"]*)"$/, (reason) => {
     poPage.enterValueToRejectTextbox(reason)
 })
 
@@ -43,7 +47,7 @@ When(/^I select approval route "([^"]*)" at 'PO detail' page$/, (value) => {
     poPage.selectValueFromApprovalRouteDropdown(value)
 })
 
-When(/^I double click to PR No in PR To Be Converted list$/, () => {
+When(/^I double click to PR No in 'PR To Be Converted' list$/, () => {
     poPage.doubleClickToPrNumberInList(sessionStorage.getItem("prNumber"))
 })
 
@@ -51,11 +55,11 @@ When(/^I double click to PO No in PO list$/, () => {
     poPage.doubleClickToPoNumberInList(sessionStorage.getItem("poNumber"))
 })
 
-When(/^I click to Mark Complete button at PO detail page$/, () => {
+When(/^I click to Mark Complete button at 'PO Detail' page$/, () => {
     poPage.clickToMarkCompletedButton()
 })
 
-When(/^I click to Reject button at PO detail page$/, () => {
+When(/^I click to Reject button at 'PO Detail' page$/, () => {
     poPage.clickToRejectButton()
 })
 
@@ -87,6 +91,6 @@ Then(/^I see Supplier Ack status is "([^"]*)"$/, (status) => {
     poPage.verifySupplierAckStatusInListDisplay(status)
 })
 
-Then(/^I see notification PO "([^"]*)" display at PO detail page$/, (notification) => {
+Then(/^I see notification PO "([^"]*)" display at 'PO Detail' page$/, (notification) => {
     poPage.verifyNotificationPoDisplay(notification)
 })

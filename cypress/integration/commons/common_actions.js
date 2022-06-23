@@ -18,6 +18,7 @@ class BaseAction {
         cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="prNumber"]').then(($el) => {
             let text = $el.text()
             sessionStorage.setItem("prNumber", text)
+            cy.log(sessionStorage.getItem("prNumber"))
         });
     }
 
@@ -25,7 +26,28 @@ class BaseAction {
         cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="poNumber"]').then(($el) => {
             let text = $el.text()
             sessionStorage.setItem("poNumber", text)
-            cy.log(sessionStorage.getItem("poNumber"))
+        });
+    }
+
+    getPoNumberInGrList(){
+        cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="grNumber"]').then(($el) => {
+            let text = $el.text()
+            sessionStorage.setItem("grNumber", text)
+        });
+    }
+
+    getDoNumberInDoList(){
+        cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="deliveryOrderNumber"]').then(($el) => {
+            let text = $el.text()
+            sessionStorage.setItem("doNumberDoList", text)
+        });
+    }
+
+    getInvNoInList(){
+        cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="invoiceNo"]').then(($el) => {
+            let text = $el.text()
+            sessionStorage.setItem("invNumberList", text)
+            cy.log(sessionStorage.getItem("invNumberList"))
         });
     }
 
@@ -86,6 +108,10 @@ class BaseAction {
         cy.get(locator).click()
     }
 
+    getTextElement(locator){
+        return cy.get(locator)
+    }
+
     verifyElementVisible(locator){
         cy.get(locator).should('be.visible')
     }
@@ -118,6 +144,10 @@ class BaseAction {
         cy.get(locator)
           .should(($option) =>{expect($option).to.contain(value)})
           .select(value)
+    }
+
+    selectValueFromElement1(locator, option){
+        cy.get(locator).select(option).should('have.value', option)
     }
 
     submitForm(){
@@ -153,6 +183,10 @@ class BaseAction {
 
     doubleClickToElementByXpath(xpath){
         cy.xpath(xpath).dblclick({force: true})
+    }
+
+    checkCheckboxByXpath(xpath){
+        cy.xpath(xpath).check({force: true})
     }
 
     clickToElementByXpath(xpath){

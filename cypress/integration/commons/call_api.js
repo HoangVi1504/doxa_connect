@@ -10,17 +10,29 @@ const commonAction = new CommonAction()
 const urlPageLocator = new UrlPageLocator()
 
 class ApiAction{
-    callApiGetValueInPrPage(){
-        let token = "Bearer eyJraWQiOiJkb3hhLWNvbm5leDIiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJiODA5MDQ4ZS1kOTZjLTQ4OTctYjVhNC04MDk5ZjU3YjUzYTEiLCJjdHgiOiJwZXJzb25hbCIsInJvbGVzIjoiRU5USVRZX1VTRVIiLCJpc3MiOiJodHRwOlwvXC9vYXV0aC1zZXJ2aWNlIiwibG9jYWxlIjoiZW4iLCJjbGllbnRfaWQiOiI2YTliNGE1Ni1hMzc1LTQzNDMtYWE2OS1iNzhmYzkzYmQzZmUiLCJhdWQiOiI2YTliNGE1Ni1hMzc1LTQzNDMtYWE2OS1iNzhmYzkzYmQzZmUiLCJjb21wYW5pZXMiOlt7InJvbGVzIjoiRU5USVRZX1VTRVIiLCJ1dWlkIjoiNjg5ZmJhYzUtNzI5MS00Y2FkLWI4NGMtNTJlOTVkNDQ5OWE4IiwiYXV0aG9yaXRpZXMiOm51bGx9XSwibmJmIjoxNjU1MDA2OTE4LCJ1c2VyX2lkIjo4ODcsIm5hbWUiOiJhdXRvIGNyZWF0b3IiLCJkZXNpZ25hdGlvbiI6ImNyZWF0b3IiLCJleHAiOjE2NTUwOTMzMTgsImlhdCI6MTY1NTAwNjkxOCwianRpIjoiMDNiMTc3NTQtZjVhMy00ZGI0LWE3NjAtOWNhYzg4YTQzNjllIn0.Jt-aOyeGHL4gWmfM4DzyKG7H6y0ld7l6t9OkOaTu1OXmKxjuXbIL2e5-uHhdieeLydmmntz-4X3LiXQHM96kyDUQ55UALEoZDMuU3_6ArkR5LhLBluAO_E_f_Ytt_-6m0M8hl6ABKoxcp5iSWouzTxiTftzHF1BvkNF-NcI2EEDWn-rqumtol9nLAoAOrlyTExEJ_sygUbBWNWN_GykXwuCFEJp9QKaXBziXgFed4CPeXq2mNobIqUYyAY0p1z3H9xMxiJzHFepG7f1ySwYcmw5KeYm6b2J_JD5AMz_cLGf0CSU9pcoc7V4VaD-iCHO_eqjjskWa4Wx1acUKj9Zb_Q"
-        let uuid = sessionStorage.getItem("uuidPpr")
+    callApiConvertPrToPo(prTitle){
+        let token = window.localStorage.getItem("token")
         cy.request({
             method: 'GET',
-            url: `https://api-connex-dev.doxa-holdings.com/purchase/689fbac5-7291-4cad-b84c-52e95d4499a8/prerequisition/get?pprUuid=${uuid}`,
+            url: urlPageLocator.pr_to_be_converted_list_url,
             headers: {
-                authorization: token,
+                authorization: "Bearer " + token,
             }
        }).then((response)=>{
-          expect(response.body).has.property("message", "PPR get details retrieved successfully");
+            const array = response.body.data;
+            return array
+       }).then((array)=>{
+            const elementRoot = array.find(element => element.prTitle === prTitle);
+            const uuidRoot = elementRoot.uuid;
+            cy.request({
+                method: 'POST',
+                url: printf(urlPageLocator.convert_pr_to_po_api_url, uuidRoot),
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+           }).then((response)=>{
+                expect(response.body).has.property("status", "OK")
+           })
        })
     }
 
@@ -78,6 +90,204 @@ class ApiAction{
         })
     }
 
+    callApiCreateDO(poNumber){
+        let token = window.localStorage.getItem("token")
+        cy.request({
+            method: 'GET',
+            url: urlPageLocator.supplier_po_list_url,
+            headers: {
+                authorization: "Bearer " + token,
+            }
+       }).then((response) => {
+            const array = response.body.data;
+            return array
+        }).then((array) =>{
+            const elementRoot = array.find(element => element.poNumber === poNumber);
+            const uuidRoot = elementRoot.poUuid;
+            cy.request({
+                method: 'POST',
+                url: urlPageLocator.create_do_url,
+                headers: {
+                    authorization: "Bearer " + token,
+                },
+                body: {
+                    deliveryDate: commonAction.getDateFormat5(0),
+                    deliveryOrderNumber: "",
+                    documentList: [],
+                    itemList: [
+                        {
+                            itemCode: "auto item code 1",
+                            poUuid: uuidRoot,
+                            priceType: "",
+                            qtyToConvert: "1000"
+                        }
+                    ]
+                }
+           }).then((response)=>{
+                expect(response.body).has.property("message", "Delivery order has been successfully created")
+           })
+        })
+    }
+
+    callApiIssueDo(poNumber, doNumber){
+        let token = window.localStorage.getItem("token")
+        cy.request({
+            method: 'GET',
+            url: urlPageLocator.supplier_po_list_url,
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            const array = response.body.data;
+            return array
+        }).then((array) =>{
+            const elementPO = array.find(element => element.poNumber === poNumber);
+            const poUuidList = elementPO.poUuid;
+            cy.request({
+                method: 'GET',
+                url: urlPageLocator.do_list_url,
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response) => {
+                const array = response.body.data;
+                return array
+            }).then((array) =>{
+                const elementDO = array.find(element => element.deliveryOrderNumber === doNumber);
+                const doUuidList = elementDO.doUuid;
+                cy.request({
+                    method: 'PUT',
+                    url: urlPageLocator.issue_do_url,
+                    headers: {
+                        authorization: "Bearer " + token,
+                    },
+                    body: {
+                        deliveryDate: commonAction.getDateFormat5(0),
+                        doUuid: doUuidList,
+                        documentList: [],
+                        itemList: [
+                            {
+                                itemCode: "auto item code 1",
+                                poUuid: poUuidList
+                            }
+                        ]    
+                    }
+                }).then((response)=>{
+                    expect(response.body).has.property("status", "OK")
+                })
+            })
+        })
+    }
+
+    callApiCreateGrFromDo(doNumber){
+        let token = window.localStorage.getItem("token")
+        cy.request({
+            method: 'GET',
+            url: urlPageLocator.create_gr_from_do_list_url,
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            const array = response.body.data;
+            return array
+        }).then((array) =>{
+            const elementDO = array.find(element => element.doNumber === doNumber);
+            const doUuidList = elementDO.uuid;
+            cy.request({
+                method: 'POST',
+                url: urlPageLocator.create_gr_from_do_detail_url,
+                headers: {
+                    authorization: "Bearer " + token,
+                },
+                body: [doUuidList]
+            }).then((response)=>{
+                expect(response.body).has.property("status", "OK")
+                const itemId = response.body.data.items[0].itemId;
+                cy.request({
+                    method: 'POST',
+                    url: urlPageLocator.create_gr_from_do_submit_url,
+                    headers: {
+                        authorization: "Bearer " + token,
+                    },
+                    body: {
+                        approvalRouteUuid: "bddfa103-d8d1-44f0-a714-7b43b5ca3b5b",
+                        deliveryDate: commonAction.getDateFormat5(0),
+                        goodsReceiptDocumentMetadata: [],
+                        grNumber: "",
+                        grType: "DO",
+                        itemNonPoDtos: [],
+                        items: [
+                            {
+                                commentOnDelivery: "",
+                                itemId: itemId,
+                                qtyReceiving: "1000",
+                            }
+                        ],
+                        procurementType: "Goods",
+                        supplierCompanyUuid: "70becfb0-cb73-46b2-b372-8e78714eb507"
+                    }
+                }).then((response)=>{
+                    expect(response.body).has.property("status", "OK")
+                })
+            })
+        })
+    }
+
+    callApiApprovalGr(grNumber){
+        let token = window.localStorage.getItem("token")
+        cy.request({
+            method: 'GET',
+            url: urlPageLocator.gr_list_url,
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            expect(response.body).has.property("message", "Retrieval of goods receipt list successful")
+            const array = response.body.data;
+            return array
+        }).then((array) =>{
+            const elementGR = array.find(element => element.grNumber === grNumber);
+            const grUuidList = elementGR.uuid;
+            cy.request({
+                method: 'GET',
+                url: printf(urlPageLocator.gr_detail_url, grUuidList),
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response)=>{
+                expect(response.body).has.property("status", "OK")
+                const itemId = response.body.data.goodsReceiptItem[0].itemId;
+                cy.log(itemId)
+                cy.request({
+                    method: 'POST',
+                    url: urlPageLocator.approval_gr_url,
+                    headers: {
+                        authorization: "Bearer " + token,
+                    },
+                    body: {
+                        approvalRouteUuid: "bddfa103-d8d1-44f0-a714-7b43b5ca3b5b",
+                        deliveryDate: commonAction.getDateFormat5(0),
+                        goodsReceiptDocumentMetadata: [],
+                        grType: "DO",
+                        itemNonPoDtos: [],
+                        items: [
+                            {
+                                commentOnDelivery: "",
+                                itemId: itemId,
+                                qtyReceiving: 1000,
+                            }
+                        ],
+                        procurementType: "Goods",
+                        supplierCompanyUuid: "70becfb0-cb73-46b2-b372-8e78714eb507",
+                        uuid: grUuidList
+                    }
+                }).then((response)=>{
+                    expect(response.body).has.property("message", `Goods receipt successfully approved for: ${grNumber}`);
+                })
+            })
+        })
+    }
+
     callApiNavigateToPoDetailPage(roleName, poNumber){
         let token = window.localStorage.getItem("token")
         let url;
@@ -110,17 +320,16 @@ class ApiAction{
         })
     }
 
-    callApiViewPo(roleName){
+    callApiViewPo(roleName, poNumber){
         let token = window.localStorage.getItem("token")
-        let uuid = sessionStorage.getItem("poUuid")
-        let url
+        let poListUrl
         switch (roleName) {
             case "Buyer":
-                url = printf(urlPageLocator.buyer_view_po_url, uuid)
+                poListUrl = printf(urlPageLocator.po_list_url, "buyer")
                 break;
 
             case "Supplier":
-                url = printf(urlPageLocator.supplier_view_po_url, uuid)
+                poListUrl = printf(urlPageLocator.po_list_url, "supplier")
                 break;
         
             default:
@@ -128,12 +337,38 @@ class ApiAction{
         }
         cy.request({
             method: 'GET',
-            url: url,
+            url: poListUrl,
             headers: {
                 authorization: "Bearer " + token,
             }
-        }).then((response) =>{
-            expect(response.body).has.property("status", "OK")
+       }).then((response) => {
+            const array = response.body.data;
+            return array
+        }).then((array) =>{
+            const elementRoot = array.find(element => element.poNumber === poNumber);
+            const poUuidRoot = elementRoot.poUuid;
+            let viewPoUrl;
+            switch (roleName) {
+                case "Buyer":
+                    viewPoUrl = printf(urlPageLocator.buyer_view_po_url, poUuidRoot)
+                    break;
+    
+                case "Supplier":
+                    viewPoUrl = printf(urlPageLocator.supplier_view_po_url, poUuidRoot)
+                    break;
+            
+                default:
+                    break;
+            }
+            cy.request({
+                method: 'GET',
+                url: viewPoUrl,
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response) =>{
+                expect(response.body).has.property("status", "OK")
+            })
         })
     }
 

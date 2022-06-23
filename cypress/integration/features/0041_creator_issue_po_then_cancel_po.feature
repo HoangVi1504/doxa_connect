@@ -104,7 +104,7 @@ Scenario: 03 Creator can view PO then cancel PO in Issued status
 
     When "Buyer" call API view PO
     And I click to "Cancel" button format_1
-    Then I see notification PO "Do you wish to cancel this order?" display at PO detail page
+    Then I see notification PO "Do you wish to cancel this order?" display at 'PO Detail' page
 
     When I click to "Yes" button format_1
     Then I see a message "The purchase order has successfully been cancelled" appears
