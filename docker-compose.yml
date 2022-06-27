@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  dc20-report:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+    - ./cypress:/app/cypress
+    
+    network_mode: host
+    
