@@ -11,6 +11,10 @@ When(/^Get GR number in list$/, () => {
     commonAction.getPoNumberInGrList()
 })
 
+When(/^Call API create GR from DO number "([^"]*)"$/, (doNumber) => {
+    apiAction.callApiCreateGrFromDo(doNumber)
+})
+
 When(/^Call API create GR from DO$/, () => {
     apiAction.callApiCreateGrFromDo(sessionStorage.getItem("doNumberDoList"))
 })

@@ -1,7 +1,7 @@
-import UrlPage from '../PageObject/urlPage'
-import CommonPage from "../PageObject/commonPage"
 import CommonAction from '../commons/common_actions'
+import CommonPage from "../PageObject/commonPage"
 import UrlPageLocator from '../PageUI/urlPageUI'
+import UrlPage from '../PageObject/urlPage'
 
 var printf = require('printf')
 const urlPage = new UrlPage()
@@ -19,11 +19,11 @@ class ApiAction{
                 authorization: "Bearer " + token,
             }
        }).then((response)=>{
-            let array = response.body.data;
+            const array = response.body.data;
             return array
        }).then((array)=>{
-            let elementRoot = array.find(element => element.prTitle === prTitle);
-            let uuidRoot = elementRoot.uuid;
+            const elementRoot = array.find(element => element.prTitle === prTitle);
+            const uuidRoot = elementRoot.uuid;
             cy.request({
                 method: 'POST',
                 url: printf(urlPageLocator.convert_pr_to_po_api_url, uuidRoot),
@@ -45,11 +45,11 @@ class ApiAction{
                 authorization: "Bearer " + token,
             }
        }).then((response) => {
-            let array = response.body.data;
+            const array = response.body.data;
             return array
         }).then((array)=>{
-            let elementRoot = array.find(element => element.pprTitle === pprTitle);
-            let uuidRoot = elementRoot.pprUuid;
+            const elementRoot = array.find(element => element.pprTitle === pprTitle);
+            const uuidRoot = elementRoot.pprUuid;
             urlPage.navigateToPprPage(pageName, uuidRoot)
         })
     }
@@ -63,11 +63,11 @@ class ApiAction{
                 authorization: "Bearer " + token,
             }
        }).then((response) => {
-            let array = response.body.data;
+            const array = response.body.data;
             return array
         }).then((array) =>{
-            let elementRoot = array.find(element => element.prNumber === prNumber);
-            let uuidRoot = elementRoot.uuid;
+            const elementRoot = array.find(element => element.prNumber === prNumber);
+            const uuidRoot = elementRoot.uuid;
             urlPage.navigateToPrPage(pageName, uuidRoot)
         })
     }
@@ -81,11 +81,11 @@ class ApiAction{
                 authorization: "Bearer " + token,
             }
        }).then((response) => {
-            let array = response.body.data;
+            const array = response.body.data;
             return array
         }).then((array) =>{
-            let elementRoot = array.find(element => element.prNumber === prNumber);
-            let uuidRoot = elementRoot.uuid;
+            const elementRoot = array.find(element => element.prNumber === prNumber);
+            const uuidRoot = elementRoot.uuid;
             urlPage.navigateToConvertPrToPoPage(uuidRoot)
         })
     }
@@ -99,11 +99,11 @@ class ApiAction{
                 authorization: "Bearer " + token,
             }
        }).then((response) => {
-            let array = response.body.data;
+            const array = response.body.data;
             return array
         }).then((array) =>{
-            let elementRoot = array.find(element => element.poNumber === poNumber);
-            let uuidRoot = elementRoot.poUuid;
+            const elementRoot = array.find(element => element.poNumber === poNumber);
+            const uuidRoot = elementRoot.poUuid;
             cy.request({
                 method: 'POST',
                 url: urlPageLocator.create_do_url,
@@ -138,11 +138,11 @@ class ApiAction{
                 authorization: "Bearer " + token,
             }
         }).then((response) => {
-            let array = response.body.data;
+            const array = response.body.data;
             return array
         }).then((array) =>{
-            let elementPO = array.find(element => element.poNumber === poNumber);
-            let poUuidList = elementPO.poUuid;
+            const elementPO = array.find(element => element.poNumber === poNumber);
+            const poUuidList = elementPO.poUuid;
             cy.request({
                 method: 'GET',
                 url: urlPageLocator.do_list_url,
@@ -150,11 +150,11 @@ class ApiAction{
                     authorization: "Bearer " + token,
                 }
             }).then((response) => {
-                let array = response.body.data;
+                const array = response.body.data;
                 return array
             }).then((array) =>{
-                let elementDO = array.find(element => element.deliveryOrderNumber === doNumber);
-                let doUuidList = elementDO.doUuid;
+                const elementDO = array.find(element => element.deliveryOrderNumber === doNumber);
+                const doUuidList = elementDO.doUuid;
                 cy.request({
                     method: 'PUT',
                     url: urlPageLocator.issue_do_url,
@@ -179,48 +179,8 @@ class ApiAction{
         })
     }
 
-    callApiGetDataAfterLogin(){
-        let token = window.localStorage.getItem("token")
-        cy.request({
-            method: 'GET',
-            url: urlPageLocator.api_user_me_url,
-            headers: {
-                authorization: "Bearer " + token,
-            }
-        }).then((response) => {
-            expect(response.body).has.property("status", "OK")
-            let entityUuid = response.body.data.uuid
-            let companyUuid = response.body.data.companies[0].companyUuid;
-            sessionStorage.setItem("entityUuid", entityUuid)
-            sessionStorage.setItem("companyUuid", companyUuid)
-            cy.log(sessionStorage.getItem("entityUuid"))
-            cy.log(sessionStorage.getItem("companyUuid"))
-        })
-    }
-
-    callApiGetDataInApprovalList(approvalName){
-        let token = window.localStorage.getItem("token")
-        cy.request({
-            method: 'GET',
-            url: urlPageLocator.approval_matrix_list_url,
-            headers: {
-                authorization: "Bearer " + token,
-            }
-        }).then((response) => {
-            expect(response.body).has.property("status", "OK")
-            let array = response.body.data;
-            return array
-        }).then((array) =>{
-            let elementApproval = array.find(element => element.approvalName === approvalName);
-            let approvalCodeUuid = elementApproval.uuid
-            sessionStorage.setItem("approvalCodeUuid", approvalCodeUuid )
-            cy.log(sessionStorage.getItem("approvalCodeUuid"))
-        })  
-    }
-
     callApiCreateGrFromDo(doNumber){
         let token = window.localStorage.getItem("token")
-        this.callApiGetDataInApprovalList("auto approval Goods Receipt")
         cy.request({
             method: 'GET',
             url: urlPageLocator.create_gr_from_do_list_url,
@@ -228,11 +188,11 @@ class ApiAction{
                 authorization: "Bearer " + token,
             }
         }).then((response) => {
-            let array = response.body.data;
+            const array = response.body.data;
             return array
         }).then((array) =>{
-            let elementDO = array.find(element => element.doNumber === doNumber);
-            let doUuidList = elementDO.uuid;
+            const elementDO = array.find(element => element.doNumber === doNumber);
+            const doUuidList = elementDO.uuid;
             cy.request({
                 method: 'POST',
                 url: urlPageLocator.create_gr_from_do_detail_url,
@@ -242,7 +202,7 @@ class ApiAction{
                 body: [doUuidList]
             }).then((response)=>{
                 expect(response.body).has.property("status", "OK")
-                let itemId = response.body.data.items[0].itemId;
+                const itemId = response.body.data.items[0].itemId;
                 cy.request({
                     method: 'POST',
                     url: urlPageLocator.create_gr_from_do_submit_url,
@@ -250,14 +210,13 @@ class ApiAction{
                         authorization: "Bearer " + token,
                     },
                     body: {
-                        approvalRouteUuid: sessionStorage.getItem("approvalCodeUuid"),                  //"bddfa103-d8d1-44f0-a714-7b43b5ca3b5b",
+                        approvalRouteUuid: "bddfa103-d8d1-44f0-a714-7b43b5ca3b5b",
                         deliveryDate: commonAction.getDateFormat5(0),
                         goodsReceiptDocumentMetadata: [],
                         grNumber: "",
                         grType: "DO",
                         itemNonPoDtos: [],
-                        items: 
-                        [
+                        items: [
                             {
                                 commentOnDelivery: "",
                                 itemId: itemId,
@@ -265,7 +224,7 @@ class ApiAction{
                             }
                         ],
                         procurementType: "Goods",
-                        supplierCompanyUuid: sessionStorage.getItem("companyUuid"),                  //"70becfb0-cb73-46b2-b372-8e78714eb507"
+                        supplierCompanyUuid: "70becfb0-cb73-46b2-b372-8e78714eb507"
                     }
                 }).then((response)=>{
                     expect(response.body).has.property("status", "OK")
@@ -275,7 +234,6 @@ class ApiAction{
     }
 
     callApiApprovalGr(grNumber){
-        this.callApiGetDataInApprovalList("auto approval Goods Receipt")
         let token = window.localStorage.getItem("token")
         cy.request({
             method: 'GET',
@@ -285,11 +243,11 @@ class ApiAction{
             }
         }).then((response) => {
             expect(response.body).has.property("message", "Retrieval of goods receipt list successful")
-            let array = response.body.data;
+            const array = response.body.data;
             return array
         }).then((array) =>{
-            let elementGR = array.find(element => element.grNumber === grNumber);
-            let grUuidList = elementGR.uuid;
+            const elementGR = array.find(element => element.grNumber === grNumber);
+            const grUuidList = elementGR.uuid;
             cy.request({
                 method: 'GET',
                 url: printf(urlPageLocator.gr_detail_url, grUuidList),
@@ -298,7 +256,7 @@ class ApiAction{
                 }
             }).then((response)=>{
                 expect(response.body).has.property("status", "OK")
-                let itemId = response.body.data.goodsReceiptItem[0].itemId;
+                const itemId = response.body.data.goodsReceiptItem[0].itemId;
                 cy.log(itemId)
                 cy.request({
                     method: 'POST',
@@ -307,7 +265,7 @@ class ApiAction{
                         authorization: "Bearer " + token,
                     },
                     body: {
-                        approvalRouteUuid: sessionStorage.getItem("approvalCodeUuid"),     //sessionStorage.getItem("approvalGrUuid"),                //"bddfa103-d8d1-44f0-a714-7b43b5ca3b5b",
+                        approvalRouteUuid: "bddfa103-d8d1-44f0-a714-7b43b5ca3b5b",
                         deliveryDate: commonAction.getDateFormat5(0),
                         goodsReceiptDocumentMetadata: [],
                         grType: "DO",
@@ -320,7 +278,7 @@ class ApiAction{
                             }
                         ],
                         procurementType: "Goods",
-                        supplierCompanyUuid: sessionStorage.getItem("companyUuid"),                 //"70becfb0-cb73-46b2-b372-8e78714eb507",
+                        supplierCompanyUuid: "70becfb0-cb73-46b2-b372-8e78714eb507",
                         uuid: grUuidList
                     }
                 }).then((response)=>{
@@ -352,11 +310,11 @@ class ApiAction{
                 authorization: "Bearer " + token,
             }
        }).then((response) => {
-            let array = response.body.data;
+            const array = response.body.data;
             return array
         }).then((array) =>{
-            let elementRoot = array.find(element => element.poNumber === poNumber);
-            let uuidRoot = elementRoot.poUuid;
+            const elementRoot = array.find(element => element.poNumber === poNumber);
+            const uuidRoot = elementRoot.poUuid;
             sessionStorage.setItem("poUuid", uuidRoot)
             urlPage.navigateToPoDetailPage(uuidRoot)
         })
@@ -384,11 +342,11 @@ class ApiAction{
                 authorization: "Bearer " + token,
             }
        }).then((response) => {
-            let array = response.body.data;
+            const array = response.body.data;
             return array
         }).then((array) =>{
-            let elementRoot = array.find(element => element.poNumber === poNumber);
-            let poUuidRoot = elementRoot.poUuid;
+            const elementRoot = array.find(element => element.poNumber === poNumber);
+            const poUuidRoot = elementRoot.poUuid;
             let viewPoUrl;
             switch (roleName) {
                 case "Buyer":
@@ -431,58 +389,8 @@ class ApiAction{
         })
     }
 
-    callApiGetDataInCatalogueList(catalogueItemCode){
-        let token = window.localStorage.getItem("token")
-        cy.request({
-            method: 'GET',
-            url: urlPageLocator.catalogue_list_url,
-            headers: {
-                authorization: "Bearer " + token,
-            }
-        }).then((response) => {
-            expect(response.body).has.property("status", "OK")
-            let array = response.body.data.catalogues;
-            return array
-        }).then((array) =>{
-            let elementCatalogue = array.find(element => element.catalogueItemCode === catalogueItemCode);
-            let categoryDtoUuid = elementCatalogue.categoryDto.uuid
-            let supplierUuid = elementCatalogue.supplierUuid
-            let catalogueUuid = elementCatalogue.uuid
-            sessionStorage.setItem("categoryDtoUuid", categoryDtoUuid)
-            sessionStorage.setItem("supplierUuid", supplierUuid)
-            sessionStorage.setItem("catalogueUuid", catalogueUuid)
-            cy.log(sessionStorage.getItem("categoryDtoUuid"))
-            cy.log(sessionStorage.getItem("supplierUuid"))
-            cy.log(sessionStorage.getItem("catalogueUuid"))
-        })  
-    }
-
-    callApiGetDataInManageAddress(addressLabel){
-        let token = window.localStorage.getItem("token")
-        cy.request({
-            method: 'GET',
-            url: urlPageLocator.company_address_list_url,
-            headers: {
-                authorization: "Bearer " + token,
-            }
-        }).then((response) => {
-            expect(response.body).has.property("status", "OK")
-            let array = response.body.data;
-            return array
-        }).then((array)=>{
-            let elementAddress = array.find(element => element.addressLabel === addressLabel)
-            let addressUuid = elementAddress.uuid
-            sessionStorage.setItem("addressUuid", addressUuid)
-            cy.log(sessionStorage.getItem("addressUuid"))
-        })
-    }
-
     callApiRaisePpr(pprTitle){
         let token = window.localStorage.getItem("token")
-        this.callApiGetDataAfterLogin()
-        this.callApiGetDataInApprovalList("auto approval PPR 1")
-        this.callApiGetDataInCatalogueList("auto item code 1")
-        this.callApiGetDataInManageAddress("address auto")
         cy.request({
             method: 'POST',
             url: urlPageLocator.create_ppr_url,
@@ -490,9 +398,9 @@ class ApiAction{
                 authorization: "Bearer " + token,
             }, 
             body: {
-                approvalCodeUuid: sessionStorage.getItem("approvalCodeUuid"),                       //"b921fa2d-e79f-458d-a7c8-726ac3bae307",
+                approvalCodeUuid: "b921fa2d-e79f-458d-a7c8-726ac3bae307",
                 approvalSequence: "auto.approver [auto.approver@getnada.com]",
-                companyUuid: sessionStorage.getItem("companyUuid"),                                 //"689fbac5-7291-4cad-b84c-52e95d4499a8",
+                companyUuid: "689fbac5-7291-4cad-b84c-52e95d4499a8",
                 currencyCode: "SGD",
                 pprItemDtoList: [
                     {
@@ -501,8 +409,8 @@ class ApiAction{
                         active: true,
                         categoryDescription: "auto equipment",
                         categoryName: "AUTO EQUIPMENT",
-                        companyUuid: sessionStorage.getItem("companyUuid"),                         //"689fbac5-7291-4cad-b84c-52e95d4499a8",
-                        uuid: sessionStorage.getItem("categoryDtoUuid"),                            //"3f0fb768-f68c-4895-9b8b-a9805528c56d"
+                        companyUuid: "689fbac5-7291-4cad-b84c-52e95d4499a8",
+                        uuid: "3f0fb768-f68c-4895-9b8b-a9805528c56d"
                     },
                     currencyCode: "SGD",
                     deliveryAddress: 
@@ -510,11 +418,11 @@ class ApiAction{
                         active: true,
                         addressFirstLine: "1 XYZ Buildingg",
                         addressLabel: "address auto",
-                        companyUuid: sessionStorage.getItem("companyUuid"),                         //"689fbac5-7291-4cad-b84c-52e95d4499a8",
+                        companyUuid: "689fbac5-7291-4cad-b84c-52e95d4499a8",
                         country: "Singapore",
                         postalCode: "4000",
                         state: "Singapore",
-                        uuid: sessionStorage.getItem("addressUuid"),                                //"f9cdfeca-c150-47ed-8840-f17bdd6ff797"
+                        uuid: "f9cdfeca-c150-47ed-8840-f17bdd6ff797"
                     },
                     isActive: true,
                     isEditable: true,
@@ -525,18 +433,18 @@ class ApiAction{
                     requestDeliveryDate: commonAction.getDateFormat5(1),
                     supplierCode: "1105",
                     supplierName: "AUTO SUPPLIER 1",
-                    supplierUuid: sessionStorage.getItem("supplierUuid"),                           //"3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",         
+                    supplierUuid: "3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",         
                     taxCode: "11052022",
                     taxRate: "0.5",
                     unitPrice: "5000",
                     uomCode: "CEN",
-                    uuid: sessionStorage.getItem("catalogueUuid"),                                  //"ac4e3ff8-1ee4-4596-ad0f-f63981ea5d61"
+                    uuid: "ac4e3ff8-1ee4-4596-ad0f-f63981ea5d61"
                     }
                 ],
                 pprTitle: pprTitle,
                 procurementType: "GOODS",
                 requesterName: "auto creator",
-                requesterUuid: sessionStorage.getItem("entityUuid"),                                //"b809048e-d96c-4897-b5a4-8099f57b53a1",
+                requesterUuid: "b809048e-d96c-4897-b5a4-8099f57b53a1",
                 status: "PENDING_APPROVAL"
             }
        }).then((response)=>{
@@ -734,142 +642,4 @@ class ApiAction{
                expect(response.body).has.property("status", "OK")
         })
     }
-    
-    callApiCreateBuyer(env, entityName, entityReg, taxReg, email, workNumber){
-        let token = window.localStorage.getItem("token")
-        let createEntityUrl;
-        switch (env) {
-            case "dev":
-                createEntityUrl = printf(urlPageLocator.create_entity_url, "dev")
-                break;
-
-            case "stag":
-                createEntityUrl = printf(urlPageLocator.create_entity_url, "stag")
-                break;
-        
-            default:
-                break;
-        }
-        cy.request({
-            method: 'POST',
-            url: createEntityUrl,
-            headers: {
-                authorization: "Bearer " + token,
-            },
-            body:{
-                buyer: true,
-                companyRegistrationNumber: entityReg,                           //"REG NO 987"
-                country: "Singapore",                   
-                documentsMetaDataList: [],                  
-                entityName: entityName,                                         //"AUTO BUYER"
-                entityRepresentativeList:
-                [
-                    {
-                        countryCode: "65",
-                        email: email,                                           //"auto.buyer@getnada.com",
-                        name: entityName,                                       //"AUTO BUYER",
-                        userRole: "Entity Representitive",                  
-                        workNumber: workNumber,                                 //"987987987"
-                    },                  
-                    {                   
-                        countryCode: "65",                  
-                        email: email,                                           //"auto.buyer@getnada.com",
-                        name: entityName,                                       //"AUTO BUYER",
-                        userRole: "Authorized Signatory",                   
-                        workNumber: workNumber,                                 //"987987987"
-                    },                  
-                    {                   
-                        countryCode: "65",          
-                        email: email,                                           //"auto.buyer@getnada.com",
-                        name: entityName,                                       //"AUTO BUYER",
-                        userRole: "Entity Administrator",                   
-                        workNumber: workNumber,                                 //"987987987"
-                    }
-                ],
-                entityType: "GENERAL PARTNERSHIP",
-                features: 
-                [
-                    "INVF", "DEVF", "cpUser", "subEntity", "user", "featureMatrix", "approvalMatrix", "rbacRole", "approvalConfiguration", 
-                    "paymentTerm", "paymentCycle", "pms", "gl", "currency", "trade", "project", "projectForeCast", "vendor", "connection",
-                    "apSpecialist", "uom", "catalogue", "tax", "managePrefix", "category", "WO", "BC", "WR", "dwr", "dwo", "dpc", "contract",
-                    "address", "supplierBankAccount", "bankAccount", "GR", "MPAYM", "HPAYM", "DO", "PO", "PPR", "INV", "PPO", "RFQF", "PR", "CN"
-                ],
-                gstApplicable: true,
-                gstNo: taxReg,                                                  //Tax Reg No 01
-                industryType: "CONSTRUCTION",
-                remarks: "",
-                supplier: false
-            }
-        }).then((response) =>{
-           expect(response.body).has.property("status", "OK")
-        })
-    }
-
-    callApiCreateSupplier(env, entityName, entityReg, email, name, workNumber){
-        let token = window.localStorage.getItem("token")
-        let createEntityUrl;
-        switch (env) {
-            case "dev":
-                createEntityUrl = printf(urlPageLocator.create_entity_url, "dev")
-                break;
-
-            case "stag":
-                createEntityUrl = printf(urlPageLocator.create_entity_url, "stag")
-                break;
-        
-            default:
-                break;
-        }
-        cy.request({
-            method: 'POST',
-            url: createEntityUrl,
-            headers: {
-                authorization: "Bearer " + token,
-            },
-            body:{
-                buyer: false,
-                companyRegistrationNumber: entityReg,                           //"AUTO REG 1"
-                country: "Singapore",                   
-                documentsMetaDataList: [],                  
-                entityName: entityName,                                         //"AUTO SUPPLIER 2",
-                entityRepresentativeList:                   
-                [                   
-                    {                   
-                        countryCode: "65",                  
-                        email: email,                                           //"auto.supplier2@getnada.com",
-                        name: name,                                             //"auto supplier 2",
-                        userRole: "Entity Representitive",                  
-                        workNumber: workNumber,                                 //"676786765"
-                    },                  
-                    {                   
-                        countryCode: "65",                  
-                        email: email,                                           //"auto.supplier2@getnada.com",
-                        name: name,                                             //"auto supplier 2",
-                        userRole: "Authorized Signatory",                   
-                        workNumber: workNumber,                                 //"676786765"
-                    },                  
-                    {                   
-                        countryCode: "65",
-                        email: email,                                           //"auto.supplier2@getnada.com",
-                        name: name,                                             //"auto supplier 2",
-                        userRole: "Entity Administrator",                   
-                        workNumber: workNumber,                                 //"676786765"
-                    }
-                ],
-                entityType: "GENERAL PARTNERSHIP",
-                features: 
-                [
-                    "cpUser", "subEntity", "user", "rbacRole", "paymentTerm", "featureMatrix", "approvalMatrix", "connection", "tax", "address", "facility", "vendor", "supplierBankAccount", "bankAccount", "GR", "MPAYM", "HPAYM", "DO", "PO", "PPR", "INV", "PPO", "RFQF", "PR", "CN"
-                ],
-                gstApplicable: false,
-                gstNo: "N/A",
-                industryType: "CONSTRUCTION",
-                remarks: "",
-                supplier: true,
-            }
-        }).then((response) =>{
-           expect(response.body).has.property("status", "OK")
-        })
-    }
-
 }export default ApiAction
