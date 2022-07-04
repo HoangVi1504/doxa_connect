@@ -47,7 +47,7 @@ Scenario: 01 Creator create PO invoice with correct input
     Then I see 'PO Detail' page
     And I see PO No in 'PO No' textbox at 'PO Detail' page
 
-    When "Supplier" call API view PO
+    When "supplier" call API view PO
     And I click to "Back" button format_1
     And I input PO No to filter PO in list
     Then I see PO status in list is "ISSUED"

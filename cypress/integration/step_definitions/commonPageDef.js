@@ -21,40 +21,84 @@ Given(/^Navigate to Doxa Connect 2.0 site$/, () => {
     });
 })
 
-When(/^Call Api get data in catalogue list "([^"]*)"$/, (catalogueItemCode) => {
+When(/^Call Api get data after login$/, () => {
+    apiAction.callApiGetDataAfterLogin()
+})
+
+When(/^Write data to 'dataBuyer.json' file$/, () => {
+    commonAction.writeValueToJsonFile("dataBuyer.json", {buyerCompanyUuid: sessionStorage.getItem("companyUuid")})
+})
+
+When(/^Write data to 'dataSupplier.json' file$/, () => {
+    commonAction.writeValueToJsonFile("dataSupplier.json", {supplierCompanyUuid: sessionStorage.getItem("companyUuid")})
+})
+
+When(/^Call Api get data in catalogue list have catalogue item code is "([^"]*)"$/, (catalogueItemCode) => {
     apiAction.callApiGetDataInCatalogueList(catalogueItemCode)
 })
 
-When(/^Call Api get data in manage address list "([^"]*)"$/, (addressLabel) => {
+When(/^Call Api get data in manage address list have address label "([^"]*)"$/, (addressLabel) => {
     apiAction.callApiGetDataInManageAddress(addressLabel)
 })
 
-When(/^Call Api create random supplier on environment "([^"]*)"$/, (env) => {
+When(/^Call Api create random supplier$/, () => {
     let nameNumber = faker.random.alphaNumeric(5)
-    let entityName = "AUTO SUPPLIER ".concat(nameNumber)
-    let entityReg = "AUTO REG ".concat(faker.random.numeric(5))
+    let entityName = "AUTO RANDOM SUPPLIER ".concat(nameNumber)
+    let entityReg = "AUTO RANDOM REG ".concat(faker.random.numeric(5))
     let email = "auto.supplier.".concat(faker.random.alphaNumeric(5)).concat("@getnada.com")
     let name = "auto supplier ".concat(nameNumber)
     let workNumber = faker.random.numeric(10)
-    apiAction.callApiCreateSupplier(env, entityName, entityReg, email, name, workNumber)
+    apiAction.callApiCreateSupplier(entityName, entityReg, email, name, workNumber)
 });
 
-When(/^Call Api create supplier on environment "([^"]*)", with entity name "([^"]*)", entity reg "([^"]*)", email "([^"]*)", name "([^"]*)", work number "([^"]*)"$/, (env, entityName, entityReg, email, name, workNumber) => {
-    apiAction.callApiCreateSupplier(env, entityName, entityReg, email, name, workNumber)
+When(/^Call Api create supplier with entity name "([^"]*)", entity reg "([^"]*)", email "([^"]*)", name "([^"]*)", work number "([^"]*)"$/, (entityName, entityReg, email, name, workNumber) => {
+    apiAction.callApiCreateSupplier(entityName, entityReg, email, name, workNumber)
 })
 
-When(/^Call Api create random buyer on environment "([^"]*)"$/, (env) => {
+When(/^Call Api create random buyer$/, () => {
     let nameNumber = faker.random.alphaNumeric(5)
-    let entityName = "AUTO BUYER ".concat(nameNumber)
-    let entityReg = "AUTO REG ".concat(faker.random.numeric(5))
+    let entityName = "AUTO RANDOM BUYER ".concat(nameNumber)
+    let entityReg = "AUTO RANDOM REG ".concat(faker.random.numeric(5))
     let email = "auto.buyer.".concat(faker.random.alphaNumeric(5)).concat("@getnada.com")
     let workNumber = faker.random.numeric(10)
     let taxReg = "Tax Reg No ".concat(nameNumber)
-    apiAction.callApiCreateBuyer(env, entityName, entityReg, taxReg, email, workNumber)
+    apiAction.callApiCreateBuyer(entityName, entityReg, taxReg, email, workNumber)
 });
 
-When(/^Call Api create buyer on environment "([^"]*)", with entity name, "([^"]*)", entity reg "([^"]*)", tax reg "([^"]*)", email "([^"]*)", work number "([^"]*)"$/, (env, entityName, entityReg, taxReg, email, workNumber) => {
-    apiAction.callApiCreateBuyer(env, entityName, entityReg, taxReg, email, workNumber)
+When(/^Call Api create buyer on with entity name, "([^"]*)", entity reg "([^"]*)", tax reg "([^"]*)", email "([^"]*)", work number "([^"]*)"$/, (entityName, entityReg, taxReg, email, workNumber) => {
+    apiAction.callApiCreateBuyer(entityName, entityReg, taxReg, email, workNumber)
+})
+
+When(/^Call Api create random UOM$/, () => {
+    let number = faker.random.alphaNumeric(5)
+    let uomCode = "AUTO UOM CODE ".concat(number)
+    let uomName = "AUTO UOM NAME ".concat(number)
+    apiAction.callApiCreateUom(uomCode, uomName)
+});
+
+When(/^Call Api create UOM with uom code "([^"]*)", uom name "([^"]*)"$/, (uomCode, uomName) => {
+    apiAction.callApiCreateUom(uomCode, uomName)
+})
+
+When(/^Call Api create random Category$/, () => {
+    let number = faker.random.alphaNumeric(5)
+    let categoryName = "AUTO RANDOM CATEGORY ".concat(number)
+    let categoryDescription = "Auto description ".concat(number)
+    apiAction.callApiCreateCategory(categoryName, categoryDescription)
+});
+
+When(/^Call Api create Category with category name "([^"]*)", category description "([^"]*)"$/, (categoryName, categoryDescription) => {
+    apiAction.callApiCreateCategory(categoryName, categoryDescription)
+});
+
+When(/^Call Api create random company address$/, () => {
+    let number = faker.random.alphaNumeric(5)
+    let addressLabel = "auto random address ".concat(number)
+    apiAction.callApiCreateAddress(addressLabel)
+});
+
+When(/^Call Api create company address with address label "([^"]*)"$/, (addressLabel) => {
+    apiAction.callApiCreateAddress(addressLabel)
 })
 
 When(/^I click to "([^"]*)" link on header menu$/, (linkName) => {

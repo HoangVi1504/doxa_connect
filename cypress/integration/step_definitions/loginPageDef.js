@@ -5,10 +5,6 @@ import ApiAction from "../commons/call_api"
 const loginPage = new LoginPage()
 const apiAction = new ApiAction()
 
-When(/^Call Api get data after login$/, () => {
-    apiAction.callApiGetDataAfterLogin()
-})
-
 When(/^I login with role "([^"]*)"$/, (role) => {
     let fileName
     switch (role) {
@@ -46,6 +42,10 @@ When(/^I login with role "([^"]*)"$/, (role) => {
 
         case "entity admin":
             fileName = 'entity_admin.json'
+            break;
+
+        case "buyer":
+            fileName = 'buyer.json'
             break;
             
         default:
