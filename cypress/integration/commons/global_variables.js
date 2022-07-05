@@ -5,7 +5,10 @@ if (Cypress.env('ENV') == 'dev'){
 }
 else if (Cypress.env('ENV') == 'stag'){ 
     url = 'https://connex-stag.doxa-holdings.com/'
-} 
+}
+else{
+    url = 'https://connex-stag.doxa-holdings.com/'
+}
 
 module.exports = {
     url
