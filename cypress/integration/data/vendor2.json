@@ -1,0 +1,16 @@
+{
+    "companyCode": "COMPANY CODE 1",
+    "companyName": "AUTO COMPANY 1",
+    "companyRegNo": "AUTO REG 1",
+    "paymentTerm": "Pay on receipt",
+    "country": "Singapore",
+    "taxCode": "11052022", 
+    "taxRegNo": "AUTO TAX REG 2",
+    "fullName": "auto supplier 2", 
+    "email": "auto.supplier2@getnada.com",
+    "workNumber": "676786765",
+    "addressLabel": "address auto 2",
+    "address1": "ad auto 1",
+    "address2": "ad auto 2",
+    "postalCode": "4000"
+}

@@ -1,8 +1,8 @@
-import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
+import { faker } from '@faker-js/faker';
+import ApiAction from "../commons/call_api"
 import CommonAction from '../commons/common_actions'
 import RaisePprPage from "../PageObject/raisePprPage";
-import ApiAction from "../commons/call_api"
-import { faker } from '@faker-js/faker';
+import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
 
 const apiAction = new ApiAction()
 const commonAction = new CommonAction()
@@ -53,7 +53,8 @@ When(/^I fill data in Raise Requisition tab from "([^"]*)" json file at Raise PP
 })
 
 When(/^I fill data in General Information tab from "([^"]*)" json file at Raise PPR page$/, (keyWord) => {
-    let number = commonAction.getDateFormat1(0)
+    let number = faker.random.alphaNumeric(5)
+    sessionStorage.setItem("numberPprTitle", number)
     let fileName;
     switch (keyWord) {
         case "ppr_v1":
@@ -79,7 +80,7 @@ When(/^I fill data in General Information tab from "([^"]*)" json file at Raise 
         default:
             break;
     }
-    raisePprPage.fillDataInGeneralInformationTab(fileName, number)
+    raisePprPage.fillDataInGeneralInformationTab(fileName, sessionStorage.getItem("numberPprTitle"))
 })
 
 When(/^I fill data in Request Terms tab from "([^"]*)" json file at Raise PPR page$/, (keyWord) => {
@@ -170,7 +171,6 @@ When(/^I add catalogue item from "([^"]*)" json file at Raise PPR page$/, (keyWo
 })
 
 When(/^I input PPR title from "([^"]*)" json file to 'Search PPR' textbox$/, (keyWord) => {
-    let number = commonAction.getDateFormat1(0)
     let fileName;
     switch (keyWord) {
         case "ppr_v1":
@@ -197,7 +197,7 @@ When(/^I input PPR title from "([^"]*)" json file to 'Search PPR' textbox$/, (ke
             break;
     }
     cy.fixture(fileName).then((fileName) =>{
-        raisePprPage.enterValueToSearchPPRTitleTextbox(fileName.pprTitle + number)
+        raisePprPage.enterValueToSearchPPRTitleTextbox(fileName.pprTitle + sessionStorage.getItem("numberPprTitle"))
     })
 })
 
@@ -206,7 +206,6 @@ When(/^I input PPR random to 'Search PPR' textbox$/, () => {
 })
 
 When(/^I double click to PPR title in PPR list from "([^"]*)" json file$/, (keyWord) => {
-    let number = commonAction.getDateFormat1(0)
     let fileName;
     switch (keyWord) {
         case "ppr_v1":
@@ -232,7 +231,7 @@ When(/^I double click to PPR title in PPR list from "([^"]*)" json file$/, (keyW
         default:
             break;
     }
-    raisePprPage.doubleClickToPprTitleInPprList(fileName, number)
+    raisePprPage.doubleClickToPprTitleInPprList(fileName, sessionStorage.getItem("numberPprTitle"))
 })
 
 When(/^I double click to PPR title random in PPR list$/, () => {
@@ -339,7 +338,6 @@ Then(/^I see Approval Route in PPR list from "([^"]*)" json file$/, (keyWord) =>
 })
 
 Then(/^I see PPR title at PPR detail page from "([^"]*)" json file$/, (keyWord) => {
-    let number = commonAction.getDateFormat1(0)
     let fileName;
     switch (keyWord) {
         case "ppr_v1":
@@ -366,7 +364,7 @@ Then(/^I see PPR title at PPR detail page from "([^"]*)" json file$/, (keyWord) 
             break;
     }
     cy.fixture(fileName).then((fileName) =>{
-        raisePprPage.verifyValueInPprTitleTextboxExits(fileName.pprTitle + number)
+        raisePprPage.verifyValueInPprTitleTextboxExits(fileName.pprTitle + sessionStorage.getItem("numberPprTitle"))
     })
 })
 

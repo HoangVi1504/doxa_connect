@@ -49,7 +49,7 @@ class RaiseRFQPage{
         cy.fixture(fileName).then((fileName) =>{
             commonAction.clickToElementByXpath(printf(commonPageLocator.button_format_2_xpath, "Add Catalogue"))
             this.enterValueToSearchTextboxInItemTable(fileName.itemCode)
-            commonAction.checkCheckbox('[ref="eCheckbox"]>div>[type="checkbox"]')
+            commonAction.checkCheckboxByXpath(printf(raiseRFQPageLocator.item_catalogue_checkbox_xpath, fileName.itemCode))
             commonAction.clickToElementByXpath(printf(commonPageLocator.button_format_1_xpath, "Add"))
             this.verifyItemDeleteButtonDisplay()
             this.scrollToQuantityItem("50%")
@@ -61,7 +61,7 @@ class RaiseRFQPage{
         cy.fixture(fileName).then((fileName) =>{
             commonAction.clickToElementByXpath(printf(commonPageLocator.button_format_2_xpath, "Add Catalogue"))
             this.enterValueToSearchTextboxInItemTable(fileName.itemCode)
-            commonAction.checkCheckbox('[ref="eCheckbox"]>div>[type="checkbox"]')
+            commonAction.checkCheckboxByXpath(printf(raiseRFQPageLocator.item_catalogue_checkbox_xpath, fileName.itemCode))
             commonAction.clickToElementByXpath(printf(commonPageLocator.button_format_1_xpath, "Add"))
             this.verifyItemDeleteButtonDisplay()
             this.clickToFilterSizeInItemTable()
@@ -91,40 +91,40 @@ class RaiseRFQPage{
 
     enterValueToSearchRfqTitleTextbox(fileName, number){
         cy.fixture(fileName).then((fileName) =>{
-            commonAction.enterValueToTextbox('[aria-label="RFQ Title Filter Input"]', fileName.rfqTitleInList + number)
+            commonAction.enterValueToTextbox(raiseRFQPageLocator.filter_rfq_title_css, fileName.rfqTitleInList + number)
         })
     }
 
     enterValueToRfqTitleTextbox(rfqTitle){
-        commonAction.enterValueToTextbox('[name="rfqTitle"]', rfqTitle)
+        commonAction.enterValueToTextbox(raiseRFQPageLocator.rfq_title_txb_css, rfqTitle)
     }
 
     enterValueToValidityStartDateTextbox(date){
-        commonAction.enterValueToTextbox('[name="validityStartDate"]', date)
+        commonAction.enterValueToTextbox(raiseRFQPageLocator.validity_start_date_txb_css, date)
     }
 
     enterValueToValidityEndDateTextbox(date){
-        commonAction.enterValueToTextbox('[name="validityEndDate"]', date)
+        commonAction.enterValueToTextbox(raiseRFQPageLocator.validity_end_date_txb_css, date)
     }
 
     enterValueToDueDateTextbox(date){
-        commonAction.enterValueToTextbox('input[placeholder="Please select valid Due Date"]', date)
+        commonAction.enterValueToTextbox(raiseRFQPageLocator.due_date_txb_css, date)
         commonAction.clickToElementByXpath(printf(commonPageLocator.label_xpath, "Due Date"))
     }
 
     enterValueToDeliveryDateTextbox(date){
-        commonAction.enterValueToTextbox('[name="deliveryDate"]', date)
+        commonAction.enterValueToTextbox(raiseRFQPageLocator.delivery_date_txb_css, date)
         commonAction.clickToElementByXpath(printf(commonPageLocator.label_xpath, "Delivery Date"))
     }
 
     enterValueToNoteTextbox(fileName){
         cy.fixture(fileName).then((fileName) =>{
-            commonAction.enterValueToTextbox('[name="note"]', fileName.note)
+            commonAction.enterValueToTextbox(raiseRFQPageLocator.note_txb_css, fileName.note)
         }) 
     }
 
     enterValueToSearchTextboxInItemTable(keyWord){
-        commonAction.enterValueToTextbox('[type="search"]', keyWord)
+        commonAction.enterValueToTextbox(raiseRFQPageLocator.search_item_catalogue_txb_css, keyWord)
     }
 
     enterValueToItemCodeInItemTable(code){
@@ -165,38 +165,38 @@ class RaiseRFQPage{
     }
 
     selectValueFromRequisitionTypeDropdown(value){
-        commonAction.selectValueFromElement('[name="requisitionType"]', value)
+        commonAction.selectValueFromElement(raiseRFQPageLocator.requisition_type_dropdown_css, value)
     }
 
     selectValueFromNatureRequisitionDropdown(value){
-        commonAction.selectValueFromElement('[name="project"]', value)
+        commonAction.selectValueFromElement(raiseRFQPageLocator.nature_requisition_dropdown_css, value)
     }
 
     selectValueFromProjectCodeDropdown(value){
-        commonAction.selectValueFromElement('[name="projectCode"]', value)
+        commonAction.selectValueFromElement(raiseRFQPageLocator.project_code_dropdown_css, value)
     }
 
     selectValueFromCurrencyCodeDropdown(value){
-        commonAction.selectValueFromElement('[name="currencyCode"]', value)
+        commonAction.selectValueFromElement(raiseRFQPageLocator.currency_code_dropdown_css, value)
     }
 
     selectValueFromVendorDropdown(value){
-        commonAction.selectValueFromElement('[name="vendors"]', value)
+        commonAction.selectValueFromElement(raiseRFQPageLocator.vendor_dropdown_css, value)
     }
 
     selectValueFromProcurementTypeDropdown(value){
-        commonAction.selectValueFromElement('[name="procurementType"]', value)
+        commonAction.selectValueFromElement(raiseRFQPageLocator.procurement_type_dropdown_css, value)
     }
 
     selectValueFromRfqTypeDropdown(fileName){
         cy.fixture(fileName).then((fileName) =>{
-            commonAction.selectValueFromElement('[name="rfqType"]', fileName.rfqType)
+            commonAction.selectValueFromElement(raiseRFQPageLocator.rfq_type_dropdown_css, fileName.rfqType)
         })
     }
 
     selectValueToDeliveryAddressDropdown(fileName){
         cy.fixture(fileName).then((fileName) =>{
-            commonAction.selectValueFromElement('[name="deliveryAddress"]', fileName.deliveryAddress)
+            commonAction.selectValueFromElement(raiseRFQPageLocator.delivery_address_dropdown_css, fileName.deliveryAddress)
         })
     }
 
@@ -205,32 +205,32 @@ class RaiseRFQPage{
     }
 
     clearValueInDueDateTextbox(){
-        commonAction.clearValueInTextbox('input[placeholder="Please select valid Due Date"]')
+        commonAction.clearValueInTextbox(raiseRFQPageLocator.due_date_txb_css)
     }
 
     clearValueInDeliveryDateTextbox(){
-        commonAction.clearValueInTextbox('[name="deliveryDate"]')
+        commonAction.clearValueInTextbox(raiseRFQPageLocator.delivery_date_txb_css)
     }
 
     clickToNoteTextbox(){
-        commonAction.clickToElement('[name="note"]')
+        commonAction.clickToElement(raiseRFQPageLocator.note_txb_css)
     }
 
     clickToRfqTitleTextbox(){
-        commonAction.clickToElement('[name="rfqTitle"]')
+        commonAction.clickToElement(raiseRFQPageLocator.rfq_title_txb_css)
     }
 
     clickToFilterSizeInItemTable(){
         commonAction.wait(3)
-        commonAction.clickToElement('[aria-label="Size Filter Input"]')
+        commonAction.clickToElement(raiseRFQPageLocator.filter_size_in_item_table_css)
     }
 
     clickToFilterBrandInItemTable(){
-        commonAction.clickToElement('[aria-label="Brand Filter Input"]')
+        commonAction.clickToElement(raiseRFQPageLocator.filter_brand_in_item_table_css)
     }
 
     clickToFilterUomInItemTable(){
-        commonAction.clickToElement('[aria-label="UOM Filter Input"]')
+        commonAction.clickToElement(raiseRFQPageLocator.filter_uom_in_item_table_css)
     }
 
     clickToItemQuantityInItemTable(){
@@ -242,11 +242,11 @@ class RaiseRFQPage{
     }
 
     verifyProjectCodeFieldNotDisplay(){
-        commonAction.verifyElementNotExist('[name="projectCode"]')
+        commonAction.verifyElementNotExist(raiseRFQPageLocator.project_code_dropdown_css)
     }
 
     verifyProjectCodeFieldDisplay(){
-        commonAction.verifyElementVisible('[name="projectCode"]')
+        commonAction.verifyElementVisible(raiseRFQPageLocator.project_code_dropdown_css)
     }
 
     verifyRaiseRFQPageTitleDisplay(){

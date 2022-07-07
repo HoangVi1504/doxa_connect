@@ -1,10 +1,10 @@
-import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
-import CommonPageLocator from '../PageUI/commonPageUI'
-import CommonAction from '../commons/common_actions'
-import CommonPage from "../PageObject/commonPage"
-import LoginPage from "../PageObject/loginPage";
-import ApiAction from "../commons/call_api"
 import { faker } from '@faker-js/faker';
+import ApiAction from "../commons/call_api"
+import LoginPage from "../PageObject/loginPage";
+import CommonPage from "../PageObject/commonPage"
+import CommonAction from '../commons/common_actions'
+import CommonPageLocator from '../PageUI/commonPageUI'
+import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
 
 var printf = require('printf')
 const loginPage = new LoginPage()
@@ -26,11 +26,29 @@ When(/^Call Api get data after login$/, () => {
 })
 
 When(/^Write data to 'dataBuyer.json' file$/, () => {
-    commonAction.writeValueToJsonFile("dataBuyer.json", {buyerCompanyUuid: sessionStorage.getItem("companyUuid")})
+    commonAction.writeValueToJsonFile("dataBuyer.json", 
+    {   
+        buyerName: sessionStorage.getItem("userName"),
+        buyerUuid: sessionStorage.getItem("userUuid"),
+        buyerCompanyUuid: sessionStorage.getItem("companyUuid")
+    })
+})
+
+When(/^Write data to 'dataApSpecialist.json' file$/, () => {
+    commonAction.writeValueToJsonFile("dataApSpecialist.json", 
+    {   
+        apSpecialistName: sessionStorage.getItem("userName"),
+        apSpecialistUuid: sessionStorage.getItem("userUuid"),
+    })
 })
 
 When(/^Write data to 'dataSupplier.json' file$/, () => {
-    commonAction.writeValueToJsonFile("dataSupplier.json", {supplierCompanyUuid: sessionStorage.getItem("companyUuid")})
+    commonAction.writeValueToJsonFile("dataSupplier.json", 
+    {   
+        supplierName: sessionStorage.getItem("userName"),
+        supplierUuid: sessionStorage.getItem("userUuid"),
+        supplierCompanyUuid: sessionStorage.getItem("companyUuid")
+    })
 })
 
 When(/^Call Api get data in catalogue list have catalogue item code is "([^"]*)"$/, (catalogueItemCode) => {
@@ -99,6 +117,57 @@ When(/^Call Api create random company address$/, () => {
 
 When(/^Call Api create company address with address label "([^"]*)"$/, (addressLabel) => {
     apiAction.callApiCreateAddress(addressLabel)
+})
+
+When(/^Call Api create random catalogue$/, () => {
+    let number = faker.random.alphaNumeric(5)
+    let catalogueItemCode = "auto code ".concat(number)
+    let catalogueItemName = "auto name ".concat(number)
+    apiAction.callApiCreateCatalogue(catalogueItemCode, catalogueItemName)
+});
+
+When(/^Call Api create catalogue with catalogue code "([^"]*)", catalogue name "([^"]*)"$/, (catalogueItemCode, catalogueItemName) => {
+    apiAction.callApiCreateCatalogue(catalogueItemCode, catalogueItemName)
+});
+
+When(/^Call Api create random tax$/, () => {
+    let number = faker.random.alphaNumeric(5)
+    let taxCode = "auto tax code ".concat(number)
+    apiAction.callApiCreateTax(taxCode)
+})
+
+When(/^Call Api create tax with tax code "([^"]*)"$/, (taxCode) => {
+    apiAction.callApiCreateTax(taxCode)
+})
+
+When(/^Call Api create random GL account$/, () => {
+    let number = faker.random.alphaNumeric(5)
+    let glAccount = "auto G/L ".concat(number)
+    apiAction.callApiCreateGL(glAccount)
+})
+
+When(/^Call Api create GL account "([^"]*)"$/, (glAccount) => {
+    apiAction.callApiCreateGL(glAccount)
+})
+
+When(/^Call Api create external vendor company name "([^"]*)"$/, (companyName) => {
+    apiAction.callApiCreateExternalVendor(companyName)
+})
+
+When(/^Call Api create project with project code "([^"]*)" and project title "([^"]*)"$/, (projectCode, projectTitle) => {
+    apiAction.callAPiCreateProject(projectCode, projectTitle)
+})
+
+When(/^Call Api create "([^"]*)" company$/, (designation) => {
+    apiAction.callApiCreateCompanyUser(designation)
+})
+
+When(/^Call Api create AP Specialist Grouping "([^"]*)"$/, (groupCode) => {
+    apiAction.callApiCreateApSpecialistGrouping(groupCode)
+})
+
+When(/^Call Api create approval matrix of feature "([^"]*)", approval level "([^"]*)"$/, (featureCode, approvalLevel) => {
+    apiAction.callApiCreateApprovalMatrix(featureCode, approvalLevel)
 })
 
 When(/^I click to "([^"]*)" link on header menu$/, (linkName) => {

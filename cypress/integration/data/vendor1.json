@@ -1,0 +1,16 @@
+{
+    "companyCode": "1105",
+    "companyName": "AUTO SUPPLIER 1",
+    "companyRegNo": "SUPPLIER 1",
+    "paymentTerm": "Pay in 15 days",
+    "country": "Singapore",
+    "taxCode": "11052022", 
+    "taxRegNo": "AUTO TAX REG 1",
+    "fullName": "auto supplier 1", 
+    "email": "auto.supplier1@getnada.com",
+    "workNumber": "34545654767",
+    "addressLabel": "ad label",
+    "address1": "ad1",
+    "address2": "ad2",
+    "postalCode": "6000"
+}

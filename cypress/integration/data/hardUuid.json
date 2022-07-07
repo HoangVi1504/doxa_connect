@@ -1,0 +1,25 @@
+{
+    "prCreatorUuid": "0d45ea30-a9a0-44e2-aa3f-4f43fffa2160",
+    "poCreatorUuid": "f0f82b02-b476-40c1-b1b0-617d85515931",
+    "doCreatorUuid": "d937ae5d-c9db-456a-ab82-93980a5505ef",
+    "cnCreatorUuid": "87802453-ef54-4f46-8325-87d1c5ec57f2",
+    "pprCreatorUuid": "015466be-6b47-43c2-8ee6-feb34a69ee13",
+    "rfqCreatorUuid": "e151187d-928d-41fb-b25a-e3e961828c8d",
+    "invCreatorUuid": "e1f81437-763e-4a6f-8c26-9f779f6df272",
+    "ppoCreatorUuid": "883455ea-4548-4d31-b92f-a8876dc22506",
+    "paymentCreatorUuid": "0d8d1130-a735-492b-b00a-8963b1fc2a57",
+
+    "prApproverUuid": "6694d679-a944-49ea-85af-321bad0750b2",
+    "grApproverUuid": "d7105026-6c69-43bd-aee0-7cbc9fe6feba",
+    "wrApproverUuid": "3e7e9d0d-adcc-40e3-a4ec-3671372b8a67",
+    "cnApproverUuid": "ac5094c1-2774-40be-a0c1-7f51398ace8b",
+    "poApproverUuid": "19652de1-5b75-4d62-adfc-574caa4d2b04",
+    "rfqApproverUuid": "587f8949-8be1-4619-bbef-278bedd03fe8",
+    "pprApproverUuid": "b797f679-0b35-4a10-8d0a-d6cd7a81a005",
+    "ppoApproverUuid": "80ea9324-1565-4a5d-806f-3d4d720474d2",
+    "invApproverUuid": "902bb927-7270-4a6c-a7aa-5dc38038f326",
+    "paymentApproverUuid": "4793a7c1-6dc0-41a5-827c-6f11de76235a",
+
+    "groupUuidLv1": "d5c57a8f-a629-4f81-859b-b8d8f4261bd4",
+    "groupUuidLv2": "9dc402b3-4636-47ee-8406-ee26fb16e8f8"
+}

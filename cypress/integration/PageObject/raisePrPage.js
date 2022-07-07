@@ -1,13 +1,21 @@
 import CommonAction from '../commons/common_actions'
+import UrlPageLocator from '../PageUI/urlPageUI'
 import CommonPageLocator from '../PageUI/commonPageUI'
 import RaisePrPageLocator from '../PageUI/raisePrPageUI'
 
 var printf = require('printf')
+var dataBuyer = require('../../../dataBuyer.json');
+
 const commonAction = new CommonAction()
+const urlPageLocator = new UrlPageLocator()
 const commonPageLocator = new CommonPageLocator()
 const raisePrPageLocator = new RaisePrPageLocator()
 
 class RaisePrPage{
+    constructor() {
+        this.env = Cypress.env('ENV')
+    }
+
     fillDataInRaiseRequisitionTab(fileName){
         cy.fixture(fileName).then((fileName) =>{
             this.selectValueFromRequisitionTypeDropdown(fileName.requisitionType)
@@ -42,10 +50,10 @@ class RaisePrPage{
         cy.fixture(fileName).then((fileName) =>{
             commonAction.clickToElementByXpath(printf(commonPageLocator.button_format_2_xpath, "Add Catalogue"))
             this.enterValueToSearchTextboxInItemTable(fileName.itemCode)
-            commonAction.checkCheckbox('[ref="eCheckbox"]>div>[type="checkbox"]')
+            commonAction.checkCheckboxByXpath(printf(raisePrPageLocator.item_catalogue_checkbox_xpath, fileName.itemCode))
             commonAction.clickToElementByXpath(printf(commonPageLocator.button_format_1_xpath, "Add"))
             this.verifyItemDeleteButtonDisplay()
-            commonAction.wait(2)
+            //commonAction.wait(2)
             this.clickToFilterSizeInItemTable()
             this.clickToFilterBrandInItemTable()
             if(natureOfRequisition == "project"){
@@ -233,7 +241,18 @@ class RaisePrPage{
     }
 
     clickToFilterSizeInItemTable(){
-        commonAction.clickToElement(raisePrPageLocator.filter_size_in_list_css)
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.request({
+            method: 'GET',
+            url: printf(urlPageLocator.item_catalogue_pr_url, this.env, buyerCompanyUuid),            
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response)=>{
+            expect(response.body).has.property("status", "OK")
+            commonAction.clickToElement(raisePrPageLocator.filter_size_in_list_css)
+        })
     }
 
     clickToFilterBrandInItemTable(){

@@ -1,7 +1,7 @@
-import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
-import CommonAction from '../commons/common_actions'
-import ApiAction from "../commons/call_api"
 import GrPage from "../PageObject/grPage"
+import ApiAction from "../commons/call_api"
+import CommonAction from '../commons/common_actions'
+import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
 
 const grPage = new GrPage()
 const apiAction = new ApiAction()
