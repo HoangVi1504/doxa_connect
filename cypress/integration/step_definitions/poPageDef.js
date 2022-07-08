@@ -1,11 +1,11 @@
-import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
-import CommonAction from '../commons/common_actions'
-import ApiAction from "../commons/call_api"
 import PoPage from "../PageObject/poPage"
+import ApiAction from "../commons/call_api"
+import CommonAction from '../commons/common_actions'
+import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
 
-const commonAction = new CommonAction()
-const apiAction = new ApiAction()
 const poPage = new PoPage()
+const apiAction = new ApiAction()
+const commonAction = new CommonAction()
 
 When(/^Get PO number in list$/, () => {
     commonAction.getPoNumberInPoList()

@@ -1,12 +1,12 @@
-import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
-import CommonAction from '../commons/common_actions'
-import RaisePrPage from "../PageObject/raisePrPage"
-import ApiAction from "../commons/call_api"
 import { faker } from '@faker-js/faker';
+import ApiAction from "../commons/call_api"
+import RaisePrPage from "../PageObject/raisePrPage"
+import CommonAction from '../commons/common_actions'
+import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
 
-const commonAction = new CommonAction()
-const raisePrPage = new RaisePrPage()
 const apiAction = new ApiAction()
+const raisePrPage = new RaisePrPage()
+const commonAction = new CommonAction()
 
 When(/^Get PR number in PR list$/, () => {
     commonAction.getPrNumberInPrList()

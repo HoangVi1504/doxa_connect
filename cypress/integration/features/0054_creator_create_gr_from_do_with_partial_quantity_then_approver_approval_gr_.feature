@@ -51,7 +51,7 @@ Scenario: 02 Connected supplier create DO from PO with partial quantity then iss
     Then I see 'PO Detail' page
     And I see PO No in 'PO No' textbox at 'PO Detail' page
 
-    And "Supplier" call API view PO
+    And "supplier" call API view PO
     And I click to "Back" button format_1
     And I input PO No to filter PO in list
     Then I see PO status in list is "ISSUED"

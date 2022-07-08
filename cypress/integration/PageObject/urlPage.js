@@ -6,16 +6,19 @@ const commonAction = new CommonAction()
 const urlPageLocator = new UrlPageLocator()
 
 class UrlPage{
+    constructor() {
+        this.env = Cypress.env('ENV')
+    }
 
     navigateToPprPage(pageName, uuid){
         let url;
         switch (pageName) {
             case "PPR detail":
-                url = printf(urlPageLocator.ppr_detail_url, uuid)
+                url = printf(urlPageLocator.ppr_detail_url, this.env, uuid)
                 break;
 
             case "Convert to PR":
-                url = printf(urlPageLocator.convert_ppr_to_pr_url, uuid)
+                url = printf(urlPageLocator.convert_ppr_to_pr_url, this.env, uuid)
                 break; 
 
             default:
@@ -28,15 +31,15 @@ class UrlPage{
         let url;
         switch (pageName) {
             case "PR detail":
-                url = printf(urlPageLocator.pr_detail_url, uuid)
+                url = printf(urlPageLocator.pr_detail_url, this.env, uuid)
                 break;
 
             case "Edit PR detail":
-                url = printf(urlPageLocator.edit_pr_detail_url, uuid)
+                url = printf(urlPageLocator.edit_pr_detail_url, this.env, uuid)
                 break; 
 
             case "Edit draft PR":
-                url = printf(urlPageLocator.edit_draft_pr_url, uuid)
+                url = printf(urlPageLocator.edit_draft_pr_url, this.env, uuid)
                 break;
 
             default:
@@ -46,10 +49,10 @@ class UrlPage{
     }
 
     navigateToPoDetailPage(uuid){
-        commonAction.navigateTo(printf(urlPageLocator.po_detail_url, uuid))
+        commonAction.navigateTo(printf(urlPageLocator.po_detail_url, this.env, uuid))
     }
 
     navigateToConvertPrToPoPage(uuid){
-        commonAction.navigateTo(printf(urlPageLocator.convert_pr_to_po_url, uuid))
+        commonAction.navigateTo(printf(urlPageLocator.convert_pr_to_po_url, this.env, uuid))
     }
 }export default UrlPage

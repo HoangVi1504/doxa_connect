@@ -1,6 +1,6 @@
-import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
 import RaiseRFQPage from "../PageObject/raiseRfqPage"
 import CommonAction from '../commons/common_actions'
+import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
 
 const raiseRfqPage = new RaiseRFQPage()
 const commonAction = new CommonAction()

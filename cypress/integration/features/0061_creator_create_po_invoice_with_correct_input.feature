@@ -36,6 +36,7 @@ Scenario: 01 Creator create PO invoice with correct input
     When I click to "I Understand" button format_1
     And I logout account
     And I login with role "supplier 1"
+    And Call Api get data after login
     And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Orders" link on header menu
     And I click to "Orders List" link on the left menu
@@ -46,7 +47,7 @@ Scenario: 01 Creator create PO invoice with correct input
     Then I see 'PO Detail' page
     And I see PO No in 'PO No' textbox at 'PO Detail' page
 
-    When "Supplier" call API view PO
+    When "supplier" call API view PO
     And I click to "Back" button format_1
     And I input PO No to filter PO in list
     Then I see PO status in list is "ISSUED"

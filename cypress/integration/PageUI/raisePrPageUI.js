@@ -47,6 +47,7 @@ class RaisePrPageLocator{
         this.item_description_xpath = "(//*[@col-id='itemDescription'])[2]";
         this.item_exchange_rate_xpath = "(//*[@col-id='exchangeRate'])[2]";
         this.item_delete_button_xpath = "(//button[contains(@class,'MuiIconButton')])[1]";
+        this.item_catalogue_checkbox_xpath = "//*[contains(text(),'%s')]/parent::*//input[@type='checkbox']";
         this.option_item_from_dropdown_xpath = "//*[contains(@class,'MenuList')]//*[contains(@class,'option') and text()='%s']";
         this.item_search_currency_code_txb_xpath = "//input[@aria-autocomplete ='list']";
 

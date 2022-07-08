@@ -1,5 +1,31 @@
 class RaiseRFQPageLocator{
     constructor(){
+        // Css - Txb
+        this.note_txb_css = '[name="note"]';
+        this.due_date_txb_css = 'input[placeholder="Please select valid Due Date"]';
+        this.rfq_title_txb_css = '[name="rfqTitle"]';
+        this.delivery_date_txb_css = '[name="deliveryDate"]';
+        this.validity_end_date_txb_css = '[name="validityEndDate"]';
+        this.validity_start_date_txb_css = '[name="validityStartDate"]';
+        this.search_item_catalogue_txb_css = '[type="search"]';
+
+        // Css - Dropdown
+        this.vendor_dropdown_css = '[name="vendors"]';
+        this.rfq_type_dropdown_css = '[name="rfqType"]';
+        this.project_code_dropdown_css = '[name="projectCode"]';
+        this.currency_code_dropdown_css = '[name="currencyCode"]';
+        this.delivery_address_dropdown_css = '[name="deliveryAddress"]';
+        this.procurement_type_dropdown_css = '[name="procurementType"]';
+        this.requisition_type_dropdown_css = '[name="requisitionType"]';
+        this.nature_requisition_dropdown_css = '[name="project"]';
+
+        // Css - Filter
+        this.filter_rfq_title_css = '[aria-label="RFQ Title Filter Input"]';
+        this.filter_uom_in_item_table_css = '[aria-label="UOM Filter Input"]';
+        this.filter_size_in_item_table_css = '[aria-label="Size Filter Input"]';
+        this.filter_brand_in_item_table_css = '[aria-label="Brand Filter Input"]';
+
+        // Xpath
         this.raise_rfq_page_title_xpath = "//*[text()='Raise a Request for Quotation']";
         this.rfq_title_in_rfq_list_xpath = "(//*[@role='rowgroup'])[2]//*[@role='row'][1]//*[@col-id='rfqTitle' and text()='%s']";
         this.rfq_status_in_rfq_list_xpath = "//*[@col-id='rfqStatus' and text()='%s']";
@@ -16,6 +42,7 @@ class RaiseRFQPageLocator{
         this.item_unit_price_xpath = "(//*[@col-id='itemUnitPrice'])[2]";
         this.item_description_xpath = "(//*[@col-id='itemDescription'])[2]";
         this.item_delete_button_xpath = "(//button[contains(@class,'MuiIconButton')])[1]";
+        this.item_catalogue_checkbox_xpath = "//*[contains(text(),'%s')]/parent::*//input[@type='checkbox']";
 
         this.validation_text_vendors_xpath = "//*[@name='vendors']//following-sibling::*[text()='%s']";
         this.validation_text_rfq_type_xpath = "//*[@name='rfqType']//following-sibling::*[text()='%s']";

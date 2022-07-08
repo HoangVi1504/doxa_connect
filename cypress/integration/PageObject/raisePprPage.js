@@ -1,13 +1,20 @@
 import CommonAction from '../commons/common_actions'
+import UrlPageLocator from '../PageUI/urlPageUI'
 import CommonPageLocator from '../PageUI/commonPageUI'
 import RaisePprPageLocator from '../PageUI/raisePprPageUI'
 
 var printf = require('printf')
+var dataBuyer = require('../../../dataBuyer.json');
+
 const commonAction = new CommonAction()
+const urlPageLocator = new UrlPageLocator()
 const commonPageLocator = new CommonPageLocator()
 const raisePprPageLocator = new RaisePprPageLocator()
 
 class RaisePprPage{
+    constructor() {
+        this.env = Cypress.env('ENV')
+    }
 
     fillDataInRaiseRequisitionTab(fileName){
         cy.fixture(fileName).then((fileName) =>{
@@ -43,7 +50,7 @@ class RaisePprPage{
         cy.fixture(fileName).then((fileName) =>{
             commonAction.clickToElementByXpath(printf(commonPageLocator.button_format_2_xpath, "Add Catalogue"))
             this.enterValueToSearchTextboxInItemTable(fileName.itemCode)
-            commonAction.checkCheckbox('[ref="eCheckbox"]>div>[type="checkbox"]')
+            commonAction.checkCheckboxByXpath(printf(raisePprPageLocator.item_catalogue_checkbox_xpath, fileName.itemCode))
             commonAction.clickToElementByXpath(printf(commonPageLocator.button_format_1_xpath, "Add"))
             this.verifyItemDeleteButtonDisplay()
             this.clickToFilterBrandInItemTable()
@@ -103,68 +110,60 @@ class RaisePprPage{
         commonAction.enterValueToTextboxByXpath(raisePprPageLocator.item_currency_xpath, currency)
     }
 
-    enterValueToItemCategoryInItemTable(category){
-        commonAction.enterValueToTextbox('#react-select-4-input', category)
-    }
-
-    enterValueToUomInItemTable(uom){
-        commonAction.enterValueToTextbox('#react-select-9-input', uom)
-    }
-
     enterValueToSearchTextboxInItemTable(keyWord){
-        commonAction.enterValueToTextbox('[type="search"]', keyWord)
+        commonAction.enterValueToTextbox(raisePprPageLocator.search_catalogue_item_txb_css, keyWord)
     }
 
     // Raise PPR
     enterValueToSearchPPRTitleTextbox(pprTitle){
-        commonAction.enterValueToTextbox('[aria-label="Purchase Pre-requisition Title Filter Input"]', pprTitle)
+        commonAction.enterValueToTextbox(raisePprPageLocator.filter_ppr_title_in_list_css, pprTitle)
     }
 
     enterValueToPprTitleTextbox(pprTitle){
-        commonAction.enterValueToTextbox('[name="pprTitle"]', pprTitle)
+        commonAction.enterValueToTextbox(raisePprPageLocator.ppr_title_txb_css, pprTitle)
     }
 
     enterValueToDeliveryDateTextbox(date){
-        commonAction.enterValueToTextbox('[name="deliveryDate"]', date)
+        commonAction.enterValueToTextbox(raisePprPageLocator.delivery_date_txb_css, date)
         commonAction.clickToElementByXpath(printf(commonPageLocator.label_xpath, "Delivery Date"))
     }
 
     enterValueToNoteTextbox(fileName){
         cy.fixture(fileName).then((fileName) =>{
-            commonAction.enterValueToTextbox('[name="note"]', fileName.note)
+            commonAction.enterValueToTextbox(raisePprPageLocator.note_txb_css, fileName.note)
         })
     }
 
     enterValueToReasonCancelTextbox(reason){
-        commonAction.enterValueToTextbox('[name="reasonCancel"]', reason)
+        commonAction.enterValueToTextbox(raisePprPageLocator.reason_cancel_txb_css, reason)
     }
 
     selectValueFromRequisitionTypeDropdown(value){
-        commonAction.selectValueFromElement('[name="requisitionType"]', value)
+        commonAction.selectValueFromElement(raisePprPageLocator.requisition_type_dropdown_css, value)
     }
 
     selectValueFromNatureRequisitionDropdown(value){
-        commonAction.selectValueFromElement('[name="project"]', value)
+        commonAction.selectValueFromElement(raisePprPageLocator.nature_requisition_dropdown_css, value)
     }
 
     selectValueFromProjectCodeDropdown(value){
-        commonAction.selectValueFromElement('[name="projectCode"]', value)
+        commonAction.selectValueFromElement(raisePprPageLocator.project_code_dropdown_css, value)
     }
 
     selectValueFromCurrencyCodeDropdown(value){
-        commonAction.selectValueFromElement('[name="currencyCode"]', value)
+        commonAction.selectValueFromElement(raisePprPageLocator.currency_code_dropdown_css, value)
     }
 
     selectValueFromProcurementTypeDropdown(value){
-        commonAction.selectValueFromElement('[name="procurementType"]', value)
+        commonAction.selectValueFromElement(raisePprPageLocator.procurement_type_dropdown_css, value)
     }
 
     selectValueFromApprovalRouteDropdown(value){
-        commonAction.selectValueFromElement('[name="approvalRoute"]', value)
+        commonAction.selectValueFromElement(raisePprPageLocator.approval_route_dropdown_css, value)
     }
 
     selectValueToDeliveryAddressDropdown(address){
-        commonAction.selectValueFromElement('[name="deliveryAddress"]', address)
+        commonAction.selectValueFromElement(raisePprPageLocator.delivery_address_dropdown_css, address)
     }
 
     selectValueFromItemCategoryDropdown(category){
@@ -186,11 +185,22 @@ class RaisePprPage{
     }
 
     clickToFilterBrandInItemTable(){
-        commonAction.clickToElement('[aria-label="Brand Filter Input"]')
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.request({
+            method: 'GET',
+            url: printf(urlPageLocator.item_catalogue_ppr_url, this.env, buyerCompanyUuid),            
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response)=>{
+            expect(response.body).has.property("status", "OK")
+            commonAction.clickToElement(raisePprPageLocator.filter_brand_in_item_table_css)
+        })
     }
 
     clickToFilterUomInItemTable(){
-        commonAction.clickToElement('[aria-label="UOM Filter Input"]')
+        commonAction.clickToElement(raisePprPageLocator.filter_uom_in_item_table_css)
     }
 
     clickToItemQuantityInItemTable(){
@@ -202,36 +212,30 @@ class RaisePprPage{
     }
 
     clickToPprTitleTextbox(){
-        commonAction.clickToElement('[name="pprTitle"]')
-    }
-
-    clickToValueFromItemCategory(value){
-        commonAction.clickToElementByXpath(raisePprPageLocator.item_category_xpath)
-        commonAction.clickToElementByXpath('(//div[@class=" css-tlfecz-indicatorContainer"])[2]')
-        commonAction.clickToElementWithCoordinatesByXpath(raisePprPageLocator.item_category_xpath)
+        commonAction.clickToElement(raisePprPageLocator.ppr_title_txb_css)
     }
 
     verifyProjectCodeFieldNotDisplay(){
-        commonAction.verifyElementNotExist('[name="projectCode"]')
+        commonAction.verifyElementNotExist(raisePprPageLocator.project_code_dropdown_css)
     }
 
     verifyProjectCodeFieldDisplay(){
-        commonAction.verifyElementVisible('[name="projectCode"]')
+        commonAction.verifyElementVisible(raisePprPageLocator.project_code_dropdown_css)
     }
 
     verifyValueInPprTitleTextboxExits(pprTitle){
-        commonAction.verifyValueInTextboxExist('[name="pprTitle"]', pprTitle)
+        commonAction.verifyValueInTextboxExist(raisePprPageLocator.ppr_title_txb_css, pprTitle)
     }
 
     verifyValueInProjectCodeExits(fileName, status){
         cy.fixture(fileName).then((fileName) =>{
             switch (status) {
                 case "PENDING SUBMISSION":
-                    commonAction.verifyValueInDropdownExits('[name="projectCode"]', fileName.projectCode)
+                    commonAction.verifyValueInDropdownExits(raisePprPageLocator.project_code_dropdown_css, fileName.projectCode)
                     break;
     
                 case "PENDING APPROVAL":
-                    commonAction.verifyValueInTextboxExist('[name="projectCode"]', fileName.projectCode)
+                    commonAction.verifyValueInTextboxExist(raisePprPageLocator.project_code_dropdown_css, fileName.projectCode)
                     break;
             
                 default:

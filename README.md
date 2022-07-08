@@ -9,7 +9,7 @@
 
 ## Usage
 ### Run test
-- If you want to run all test suite, use `npm run test` 
+- If you want to run all test suite, use `npm run test`
 - If you want to run by tags, use `npm run <tag>` such as `npm run login`
 - If you want to run specific spec, use `npx cypress run --spec ./cypress/integration/features/sample.feature`
 

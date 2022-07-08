@@ -80,7 +80,7 @@ Scenario: 02 Supplier can view PO once PO is issued to supplier
     Then I see 'PO Detail' page
     And I see PO No in 'PO No' textbox at 'PO Detail' page
 
-    When "Supplier" call API view PO
+    When "supplier" call API view PO
     And I click to "Back" button format_1
     And I input PO No to filter PO in list
     Then I see PO status in list is "ISSUED"
@@ -102,7 +102,7 @@ Scenario: 03 Creator can view PO then cancel PO in Issued status
     Then I see 'PO Detail' page
     And I see PO No in 'PO No' textbox at 'PO Detail' page
 
-    When "Buyer" call API view PO
+    When "buyer" call API view PO
     And I click to "Cancel" button format_1
     Then I see notification PO "Do you wish to cancel this order?" display at 'PO Detail' page
 

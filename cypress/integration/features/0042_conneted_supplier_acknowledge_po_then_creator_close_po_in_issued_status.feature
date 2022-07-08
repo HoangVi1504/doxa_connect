@@ -70,7 +70,7 @@ Scenario: 02 Pending connection supplier cannot Acknowledge PO and connected sup
     # Connected supplier able to view PO and acknowledge PO
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "supplier 1"
-    And "Supplier" call API view PO
+    And "supplier" call API view PO
     And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Orders" link on header menu
     And I click to "Orders List" link on the left menu
