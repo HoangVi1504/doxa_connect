@@ -6,7 +6,7 @@
   "scripts": {
     "cy:run": "npx cypress run --env allure=true",
     "allure:report": "allure generate ./allure-results --clean -o ./allure-report",
-    "pretest": "rimraf allure-results && rimraf allure-report && rimraf cypress/screenshots && mkdir cypress/screenshots",
+    "pretest": "rimraf allure-results/* && rimraf allure-report/* && rimraf cypress/screenshots && mkdir cypress/screenshots",
     "test": "npm run pretest && npm run cy:run",
     "post-test": "npm run allure:report",
     "open-report": "allure open",
