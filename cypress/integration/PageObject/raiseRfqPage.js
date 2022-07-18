@@ -15,7 +15,7 @@ class RaiseRFQPage{
             this.selectValueFromNatureRequisitionDropdown(fileName.natureOfRequisition)
             if(fileName.natureOfRequisition == "Non-Project"){
                 this.verifyProjectCodeFieldNotDisplay()
-                this.selectValueFromCurrencyCodeDropdown(fileName.currencyCode)
+                //this.selectValueFromCurrencyCodeDropdown(fileName.currencyCode)
             }else if(fileName.natureOfRequisition == "Project"){
                 this.verifyProjectCodeFieldDisplay()
                 this.selectValueFromProjectCodeDropdown(fileName.projectCode)

@@ -13,7 +13,7 @@ const raisePprPageLocator = new RaisePprPageLocator()
 
 class RaisePprPage{
     constructor() {
-        this.env = Cypress.env('ENV')
+        this.env = 'stag'
     }
 
     fillDataInRaiseRequisitionTab(fileName){

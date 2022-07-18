@@ -7,7 +7,7 @@ const urlPageLocator = new UrlPageLocator()
 
 class UrlPage{
     constructor() {
-        this.env = Cypress.env('ENV')
+        this.env = 'stag'
     }
 
     navigateToPprPage(pageName, uuid){

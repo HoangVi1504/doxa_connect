@@ -18,7 +18,6 @@ Scenario: Raise RFQ and save RFQ as draft
     And I click to RFQ title textbox
     Then I see a validation text of 'RFQ title' "Please enter valid RFQ Title" appears
     And I see a validation text of 'Procurement Type' "Please select valid Procurement Type" appears
-    And I see a validation text of 'Currency Code' "Please select valid Currency" appears
     And I see a validation text of 'Vendor' "Please select valid a Vendor" appears
     And I see a validation text of 'RFQ Type' "Please enter valid RFQ Type" appears
     And I see a validation text of 'Due Date' "Please select valid Due Date" appears

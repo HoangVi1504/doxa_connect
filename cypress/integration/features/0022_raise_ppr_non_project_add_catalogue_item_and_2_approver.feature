@@ -35,6 +35,7 @@ Scenario: 02 Approver approval PPR
     And I input PPR title from "ppr_v2" json file to 'Search PPR' textbox
     And I see PPR status in PPR list is "PENDING APPROVAL"
     And I double click to PPR title in PPR list from "ppr_v2" json file
+    And Wait for "5" seconds
     Then I see 'PPR detail' page title
     And I see PPR title at PPR detail page from "ppr_v2" json file
 
@@ -53,6 +54,7 @@ Scenario: 02 Approver approval PPR
     And I input PPR title from "ppr_v2" json file to 'Search PPR' textbox
     And I see PPR status in PPR list is "PENDING APPROVAL"
     And I double click to PPR title in PPR list from "ppr_v2" json file
+    And Wait for "5" seconds
     Then I see 'PPR detail' page title
     And I see PPR title at PPR detail page from "ppr_v2" json file
 

@@ -13,7 +13,7 @@ pipeline {
         stage('Run test') {
             steps {
                 script {
-                    sh "docker run --ipc=host --rm -v \$(pwd)/target/allure-results:/home/app/allure-results -v \$(pwd)/cypress:/home/app/cypress connex-automation npm run ${feature}"
+                    sh "export CYPRESS_ENV=stag;docker run --ipc=host --rm -v \$(pwd)/target/allure-results:/home/app/allure-results -v \$(pwd)/cypress:/home/app/cypress connex-automation npm run ${feature}"
                     sh "sudo chmod -R 777 target"
                 }
             }

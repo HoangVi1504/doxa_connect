@@ -13,7 +13,7 @@ const raisePrPageLocator = new RaisePrPageLocator()
 
 class RaisePrPage{
     constructor() {
-        this.env = Cypress.env('ENV')
+        this.env = 'stag'
     }
 
     fillDataInRaiseRequisitionTab(fileName){
@@ -21,7 +21,7 @@ class RaisePrPage{
             this.selectValueFromRequisitionTypeDropdown(fileName.requisitionType)
             this.selectValueFromNatureRequisitionDropdown(fileName.natureOfRequisition)
             if(fileName.natureOfRequisition == "Non-Project"){
-                // this.verifyProjectCodeFieldNotDisplay()
+                this.verifyProjectCodeFieldNotDisplay()
                 this.selectValueFromCurrencyCodeDropdown(fileName.currencyCode)
             }else if(fileName.natureOfRequisition == "Project"){
                 this.verifyProjectCodeFieldDisplay()
