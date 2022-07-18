@@ -55,6 +55,7 @@ class RaisePprPage{
             this.verifyItemDeleteButtonDisplay()
             this.clickToFilterBrandInItemTable()
             this.clickToFilterUomInItemTable()
+            this.clickToFilterQuantityInItemTable()
             this.clickToItemQuantityInItemTable()
             this.enterValueToItemQuantityInItemTable(fileName.itemQuantity)
         })
@@ -78,10 +79,12 @@ class RaisePprPage{
 
     // Adding of Items
     enterValueToItemCodeInItemTable(code){
+        commonAction.clickToElementByXpath(raisePprPageLocator.item_code_xpath)
         commonAction.enterValueToTextboxByXpath(raisePprPageLocator.item_code_xpath, code)
     }
 
     enterValueToItemNameInItemTable(itemName){
+        commonAction.clickToElementByXpath(raisePprPageLocator.item_name_xpath)
         commonAction.enterValueToTextboxByXpath(raisePprPageLocator.item_name_xpath, itemName)
     }
 
@@ -103,6 +106,7 @@ class RaisePprPage{
     }
 
     enterValueToItemQuantityInItemTable(quantity){
+        commonAction.clickToElementByXpath(raisePprPageLocator.item_quantity_xpath)
         commonAction.enterValueToTextboxByXpath(raisePprPageLocator.item_quantity_xpath, quantity)
     }
 
@@ -201,6 +205,10 @@ class RaisePprPage{
 
     clickToFilterUomInItemTable(){
         commonAction.clickToElement(raisePprPageLocator.filter_uom_in_item_table_css)
+    }
+
+    clickToFilterQuantityInItemTable(){
+        commonAction.clickToElement(raisePprPageLocator.filter_quantity_in_item_table_css)
     }
 
     clickToItemQuantityInItemTable(){
