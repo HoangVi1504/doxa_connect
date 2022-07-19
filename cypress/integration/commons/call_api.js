@@ -1187,104 +1187,107 @@ class ApiAction{
     callApiCreateCatalogue(catalogueItemCode, catalogueItemName){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
-        this.callApiGetDataInCategoryList("AUTO EQUIPMENT")
-        this.callApiGetDataInManageVendorList("AUTO SUPPLIER 1")
-        cy.request({
-            method: 'POST',
-            url: printf(urlPageLocator.create_catalogue_url, this.env, buyerCompanyUuid),
-            headers: {
-                authorization: "Bearer " + token,
-            },
-            body: {
-                catalogueItemCode: catalogueItemCode,
-                catalogueItemName: catalogueItemName,
-                categoryDto:
-                {
-                    action: null,
-                    active: true,
-                    categoryDescription: "auto equipment",
-                    categoryName: "AUTO EQUIPMENT",
-                    companyUuid: buyerCompanyUuid,                              
-                    createdBy: "AUTO BUYER",
-                    createdOn: commonAction.getDateFormat5(1),
-                    updatedBy: null,
-                    updatedOn: commonAction.getDateFormat5(1),
-                    uuid: sessionStorage.getItem("categoryUuid"),                   
-                },
-                companyUuid: buyerCompanyUuid,                                  
-                contracted: false,
-                contractedPrice: 0,
-                contractedQty: 0,
-                currencyCode: "SGD",
-                description: "",
-                glAccountNumber: "",
-                isActive: true,
-                isManual: false,
-                itemBrand: "",
-                itemCategory: "AUTO EQUIPMENT",
-                itemModel: "",
-                itemSize: "",
-                lockItemName: false,
-                projects: [],
-                supplierCode: "1105",
-                supplierName: "AUTO SUPPLIER 1",
-                supplierUuid: sessionStorage.getItem("vendorUuid"),                                
-                taxCode: "11052022",
-                taxRate: "0.5",
-                unitPrice: 5000,
-                uomCode: "CEN",
-                validFrom: commonAction.getDateFormat1(0),                                    
-                validTo: commonAction.getDateFormat1(30),                                                       
-            }
-        }).then((response) =>{
-           expect(response.body).has.property("message", `Catalogue added: ${catalogueItemCode}`)
+        cy.wrap(this.callApiGetDataInCategoryList("AUTO EQUIPMENT")).then((e)=>{
+            cy.wrap(this.callApiGetDataInManageVendorList("AUTO SUPPLIER 1")).then((e)=>{
+                cy.request({
+                    method: 'POST',
+                    url: printf(urlPageLocator.create_catalogue_url, this.env, buyerCompanyUuid),
+                    headers: {
+                        authorization: "Bearer " + token,
+                    },
+                    body: {
+                        catalogueItemCode: catalogueItemCode,
+                        catalogueItemName: catalogueItemName,
+                        categoryDto:
+                        {
+                            action: null,
+                            active: true,
+                            categoryDescription: "auto equipment",
+                            categoryName: "AUTO EQUIPMENT",
+                            companyUuid: buyerCompanyUuid,                              
+                            createdBy: "AUTO BUYER",
+                            createdOn: commonAction.getDateFormat5(1),
+                            updatedBy: null,
+                            updatedOn: commonAction.getDateFormat5(1),
+                            uuid: sessionStorage.getItem("categoryUuid"),                   
+                        },
+                        companyUuid: buyerCompanyUuid,                                  
+                        contracted: false,
+                        contractedPrice: 0,
+                        contractedQty: 0,
+                        currencyCode: "SGD",
+                        description: "",
+                        glAccountNumber: "",
+                        isActive: true,
+                        isManual: false,
+                        itemBrand: "",
+                        itemCategory: "AUTO EQUIPMENT",
+                        itemModel: "",
+                        itemSize: "",
+                        lockItemName: false,
+                        projects: [],
+                        supplierCode: "1105",
+                        supplierName: "AUTO SUPPLIER 1",
+                        supplierUuid: sessionStorage.getItem("vendorUuid"),                                
+                        taxCode: "11052022",
+                        taxRate: "0.5",
+                        unitPrice: 5000,
+                        uomCode: "CEN",
+                        validFrom: commonAction.getDateFormat1(0),                                    
+                        validTo: commonAction.getDateFormat1(30),                                                       
+                    }
+                }).then((response) =>{
+                   expect(response.body).has.property("message", `Catalogue added: ${catalogueItemCode}`)
+                })
+            })
         })
     }
 
     callAPiCreateProject(projectCode, projectTitle){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
-        this.callApiGetDataInManageAddress("address auto")
-        cy.request({
-            method: 'POST',
-            url: printf(urlPageLocator.create_project_url, this.env, buyerCompanyUuid),
-            headers: {
-                authorization: "Bearer " + token,
-            },
-            body: {
-                addressUuid: sessionStorage.getItem("addressUuid"),
-                companyUuid: buyerCompanyUuid,
-                currency: "USD",
-                draftStatus: false,
-                endDate: commonAction.getDateFormat1(365),
-                erpProjectCode: "",
-                overallBudget: "1000000",
-                projectAdminRemarks: "",
-                projectCode: projectCode,
-                projectCodeDescription: "",
-                projectDescription: "auto test project description",
-                projectInChargeRemarks: "",
-                projectTeamMemberRemarks: "",
-                projectTitle: projectTitle,
-                projectUserDtoList:
-                [
-                    {
-                        projectUserRole: "PROJECT_ADMIN",
-                        remarks: "",
-                        userName: "AUTO BUYER",
-                        userUuid: dataBuyer.buyerUuid
-                    },
-                    {
-                        projectUserRole: "PROJECT_IN_CHARGE",
-                        remarks: "",
-                        userName: "AUTO BUYER",
-                        userUuid: dataBuyer.buyerUuid
-                    }
-                ],
-                startDate: commonAction.getDateFormat1(0)
-            }
-        }).then((response)=>{
-           expect(response.body).has.property("message", `Project created for: ${projectTitle}`)
+        cy.wrap(this.callApiGetDataInManageAddress("address auto")).then((e)=>{
+            cy.request({
+                method: 'POST',
+                url: printf(urlPageLocator.create_project_url, this.env, buyerCompanyUuid),
+                headers: {
+                    authorization: "Bearer " + token,
+                },
+                body: {
+                    addressUuid: sessionStorage.getItem("addressUuid"),
+                    companyUuid: buyerCompanyUuid,
+                    currency: "USD",
+                    draftStatus: false,
+                    endDate: commonAction.getDateFormat1(365),
+                    erpProjectCode: "",
+                    overallBudget: "1000000",
+                    projectAdminRemarks: "",
+                    projectCode: projectCode,
+                    projectCodeDescription: "",
+                    projectDescription: "auto test project description",
+                    projectInChargeRemarks: "",
+                    projectTeamMemberRemarks: "",
+                    projectTitle: projectTitle,
+                    projectUserDtoList:
+                    [
+                        {
+                            projectUserRole: "PROJECT_ADMIN",
+                            remarks: "",
+                            userName: "AUTO BUYER",
+                            userUuid: dataBuyer.buyerUuid
+                        },
+                        {
+                            projectUserRole: "PROJECT_IN_CHARGE",
+                            remarks: "",
+                            userName: "AUTO BUYER",
+                            userUuid: dataBuyer.buyerUuid
+                        }
+                    ],
+                    startDate: commonAction.getDateFormat1(0)
+                }
+            }).then((response)=>{
+               expect(response.body).has.property("message", `Project created for: ${projectTitle}`)
+            })
         })
     }
 
@@ -1391,27 +1394,28 @@ class ApiAction{
     callApiCreateApSpecialistGrouping(groupCode){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
-        this.callApiGetDataInManageVendorList("AUTO SUPPLIER 1")
-        cy.request({
-            method: 'POST',
-            url: printf(urlPageLocator.create_ap_specialist_url, this.env, buyerCompanyUuid),
-            headers: {
-                authorization: "Bearer " + token,
-            },
-            body: {
-                apSpecialistUsers: 
-                [
-                    {
-                        userName: dataApSpecialist.apSpecialistName,                  //"auto ap_specialist",
-                        userUuid: dataApSpecialist.apSpecialistUuid                   //"3a92edbf-2f0a-47dd-b258-499301737963"
-                    }
-                ],
-                groupCode: groupCode,
-                remarks: "auto remark",
-                vendorUuid: [sessionStorage.getItem("vendorUuid")]                      //"016cbc2c-45a3-4e93-898f-60115b710cae"
-            },
-        }).then((response)=>{
-           expect(response.body).has.property("message", "AP Specialist successfully created")
+        cy.wrap(this.callApiGetDataInManageVendorList("AUTO SUPPLIER 1")).then((e)=>{
+            cy.request({
+                method: 'POST',
+                url: printf(urlPageLocator.create_ap_specialist_url, this.env, buyerCompanyUuid),
+                headers: {
+                    authorization: "Bearer " + token,
+                },
+                body: {
+                    apSpecialistUsers: 
+                    [
+                        {
+                            userName: dataApSpecialist.apSpecialistName,                  //"auto ap_specialist",
+                            userUuid: dataApSpecialist.apSpecialistUuid                   //"3a92edbf-2f0a-47dd-b258-499301737963"
+                        }
+                    ],
+                    groupCode: groupCode,
+                    remarks: "auto remark",
+                    vendorUuid: [sessionStorage.getItem("vendorUuid")]                      //"016cbc2c-45a3-4e93-898f-60115b710cae"
+                },
+            }).then((response)=>{
+               expect(response.body).has.property("message", "AP Specialist successfully created")
+            })
         })
     }
 
@@ -1453,7 +1457,6 @@ class ApiAction{
         var tmp = require(`../data/data${featureCode}.json`)
         cy.log(tmp.featureName)
         cy.log(tmp.approvalCode)
-        // this.callApiGetDataInApprovalConfiguration(tmp.featureName)
         let approvalRange
         switch (approvalLevel) {
             case "1":

@@ -18,6 +18,7 @@ class RaisePprPageLocator{
         this.filter_ppr_title_in_list_css = '[aria-label="Purchase Pre-requisition Title Filter Input"]';
         this.filter_uom_in_item_table_css = '[aria-label="UOM Filter Input"]';
         this.filter_brand_in_item_table_css = '[aria-label="Brand Filter Input"]';
+        this.filter_quantity_in_item_table_css = '[aria-label="Quantity Filter Input"]';
 
         // Xpath
         this.raise_ppr_page_title_xpath = "//h1[text()='Raise Pre-Requisition']";

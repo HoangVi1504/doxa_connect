@@ -59,6 +59,7 @@ Scenario: 02 Submit PPR in Pending Submission status after save as draft PPR
     Then I see PPR status in PPR list is "PENDING SUBMISSION"
 
     When I double click to PPR title in PPR list from "ppr_v5" json file
+    And Wait for "3" seconds
     Then I see 'PPR detail' page title
     And I see PPR title at PPR detail page from "ppr_v5" json file
     And I see Project code with status "PENDING SUBMISSION" at PPR detail page from "ppr_v5" json file
@@ -81,6 +82,7 @@ Scenario: 03 Cancel PPR in Pending Approval status after Submit PPR in Pending S
     Then I see PPR status in PPR list is "PENDING APPROVAL"
 
     When I double click to PPR title in PPR list from "ppr_v5" json file
+    And Wait for "3" seconds
     Then I see 'PPR detail' page title
     And I see PPR title at PPR detail page from "ppr_v5" json file
     And I see Project code with status "PENDING APPROVAL" at PPR detail page from "ppr_v5" json file
