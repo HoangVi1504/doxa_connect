@@ -483,7 +483,7 @@ class ApiAction{
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
         cy.wrap(this.callApiGetDataAfterLogin()).then((e)=>{
             cy.wrap(this.callApiGetDataInApprovalList("auto approval PPR 1")).then((e)=>{
-                cy.wrap(this.callApiGetDataInCatalogueList("auto item code 1")).then((e)=>{
+                cy.wrap(this.callApiGetDataInCatalogueList("auto item code 2")).then((e)=>{
                     cy.wrap(this.callApiGetDataInManageAddress("address auto")).then((e)=>{
                         cy.request({
                             method: 'POST',
@@ -521,12 +521,12 @@ class ApiAction{
                                     isActive: true,
                                     isEditable: true,
                                     itemCategory: "AUTO EQUIPMENT",
-                                    itemCode: "auto item code 1",
-                                    itemName: "auto item name 1",
+                                    itemCode: "auto item code 2",
+                                    itemName: "auto item name 2",
                                     quantity: "100",
                                     requestDeliveryDate: commonAction.getDateFormat5(1),
                                     supplierCode: "1105",
-                                    supplierName: "AUTO SUPPLIER 1",
+                                    supplierName: "TEST SUPPLIER 34",
                                     supplierUuid: sessionStorage.getItem("supplierUuid"),                           //"3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",         
                                     taxCode: "11052022",
                                     taxRate: "0.5",
@@ -556,7 +556,7 @@ class ApiAction{
         let token = window.localStorage.getItem("token")    
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
         cy.wrap(this.callApiGetDataInApprovalList("auto approval PR 1")).then((e)=>{
-            cy.wrap(this.callApiGetDataInCatalogueList("auto item code 1")).then((e)=>{
+            cy.wrap(this.callApiGetDataInCatalogueList("auto item code 2")).then((e)=>{
                 cy.request({
                     method: 'POST',
                     url: printf(urlPageLocator.create_pr_url, this.env, buyerCompanyUuid),
@@ -599,13 +599,13 @@ class ApiAction{
                                 editableUnitPrice: false,
                                 exchangeRate: "0.7190623427051125",
                                 itemCategory: "AUTO EQUIPMENT",
-                                itemCode: "auto item code 1",
-                                itemName: "auto item name 1",
+                                itemCode: "auto item code 2",
+                                itemName: "auto item name 2",
                                 itemQuantity: "1000",
                                 itemUnitPrice: "5000",
                                 requestedDeliveryDate: commonAction.getDateFormat5(1),
                                 sourceCurrency: "SGD",
-                                supplierName: "AUTO SUPPLIER 1",
+                                supplierName: "TEST SUPPLIER 34",
                                 supplierUuid: sessionStorage.getItem("supplierUuid"),                       //"3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",
                                 taxCode: "11052022",
                                 taxRate: 0.5,
@@ -662,11 +662,11 @@ class ApiAction{
                     isActive: true,
                     isEditable: true,
                     itemCategory: "AUTO EQUIPMENT",
-                    itemCode: "auto item code 1",
-                    itemName: "auto item name 1",
+                    itemCode: "auto item code 2",
+                    itemName: "auto item name 2",
                     quantity: "100",
                     requestDeliveryDate: commonAction.getDateFormat5(1),
-                    supplierName: "AUTO SUPPLIER 1",
+                    supplierName: "TEST SUPPLIER 34",
                     supplierUuid: "3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",
                     taxCode: "11052022",
                     taxRate: "0.5",
@@ -688,7 +688,7 @@ class ApiAction{
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
         cy.wrap(this.callApiGetDataInApprovalList("auto approval PR 1")).then((e)=>{
-            cy.wrap(this.callApiGetDataInCatalogueList("auto item code 1")).then((e)=>{
+            cy.wrap(this.callApiGetDataInCatalogueList("auto item code 2")).then((e)=>{
                 cy.request({
                     method: 'POST',
                     url: printf(urlPageLocator.create_pr_url, this.env, buyerCompanyUuid),
@@ -731,10 +731,10 @@ class ApiAction{
                                 exchangeRate: 0.7190623427051125,
                                 itemBrand: "",
                                 itemCategory: "AUTO EQUIPMENT",
-                                itemCode: "auto item code 1",
+                                itemCode: "auto item code 2",
                                 itemDescription: "",
                                 itemModel: "",
-                                itemName: "auto item name 1",
+                                itemName: "auto item name 2",
                                 itemQuantity: 1000,
                                 itemSize: "",
                                 itemUnitPrice: 5000,
@@ -742,7 +742,7 @@ class ApiAction{
                                 priceType: "",
                                 requestedDeliveryDate: commonAction.getDateFormat5(1),
                                 sourceCurrency: "SGD",
-                                supplierName: "AUTO SUPPLIER 1",
+                                supplierName: "TEST SUPPLIER 34",
                                 supplierUuid: sessionStorage.getItem("supplierUuid"),                               //"3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",
                                 taxCode: "11052022",
                                 taxRate: 0.5,

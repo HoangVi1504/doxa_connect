@@ -22,7 +22,7 @@ class RaisePrPage{
             this.selectValueFromNatureRequisitionDropdown(fileName.natureOfRequisition)
             if(fileName.natureOfRequisition == "Non-Project"){
                 this.verifyProjectCodeFieldNotDisplay()
-                this.selectValueFromCurrencyCodeDropdown(fileName.currencyCode)
+                //this.selectValueFromCurrencyCodeDropdown(fileName.currencyCode)
             }else if(fileName.natureOfRequisition == "Project"){
                 this.verifyProjectCodeFieldDisplay()
                 this.selectValueFromProjectCodeDropdown(fileName.projectCode)
@@ -53,7 +53,6 @@ class RaisePrPage{
             commonAction.checkCheckboxByXpath(printf(raisePrPageLocator.item_catalogue_checkbox_xpath, fileName.itemCode))
             commonAction.clickToElementByXpath(printf(commonPageLocator.button_format_1_xpath, "Add"))
             this.verifyItemDeleteButtonDisplay()
-            //commonAction.wait(2)
             this.clickToFilterSizeInItemTable()
             this.clickToFilterBrandInItemTable()
             if(natureOfRequisition == "project"){
@@ -61,7 +60,9 @@ class RaisePrPage{
             }
             this.clickToFilterCategoryInItemTable()
             this.clickToFilterSupplierInItemTable()
+            //this.selectValueFromItemSupplierDropdown(fileName.supplierName)
             this.clickToFilterUomInItemTable()
+            this.clickToFilterQuantityInItemTable()
             this.enterValueToItemQuantityInItemTable(fileName.itemQuantity)
         })
     }
@@ -69,6 +70,7 @@ class RaisePrPage{
         cy.fixture(fileName).then((fileName) =>{
             commonAction.clickToElementByXpath(printf(commonPageLocator.button_format_2_xpath, "Add Manual"))
             this.verifyItemDeleteButtonDisplay()
+            commonAction.wait(1)
             this.enterValueToItemCodeInItemTable(fileName.itemCode)
             this.enterValueToItemNameInItemTable(fileName.itemName)
             this.enterValueToItemDescriptionInItemTable(fileName.itemDescription)
@@ -84,6 +86,7 @@ class RaisePrPage{
             this.selectValueFromItemSupplierDropdown(fileName.supplierName)
             this.clickToFilterUomInItemTable()
             this.selectValueFromItemUomDropdown(fileName.uom)
+            this.clickToFilterQuantityInItemTable()
             this.enterValueToItemQuantityInItemTable(fileName.itemQuantity)
             this.selectValueFromItemCurrencyCodeDropdown(fileName.itemCurrency)
             this.clickToFilterUnitPriceInItemTable()
@@ -94,6 +97,7 @@ class RaisePrPage{
                 this.clickToFilterUnitPriceForecastedInItemTable()
             }
             this.clickToFilterTaxCodeInItemTable()
+            this.selectValueFromItemTaxCode(fileName.itemTaxCode)
             this.clickToFilterTaxPercentageInItemTable()
             this.clickToFilterInSourceCurrencyInItemTable()
             this.enterValueToExchangeRateInItemTable(fileName.exchangeRate)
@@ -105,48 +109,56 @@ class RaisePrPage{
     }
 
     enterValueToItemCodeInItemTable(code){
-        commonAction.enterValueToTextboxByXpath(raisePrPageLocator.item_code_xpath, code)
+        commonAction.doubleClickToElementByXpath(raisePrPageLocator.item_code_xpath)
+        commonAction.doubleClickToElementByXpath(raisePrPageLocator.item_code_xpath)
+        commonAction.wait(1)
+        commonAction.enterValueToTextboxByXpath(raisePrPageLocator.item_code_txb_xpath, code)
     }
 
     enterValueToItemNameInItemTable(itemName){
-        commonAction.clickToElementByXpath(raisePrPageLocator.item_name_xpath)
-        commonAction.enterValueToTextboxByXpath(raisePrPageLocator.item_name_xpath, itemName)
+        commonAction.wait(1)
+        commonAction.doubleClickToElementByXpath(raisePrPageLocator.item_name_xpath)
+        commonAction.doubleClickToElementByXpath(raisePrPageLocator.item_name_xpath)
+        commonAction.enterValueToTextboxByXpath(raisePrPageLocator.item_name_txb_xpath, itemName)
     }
 
     enterValueToItemDescriptionInItemTable(description){
-        commonAction.clickToElementByXpath(raisePrPageLocator.item_description_xpath)
+        commonAction.doubleClickToElementByXpath(raisePrPageLocator.item_description_xpath)
         commonAction.enterValueToTextboxByXpath(raisePrPageLocator.item_description_xpath, description)
         commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Item Description"))
     }
 
     enterValueToItemModelInItemTable(model){
-        commonAction.clickToElementByXpath(raisePrPageLocator.item_model_xpath)
-        commonAction.enterValueToTextboxByXpath(raisePrPageLocator.item_model_xpath, model)
+        commonAction.doubleClickToElementByXpath(raisePrPageLocator.item_model_xpath)
+        commonAction.doubleClickToElementByXpath(raisePrPageLocator.item_model_xpath)
+        commonAction.enterValueToTextboxByXpath(raisePrPageLocator.item_model_txb_xpath, model)
     }
 
     enterValueToItemBrandInItemTable(brand){
-        commonAction.clickToElementByXpath(raisePrPageLocator.item_brand_xpath)
-        commonAction.enterValueToTextboxByXpath(raisePrPageLocator.item_brand_xpath, brand)
+        commonAction.doubleClickToElementByXpath(raisePrPageLocator.item_brand_xpath)
+        commonAction.doubleClickToElementByXpath(raisePrPageLocator.item_brand_xpath)
+        commonAction.enterValueToTextboxByXpath(raisePrPageLocator.item_brand_txb_xpath, brand)
     }
 
     enterValueToItemSizeInItemTable(size){
-        commonAction.clickToElementByXpath(raisePrPageLocator.item_size_xpath)
-        commonAction.enterValueToTextboxByXpath(raisePrPageLocator.item_size_xpath, size)
+        commonAction.doubleClickToElementByXpath(raisePrPageLocator.item_size_xpath)
+        commonAction.doubleClickToElementByXpath(raisePrPageLocator.item_size_xpath)
+        commonAction.enterValueToTextboxByXpath(raisePrPageLocator.item_size_txb_xpath, size)
     }
 
     enterValueToItemQuantityInItemTable(quantity){
-        commonAction.clickToElementByXpath(raisePrPageLocator.item_quantity_xpath)
-        commonAction.enterValueToTextboxByXpath(raisePrPageLocator.item_quantity_xpath, quantity)
+        commonAction.doubleClickToElementByXpath(raisePrPageLocator.item_quantity_xpath)
+        commonAction.enterValueToTextboxByXpath(raisePrPageLocator.item_quantity_txb_xpath, quantity)
         commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Quantity"))
     }
 
     enterValueToItemUnitPriceInItemTable(unitPrice){
-        commonAction.clickToElementByXpath(raisePrPageLocator.item_unit_price_xpath)
-        commonAction.enterValueToTextboxByXpath(raisePrPageLocator.item_unit_price_xpath, unitPrice)
+        commonAction.doubleClickToElementByXpath(raisePrPageLocator.item_unit_price_xpath)
+        commonAction.enterValueToTextboxByXpath(raisePrPageLocator.item_unit_price_txb_xpath, unitPrice)
     }
 
     enterValueToExchangeRateInItemTable(exchangeRate){
-        commonAction.clickToElementByXpath(raisePrPageLocator.item_exchange_rate_xpath)
+        commonAction.doubleClickToElementByXpath(raisePrPageLocator.item_exchange_rate_xpath)
         commonAction.enterValueToTextboxByXpath(raisePrPageLocator.item_exchange_rate_xpath, exchangeRate)
     }
 
@@ -176,7 +188,9 @@ class RaisePrPage{
     }
 
     selectValueFromItemSupplierDropdown(supplierName){
-        commonAction.selectOptionFromDropdownByXpath(raisePrPageLocator.item_supplier_xpath, printf(raisePrPageLocator.option_item_from_dropdown_xpath, supplierName))
+        commonAction.clickToElementByXpath(raisePrPageLocator.item_supplier_xpath)
+        commonAction.clickToElementByXpath(printf(raisePrPageLocator.option_item_from_dropdown_xpath, supplierName))
+        commonAction.wait(1)
     }
 
     selectValueFromItemCurrencyCodeDropdown(currencyCode){
@@ -185,7 +199,6 @@ class RaisePrPage{
     }
 
     selectValueFromItemCategoryDropdown(category){
-        // commonAction.clickToElementByXpath(raisePrPageLocator.item_category_xpath)
         commonAction.selectOptionFromDropdownByXpath(raisePrPageLocator.item_category_xpath, printf(raisePrPageLocator.option_item_from_dropdown_xpath, category))
         commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Category"))
     }
@@ -194,6 +207,11 @@ class RaisePrPage{
         commonAction.wait(1)
         commonAction.selectOptionFromDropdownByXpath(raisePrPageLocator.item_uom_code_xpath, printf(raisePrPageLocator.option_item_from_dropdown_xpath, uom))
         commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "UOM"))
+    }
+
+    selectValueFromItemTaxCode(taxCode){
+        commonAction.selectOptionFromDropdownByXpath(raisePrPageLocator.item_tax_code_xpath, printf(raisePrPageLocator.option_item_from_dropdown_xpath, taxCode))
+        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Tax Code"))
     }
 
     selectValueFromProcurementTypeDropdown(value){
@@ -301,6 +319,10 @@ class RaisePrPage{
 
     clickToFilterInSourceCurrencyInItemTable(){
         commonAction.clickToElement(raisePrPageLocator.filter_source_currency_code_in_list_css)
+    }
+
+    clickToFilterQuantityInItemTable(){
+        commonAction.clickToElement(raisePrPageLocator.filter_quantity_in_list_css)
     }
 
     clickToItemDeleteButton(){

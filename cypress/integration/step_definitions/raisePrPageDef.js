@@ -42,48 +42,6 @@ When(/^Call API navigate to "([^"]*)" page of PR random$/, (pageName) => {
     apiAction.callApiNavigateToPrPage(pageName, sessionStorage.getItem("prNumber"))
 })
 
-When(/^I input PR No to filter PR in list$/, () => {
-    raisePrPage.enterValueToFilterPRInList(sessionStorage.getItem("prNumber"))
-})
-
-When(/^I select delivery address from "([^"]*)" json file at Raise PR page$/, (keyWord) => {
-    let fileName;
-    switch (keyWord) {
-        case "pr_v1":
-            fileName = 'pr_v1.json'
-            break;
-
-        case "pr_v2":
-            fileName = 'pr_v2.json'
-            break;
-
-        default:
-            break;
-    }
-    cy.fixture(fileName).then((fileName) =>{
-        raisePrPage.selectValueToDeliveryAddressDropdown(fileName.deliveryAddress)
-    })
-})
-
-When(/^I select approval route from "([^"]*)" json file at Raise PR page$/, (keyWord) => {
-    let fileName;
-    switch (keyWord) {
-        case "pr_v1":
-            fileName = 'pr_v1.json'
-            break;
-
-        case "pr_v2":
-            fileName = 'pr_v2.json'
-            break;
-
-        default:
-            break;
-    }
-    cy.fixture(fileName).then((fileName) =>{
-        raisePrPage.selectValueFromApprovalRouteDropdown(fileName.approvalRoute)
-    })
-})
-
 When(/^I fill data in Raise Requisition tab from "([^"]*)" json file at Raise PR page$/, (keyWord) => {
     let fileName;
     switch (keyWord) {
@@ -257,6 +215,52 @@ When(/^I input PPR title random to 'Search PR' textbox$/, () => {
     raisePrPage.enterValueToSearchPrTitleTextbox(sessionStorage.getItem("pprTitleRandom"))
 })
 
+When(/^I input reason send back or reject "([^"]*)" at Raise PR page$/, (reason) => {
+    raisePrPage.enterValueToSendBackReasonTextbox(reason)
+})
+
+When(/^I input PR No to filter PR in list$/, () => {
+    raisePrPage.enterValueToFilterPRInList(sessionStorage.getItem("prNumber"))
+})
+
+When(/^I select delivery address from "([^"]*)" json file at Raise PR page$/, (keyWord) => {
+    let fileName;
+    switch (keyWord) {
+        case "pr_v1":
+            fileName = 'pr_v1.json'
+            break;
+
+        case "pr_v2":
+            fileName = 'pr_v2.json'
+            break;
+
+        default:
+            break;
+    }
+    cy.fixture(fileName).then((fileName) =>{
+        raisePrPage.selectValueToDeliveryAddressDropdown(fileName.deliveryAddress)
+    })
+})
+
+When(/^I select approval route from "([^"]*)" json file at Raise PR page$/, (keyWord) => {
+    let fileName;
+    switch (keyWord) {
+        case "pr_v1":
+            fileName = 'pr_v1.json'
+            break;
+
+        case "pr_v2":
+            fileName = 'pr_v2.json'
+            break;
+
+        default:
+            break;
+    }
+    cy.fixture(fileName).then((fileName) =>{
+        raisePrPage.selectValueFromApprovalRouteDropdown(fileName.approvalRoute)
+    })
+})
+
 When(/^I double click to PR title in PR list from "([^"]*)" json file$/, (keyWord) => {
     let fileName;
     switch (keyWord) {
@@ -286,10 +290,6 @@ When(/^I double click to PR title in PR list from "([^"]*)" json file$/, (keyWor
     cy.fixture(fileName).then((fileName) =>{
         raisePrPage.doubleClickToPrTitleInPrList(fileName.prTitle + sessionStorage.getItem("numberPrTitle"))
     })
-})
-
-When(/^I input reason send back or reject "([^"]*)" at Raise PR page$/, (reason) => {
-    raisePrPage.enterValueToSendBackReasonTextbox(reason)
 })
 
 When(/^I click to PR title textbox at Raise PR page$/, () => {

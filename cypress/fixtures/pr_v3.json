@@ -14,11 +14,12 @@
     "itemModel": "auto model 4",
     "itemSize": "20",
     "itemBrand": "Panasonic",
-    "supplierName": "AUTO SUPPLIER 1",
+    "supplierName": "TEST SUPPLIER 34",
     "uom": "CEN",
     "itemQuantity": "3000",
     "itemCurrency": "SGD",
     "itemUnitPrice": "5000",
+    "itemTaxCode": "11052022",
     "exchangeRate": "2",
     "requesterName": "auto creator",
     "procurementTypePRList": "SERVICE"

@@ -14,11 +14,12 @@
     "itemModel": "auto model 1",
     "itemSize": "50",
     "itemBrand": "AQUA",
-    "supplierName": "AUTO SUPPLIER 1",
+    "supplierName": "TEST SUPPLIER 34",
     "uom": "IN",
     "itemQuantity": "1000",
     "itemCurrency": "SGD",
     "itemUnitPrice": "3000",
+    "itemTaxCode": "11052022",
     "exchangeRate": "2",
     "requesterName": "auto creator",
     "procurementTypePRList": "GOODS"

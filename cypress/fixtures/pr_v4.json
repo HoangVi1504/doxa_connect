@@ -7,7 +7,8 @@
     "approvalRoute": "auto approval PR 2",
     "deliveryAddress": "address auto",
     "note": "auto test note",
-    "itemCode": "item code 1",
+    "itemCode": "auto item code 2",
+    "supplierName": "TEST SUPPLIER 34",
     "itemQuantity": "2500",
     "requesterName": "auto creator",
     "procurementTypePRList": "GOODS"

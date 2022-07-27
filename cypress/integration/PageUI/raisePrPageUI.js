@@ -16,6 +16,7 @@ class RaisePrPageLocator{
         this.filter_supplier_in_list_css = '[aria-label="Supplier Filter Input"]';
         this.filter_category_in_list_css = '[aria-label="Category Filter Input"]';
         this.filter_tax_code_in_list_css = '[aria-label="Tax Code Filter Input"]';
+        this.filter_quantity_in_list_css = '[aria-label="Quantity Filter Input"]';
         this.filter_unit_price_in_list_css = '[aria-label="Unit Price Filter Input"]';
         this.filter_price_type_in_list_css = '[aria-label="Price Type Filter Input"]';
         this.filter_tax_percentage_in_list_css = '[aria-label="Tax Percentage Filter Input"]';
@@ -33,13 +34,23 @@ class RaisePrPageLocator{
         this.nature_requisition_dropdown_css = '[name="project"]';
         
         // Xpath
+        this.item_code_txb_xpath = "(//*[@col-id='itemCode'])[2]//input";
+        this.item_name_txb_xpath = "(//*[@col-id='itemName'])[2]//input";
+        this.item_size_txb_xpath = "(//*[@col-id='itemSize'])[2]//input";
+        this.item_brand_txb_xpath = "(//*[@col-id='itemBrand'])[2]//input";
+        this.item_model_txb_xpath = "(//*[@col-id='itemModel'])[2]//input";
+        this.item_quantity_txb_xpath = "(//*[@col-id='itemQuantity'])[2]//input";
+        this.item_unit_price_txb_xpath = "(//*[@col-id='itemUnitPrice'])[2]//input";
+
+
         this.item_code_xpath = "(//*[@col-id='itemCode'])[2]";
         this.item_name_xpath = "(//*[@col-id='itemName'])[2]";
         this.item_size_xpath = "(//*[@col-id='itemSize'])[2]";
         this.item_brand_xpath = "(//*[@col-id='itemBrand'])[2]";
         this.item_model_xpath = "(//*[@col-id='itemModel'])[2]";
-        this.item_supplier_xpath = "(//*[@col-id='supplierUuid'])[2]";
         this.item_uom_code_xpath = "(//*[@col-id='uom'])[2]";
+        this.item_tax_code_xpath = "(//*[@col-id='taxCode'])[2]";
+        this.item_supplier_xpath = "(//*[@col-id='supplierUuid'])[2]";
         this.item_category_xpath = "(//*[@col-id='itemCategory'])[2]";
         this.item_quantity_xpath = "(//*[@col-id='itemQuantity'])[2]";
         this.item_currency_xpath = "(//*[@col-id='sourceCurrency'])[2]";

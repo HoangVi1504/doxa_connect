@@ -161,6 +161,10 @@ class BaseAction {
         });
     }
 
+    pasteValueToTextbox(xpath, value){
+        cy.xpath(xpath).invoke('val', value)
+    }
+
     enterValueToTextboxAfterClearByXpath(xpath, value){
         cy.xpath(xpath).clear()
         cy.xpath(xpath).type(value)
@@ -187,6 +191,10 @@ class BaseAction {
 
     checkCheckboxByXpath(xpath){
         cy.xpath(xpath).check({force: true})
+    }
+
+    forceClickToElement(xpath){
+        cy.xpath(xpath).click({force: true})
     }
 
     clickToElementByXpath(xpath){

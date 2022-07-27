@@ -1,9 +1,7 @@
 import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
 import LoginPage from "../PageObject/loginPage"
-import ApiAction from "../commons/call_api"
 
 const loginPage = new LoginPage()
-const apiAction = new ApiAction()
 
 When(/^I login with role "([^"]*)"$/, (role) => {
     let fileName
@@ -26,6 +24,10 @@ When(/^I login with role "([^"]*)"$/, (role) => {
 
         case "supplier 2":
             fileName = 'supplier_2.json'
+            break;
+
+        case "supplier 34":
+            fileName = 'supplier_34.json'
             break;
 
         case "ap specialist":
