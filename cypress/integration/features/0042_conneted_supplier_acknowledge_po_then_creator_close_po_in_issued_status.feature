@@ -69,7 +69,7 @@ Scenario: 02 Pending connection supplier cannot Acknowledge PO and connected sup
 
     # Connected supplier able to view PO and acknowledge PO
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "supplier 1"
+    When I login with role "supplier 34"
     And "supplier" call API view PO
     And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Orders" link on header menu
@@ -107,12 +107,13 @@ Scenario: 03 Creator close PO in Issued status
     Then I see 'PO Detail' page
     And I see PO No in 'PO No' textbox at 'PO Detail' page
 
-    When I click to "Mark Completed" button format_1
-    And I input reason close PO at 'PO Detail' page is "auto cancel this PO"
-    And I click to Mark Complete button at 'PO Detail' page
-    Then I see a message "PO was closed successfully" appears
+    # Wait for fix bug ID: https://doxa-connex.atlassian.net/browse/D0R-3611
+    # When I click to "Mark Completed" button format_1
+    # And I input reason close PO at 'PO Detail' page is "auto cancel this PO"
+    # And I click to Mark Complete button at 'PO Detail' page
+    # Then I see a message "PO was closed successfully" appears
 
-    When I click to "I Understand" button format_1
-    And I input PO No to filter PO in list
-    Then I see PO status in list is "CLOSED"
-    And I see Supplier Ack status is "ACKNOWLEDGED"
+    # When I click to "I Understand" button format_1
+    # And I input PO No to filter PO in list
+    # Then I see PO status in list is "CLOSED"
+    # And I see Supplier Ack status is "ACKNOWLEDGED"

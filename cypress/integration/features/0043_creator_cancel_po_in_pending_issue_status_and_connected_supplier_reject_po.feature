@@ -115,7 +115,7 @@ Scenario: 02 Connected supplier reject PO
     And I see Supplier Ack status is "NOT VIEWED"
 
     When I logout account
-    And I login with role "supplier 1"
+    And I login with role "supplier 34"
     And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Orders" link on header menu
     And I click to "Orders List" link on the left menu

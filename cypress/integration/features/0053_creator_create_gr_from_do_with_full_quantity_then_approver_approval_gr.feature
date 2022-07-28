@@ -40,7 +40,7 @@ Scenario: 01 Creator convert PR to PO then issue PO
 
 Scenario: 02 Connected supplier create DO from PO with full quantity then issue DO
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "supplier 1"
+    When I login with role "supplier 34"
     And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Orders" link on header menu
     And I click to "Orders List" link on the left menu

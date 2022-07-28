@@ -382,11 +382,24 @@ class ApiAction{
 
     callApiViewPo(roleName, poNumber){
         let token = window.localStorage.getItem("token")
+        let companyUuid;
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
         let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
+        switch (roleName) {
+            case "buyer":
+                companyUuid = buyerCompanyUuid
+                break;
+
+            case "supplier":
+                companyUuid = supplierCompanyUuid
+                break;
+        
+            default:
+                break;
+        }
         cy.request({
             method: 'GET',
-            url: printf(urlPageLocator.po_list_url, this.env, supplierCompanyUuid, roleName),
+            url: printf(urlPageLocator.po_list_url, this.env, companyUuid, roleName),
             headers: {
                 authorization: "Bearer " + token,
             }
