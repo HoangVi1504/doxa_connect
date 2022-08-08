@@ -18,10 +18,11 @@ pipeline {
                 }
             }
         }
-
-        stage('reports') {
-            steps {
-                script {
+    }
+    
+    post {
+        always {
+            script {
                     allure([
                             includeProperties: false,
                             jdk: '',
@@ -30,7 +31,6 @@ pipeline {
                             results: [[path: 'target/allure-results']]
                     ])
                 }
-            }
         }
     }
 }
