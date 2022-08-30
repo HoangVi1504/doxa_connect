@@ -1,4 +1,4 @@
-@po
+@po @p2p
 Feature: 0042 Connected supplier acknowledge PO then creator close PO in issued status
 
 Scenario: 01 Creator convert PR to PO and issue PO
@@ -20,7 +20,9 @@ Scenario: 01 Creator convert PR to PO and issue PO
     And I click to "Requisitions" link on header menu
     And I click to "Requisitions" link on the left menu
     And I click to "PRs List" link on the left sub menu
-    And I input PR title random to 'Search PR' textbox
+    Then I see 'PR List' page title
+
+    When I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING CONVERSION TO PO"
 
     When I logout account

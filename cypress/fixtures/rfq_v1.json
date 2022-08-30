@@ -2,7 +2,7 @@
     "requisitionType": "Purchase Requisition",
     "natureOfRequisition": "Non-Project",
     "currencyCode": "Singapore Dollar (+SGD)",
-    "vendor1": "AUTO COMPANY 1 (COMPANY CODE 1)",
+    "vendor1": "AUTO SUPPLIER 1 (1105)",
     "rfqTitle": "auto RFQ title ",
     "procurementType": "Goods",
     "rfqType": "One-off quotation",

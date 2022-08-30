@@ -1,5 +1,5 @@
-@pr
-Feature: Cancel draft PR in Pending submission status and submit PR converted from PPR
+@pr @p2p
+Feature: 0037 Cancel draft PR in Pending submission status and submit PR converted from PPR
 
 Scenario: 01 Cancel draft PR in Pending Submission status
     Given Navigate to Doxa Connect 2.0 site
@@ -80,8 +80,8 @@ Scenario: 02 Submit PR converted from PPR
     Then I see 'PR detail' page title
 
     When I select approval route from "pr_v1" json file at Raise PR page
-    And I click to Item delete button at Raise PR page
-    And I add catalogue item from "pr_v5" json file at Raise PR page
+    # And I click to Item delete button at Raise PR page
+    # And I add catalogue item from "pr_v5" json file at Raise PR page
     And I click to "Submit" button format_1
     Then I see a message "Purchase requisition successfully submitted" appears
 

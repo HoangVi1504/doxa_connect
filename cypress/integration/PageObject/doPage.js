@@ -16,8 +16,11 @@ class DoPage{
     }
 
     enterValueToQuantityConvertTextbox(quantity){
-        commonAction.clickToElement(doPageLocator.quantity_to_convert_txb_css)
-        commonAction.enterValueToTextbox(doPageLocator.quantity_to_convert_txb_css, quantity)
+        commonAction.wait(2)
+        commonAction.clickToElement(doPageLocator.filter_convert_do_in_do_detail_list_css)
+        commonAction.doubleClickToElement(doPageLocator.quantity_to_convert_do_detail_list_css)
+        commonAction.doubleClickToElement(doPageLocator.quantity_to_convert_do_detail_list_css)
+        commonAction.enterValueToTextboxByXpath(doPageLocator.quantity_to_convert_txb_xpath, quantity)
     }
 
     doubleClickToDoNumberInList(doNumber){

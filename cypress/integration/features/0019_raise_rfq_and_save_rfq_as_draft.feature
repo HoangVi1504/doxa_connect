@@ -1,7 +1,7 @@
-@rfq
+@rfq @p2p
 Feature: 0019 Raise RFQ and save RFQ as draft
 
-Scenario: Raise RFQ and save RFQ as draft
+Scenario: P2P-RFQ-S05-001, 002, 003, 004 Raise RFQ and save RFQ as draft
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to "Request for Quotations" link on header menu

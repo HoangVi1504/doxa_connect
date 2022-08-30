@@ -1,4 +1,4 @@
-@gr
+@gr @p2p
 Feature: 0053 Creator create GR from DO with full quantity then approver approval GR
 
 Scenario: 01 Creator convert PR to PO then issue PO
@@ -118,8 +118,7 @@ Scenario: 03 Creator create GR from DO with full DO quantity
     Then I see a message "Validation error, please check your input." appears
 
     When I click to "OK" button format_1
-    Then I see a validation text of 'Delivery Date' at 'Create GR' page "Please select valid Delivery Date" appears
-    And I see a validation text of 'Approval Route' at 'Create GR' page "Please select valid approval route" appears
+    Then I see a validation text of 'Approval Route' at 'Create GR' page "Please select valid approval route" appears
 
     When I select approval route "auto approval Goods Receipt" at 'Create GR' page
     And I input delivery date as next "2" days to 'Delivery Date' textbox at 'Create GR' page

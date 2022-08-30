@@ -199,6 +199,7 @@ When(/^I expand layout sidebar menu if it open$/, () => {
 });
 
 When(/^I click to 'Dashboard' link on Header menu if it not be selected$/, () => {
+    commonAction.wait(1)
     commonAction.isElementVisible(printf(commonPageLocator.option_link_header_menu_xpath, "Dashboard")).then((isVisible) =>{
         if(isVisible){
             commonPage.clickToOptionLinkOnHeaderMenu("Dashboard")

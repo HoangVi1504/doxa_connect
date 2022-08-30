@@ -1,4 +1,4 @@
-@pr
+@pr @p2p
 Feature: 0031 Raise PR with Non-project, add manual item and 1 approver
 
 Scenario: 01 Raise PR with Non-project, add manual item and 1 approver

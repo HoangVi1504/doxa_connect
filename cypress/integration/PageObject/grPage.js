@@ -67,6 +67,7 @@ class GrPage{
 
     verifyCreateGrFromDoPageTitleDisplay(){
         commonAction.verifyElementByXpathVisible(grPageLocator.create_gr_from_do_page_title_xpath)
+        commonAction.wait(1)
     }
 
     verifyGrDetailPageTitleDisplay(){

@@ -363,6 +363,10 @@ class RaisePrPage{
         commonAction.verifyElementByXpathVisible(raisePrPageLocator.pr_detail_page_title_xpath)
     }
 
+    verifyPrListPageTitleDisplay(){
+        commonAction.verifyElementByXpathVisible(raisePrPageLocator.pr_list_page_title_xpath)
+    }
+
     verifyRequesterNameInPrListDisplay(fileName){
         cy.fixture(fileName).then((fileName) =>{
             commonAction.verifyElementByXpathExist(printf(raisePrPageLocator.requester_in_pr_list_xpath, fileName.requesterName))
@@ -370,6 +374,7 @@ class RaisePrPage{
     }
 
     verifyProcurementTypeInPrListDisplay(fileName){
+        this.scrollToElementInPrList("90%")
         cy.fixture(fileName).then((fileName) =>{
             commonAction.verifyElementByXpathExist(printf(raisePrPageLocator.procurement_type_in_pr_list_xpath, fileName.procurementTypePRList))
         })
@@ -414,6 +419,10 @@ class RaisePrPage{
 
     scrollToElement(position){
         commonAction.scrollToPositionElement(raisePrPageLocator.scroll_bar_in_item_table_xpath, position)
+    }
+
+    scrollToElementInPrList(position){
+        commonAction.scrollToPositionElement(raisePrPageLocator.scroll_bar_in_pr_list_xpath, position)
     }
 
 }export default RaisePrPage

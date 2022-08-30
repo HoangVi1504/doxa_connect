@@ -34,9 +34,21 @@ class InvPage{
     }
 
     enterValueToInvoiceQuantityTextbox(quantity){
-        commonAction.clickToElement(invPageLocator.inv_quantity_txb_css)
-        commonAction.enterValueToTextbox(invPageLocator.inv_quantity_txb_css, quantity)
+        commonAction.wait(2)
+        commonAction.clickToElement(invPageLocator.filter_inv_quantity_in_added_po_table_css)
+        commonAction.doubleClickToElement(invPageLocator.inv_quantity_in_list_css)
+        commonAction.doubleClickToElement(invPageLocator.inv_quantity_in_list_css)
+        commonAction.enterValueToTextboxAfterClearByXpath(invPageLocator.inv_quantity_txb_in_added_po_table_xpath, quantity)
     }
+
+    selectValueFromTaxCodeDropdown(taxCode){
+        this.scrollToElementInAddedPoTable("30%")
+        commonAction.doubleClickToElementByXpath(invPageLocator.tax_code_dropdown_xpath)
+        commonAction.doubleClickToElementByXpath(invPageLocator.tax_code_dropdown_xpath)
+        commonAction.clickToElementByXpath(printf(invPageLocator.option_item_from_dropdown_xpath, taxCode))
+        // commonAction.selectOptionFromDropdownByXpath(invPageLocator.tax_code_dropdown_xpath, printf(invPageLocator.option_item_from_dropdown_xpath, taxCode))
+        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Tax Code"))
+    } 
 
     selectValueFromInvoiceTypeDropdown(invoiceType){
         commonAction.selectValueFromElement(invPageLocator.inv_type_dropdown_css, invoiceType)
@@ -101,6 +113,10 @@ class InvPage{
 
     scrollToInItemTable(position){
         commonAction.scrollToPositionElement(invPageLocator.scroll_bar_in_item_table_xpath, position)
+    }
+
+    scrollToElementInAddedPoTable(position){
+        commonAction.scrollToPositionElement(invPageLocator.scroll_bar_in_added_po_table_xpath, position)
     }
 
 }export default InvPage

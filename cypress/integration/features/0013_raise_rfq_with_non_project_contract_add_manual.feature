@@ -1,7 +1,7 @@
-@rfq
+@rfq @p2p
 Feature: 0013 Raise Request for Quotations with non-project, Contract and add manual items
 
-Scenario: Raise Request for Quotations with non-project, Contract and add manual items
+Scenario: P2P-RFQ-S02-001 Raise Request for Quotations with non-project, Contract and add manual items
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to "Request for Quotations" link on header menu

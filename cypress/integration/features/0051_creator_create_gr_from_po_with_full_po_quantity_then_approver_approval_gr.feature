@@ -1,4 +1,4 @@
-@gr
+@gr @p2p
 Feature: 0051 Creator create GR from PO with full PO quantity then approver approval GR
 
 Scenario: 01 Creator create GR from PO with full PO quantity
@@ -70,7 +70,7 @@ Scenario: 01 Creator create GR from PO with full PO quantity
 
     When I click to "OK" button format_2
     Then I see a validation text of 'Delivery Order No' at 'Create GR' page "Please enter valid Delivery Order No." appears
-    And I see a validation text of 'Delivery Date' at 'Create GR' page "Please select valid Delivery Date" appears
+    # And I see a validation text of 'Delivery Date' at 'Create GR' page "Please select valid Delivery Date" appears
     And I see a validation text of 'Approval Route' at 'Create GR' page "Please select valid approval route" appears
 
     # Create GR from PO with receiving quantity more than remaining quantity
@@ -78,8 +78,7 @@ Scenario: 01 Creator create GR from PO with full PO quantity
     And I select approval route "auto approval Goods Receipt" at 'Create GR' page
     And I input delivery date as next "2" days to 'Delivery Date' textbox at 'Create GR' page
     And I input "1200" to 'Quantity Receiving' textbox at table
-    And I click to "Create" button format_1
-    Then I see a message "Quantity receiving is more than remaining quantity to be received" appears
+    Then I see a message "Quantity Receiving cannot be greater than Pending Delivery Qty" appears
     
     When I click to "OK" button format_2
     And I input "1000" to 'Quantity Receiving' textbox at table

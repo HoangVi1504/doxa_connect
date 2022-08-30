@@ -1,4 +1,4 @@
-@gr
+@gr @p2p
 Feature: 0052 Creator create GR from PO save as draft then approver approval GR
 
 Scenario: 01 Creator create GR from PO with partial PO quantity

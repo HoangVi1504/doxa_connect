@@ -22,7 +22,7 @@ class RaisePprPage{
             this.selectValueFromNatureRequisitionDropdown(fileName.natureOfRequisition)
             if(fileName.natureOfRequisition == "Non-Project"){
                 this.verifyProjectCodeFieldNotDisplay()
-                //this.selectValueFromCurrencyCodeDropdown(fileName.currencyCode)
+                this.selectValueFromCurrencyCodeDropdown(fileName.currencyCode)
             }else if(fileName.natureOfRequisition == "Project"){
                 this.verifyProjectCodeFieldDisplay()
                 this.selectValueFromProjectCodeDropdown(fileName.projectCode)
@@ -56,6 +56,7 @@ class RaisePprPage{
             this.clickToFilterBrandInItemTable()
             this.clickToFilterUomInItemTable()
             this.clickToFilterQuantityInItemTable()
+            commonAction.wait(1)
             this.clickToItemQuantityInItemTable()
             this.enterValueToItemQuantityInItemTable(fileName.itemQuantity)
         })
@@ -79,13 +80,14 @@ class RaisePprPage{
 
     // Adding of Items
     enterValueToItemCodeInItemTable(code){
-        commonAction.clickToElementByXpath(raisePprPageLocator.item_code_xpath)
-        commonAction.enterValueToTextboxByXpath(raisePprPageLocator.item_code_xpath, code)
+        commonAction.doubleClickToElementByXpath(raisePprPageLocator.item_code_xpath)
+        commonAction.wait(1)
+        commonAction.enterValueToTextboxByXpath(raisePprPageLocator.item_code_txb_in_item_list_xpath, code)
     }
 
     enterValueToItemNameInItemTable(itemName){
         commonAction.clickToElementByXpath(raisePprPageLocator.item_name_xpath)
-        commonAction.enterValueToTextboxByXpath(raisePprPageLocator.item_name_xpath, itemName)
+        commonAction.enterValueToTextboxByXpath(raisePprPageLocator.item_name_txb_in_item_list_xpath, itemName)
     }
 
     enterValueToItemDescriptionInItemTable(description){
@@ -106,8 +108,9 @@ class RaisePprPage{
     }
 
     enterValueToItemQuantityInItemTable(quantity){
-        commonAction.clickToElementByXpath(raisePprPageLocator.item_quantity_xpath)
-        commonAction.enterValueToTextboxByXpath(raisePprPageLocator.item_quantity_xpath, quantity)
+        this.scrollToElementInItemTable("100%")
+        commonAction.doubleClickToElementByXpath(raisePprPageLocator.item_quantity_xpath)
+        commonAction.enterValueToTextboxByXpath(raisePprPageLocator.item_quantity_txb_in_item_list_xpath, quantity)
     }
 
     enterValueToCurrencyInItemTable(currency){
@@ -275,6 +278,7 @@ class RaisePprPage{
     }
 
     verifyProcurementTypeInPprListDisplay(fileName){
+        commonAction.scrollToPositionElement(raisePprPageLocator.scroll_bar_in_ppr_list_xpath, "100%")
         cy.fixture(fileName).then((fileName) =>{
             commonAction.verifyElementByXpathVisible(printf(raisePprPageLocator.procurement_type_in_ppr_list_xpath, fileName.procurementTypePPRList))
         })
@@ -314,7 +318,7 @@ class RaisePprPage{
         commonAction.verifyElementByXpathVisible(printf(raisePprPageLocator.validation_text_delivery_date_xpath, validation))
     }
 
-    scrollToQuantityItem(position){
+    scrollToElementInItemTable(position){
         commonAction.scrollToPositionElement(raisePprPageLocator.scroll_bar_in_item_table_xpath, position)
     }
 

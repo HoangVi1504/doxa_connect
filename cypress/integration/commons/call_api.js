@@ -42,7 +42,7 @@ class ApiAction{
     callApiConvertPrToPo(prTitle){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
-        cy.wrap(this.callApiGetDataInCatalogueList("auto item code 1")).then((e)=>{
+        cy.wrap(this.callApiGetDataInCatalogueList("auto item code 2")).then((e)=>{
             cy.request({
                 method: 'GET',
                 url: printf(urlPageLocator.pr_to_be_converted_list_url, this.env, buyerCompanyUuid),            
@@ -78,6 +78,20 @@ class ApiAction{
             let elementRoot = response.body.data.find(element => element.pprTitle === pprTitle);
             let uuidRoot = elementRoot.pprUuid;
             urlPage.navigateToPprPage(pageName, uuidRoot)
+        })
+    }
+
+    callApiGetPrList(){
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.request({
+            method: 'GET',
+            url: printf(urlPageLocator.pr_list_url, this.env, buyerCompanyUuid),
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            expect(response.body).has.property("status", "OK")
         })
     }
 
@@ -138,7 +152,7 @@ class ApiAction{
                     documentList: [],
                     itemList: [
                         {
-                            itemCode: "auto item code 1",
+                            itemCode: "auto item code 2",
                             poUuid: uuidRoot,
                             priceType: "",
                             qtyToConvert: "1000"
@@ -505,47 +519,61 @@ class ApiAction{
                                 authorization: "Bearer " + token,
                             }, 
                             body: {
+                                address: 
+                                {
+                                    addressFirstLine: "1 XYZ Buildingg",
+                                    addressLabel: "address auto",
+                                    addressSecondLine: "12 New Industrial Rd Singapore, Singapore 536197",
+                                    city: "Singapore",
+                                    country: "Singapore",
+                                    postalCode: "4000",
+                                    state: "Singapore"
+                                },
                                 approvalCodeUuid: sessionStorage.getItem("approvalCodeUuid"),                            //"b921fa2d-e79f-458d-a7c8-726ac3bae307",
                                 approvalSequence: "auto.approver [auto.approver@getnada.com]",
                                 companyUuid: buyerCompanyUuid,                                                           //"689fbac5-7291-4cad-b84c-52e95d4499a8",
                                 currencyCode: "SGD",
                                 pprItemDtoList: [
                                     {
-                                    categoryDto: 
-                                    {
-                                        active: true,
-                                        categoryDescription: "auto equipment",
-                                        categoryName: "AUTO EQUIPMENT",
-                                        companyUuid: buyerCompanyUuid,                                                   //"689fbac5-7291-4cad-b84c-52e95d4499a8",
-                                        uuid: sessionStorage.getItem("categoryDtoUuid"),                                 //"3f0fb768-f68c-4895-9b8b-a9805528c56d"
-                                    },
-                                    currencyCode: "SGD",
-                                    deliveryAddress: 
-                                    {   
-                                        active: true,
-                                        addressFirstLine: "1 XYZ Buildingg",
-                                        addressLabel: "address auto",
-                                        companyUuid: buyerCompanyUuid,                                                   //"689fbac5-7291-4cad-b84c-52e95d4499a8",
-                                        country: "Singapore",
-                                        postalCode: "4000",
-                                        state: "Singapore",
-                                        uuid: sessionStorage.getItem("addressUuid"),                                     //"f9cdfeca-c150-47ed-8840-f17bdd6ff797"
-                                    },
-                                    isActive: true,
-                                    isEditable: true,
-                                    itemCategory: "AUTO EQUIPMENT",
-                                    itemCode: "auto item code 2",
-                                    itemName: "auto item name 2",
-                                    quantity: "100",
-                                    requestDeliveryDate: commonAction.getDateFormat5(1),
-                                    supplierCode: "1105",
-                                    supplierName: "TEST SUPPLIER 34",
-                                    supplierUuid: sessionStorage.getItem("supplierUuid"),                           //"3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",         
-                                    taxCode: "11052022",
-                                    taxRate: "0.5",
-                                    unitPrice: "5000",
-                                    uomCode: "CEN",
-                                    uuid: sessionStorage.getItem("catalogueUuid"),                                  //"ac4e3ff8-1ee4-4596-ad0f-f63981ea5d61"
+                                        accountNumber: "G/L auto 1",
+                                        catalogueItemCode: "auto item code 2",
+                                        catalogueItemName: "auto item name 2",
+                                        categoryDto: 
+                                        {
+                                            active: true,
+                                            categoryDescription: "auto equipment",
+                                            categoryName: "AUTO EQUIPMENT",
+                                            companyUuid: buyerCompanyUuid,                                                   //"689fbac5-7291-4cad-b84c-52e95d4499a8",
+                                            uuid: sessionStorage.getItem("categoryDtoUuid"),                                 //"3f0fb768-f68c-4895-9b8b-a9805528c56d"
+                                        },
+                                        currencyCode: "SGD",
+                                        deliveryAddress: 
+                                        {   
+                                            active: true,
+                                            addressFirstLine: "1 XYZ Buildingg",
+                                            addressLabel: "address auto",
+                                            companyUuid: buyerCompanyUuid,                                                   //"689fbac5-7291-4cad-b84c-52e95d4499a8",
+                                            country: "Singapore",
+                                            postalCode: "4000",
+                                            state: "Singapore",
+                                            uuid: sessionStorage.getItem("addressUuid"),                                     //"f9cdfeca-c150-47ed-8840-f17bdd6ff797"
+                                        },
+                                        isActive: true,
+                                        isEditable: true,
+                                        isManual: false,
+                                        itemCategory: "AUTO EQUIPMENT",
+                                        itemCode: "auto item code 2",
+                                        itemName: "auto item name 2",
+                                        quantity: "100",
+                                        requestDeliveryDate: commonAction.getDateFormat5(1),
+                                        supplierCode: "TEST_SUPPLIER_34",
+                                        supplierName: "TEST SUPPLIER 34",
+                                        supplierUuid: sessionStorage.getItem("supplierUuid"),                           //"3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",         
+                                        taxCode: "11052022",
+                                        taxRate: "0.5",
+                                        unitPrice: "5000",
+                                        uomCode: "CEN",
+                                        uuid: sessionStorage.getItem("catalogueUuid"),                                  //"ac4e3ff8-1ee4-4596-ad0f-f63981ea5d61"
                                     }
                                 ],
                                 pprTitle: pprTitle,

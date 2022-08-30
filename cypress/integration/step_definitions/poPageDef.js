@@ -8,6 +8,7 @@ const apiAction = new ApiAction()
 const commonAction = new CommonAction()
 
 When(/^Get PO number in list$/, () => {
+    poPage.scrollToElementInPoList("0%")
     commonAction.getPoNumberInPoList()
 })
 

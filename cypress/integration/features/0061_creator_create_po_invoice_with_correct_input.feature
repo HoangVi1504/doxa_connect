@@ -1,4 +1,4 @@
-@inv
+@inv @p2p
 Feature: 0061 Creator create PO invoice with correct input
 
 Scenario: 01 Creator create PO invoice with correct input
@@ -85,14 +85,15 @@ Scenario: 01 Creator create PO invoice with correct input
     When I select "PO Invoice" from 'Invoice Type' dropdown at 'Create Invoice' page
     And I input invoice date as next "2" days to 'Invoice Date' textbox at 'Create Invoice' page
     And I input invoice due date as next "4" days to 'Invoice Due Date' textbox at 'Create Invoice' page
-    And I select supplier code "AUTO SUPPLIER 1" from dropdown at 'Create Invoice' page
-    Then I see company name "AUTO SUPPLIER 1" at 'Create Invoice' page
+    And I select supplier code "TEST_SUPPLIER_34" from dropdown at 'Create Invoice' page
+    Then I see company name "TEST SUPPLIER 34" at 'Create Invoice' page
 
     When I input PO No to filter PO in 'Select PO' table at 'Create Invoice' page
     And I check to PO No just created checkbox at 'Create Invoice' page
     Then I see PO No in 'Added PO' table at 'Create Invoice' page
 
     When I input "100" to Invoice Quantity textbox at 'Create Invoice' page
+    And I select "11052022" from 'Tax Code' dropdown at 'Added PO' table at 'Create Invoice' page
     And I click to "Issue" button format_1
     Then I see a message "Project invoice created" appears
 

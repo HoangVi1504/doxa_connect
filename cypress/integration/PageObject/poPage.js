@@ -28,6 +28,7 @@ class PoPage{
     }
 
     doubleClickToPoNumberInList(poNumber){
+        this.scrollToElementInPoList("0%")
         commonAction.doubleClickToElementByXpath(printf(poPageLocator.po_number_in_list_xpath, poNumber))
     }
 
@@ -64,11 +65,16 @@ class PoPage{
     }
 
     verifySupplierAckStatusInListDisplay(status){
+        this.scrollToElementInPoList("20%")
         commonAction.verifyElementByXpathVisible(printf(poPageLocator.supplier_ack_status_in_list_xpath, status))
     }
 
     verifyNotificationPoDisplay(notification){
         commonAction.verifyElementByXpathVisible(printf(poPageLocator.notification_po_xpath, notification))
+    }
+
+    scrollToElementInPoList(position){
+        commonAction.scrollToPositionElement(poPageLocator.scroll_bar_in_po_list_xpath, position)
     }
 
 }export default PoPage

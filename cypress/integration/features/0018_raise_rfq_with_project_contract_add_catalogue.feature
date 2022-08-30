@@ -1,7 +1,7 @@
-@rfq
+@rfq @p2p
 Feature: 0018 Raise Request for Quotations with Project, Contrat and add catalogue item
 
-Scenario: Raise Request for Quotations with Project, Contrat and add catalogue item
+Scenario: P2P-RFQ-S04-002 Raise Request for Quotations with Project, Contrat and add catalogue item
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to "Request for Quotations" link on header menu

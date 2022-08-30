@@ -1,7 +1,7 @@
-@rfq
+@rfq @p2p
 Feature: 0015 Raise Request for Quotations with Project, One-off-Quotation and add manual items
 
-Scenario: Raise Request for Quotations with Project, One-off quotation, add manual item
+Scenario: P2P-RFQ-S03-001 Raise Request for Quotations with Project, One-off quotation, add manual item
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to "Request for Quotations" link on header menu

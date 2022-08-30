@@ -1,4 +1,4 @@
-@ppr
+@ppr @p2p
 Feature: 0025 Submit PPR in Pending submission status after save as draft PPR then cancel PPR in Pending Approval status
 
 Scenario: 01 Save as draft PPR
@@ -21,7 +21,7 @@ Scenario: 01 Save as draft PPR
     And I see a validation text of 'Procurement Type' at 'Raise PPR' page "Please select valid Procurement Type" appears
     And I see a validation text of 'Approval Route' at 'Raise PPR' page "Please select valid approval route" appears
     And I see a validation text of 'Currency Code' at 'Raise PPR' page "Please select valid Currency" appears
-    And I see a validation text of 'Delivery Address' at 'Raise PPR' page "Please select valid Delivery Address" appears
+    # And I see a validation text of 'Delivery Address' at 'Raise PPR' page "Please select valid Delivery Address" appears
     And I see a validation text of 'Delivery Date' at 'Raise PPR' page "Please select valid Delivery Date" appears
 
     When I fill data in Raise Requisition tab from "ppr_v5" json file at Raise PPR page

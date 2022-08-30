@@ -1,4 +1,4 @@
-@po
+@po @p2p
 Feature: 0041 Creator issued PO then cancel PO
 
 Scenario: 01 Creator convert PR to PO and issue PO
@@ -102,14 +102,13 @@ Scenario: 03 Creator can view PO then cancel PO in Issued status
     Then I see 'PO Detail' page
     And I see PO No in 'PO No' textbox at 'PO Detail' page
 
-    # Wait for fix bug ID: https://doxa-connex.atlassian.net/browse/D0R-3611
-    # When "buyer" call API view PO
-    # And I click to "Cancel" button format_1
-    # Then I see notification PO "Do you wish to cancel this order?" display at 'PO Detail' page
+    When "buyer" call API view PO
+    And I click to "Cancel" button format_1
+    Then I see notification PO "Do you wish to cancel this order?" display at 'PO Detail' page
 
-    # When I click to "Yes" button format_1
-    # Then I see a message "The purchase order has successfully been cancelled" appears
+    When I click to "Yes" button format_1
+    Then I see a message "The purchase order has successfully been cancelled" appears
 
-    # When I click to "I Understand" button format_1
-    # And I input PO No to filter PO in list
-    # Then I see PO status in list is "CANCELLED"
+    When I click to "I Understand" button format_1
+    And I input PO No to filter PO in list
+    Then I see PO status in list is "CANCELLED"

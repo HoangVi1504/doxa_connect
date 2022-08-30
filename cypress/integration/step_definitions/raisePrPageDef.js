@@ -9,6 +9,7 @@ const raisePrPage = new RaisePrPage()
 const commonAction = new CommonAction()
 
 When(/^Get PR number in PR list$/, () => {
+    raisePrPage.scrollToElementInPrList("0%")
     commonAction.getPrNumberInPrList()
 })
 
@@ -208,6 +209,7 @@ When(/^I input PR title from "([^"]*)" json file to 'Search PR' textbox$/, (keyW
 })
 
 When(/^I input PR title random to 'Search PR' textbox$/, () => {
+    apiAction.callApiGetPrList()
     raisePrPage.enterValueToSearchPrTitleTextbox(sessionStorage.getItem("prTitleRandom"))
 })
 
@@ -471,6 +473,10 @@ Then(/^I see 'Raise Requisition' page title$/, () => {
 
 Then(/^I see 'PR detail' page title$/, () => {
     raisePrPage.verifyPrDetailPageDisplay()
+})
+
+Then(/^I see 'PR List' page title$/, () => {
+    raisePrPage.verifyPrListPageTitleDisplay()
 })
 
 Then(/^I see a validation text of 'Requisition Type' at 'Raise PR' page "([^"]*)" appears$/, (validation) => {

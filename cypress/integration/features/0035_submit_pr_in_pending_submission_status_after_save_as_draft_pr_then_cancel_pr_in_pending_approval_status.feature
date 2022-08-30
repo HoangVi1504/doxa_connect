@@ -1,4 +1,4 @@
-@pr
+@pr @p2p
 Feature: 0035 Submit PR in Pending submission status after save as draft PR then cancel PR in Pending Approval status
 
 Scenario: 01 Save as draft PR

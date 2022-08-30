@@ -1,4 +1,4 @@
-@pr
+@pr @p2p
 Feature: 0034 Raise and approval PR with Project, add catalogue items to 2 approver
 
 Scenario: 01 Raise PR with Project, add catalogue items to 2 approver

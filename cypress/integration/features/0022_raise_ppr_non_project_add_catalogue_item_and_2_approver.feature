@@ -1,4 +1,4 @@
-@ppr
+@ppr @p2p
 Feature: 0022 Raise PPR with Non-project, add catalogue item and 2 approver
 
 Scenario: 01 Raise PPR with Non-project, add catalogue item and 2 approver

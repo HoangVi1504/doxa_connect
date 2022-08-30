@@ -1,10 +1,12 @@
 import GrPage from "../PageObject/grPage"
 import ApiAction from "../commons/call_api"
+import CommonPage from "../PageObject/commonPage"
 import CommonAction from '../commons/common_actions'
 import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
 
 const grPage = new GrPage()
 const apiAction = new ApiAction()
+const commonPage = new CommonPage()
 const commonAction = new CommonAction()
 
 When(/^Get GR number in list$/, () => {
@@ -36,6 +38,7 @@ When(/^I input delivery date as next "([^"]*)" days to 'Delivery Date' textbox a
 
 When(/^I input "([^"]*)" to 'Quantity Receiving' textbox at table$/, (quantity) => {
     grPage.enterValueToItemQuantityReceiving(quantity)
+    commonPage.clickToText("Qty Receiving")
 })
 
 When(/^I input GR No to filter GR in list$/, () => {

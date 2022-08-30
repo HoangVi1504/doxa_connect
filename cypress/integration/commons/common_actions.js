@@ -96,6 +96,10 @@ class BaseAction {
         cy.get(locator).type(value)
     }
 
+    doubleClickToElement(locator){
+        cy.get(locator).dblclick({force: true})
+    }
+
     clearValueInTextbox(locator){
         cy.get(locator).clear()
     }

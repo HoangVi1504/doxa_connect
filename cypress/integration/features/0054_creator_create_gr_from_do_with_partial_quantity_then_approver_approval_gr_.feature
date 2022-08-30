@@ -1,4 +1,4 @@
-@gr
+@gr @p2p
 Feature: 0054 Creator create GR from DO with partial quantity then approver approval GR
 
 Scenario: 01 Creator convert PR to PO then issue PO

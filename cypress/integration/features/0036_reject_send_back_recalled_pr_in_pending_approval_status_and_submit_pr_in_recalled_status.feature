@@ -1,4 +1,4 @@
-@pr
+@pr @p2p
 Feature: 0036 Approver reject and send back PR in Pending Approval status
 
 Scenario: 01 Approver Reject PR in PENDING APPROVAL status

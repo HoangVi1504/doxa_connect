@@ -1,4 +1,4 @@
-@pr
+@pr @p2p
 Feature: 0032 Raise PR with Non-project, add catalogue item and 2 approver
 
 Scenario: 01 Raise PR with Non-project, add catalogue item and 2 approver

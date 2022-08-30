@@ -65,11 +65,13 @@ class RaisePrPageLocator{
         this.notification_pr_xpath = "//*[@class='modal-content']//*[text()='%s']";
         this.reject_pr_button_xpath = "(//button[text()='Reject'])[2]";
         this.send_back_button_xpath = "(//button[text()='Send Back'])[2]";
+        this.pr_list_page_title_xpath = "//h1/*[text()='Purchase Requisitions List']";
         this.raise_pr_page_title_xpath = "//h1/*[text()='Raise Requisition']";
         this.pr_title_in_pr_list_xpath = "(//*[@role='rowgroup'])[2]/div[@role='row'][1]//*[@col-id='prTitle' and text()='%s']";
         this.pr_detail_page_title_xpath = "//h1/*[text()='Purchase Request Details']"; 
         this.pr_status_in_pr_list_xpath = "(//*[@role='rowgroup'])[2]/div[@role='row'][1]//*[@col-id='prStatus' and text()='%s']";
         this.requester_in_pr_list_xpath = "(//*[@role='rowgroup'])[2]/div[@role='row'][1]//*[@col-id='requestorName' and text()='%s']";
+        this.scroll_bar_in_pr_list_xpath = "//*[@class='ag-body-horizontal-scroll-viewport']";
         this.scroll_bar_in_item_table_xpath = "(//*[@class='ag-body-horizontal-scroll-viewport'])[1]";
         this.approval_route_in_pr_list_xpath = "(//*[@role='rowgroup'])[2]/div[@role='row'][1]//*[@col-id='approvalRouteName' and text()='%s']";
         this.procurement_type_in_pr_list_xpath = "(//*[@role='rowgroup'])[2]/div[@role='row'][1]//*[@col-id='procurementType']/*[text()='%s']";

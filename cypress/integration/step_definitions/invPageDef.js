@@ -37,6 +37,10 @@ When(/^I input "([^"]*)" to Invoice Quantity textbox at 'Create Invoice' page$/,
     invPage.enterValueToInvoiceQuantityTextbox(quantity)
 })
 
+When(/^I select "([^"]*)" from 'Tax Code' dropdown at 'Added PO' table at 'Create Invoice' page$/, (taxCode) => {
+    invPage.selectValueFromTaxCodeDropdown(taxCode)
+})
+
 When(/^I select "([^"]*)" from 'Invoice Type' dropdown at 'Create Invoice' page$/, (invoiceType) => {
     invPage.selectValueFromInvoiceTypeDropdown(invoiceType)
 })

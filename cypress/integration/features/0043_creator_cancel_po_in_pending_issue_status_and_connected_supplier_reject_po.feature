@@ -1,4 +1,4 @@
-@po
+@po @p2p
 Feature: 0043 creator cancel PO in Pending Issue status and connected supplier reject PO
 
 Scenario: 01 Creator cancel PO in Pending Issue status

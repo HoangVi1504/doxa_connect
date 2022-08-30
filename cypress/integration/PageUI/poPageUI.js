@@ -15,6 +15,7 @@ class PoPageLocator{
         this.pr_number_in_list_xpath = "//*[@col-id='prNumber' and text()='%s']";
         this.po_status_in_list_xpath = "//*[contains(@class,'ag-row-first')]//*[@col-id='status' and text()='%s']";
         this.po_detail_page_title_xpath = "//h1//*[text()='Purchase Order Details']";
+        this.scroll_bar_in_po_list_xpath = "//*[@class='ag-body-horizontal-scroll-viewport']";
         this.mark_completed_po_button_xpath = "(//button[text()='Mark Completed'])[2]";
         this.supplier_ack_status_in_list_xpath = "//*[contains(@class,'ag-row-first')]//*[@col-id='supplierAck' and text()='%s']";
         this.pr_convert_detail_page_title_xpath = "//h1//*[text()='Purchase Requisition To Convert Details']";
