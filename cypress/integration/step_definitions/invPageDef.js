@@ -21,8 +21,8 @@ When(/^I input PO No to filter PO in 'Invoice Pending Approval' list$/, () => {
     invPage.enterValueToFilterPoInInvoiceApprovalList(sessionStorage.getItem("poNumber"))
 })
 
-When(/^I input INV No to filter INV in List$/, () => {
-    invPage.enterValueToFilterInvInList(sessionStorage.getItem("invNumberList"))
+When(/^I input INV No to filter INV in "([^"]*)" list$/, (listName) => {
+    invPage.enterValueToFilterInvNumberInList(sessionStorage.getItem("invNumberList"), listName)
 })
 
 When(/^I input invoice date as next "([^"]*)" days to 'Invoice Date' textbox at 'Create Invoice' page$/, (date) => {
@@ -69,8 +69,16 @@ Then(/^I see 'Create Invoice' page$/, () => {
     invPage.verifyCreateInvoicePageTitleDisplay()
 })
 
+Then(/^I see 'Invoice List' page$/, () => {
+    invPage.verifyInvoiceListPageTitleDisplay()
+})
+
 Then(/^I see 'Invoice Pending Approval' page$/, () => {
     invPage.verifyInvoiceApprovalPageTitleDisplay()
+})
+
+Then(/^I see 'Invoices Pending Approval List' page$/, () => {
+    invPage.verifyInvoicePendingApprovalListPageTitleDisplay()
 })
 
 Then(/^I see INV No in 'Invoice No' textbox appears$/, () => {

@@ -9,7 +9,9 @@ Scenario: 01 Creator convert PR to PO and issue PO
     And I click to "Requisitions" link on header menu
     And I click to "Requisitions" link on the left menu
     And I click to "PRs List" link on the left sub menu
-    And I input PR title random to 'Search PR' textbox
+    Then I see 'PR List' page title
+
+    When I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING APPROVAL"
 
     When Get PR number in PR list
@@ -20,7 +22,9 @@ Scenario: 01 Creator convert PR to PO and issue PO
     And I click to "Requisitions" link on header menu
     And I click to "Requisitions" link on the left menu
     And I click to "PRs List" link on the left sub menu
-    And I input PR title random to 'Search PR' textbox
+    Then I see 'PR List' page title
+
+    When I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING CONVERSION TO PO"
 
     When I logout account
@@ -28,8 +32,10 @@ Scenario: 01 Creator convert PR to PO and issue PO
     And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Orders" link on header menu
     And I click to "Requests Pending Conversion" link on the left menu
-    And I click to "PRs To Be Converted" link on the left sub menu
-    And I input PR No to filter PR in list
+    And I click to "PRs To Be Converted List" link on the left sub menu
+    Then I see 'PR To Be Converted List' title
+
+    When I input PR No to filter PR in "PRs To Be Converted" list
     Then I see PR status in PR list is "PENDING CONVERSION TO PO"
 
     When Call API navigate to Convert PR to PO page
@@ -41,11 +47,14 @@ Scenario: 01 Creator convert PR to PO and issue PO
     Then I see a message "Converted to PO successfully" appears
 
     When I click to "I Understand" button format_1
-    And I click to 'Dashboard' link on Header menu if it not be selected
-    And I click to "Orders" link on header menu
-    And I click to "Orders List" link on the left menu
+    And I click to "Back" button format_1
+    Then I see 'PR To Be Converted List' title
+
+    When I click to "Orders List" link on the left menu
     And I click to "POs List" link on the left sub menu
-    And I input PR No to filter PR in list
+    Then I see 'PO List' page
+
+    When I input PR No to filter PR in "PO" list
     Then I see PO status in list is "PENDING ISSUE"
     And I see Supplier Ack status is "NOT VIEWED"
 
@@ -60,7 +69,9 @@ Scenario: 01 Creator convert PR to PO and issue PO
     Then I see a message "PO has been issued to supplier" appears
 
     When I click to "I Understand" button format_1
-    And I input PO No to filter PO in list
+    Then I see 'PO List' page
+
+    When "buyer" input PO No to filter PO in "PO" list
     Then I see PO status in list is "ISSUED"
     And I see Supplier Ack status is "NOT VIEWED"
 
@@ -71,7 +82,9 @@ Scenario: 02 Supplier can view PO once PO is issued to supplier
     And I click to "Orders" link on header menu
     And I click to "Orders List" link on the left menu
     And I click to "POs List" link on the left sub menu
-    And I input PO No to filter PO in list
+    Then I see 'PO List' page
+
+    When "supplier" input PO No to filter PO in "PO" list
     Then I see PO status in list is "ISSUED"
     And I see Supplier Ack status is "NOT VIEWED"
 
@@ -82,7 +95,9 @@ Scenario: 02 Supplier can view PO once PO is issued to supplier
 
     When "supplier" call API view PO
     And I click to "Back" button format_1
-    And I input PO No to filter PO in list
+    Then I see 'PO List' page
+
+    When "supplier" input PO No to filter PO in "PO" list
     Then I see PO status in list is "ISSUED"
     And I see Supplier Ack status is "VIEWED"
 
@@ -93,7 +108,9 @@ Scenario: 03 Creator can view PO then cancel PO in Issued status
     And I click to "Orders" link on header menu
     And I click to "Orders List" link on the left menu
     And I click to "POs List" link on the left sub menu
-    And I input PO No to filter PO in list
+    Then I see 'PO List' page
+
+    When "buyer" input PO No to filter PO in "PO" list
     Then I see PO status in list is "ISSUED"
     And I see Supplier Ack status is "VIEWED"
 
@@ -110,5 +127,7 @@ Scenario: 03 Creator can view PO then cancel PO in Issued status
     Then I see a message "The purchase order has successfully been cancelled" appears
 
     When I click to "I Understand" button format_1
-    And I input PO No to filter PO in list
+    Then I see 'PO List' page
+
+    When "buyer" input PO No to filter PO in "PO" list
     Then I see PO status in list is "CANCELLED"

@@ -9,7 +9,9 @@ Scenario: 01 Cancel draft PR in Pending Submission status
     And I click to "Requisitions" link on header menu
     And I click to "Requisitions" link on the left menu
     And I click to "PRs List" link on the left sub menu
-    And I input PR title random to 'Search PR' textbox
+    Then I see 'PR List' page title
+
+    When I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING SUBMISSION"
 
     When Get PR number in PR list
@@ -22,7 +24,9 @@ Scenario: 01 Cancel draft PR in Pending Submission status
     Then I see a message "Purchase requisition successfully cancelled" appears
 
     When I click to "I Understand" button format_1
-    And I input PR title random to 'Search PR' textbox
+    Then I see 'PR List' page title
+
+    When I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "CANCELLED"
 
 Scenario: 02 Submit PR converted from PPR
@@ -33,7 +37,9 @@ Scenario: 02 Submit PR converted from PPR
     And I click to "Requisitions" link on header menu
     And I click to "Pre Purchase Requisition" link on the left menu
     And I click to "Purchase Pre-Requisitions List" link on the left sub menu
-    And I input PPR random to 'Search PPR' textbox
+    Then I see 'PPR List' page title
+
+    When I input PPR random to 'Search PPR' textbox
     Then I see PPR status in PPR list is "PENDING APPROVAL"
 
     When I logout account
@@ -45,7 +51,9 @@ Scenario: 02 Submit PR converted from PPR
     And I click to "Requisitions" link on header menu
     And I click to "Pre Purchase Requisition" link on the left menu
     And I click to "Purchase Pre-Requisitions List" link on the left sub menu
-    And I input PPR random to 'Search PPR' textbox
+    Then I see 'PPR List' page title
+
+    When I input PPR random to 'Search PPR' textbox
     Then I see PPR status in PPR list is "PENDING PURCHASER REVIEW"
 
     When I logout account
@@ -56,7 +64,9 @@ Scenario: 02 Submit PR converted from PPR
     And I click to "Requisitions" link on header menu
     And I click to "Pre Purchase Requisition" link on the left menu
     And I click to "Purchase Pre-Requisitions List" link on the left sub menu
-    And Call API navigate to "Convert to PR" page of PPR random
+    Then I see 'PPR List' page title
+
+    When Call API navigate to "Convert to PR" page of PPR random
     And Wait for "6" seconds
     Then I see PPR title random at PPR detail page
 
@@ -66,12 +76,16 @@ Scenario: 02 Submit PR converted from PPR
     When I click to "I Understand" button format_1
     And I click to "Pre Purchase Requisition" link on the left menu
     And I click to "Purchase Pre-Requisitions List" link on the left sub menu
-    And I input PPR random to 'Search PPR' textbox
+    Then I see 'PPR List' page title
+
+    When I input PPR random to 'Search PPR' textbox
     Then I see PPR status in PPR list is "CONVERTED TO PR"
 
     When I click to "Requisitions" link on the left menu
     And I click to "PRs List" link on the left sub menu
-    And I input PPR title random to 'Search PR' textbox
+    Then I see 'PR List' page title
+
+    When I input PPR title random to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING SUBMISSION"
 
     When Get PR number in PR list
@@ -86,5 +100,7 @@ Scenario: 02 Submit PR converted from PPR
     Then I see a message "Purchase requisition successfully submitted" appears
 
     When I click to "I Understand" button format_1
-    And I input PPR title random to 'Search PR' textbox
+    Then I see 'PR List' page title
+
+    When I input PPR title random to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING APPROVAL"

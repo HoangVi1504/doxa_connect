@@ -42,7 +42,9 @@ Scenario: 01 Save as draft PPR
     Then I see a message "PPR saved draft successfully" appears
 
     When I click to "I Understand" button format_1
-    And I input PPR title from "ppr_v5" json file to 'Search PPR' textbox
+    Then I see 'PPR List' page title
+
+    When I input PPR title from "ppr_v5" json file to 'Search PPR' textbox
     Then I see PPR status in PPR list is "PENDING SUBMISSION"
     And I see Requester name in PPR list from "ppr_v5" json file
     And I see Procurement type in PPR list from "ppr_v5" json file
@@ -55,7 +57,9 @@ Scenario: 02 Submit PPR in Pending Submission status after save as draft PPR
     And I click to "Requisitions" link on header menu
     And I click to "Pre Purchase Requisition" link on the left menu
     And I click to "Purchase Pre-Requisitions List" link on the left sub menu
-    And I input PPR title from "ppr_v5" json file to 'Search PPR' textbox
+    Then I see 'PPR List' page title
+
+    When I input PPR title from "ppr_v5" json file to 'Search PPR' textbox
     Then I see PPR status in PPR list is "PENDING SUBMISSION"
 
     When I double click to PPR title in PPR list from "ppr_v5" json file
@@ -68,7 +72,9 @@ Scenario: 02 Submit PPR in Pending Submission status after save as draft PPR
     Then I see a message "PPR created successfully" appears
 
     When I click to "I Understand" button format_1
-    And I input PPR title from "ppr_v5" json file to 'Search PPR' textbox
+    Then I see 'PPR List' page title
+
+    When I input PPR title from "ppr_v5" json file to 'Search PPR' textbox
     Then I see PPR status in PPR list is "PENDING APPROVAL"
 
 Scenario: 03 Cancel PPR in Pending Approval status after Submit PPR in Pending Submission status
@@ -78,7 +84,9 @@ Scenario: 03 Cancel PPR in Pending Approval status after Submit PPR in Pending S
     And I click to "Requisitions" link on header menu
     And I click to "Pre Purchase Requisition" link on the left menu
     And I click to "Purchase Pre-Requisitions List" link on the left sub menu
-    And I input PPR title from "ppr_v5" json file to 'Search PPR' textbox
+    Then I see 'PPR List' page title
+
+    When I input PPR title from "ppr_v5" json file to 'Search PPR' textbox
     Then I see PPR status in PPR list is "PENDING APPROVAL"
 
     When I double click to PPR title in PPR list from "ppr_v5" json file
@@ -93,5 +101,7 @@ Scenario: 03 Cancel PPR in Pending Approval status after Submit PPR in Pending S
     Then I see a message "PPR cancelled successfully" appears
 
     When I click to "I Understand" button format_1
-    And I input PPR title from "ppr_v5" json file to 'Search PPR' textbox
+    Then I see 'PPR List' page title
+
+    When I input PPR title from "ppr_v5" json file to 'Search PPR' textbox
     Then I see PPR status in PPR list is "CANCELLED"

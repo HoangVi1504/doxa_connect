@@ -1,19 +1,28 @@
 import CommonAction from '../commons/common_actions'
+import UrlPageLocator from '../PageUI/urlPageUI'
 import InvPageLocator from '../PageUI/inv_pageUI'
 import CommonPageLocator from '../PageUI/commonPageUI'
 
 var printf = require('printf')
+var dataBuyer = require('../../../dataBuyer.json');
+
 const commonAction = new CommonAction()
 const invPageLocator = new InvPageLocator()
+const urlPageLocator = new UrlPageLocator()
 const commonPageLocator = new CommonPageLocator()
 
 class InvPage{
+    constructor() {
+        this.env = 'stag'
+    }
 
     enterValueToFilterDoInSelectPoTable(doNumber){
         commonAction.enterValueToTextbox(invPageLocator.filter_do_number_in_select_po_table_css, doNumber)
     }
 
     enterValueToFilterPoInSelectPoTable(poNumber){
+        commonAction.wait(1)
+        commonAction.clickToElementByXpath(invPageLocator.filter_po_number_in_select_po_table_xpath)
         commonAction.enterValueToTextboxByXpath(invPageLocator.filter_po_number_in_select_po_table_xpath, poNumber)
     }
 
@@ -21,8 +30,33 @@ class InvPage{
         commonAction.enterValueToTextbox(invPageLocator.filter_po_number_in_inv_approval_list_css, poNumber)
     }
 
-    enterValueToFilterInvInList(invNumber){
-        commonAction.enterValueToTextbox(invPageLocator.filter_inv_number_in_list_css, invNumber)
+    enterValueToFilterInvNumberInList(invNumber, listName){
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        let urlRequest
+        switch (listName) {
+            case "INV Pending Approval":
+                urlRequest = printf(urlPageLocator.inv_pending_approval_list_url, this.env, buyerCompanyUuid)
+                break;
+        
+            case "INV":
+                urlRequest = printf(urlPageLocator.inv_list_url, this.env, buyerCompanyUuid)
+                break;
+
+            default:
+                break;
+        }
+        cy.request({
+            method: 'GET',
+            url: urlRequest,
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            expect(response.body).has.property("status", "OK")
+            commonAction.wait(1)
+            commonAction.enterValueToTextbox(invPageLocator.filter_inv_number_in_list_css, invNumber)
+        })
     }
 
     enterValueToInvoiceDateTextbox(date){
@@ -87,8 +121,16 @@ class InvPage{
         commonAction.verifyElementByXpathVisible(invPageLocator.create_inv_page_title_xpath)
     }
 
+    verifyInvoiceListPageTitleDisplay(){
+        commonAction.verifyElementByXpathVisible(invPageLocator.invoice_list_page_title_xpath)
+    }
+
     verifyInvoiceApprovalPageTitleDisplay(){
-        commonAction.verifyElementByXpathVisible(invPageLocator.inv_approval_page_title_xpath)
+        commonAction.verifyElementByXpathVisible(invPageLocator.inv_pending_approval_page_title_xpath)
+    }
+
+    verifyInvoicePendingApprovalListPageTitleDisplay(){
+        commonAction.verifyElementByXpathVisible(invPageLocator.inv_pending_approval_list_xpath)
     }
 
     verifyPoNumberInAddedPoTableDisplay(poNumber){

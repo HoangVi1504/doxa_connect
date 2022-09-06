@@ -32,8 +32,8 @@ When(/^Call API convert PR just created random to PO$/, () => {
     apiAction.callApiConvertPrToPo(sessionStorage.getItem("prTitleRandom"))
 })
 
-When(/^I input PO No to filter PO in list$/, () => {
-    poPage.enterValueToFilterPoInList(sessionStorage.getItem("poNumber"))
+When(/^"([^"]*)" input PO No to filter PO in "([^"]*)" list$/, (roleName, listName) => {
+    poPage.enterValueToFilterPoNumberInList(roleName, sessionStorage.getItem("poNumber"), listName)
 })
 
 When(/^I input reason close PO at 'PO Detail' page is "([^"]*)"$/, (reason) => {
@@ -64,16 +64,16 @@ When(/^I click to Reject button at 'PO Detail' page$/, () => {
     poPage.clickToRejectButton()
 })
 
-Then(/^I see 'PR To Be Converted List' title$/, () => {
-    poPage.verifyPrConvertDetailPageTitleDisplay()
-})
-
 Then(/^I see 'PR Convert Detail' page$/, () => {
     poPage.verifyPrConvertDetailPageTitleDisplay()
 })
 
 Then(/^I see 'PO Detail' page$/, () => {
     poPage.verifyPoDetailPageTitleDisplay()
+})
+
+Then(/^I see 'PO List' page$/, () => {
+    poPage.verifyPoListPageTitleDisplay()
 })
 
 Then(/^I see PR No in 'PR No' textbox at 'PR Convert Detail' page$/, () => {

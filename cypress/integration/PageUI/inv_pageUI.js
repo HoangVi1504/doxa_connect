@@ -23,10 +23,13 @@ class InvPageLocator{
 
         this.gl_code_in_table_xpath = "//*[contains(@class,'ag-row-first')]//*[@col-id='glCode']";
         this.inv_number_in_list_xpath = "//*[contains(@class,'ag-row-first')]//*[@col-id='invoiceNo' and text()='%s']";
-        this.create_inv_page_title_xpath = "//h1//*[text()='Create Invoice']";
-        this.inv_approval_page_title_xpath = "//h1//*[text()='Invoice Pending Approval']";
         this.scroll_bar_in_item_table_xpath = "(//*[@class='ag-body-horizontal-scroll-viewport'])[1]";
         this.scroll_bar_in_added_po_table_xpath = "(//*[@class='ag-body-horizontal-scroll-viewport'])[2]";
+        
+        this.create_inv_page_title_xpath = "//h1//*[text()='Create Invoice']";
+        this.invoice_list_page_title_xpath = "//h1//*[text()='Invoices List']";
+        this.inv_pending_approval_list_xpath = "//h1//*[text()='Invoices Pending Approval List']";
+        this.inv_pending_approval_page_title_xpath = "//h1//*[text()='Invoice Pending Approval']";
 
         this.po_number_in_added_po_table_xpath = "(//*[contains(@class,'ag-row-first')]//*[@col-id='poNumber'])[2]//*[text()='%s']";
         this.inv_quantity_txb_in_added_po_table_xpath = "//*[@col-id='invoiceQty']//input[@aria-label='Input Editor']";

@@ -27,8 +27,8 @@ When(/^I input quantity "([^"]*)" to 'To Convert' textbox in DO detail table$/, 
     doPage.enterValueToQuantityConvertTextbox(quantity)
 })
 
-When(/^I input DO No to filter DO in DO list$/, () => {
-    doPage.enterValueToFilterDoInDoList(sessionStorage.getItem("doNumberDoList"))
+When(/^I input DO No to filter DO in "([^"]*)" list$/, (listName) => {
+    doPage.enterValueToFilterDoNumberInList(sessionStorage.getItem("doNumberDoList"), listName)
 })
 
 When(/^I double click to Do No in DO list$/, () => {
@@ -43,12 +43,20 @@ When(/^I check to DO No checkbox at 'Create GR' page$/, () => {
     doPage.checkToDoNumberCheckbox()
 })
 
-Then(/^I see 'Create DO' page$/, () => {
-    doPage.verifyCreateDoPageTitleDisplay()
+Then(/^I see 'DO' page$/, () => {
+    doPage.verifyDoPageTitleDisplay()
 })
 
 Then(/^I see 'DO Detail' page$/, () => {
     doPage.verifyDoDetailsPageTitleDisplay()
+})
+
+Then(/^I see 'Create DO' page$/, () => {
+    doPage.verifyCreateDoPageTitleDisplay()
+})
+
+Then(/^I see 'DO List' page$/, () => {
+    doPage.verifyDoListPageTitleDisplay()
 })
 
 Then(/^I see DO No in 'DO No' textbox at 'DO Detail' page$/, () => {

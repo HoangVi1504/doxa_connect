@@ -1,4 +1,5 @@
-@rfq @p2p
+@rfq
+#@p2p
 Feature: 0012 Raise Request for Quotations with non-project, One-off-Quotation and add catalogue item
 
 Scenario: P2P-RFQ-S01-002 Raise Request for Quotations with non-project, One-off-Quotation and add catalogue item

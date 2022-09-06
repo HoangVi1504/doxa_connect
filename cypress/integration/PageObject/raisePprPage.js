@@ -123,7 +123,19 @@ class RaisePprPage{
 
     // Raise PPR
     enterValueToSearchPPRTitleTextbox(pprTitle){
-        commonAction.enterValueToTextbox(raisePprPageLocator.filter_ppr_title_in_list_css, pprTitle)
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.request({
+            method: 'GET',
+            url: printf(urlPageLocator.ppr_list_url, this.env, buyerCompanyUuid),
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            expect(response.body).has.property("status", "OK")
+            commonAction.wait(1)
+            commonAction.enterValueToTextbox(raisePprPageLocator.filter_ppr_title_in_list_css, pprTitle)
+        })
     }
 
     enterValueToPprTitleTextbox(pprTitle){
@@ -261,6 +273,10 @@ class RaisePprPage{
 
     verifyPprDetailPageDisplay(){
         commonAction.verifyElementByXpathVisible(raisePprPageLocator.ppr_detail_page_title_xpath)
+    }
+
+    verifyPprListPageTitleDisplay(){
+        commonAction.verifyElementByXpathVisible(raisePprPageLocator.ppr_list_page_title_xpath)
     }
 
     verifyItemDeleteButtonDisplay(){

@@ -1,13 +1,20 @@
 import CommonAction from '../commons/common_actions'
 import GrPageLocator from '../PageUI/grPageUI'
+import UrlPageLocator from '../PageUI/urlPageUI'
 import CommonPageLocator from '../PageUI/commonPageUI'
 
 var printf = require('printf')
+var dataBuyer = require('../../../dataBuyer.json');
+
 const commonAction = new CommonAction()
 const grPageLocator = new GrPageLocator()
+const urlPageLocator = new UrlPageLocator()
 const commonPageLocator = new CommonPageLocator()
 
 class GrPage{
+    constructor() {
+        this.env = 'stag'
+    }
 
     enterValueToDoNumberTextbox(doNumber){
         commonAction.enterValueToTextbox(grPageLocator.delivery_order_txb_css, doNumber)
@@ -23,12 +30,36 @@ class GrPage{
         commonAction.enterValueToTextbox(grPageLocator.item_quantity_receiving_css, quantity)
     }
 
-    enterValueToFilterGrInList(grNumber){
-        commonAction.enterValueToTextbox(grPageLocator.filter_gr_in_list_css, grNumber)
+    enterValueToFilterGrNumberInList(grNumber){
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.request({
+            method: 'GET',
+            url: printf(urlPageLocator.gr_list_url, this.env, buyerCompanyUuid),
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            expect(response.body).has.property("status", "OK")
+            commonAction.wait(1)
+            commonAction.enterValueToTextbox(grPageLocator.filter_gr_in_list_css, grNumber)
+        })
     }
 
-    enterValueToFilterDoInList(doNumber){
-        commonAction.enterValueToTextbox(grPageLocator.filter_order_processed_in_list_css, doNumber)
+    enterValueToFilterDoNumberInList(doNumber){
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.request({
+            method: 'GET',
+            url: printf(urlPageLocator.gr_list_url, this.env, buyerCompanyUuid),
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            expect(response.body).has.property("status", "OK")
+            commonAction.wait(1)
+            commonAction.enterValueToTextbox(grPageLocator.filter_order_processed_in_list_css, doNumber)
+        })
     }
 
     selectValueFromApprovalRouteDropdown(value){
@@ -72,6 +103,14 @@ class GrPage{
 
     verifyGrDetailPageTitleDisplay(){
         commonAction.verifyElementByXpathVisible(grPageLocator.gr_detail_page_title_xpath)
+    }
+
+    verifyGrListPageTitleDisplay(){
+        commonAction.verifyElementByXpathVisible(grPageLocator.gr_list_page_title_xpath)
+    }
+
+    verifyListCreateGrFromPoPageTitleDisplay(){
+        commonAction.verifyElementByXpathVisible(grPageLocator.list_create_gr_from_po_page_title_xpath)
     }
 
     verifyValidationTextDoNumberDisplay(validation){

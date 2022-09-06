@@ -1,7 +1,7 @@
 @pr @p2p
-Feature: 0033 Raise PR with Non-project, add manual item and 1 approver
+Feature: 0033 Raise PR with Project, add manual item and 1 approver
 
-Scenario: 01 Raise PR with Non-project, add manual item and 1 approver
+Scenario: 01 Raise PR with Project, add manual item and 1 approver
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to "Requisitions" link on header menu
@@ -18,7 +18,9 @@ Scenario: 01 Raise PR with Non-project, add manual item and 1 approver
     Then I see a message "Purchase requisition successfully submitted" appears
 
     When I click to "I Understand" button format_1
-    And I input PR title from "pr_v3" json file to 'Search PR' textbox
+    Then I see 'PR List' page title
+
+    When I input PR title from "pr_v3" json file to 'Search PR' textbox
     Then I see PR title in PR list from "pr_v3" json file
     And I see PR status in PR list is "PENDING APPROVAL"
     And I see Requester name in PR list from "pr_v3" json file
@@ -34,7 +36,9 @@ Scenario: 02 Approver approval PR
     And I click to "Requisitions" link on header menu
     And I click to "Requisitions" link on the left menu
     And I click to "PRs List" link on the left sub menu
-    And I input PR title from "pr_v3" json file to 'Search PR' textbox
+    Then I see 'PR List' page title
+
+    When I input PR title from "pr_v3" json file to 'Search PR' textbox
     Then I see PR title in PR list from "pr_v3" json file 
     And I see PR status in PR list is "PENDING APPROVAL"
 
@@ -47,5 +51,7 @@ Scenario: 02 Approver approval PR
     Then I see a message "Purchase requisition successfully approved" appears   
 
     When I click to "I Understand" button format_1
-    And I input PR title from "pr_v3" json file to 'Search PR' textbox
+    Then I see 'PR List' page title
+
+    When I input PR title from "pr_v3" json file to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING CONVERSION TO PO"

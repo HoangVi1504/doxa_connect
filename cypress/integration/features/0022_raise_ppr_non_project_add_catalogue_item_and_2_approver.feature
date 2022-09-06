@@ -18,7 +18,9 @@ Scenario: 01 Raise PPR with Non-project, add catalogue item and 2 approver
     Then I see a message "PPR created successfully" appears
 
     When I click to "I Understand" button format_1
-    And I input PPR title from "ppr_v2" json file to 'Search PPR' textbox
+    Then I see 'PPR List' page title
+
+    When I input PPR title from "ppr_v2" json file to 'Search PPR' textbox
     Then I see PPR status in PPR list is "PENDING APPROVAL"
     And I see Requester name in PPR list from "ppr_v2" json file
     And I see Procurement type in PPR list from "ppr_v2" json file
@@ -32,7 +34,9 @@ Scenario: 02 Approver approval PPR
     And I click to "Requisitions" link on header menu
     And I click to "Pre Purchase Requisition" link on the left menu
     And I click to "Purchase Pre-Requisitions List" link on the left sub menu
-    And I input PPR title from "ppr_v2" json file to 'Search PPR' textbox
+    Then I see 'PPR List' page title
+
+    When I input PPR title from "ppr_v2" json file to 'Search PPR' textbox
     And I see PPR status in PPR list is "PENDING APPROVAL"
     And I double click to PPR title in PPR list from "ppr_v2" json file
     And Wait for "3" seconds
@@ -51,9 +55,12 @@ Scenario: 02 Approver approval PPR
     And I click to "Requisitions" link on header menu
     And I click to "Pre Purchase Requisition" link on the left menu
     And I click to "Purchase Pre-Requisitions List" link on the left sub menu
-    And I input PPR title from "ppr_v2" json file to 'Search PPR' textbox
-    And I see PPR status in PPR list is "PENDING APPROVAL"
-    And I double click to PPR title in PPR list from "ppr_v2" json file
+    Then I see 'PPR List' page title
+
+    When I input PPR title from "ppr_v2" json file to 'Search PPR' textbox
+    Then I see PPR status in PPR list is "PENDING APPROVAL"
+
+    When I double click to PPR title in PPR list from "ppr_v2" json file
     And Wait for "3" seconds
     Then I see 'PPR detail' page title
     And I see PPR title at PPR detail page from "ppr_v2" json file
@@ -62,5 +69,7 @@ Scenario: 02 Approver approval PPR
     Then I see a message "PPR approved successfully" appears
 
     When I click to "I Understand" button format_1
-    And I input PPR title from "ppr_v2" json file to 'Search PPR' textbox
+    Then I see 'PPR List' page title
+
+    When I input PPR title from "ppr_v2" json file to 'Search PPR' textbox
     Then I see PPR status in PPR list is "PENDING PURCHASER REVIEW"

@@ -1,14 +1,70 @@
 import CommonAction from '../commons/common_actions'
 import PoPageLocator from '../PageUI/poPageUI'
+import UrlPageLocator from '../PageUI/urlPageUI'
 
 var printf = require('printf')
+var dataBuyer = require('../../../dataBuyer.json');
+var dataSupplier = require('../../../dataSupplier.json');
+
 const commonAction = new CommonAction()
 const poPageLocator = new PoPageLocator()
-
+const urlPageLocator = new UrlPageLocator()
 class PoPage{
+    constructor() {
+        this.env = 'stag'
+    }
+    
+    enterValueToFilterPoNumberInList(roleName, poNumber, listName){
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
+        let urlRequest
+        switch (listName) {
+            case "PO":
+                switch (roleName) {
+                    case "buyer":
+                        urlRequest = printf(urlPageLocator.po_list_url, this.env, buyerCompanyUuid, roleName)
+                        break;
 
-    enterValueToFilterPoInList(poNumber){
-        commonAction.enterValueToTextbox(poPageLocator.filter_po_in_list_css, poNumber)
+                    case "supplier":
+                        urlRequest = printf(urlPageLocator.po_list_url, this.env, supplierCompanyUuid, roleName)
+                        break;
+                
+                    default:
+                        break;
+                }
+                break;
+
+            case "Create GR From PO":
+                urlRequest = printf(urlPageLocator.create_gr_from_po_list_url, this.env, buyerCompanyUuid, roleName)
+                break;
+
+            case "Create DO":
+                urlRequest = printf(urlPageLocator.create_do_list_url, this.env, supplierCompanyUuid)
+                break;
+
+            case "DO":
+                urlRequest = printf(urlPageLocator.do_list_url, this.env, supplierCompanyUuid)
+                break;
+
+            case "INV Pending Approval":
+                urlRequest = printf(urlPageLocator.inv_pending_approval_list_url, this.env, buyerCompanyUuid)
+                break;
+
+            default:
+                break;
+        }
+        cy.request({
+            method: 'GET',
+            url: urlRequest,
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            expect(response.body).has.property("status", "OK")
+            commonAction.wait(1)
+            commonAction.enterValueToTextbox(poPageLocator.filter_po_number_in_list_css, poNumber)
+        })
     }
 
     enterValueToCancelReasonTextbox(reason){
@@ -48,16 +104,16 @@ class PoPage{
         commonAction.verifyValueInTextboxExist(poPageLocator.po_number_txb_css, poNumber)
     }
 
-    verifyPrToBeConvertedPageTitleDisplay(){
-        commonAction.verifyElementByXpathVisible(poPageLocator.pr_to_be_converted_page_title_xpath)
-    }
-
     verifyPrConvertDetailPageTitleDisplay(){
         commonAction.verifyElementByXpathVisible(poPageLocator.pr_convert_detail_page_title_xpath)
     }
 
     verifyPoDetailPageTitleDisplay(){
         commonAction.verifyElementByXpathVisible(poPageLocator.po_detail_page_title_xpath)
+    }
+
+    verifyPoListPageTitleDisplay(){
+        commonAction.verifyElementByXpathVisible(poPageLocator.po_list_page_title_xpath)
     }
 
     verifyPoStatusInListDisplay(status){

@@ -209,7 +209,6 @@ When(/^I input PR title from "([^"]*)" json file to 'Search PR' textbox$/, (keyW
 })
 
 When(/^I input PR title random to 'Search PR' textbox$/, () => {
-    apiAction.callApiGetPrList()
     raisePrPage.enterValueToSearchPrTitleTextbox(sessionStorage.getItem("prTitleRandom"))
 })
 
@@ -221,8 +220,8 @@ When(/^I input reason send back or reject "([^"]*)" at Raise PR page$/, (reason)
     raisePrPage.enterValueToSendBackReasonTextbox(reason)
 })
 
-When(/^I input PR No to filter PR in list$/, () => {
-    raisePrPage.enterValueToFilterPRInList(sessionStorage.getItem("prNumber"))
+When(/^I input PR No to filter PR in "([^"]*)" list$/, (listName) => {
+    raisePrPage.enterValueToFilterPrNumberInList(sessionStorage.getItem("prNumber"), listName)
 })
 
 When(/^I select delivery address from "([^"]*)" json file at Raise PR page$/, (keyWord) => {
@@ -477,6 +476,10 @@ Then(/^I see 'PR detail' page title$/, () => {
 
 Then(/^I see 'PR List' page title$/, () => {
     raisePrPage.verifyPrListPageTitleDisplay()
+})
+
+Then(/^I see 'PR To Be Converted List' title$/, () => {
+    raisePrPage.verifyPrToBeConvertedPageTitleDisplay()
 })
 
 Then(/^I see a validation text of 'Requisition Type' at 'Raise PR' page "([^"]*)" appears$/, (validation) => {

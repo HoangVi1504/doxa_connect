@@ -93,8 +93,10 @@ class RaisePrPage{
             this.enterValueToItemUnitPriceInItemTable(fileName.itemUnitPrice)
             this.clickToFilterPriceTypeInItemTable()
             if(natureOfRequisition == "project"){
-                this.clickToFilterUomForecastInItemTable()
-                this.clickToFilterUnitPriceForecastedInItemTable()
+                // this.clickToFilterUomForecastInItemTable()
+                // this.clickToFilterUnitPriceForecastedInItemTable()
+                commonAction.wait(1)
+                this.scrollToElementInItemTable("70%")
             }
             this.clickToFilterTaxCodeInItemTable()
             this.selectValueFromItemTaxCode(fileName.itemTaxCode)
@@ -104,8 +106,33 @@ class RaisePrPage{
         })
     }
 
-    enterValueToFilterPRInList(prNumber){
-        commonAction.enterValueToTextbox(raisePrPageLocator.filter_pr_in_list_css, prNumber)
+    enterValueToFilterPrNumberInList(prNumber, listName){
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        let urlRequest
+        switch (listName) {
+            case "PRs To Be Converted":
+                urlRequest = printf(urlPageLocator.pr_to_be_converted_list_url, this.env, buyerCompanyUuid)
+                break;
+
+            case "PO":
+                urlRequest = printf(urlPageLocator.po_list_url, this.env, buyerCompanyUuid, "buyer")
+                break;
+        
+            default:
+                break;
+        }
+        cy.request({
+            method: 'GET',
+            url: urlRequest,
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            expect(response.body).has.property("status", "OK")
+            commonAction.wait(1)
+            commonAction.enterValueToTextbox(raisePrPageLocator.filter_pr_number_in_list_css, prNumber)
+        })
     }
 
     enterValueToItemCodeInItemTable(code){
@@ -180,7 +207,21 @@ class RaisePrPage{
     }
 
     enterValueToSearchPrTitleTextbox(prTitle){
-        commonAction.enterValueToTextbox(raisePrPageLocator.filter_pr_txb_css, prTitle)
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.request({
+            method: 'GET',
+            url: printf(urlPageLocator.pr_list_url, this.env, buyerCompanyUuid),
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            expect(response.body).has.property("status", "OK")
+            this.scrollToElementInPrList("20%")
+            commonAction.wait(1)
+            commonAction.clickToElement(raisePrPageLocator.filter_pr_title_in_list_css)
+            commonAction.enterValueToTextbox(raisePrPageLocator.filter_pr_title_in_list_css, prTitle)
+        })
     }
 
     enterValueToSendBackReasonTextbox(reason){
@@ -367,6 +408,10 @@ class RaisePrPage{
         commonAction.verifyElementByXpathVisible(raisePrPageLocator.pr_list_page_title_xpath)
     }
 
+    verifyPrToBeConvertedPageTitleDisplay(){
+        commonAction.verifyElementByXpathVisible(raisePrPageLocator.pr_to_be_converted_page_title_xpath)
+    }
+
     verifyRequesterNameInPrListDisplay(fileName){
         cy.fixture(fileName).then((fileName) =>{
             commonAction.verifyElementByXpathExist(printf(raisePrPageLocator.requester_in_pr_list_xpath, fileName.requesterName))
@@ -374,6 +419,7 @@ class RaisePrPage{
     }
 
     verifyProcurementTypeInPrListDisplay(fileName){
+        commonAction.wait(1)
         this.scrollToElementInPrList("90%")
         cy.fixture(fileName).then((fileName) =>{
             commonAction.verifyElementByXpathExist(printf(raisePrPageLocator.procurement_type_in_pr_list_xpath, fileName.procurementTypePRList))
@@ -417,7 +463,7 @@ class RaisePrPage{
         commonAction.verifyElementByXpathVisible(printf(raisePrPageLocator.validation_text_delivery_date_xpath, validation))
     }
 
-    scrollToElement(position){
+    scrollToElementInItemTable(position){
         commonAction.scrollToPositionElement(raisePrPageLocator.scroll_bar_in_item_table_xpath, position)
     }
 

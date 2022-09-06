@@ -15,12 +15,16 @@ Scenario: 01 Creator create PO invoice with correct input
     And I click to "Requisitions" link on header menu
     And I click to "Requisitions" link on the left menu
     And I click to "PRs List" link on the left sub menu
-    And I input PR title random to 'Search PR' textbox
+    Then I see 'PR List' page title
+
+    When I input PR title random to 'Search PR' textbox
     And Get PR number in PR list
     And I click to "Orders" link on header menu
     And I click to "Orders List" link on the left menu
     And I click to "POs List" link on the left sub menu
-    And I input PR No to filter PR in list
+    Then I see 'PO List' page
+
+    When I input PR No to filter PR in "PO" list
     Then I see PO status in list is "PENDING ISSUE"
     And I see Supplier Ack status is "NOT VIEWED"
 
@@ -41,7 +45,9 @@ Scenario: 01 Creator create PO invoice with correct input
     And I click to "Orders" link on header menu
     And I click to "Orders List" link on the left menu
     And I click to "POs List" link on the left sub menu
-    And I input PO No to filter PO in list
+    Then I see 'PO List' page
+
+    When "supplier" input PO No to filter PO in "PO" list
     And I double click to PO No in PO list
     And Wait for "6" seconds
     Then I see 'PO Detail' page
@@ -49,14 +55,18 @@ Scenario: 01 Creator create PO invoice with correct input
 
     When "supplier" call API view PO
     And I click to "Back" button format_1
-    And I input PO No to filter PO in list
+    Then I see 'PO List' page
+
+    When "supplier" input PO No to filter PO in "PO" list
     Then I see PO status in list is "ISSUED"
     And I see Supplier Ack status is "VIEWED"
 
     When Call API create DO from PO No just created
     And I click to "Receipts" link on header menu
     And I click to "Delivery Orders List" link on the left menu
-    And I input PO No to filter PO in list
+    Then I see 'DO List' page
+
+    When "supplier" input PO No to filter PO in "DO" list
     Then I see DO status in list is "PENDING ISSUE"
 
     When Get DO number in list
@@ -67,7 +77,9 @@ Scenario: 01 Creator create PO invoice with correct input
     And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Receipts" link on header menu
     And I click to "Receipts List" link on the left menu
-    And I input DO No created from PO to filter DO in GR list
+    Then I see 'GR List' page
+
+    When I input DO No created from PO to filter DO in GR list
     Then I see GR status in GR list is "PENDING APPROVAL"
 
     When Get GR number in list
@@ -99,13 +111,17 @@ Scenario: 01 Creator create PO invoice with correct input
 
     When I click to "I Understand" button format_1
     And I click to "Invoice Pending Approval" link on the left sub menu
-    And I input PO No to filter PO in 'Invoice Pending Approval' list
+    Then I see 'Invoices Pending Approval List' page
+
+    When "buyer" input PO No to filter PO in "INV Pending Approval" list
     And I see Invoice status in list is "PENDING THREE WAY"
     And I see Invoice Type in list is "PO INVOICE"
 
     When Get INV number in list
     And I click to "Invoices List" link on the left sub menu
-    And I input INV No to filter INV in List
+    Then I see 'Invoice List' page
+
+    When I input INV No to filter INV in "INV" list
     Then I see Invoice status in list is "PENDING THREE WAY"
     And I see Matching in list is "THREE WAY"
 
@@ -116,7 +132,9 @@ Scenario: 02 AP Speciallist approval Invoice
     And I click to "Invoices" link on header menu
     And I click to "Invoices" link on the left menu
     And I click to "Invoice Pending Approval" link on the left sub menu
-    And I input INV No to filter INV in List
+    Then I see 'Invoices Pending Approval List' page
+
+    When I input INV No to filter INV in "INV Pending Approval" list
     Then I see Invoice status in list is "PENDING THREE WAY"
     And I see Invoice Type in list is "PO INVOICE"
 
@@ -131,7 +149,9 @@ Scenario: 02 AP Speciallist approval Invoice
     Then I see a message "Invoice has been issued to pending approval" appears
 
     When I click to "I Understand" button format_1
-    And I input INV No to filter INV in List
+    Then I see 'Invoices Pending Approval List' page
+
+    When I input INV No to filter INV in "INV Pending Approval" list
     Then I see Invoice status in list is "PENDING APPROVAL"
 
     When I logout account
@@ -140,7 +160,9 @@ Scenario: 02 AP Speciallist approval Invoice
     And I click to "Invoices" link on header menu
     And I click to "Invoices" link on the left menu
     And I click to "Invoice Pending Approval" link on the left sub menu
-    And I input INV No to filter INV in List
+    Then I see 'Invoices Pending Approval List' page
+
+    When I input INV No to filter INV in "INV Pending Approval" list
     Then I see Invoice status in list is "PENDING APPROVAL"
 
     When I double click to INV No in 'Invoice Pending Approval' list
@@ -152,6 +174,10 @@ Scenario: 02 AP Speciallist approval Invoice
     Then I see a message "Invoice has been approved" appears
 
     When I click to "I Understand" button format_1
-    And I click to "Invoices List" link on the left sub menu
-    And I input INV No to filter INV in List
+    Then I see 'Invoices Pending Approval List' page
+
+    When I click to "Invoices List" link on the left sub menu
+    Then I see 'Invoice List' page
+
+    When I input INV No to filter INV in "INV" list
     Then I see Invoice status in list is "APPROVED THREE WAY"

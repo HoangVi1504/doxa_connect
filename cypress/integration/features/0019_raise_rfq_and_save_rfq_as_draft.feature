@@ -1,4 +1,5 @@
-@rfq @p2p
+@rfq
+#@p2p
 Feature: 0019 Raise RFQ and save RFQ as draft
 
 Scenario: P2P-RFQ-S05-001, 002, 003, 004 Raise RFQ and save RFQ as draft

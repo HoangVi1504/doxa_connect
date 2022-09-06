@@ -13,9 +13,7 @@ When(/^Call API approver PPR random$/, () => {
 })
 
 When(/^Call API Raise PPR random$/, () => {
-    let number = faker.random.alphaNumeric(5)
-    let pprTitleRandom = "auto PPR " + number
-    sessionStorage.setItem("pprTitleRandom", pprTitleRandom)
+    sessionStorage.setItem("pprTitleRandom", "auto PPR " + faker.random.alphaNumeric(5))
     apiAction.callApiRaisePpr(sessionStorage.getItem("pprTitleRandom"))
 })
 
@@ -403,6 +401,10 @@ Then(/^I see 'Raise Pre Requisition' page title$/, () => {
 
 Then(/^I see 'PPR detail' page title$/, () => {
     raisePprPage.verifyPprDetailPageDisplay()
+})
+
+Then(/^I see 'PPR List' page title$/, () => {
+    raisePprPage.verifyPprListPageTitleDisplay()
 })
 
 Then(/^I see a validation text of 'Requisition Type' at 'Raise PPR' page "([^"]*)" appears$/, (validation) => {

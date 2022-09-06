@@ -9,7 +9,9 @@ Scenario: 01 Creator create GR from PO with full PO quantity
     And I click to "Requisitions" link on header menu
     And I click to "Requisitions" link on the left menu
     And I click to "PRs List" link on the left sub menu
-    And I input PR title random to 'Search PR' textbox
+    Then I see 'PR List' page title
+
+    When I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING APPROVAL"
 
     When Get PR number in PR list
@@ -21,8 +23,10 @@ Scenario: 01 Creator create GR from PO with full PO quantity
     And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Orders" link on header menu
     And I click to "Requests Pending Conversion" link on the left menu
-    And I click to "PRs To Be Converted" link on the left sub menu
-    And I input PR No to filter PR in list
+    And I click to "PRs To Be Converted List" link on the left sub menu
+    Then I see 'PR To Be Converted List' title
+
+    When I input PR No to filter PR in "PRs To Be Converted" list
     Then I see PR status in PR list is "PENDING CONVERSION TO PO"
 
     When I double click to PR No in 'PR To Be Converted' list
@@ -34,11 +38,14 @@ Scenario: 01 Creator create GR from PO with full PO quantity
     Then I see a message "Converted to PO successfully" appears
 
     When I click to "I Understand" button format_1
-    And I click to 'Dashboard' link on Header menu if it not be selected
-    And I click to "Orders" link on header menu
-    And I click to "Orders List" link on the left menu
+    And I click to "Back" button format_1
+    Then I see 'PR To Be Converted List' title
+
+    When I click to "Orders List" link on the left menu
     And I click to "POs List" link on the left sub menu
-    And I input PR No to filter PR in list
+    Then I see 'PO List' page
+
+    When I input PR No to filter PR in "PO" list
     Then I see PO status in list is "PENDING ISSUE"
     And I see Supplier Ack status is "NOT VIEWED"
 
@@ -53,13 +60,17 @@ Scenario: 01 Creator create GR from PO with full PO quantity
     Then I see a message "PO has been issued to supplier" appears
 
     When I click to "I Understand" button format_1
-    And I input PO No to filter PO in list
+    Then I see 'PO List' page
+
+    When "buyer" input PO No to filter PO in "PO" list
     Then I see PO status in list is "ISSUED"
     And I see Supplier Ack status is "NOT VIEWED"
 
     When I click to "Receipts" link on header menu
-    And I click to "Create Receipt from PO" link on the left menu
-    And I input PO No to filter PO in list
+    And I click to "Create Receipt From PO" link on the left menu
+    Then I see 'List Create GR From PO' page
+
+    When "buyer" input PO No to filter PO in "Create GR From PO" list
     And I check to PO No checkbox at 'Create GR' page
     And I click to "Create Goods Receipt" button format_2
     Then I see 'Create GR From PO' page
@@ -86,7 +97,9 @@ Scenario: 01 Creator create GR from PO with full PO quantity
     Then I see a message "Goods receipt successfully submitted for" appears
 
     When I click to "I Understand" button format_1
-    And I input DO No to filter DO in GR list
+    Then I see 'GR List' page
+
+    When I input DO No to filter DO in GR list
     Then I see GR status in GR list is "PENDING APPROVAL"
     And I see approval route in GR list is "auto approval Goods Receipt"
 
@@ -98,7 +111,9 @@ Scenario: 02 Approver approval GR
     And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Receipts" link on header menu
     And I click to "Receipts List" link on the left menu
-    And I input GR No to filter GR in list
+    Then I see 'GR List' page
+
+    When I input GR No to filter GR in list
     Then I see GR status in GR list is "PENDING APPROVAL"
 
     When I double click to GR No in list
@@ -110,5 +125,7 @@ Scenario: 02 Approver approval GR
     Then I see a message "Goods receipt successfully approved" appears
 
     When I click to "I Understand" button format_1
-    And I input GR No to filter GR in list
+    Then I see 'GR List' page
+
+    When I input GR No to filter GR in list
     Then I see GR status in GR list is "COMPLETED"

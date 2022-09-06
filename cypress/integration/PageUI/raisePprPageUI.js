@@ -28,6 +28,7 @@ class RaisePprPageLocator{
         this.item_quantity_txb_in_item_list_xpath = "(//*[@col-id='quantity'])[2]//input";
 
         // Xpath - Other
+        this.ppr_list_page_title_xpath = "//h1//*[text()='Purchase Pre-Requisitions List']";
         this.raise_ppr_page_title_xpath = "//h1[text()='Raise Pre-Requisition']";
         this.ppr_detail_page_title_xpath = "//h1[text()='Pre-Requisition Details']";  
         this.scroll_bar_in_ppr_list_xpath = "//*[@class='ag-body-horizontal-scroll-viewport']";

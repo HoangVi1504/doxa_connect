@@ -3,12 +3,10 @@ class RaisePrPageLocator{
         // CSS
         this.note_txb_css = '[name="note"]';
         this.pr_title_txb_css = '[name="prTitle"]';
-        this.filter_pr_txb_css = '[aria-label="Purchase Request Title Filter Input"]';
         this.delivery_date_txb_css = '[name="deliveryDate"]';
         this.search_catalogue_txb_css = '[type="search"]';
         this.send_back_reason_txb_css = '[name="sendBackReason"]';
-
-        this.filter_pr_in_list_css = '[aria-label="Purchase Requisition No. Filter Input"]'
+        
         this.filter_uom_in_list_css = '[aria-label="UOM Filter Input"]';
         this.filter_size_in_list_css = '[aria-label="Size Filter Input"]';
         this.filter_trade_in_list_css = '[aria-label="Trade Filter Input"]';
@@ -17,6 +15,8 @@ class RaisePrPageLocator{
         this.filter_category_in_list_css = '[aria-label="Category Filter Input"]';
         this.filter_tax_code_in_list_css = '[aria-label="Tax Code Filter Input"]';
         this.filter_quantity_in_list_css = '[aria-label="Quantity Filter Input"]';
+        this.filter_pr_title_in_list_css = '[aria-label="Purchase Request Title Filter Input"]';
+        this.filter_pr_number_in_list_css = '[aria-label="Purchase Requisition No. Filter Input"]'
         this.filter_unit_price_in_list_css = '[aria-label="Unit Price Filter Input"]';
         this.filter_price_type_in_list_css = '[aria-label="Price Type Filter Input"]';
         this.filter_tax_percentage_in_list_css = '[aria-label="Tax Percentage Filter Input"]';
@@ -41,7 +41,6 @@ class RaisePrPageLocator{
         this.item_model_txb_xpath = "(//*[@col-id='itemModel'])[2]//input";
         this.item_quantity_txb_xpath = "(//*[@col-id='itemQuantity'])[2]//input";
         this.item_unit_price_txb_xpath = "(//*[@col-id='itemUnitPrice'])[2]//input";
-
 
         this.item_code_xpath = "(//*[@col-id='itemCode'])[2]";
         this.item_name_xpath = "(//*[@col-id='itemName'])[2]";
@@ -72,9 +71,10 @@ class RaisePrPageLocator{
         this.pr_status_in_pr_list_xpath = "(//*[@role='rowgroup'])[2]/div[@role='row'][1]//*[@col-id='prStatus' and text()='%s']";
         this.requester_in_pr_list_xpath = "(//*[@role='rowgroup'])[2]/div[@role='row'][1]//*[@col-id='requestorName' and text()='%s']";
         this.scroll_bar_in_pr_list_xpath = "//*[@class='ag-body-horizontal-scroll-viewport']";
-        this.scroll_bar_in_item_table_xpath = "(//*[@class='ag-body-horizontal-scroll-viewport'])[1]";
+        this.scroll_bar_in_item_table_xpath = "(//*[@class='ag-body-horizontal-scroll-viewport'])[3]";
         this.approval_route_in_pr_list_xpath = "(//*[@role='rowgroup'])[2]/div[@role='row'][1]//*[@col-id='approvalRouteName' and text()='%s']";
         this.procurement_type_in_pr_list_xpath = "(//*[@role='rowgroup'])[2]/div[@role='row'][1]//*[@col-id='procurementType']/*[text()='%s']";
+        this.pr_to_be_converted_page_title_xpath = "//h1//*[text()='Purchase Requisitions To Be Converted List']";
 
         this.validation_text_pr_title_xpath = "//*[@name='prTitle']/following-sibling::*[text()='%s']";
         this.validation_text_delivery_date_xpath = "//*[@name='deliveryDate']/following-sibling::*[text()='%s']";

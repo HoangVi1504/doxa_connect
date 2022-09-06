@@ -42,15 +42,15 @@ When(/^I input "([^"]*)" to 'Quantity Receiving' textbox at table$/, (quantity) 
 })
 
 When(/^I input GR No to filter GR in list$/, () => {
-    grPage.enterValueToFilterGrInList(sessionStorage.getItem("grNumber"))
+    grPage.enterValueToFilterGrNumberInList(sessionStorage.getItem("grNumber"))
 })
 
 When(/^I input DO No to filter DO in GR list$/, () => {
-    grPage.enterValueToFilterDoInList(sessionStorage.getItem("doNumber"))
+    grPage.enterValueToFilterDoNumberInList(sessionStorage.getItem("doNumber"))
 })
 
 When(/^I input DO No created from PO to filter DO in GR list$/, () => {
-    grPage.enterValueToFilterDoInList(sessionStorage.getItem("doNumberDoList"))
+    grPage.enterValueToFilterDoNumberInList(sessionStorage.getItem("doNumberDoList"))
 })
 
 When(/^I select approval route "([^"]*)" at 'Create GR' page$/, (value) => {
@@ -77,11 +77,19 @@ Then(/^I see 'GR Detail' page$/, () => {
     grPage.verifyGrDetailPageTitleDisplay()
 })
 
+Then(/^I see 'GR List' page$/, () => {
+    grPage.verifyGrListPageTitleDisplay()
+})
+
+Then(/^I see 'List Create GR From PO' page$/, () => {
+    grPage.verifyListCreateGrFromPoPageTitleDisplay()
+})
+
 Then(/^I see GR No at 'GR Detail' page$/, () => {
     grPage.verifyValueInGrNumberTextboxExits(sessionStorage.getItem("grNumber"))
 })
 
-Then(/^I see Do No at Create GR From DO page$/, () => {
+Then(/^I see Do No in 'DO Number' textbox at 'Create GR From DO' page$/, () => {
     grPage.verifyValueInDoNumberTextboxExits(sessionStorage.getItem("doNumberDoList"))
 })
 

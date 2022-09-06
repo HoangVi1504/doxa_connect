@@ -1,4 +1,5 @@
-@rfq @p2p
+@rfq 
+#@p2p
 Feature: 0011 Raise Request for Quotations with non-project, One-off-Quotation and add manual items
 
 Scenario: P2P-RFQ-S01-001 Raise Request for Quotations with non-project, One-off quotation, add manual item

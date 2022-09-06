@@ -41,7 +41,9 @@ Scenario: 01 Save as draft PR
     Then I see a message "Purchase requisition successfully saved" appears  
 
     When I click to "I Understand" button format_1
-    And I input PR title from "pr_v5" json file to 'Search PR' textbox
+    Then I see 'PR List' page title
+
+    When I input PR title from "pr_v5" json file to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING SUBMISSION"
     And I see Requester name in PR list from "pr_v5" json file
     And I see Procurement type in PR list from "pr_v5" json file
@@ -55,7 +57,9 @@ Scenario: 02 Submit PR in Pending Submission status after save as draft PR
     And I click to "Requisitions" link on header menu
     And I click to "Requisitions" link on the left menu
     And I click to "PRs List" link on the left sub menu
-    And I input PR title from "pr_v1" json file to 'Search PR' textbox
+    Then I see 'PR List' page title
+
+    When I input PR title from "pr_v1" json file to 'Search PR' textbox
     Then I see PR title in PR list from "pr_v1" json file 
     And I see PR status in PR list is "PENDING SUBMISSION"
 
@@ -68,7 +72,9 @@ Scenario: 02 Submit PR in Pending Submission status after save as draft PR
     Then I see a message "Purchase requisition successfully submitted" appears
 
     When I click to "I Understand" button format_1
-    And I input PR title from "pr_v1" json file to 'Search PR' textbox
+    Then I see 'PR List' page title
+
+    When I input PR title from "pr_v1" json file to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING APPROVAL"
 
 Scenario: 03 Cancel PR in Pending Approval status after Submit PR in Pending Submission status
@@ -78,7 +84,9 @@ Scenario: 03 Cancel PR in Pending Approval status after Submit PR in Pending Sub
     And I click to "Requisitions" link on header menu
     And I click to "Requisitions" link on the left menu
     And I click to "PRs List" link on the left sub menu
-    And I input PR title from "pr_v5" json file to 'Search PR' textbox
+    Then I see 'PR List' page title
+
+    When I input PR title from "pr_v5" json file to 'Search PR' textbox
     Then I see PR title in PR list from "pr_v5" json file 
     And I see PR status in PR list is "PENDING APPROVAL"
 
@@ -93,5 +101,7 @@ Scenario: 03 Cancel PR in Pending Approval status after Submit PR in Pending Sub
     Then I see a message "Purchase requisition successfully cancelled" appears
 
     When I click to "I Understand" button format_1
-    And I input PR title from "pr_v5" json file to 'Search PR' textbox
+    Then I see 'PR List' page title
+
+    When I input PR title from "pr_v5" json file to 'Search PR' textbox
     Then I see PR status in PR list is "CANCELLED"

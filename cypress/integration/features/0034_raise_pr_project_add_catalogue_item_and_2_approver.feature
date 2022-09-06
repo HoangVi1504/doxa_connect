@@ -18,7 +18,9 @@ Scenario: 01 Raise PR with Project, add catalogue items to 2 approver
     Then I see a message "Purchase requisition successfully submitted" appears
 
     When I click to "I Understand" button format_1
-    And I input PR title from "pr_v4" json file to 'Search PR' textbox
+    Then I see 'PR List' page title
+
+    When I input PR title from "pr_v4" json file to 'Search PR' textbox
     Then I see PR title in PR list from "pr_v4" json file
     And I see PR status in PR list is "PENDING APPROVAL"
     And I see Requester name in PR list from "pr_v4" json file
@@ -34,7 +36,9 @@ Scenario: 02 Approver approval PR
     And I click to "Requisitions" link on header menu
     And I click to "Requisitions" link on the left menu
     And I click to "PRs List" link on the left sub menu
-    And I input PR title from "pr_v4" json file to 'Search PR' textbox
+    Then I see 'PR List' page title
+
+    When I input PR title from "pr_v4" json file to 'Search PR' textbox
     Then I see PR title in PR list from "pr_v4" json file 
     And I see PR status in PR list is "PENDING APPROVAL"
 
@@ -55,7 +59,9 @@ Scenario: 02 Approver approval PR
     And I click to "Requisitions" link on header menu
     And I click to "Requisitions" link on the left menu
     And I click to "PRs List" link on the left sub menu
-    And I input PR title from "pr_v4" json file to 'Search PR' textbox
+    Then I see 'PR List' page title
+
+    When I input PR title from "pr_v4" json file to 'Search PR' textbox
     Then I see PR title in PR list from "pr_v4" json file 
     And I see PR status in PR list is "PENDING APPROVAL"
 
@@ -69,5 +75,7 @@ Scenario: 02 Approver approval PR
 
     # Bug: Approver 2 can not find PR after appoval PR successfully
     # When I click to "I Understand" button format_1
-    # And I input PR title from "pr_v4" json file to 'Search PR' textbox
+    # Then I see 'PR List' page title
+
+    # When I input PR title from "pr_v4" json file to 'Search PR' textbox
     # Then I see PR status in PR list is "PENDING CONVERSION TO PO"

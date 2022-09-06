@@ -1,4 +1,5 @@
-@rfq @p2p
+@rfq
+#@p2p
 Feature: 0013 Raise Request for Quotations with non-project, Contract and add manual items
 
 Scenario: P2P-RFQ-S02-001 Raise Request for Quotations with non-project, Contract and add manual items

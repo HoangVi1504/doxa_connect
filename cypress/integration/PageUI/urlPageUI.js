@@ -56,14 +56,20 @@ class UrlPageLocator{
         this.do_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/delivery-order/list`;
         this.issue_do_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/delivery-order/issue`;
         this.create_do_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/delivery-order/create-do`;
+        this.create_do_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/delivery-order/po/list`
 
         // GR URL
         this.gr_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/goods-receipt/list`;
         this.gr_detail_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/goods-receipt/details?uuid=${'%s'}&grGlobalNumber=`
         this.approval_gr_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/goods-receipt/approve`;
         this.create_gr_from_do_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/delivery-order/list/for-gr`;
+        this.create_gr_from_po_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-order/${'%s'}/list/for-gr`
         this.create_gr_from_do_submit_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/goods-receipt/submit`;        
         this.create_gr_from_do_detail_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/delivery-order/details/for-gr`;
+
+        // INV
+        this.inv_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/invoice/${'%s'}/invoice/buyer/list`;
+        this.inv_pending_approval_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/invoice/${'%s'}/invoice/buyer/list/pending`;
 
         // URL Create Data
         this.create_entity_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/org/create`;

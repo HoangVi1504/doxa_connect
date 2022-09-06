@@ -15,10 +15,12 @@ class GrPageLocator{
         
         //Xpath
         this.gr_number_in_list_xpath = "//*[contains(@class,'ag-row-first')]//*[@col-id='grNumber' and text()='%s']";
+        this.gr_list_page_title_xpath = "//h1//*[text()='Receipts List']";
         this.gr_detail_page_title_xpath = "//h1//*[text()='Goods Receipt Details']";
         this.scroll_bar_in_item_table_xpath = "(//*[@class='ag-body-horizontal-scroll-viewport'])[1]";
         this.create_gr_from_po_page_title_xpath = "//h1//*[text()='Create Receipt From PO']";
         this.create_gr_from_do_page_title_xpath = "//h1//*[text()='Create Receipt From DO']";
+        this.list_create_gr_from_po_page_title_xpath = "//h1//*[text()='Create Receipt From PO']";
 
         this.validation_text_delivery_date_xpath = "//*[@name='deliveryDate']/following-sibling::*[@class='invalid-feedback' and text()='%s']";
         this.validation_text_approval_route_xpath = "//*[@name='approvalRoute']/following-sibling::*[@class='invalid-feedback' and text()='%s']";
