@@ -1,7 +1,7 @@
 @gr @p2p
 Feature: 0052 Creator create GR from PO save as draft then approver approval GR
 
-Scenario: 01 Creator create GR from PO with partial PO quantity
+Scenario: P2P-GR-S04-002 Creator create GR from PO with partial PO quantity
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And Call API Raise PR random
@@ -69,7 +69,7 @@ Scenario: 01 Creator create GR from PO with partial PO quantity
 
     When Get GR number in list
 
-Scenario: 02 Approver approval GR after creator create GR from PO with partial PO quantity
+Scenario: P2P-GR-S05-001 Approver approval GR after creator create GR from PO with partial PO quantity
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "approver 1"
     And I click to 'Dashboard' link on Header menu if it not be selected
@@ -102,7 +102,7 @@ Scenario: 02 Approver approval GR after creator create GR from PO with partial P
     When "buyer" input PO No to filter PO in "PO" list
     Then I see PO status in list is "PARTIALLY DELIVERED"
 
-Scenario: 03 Creator save as draft GR from PO then submit GR in Pending Submission status
+Scenario: P2P-GR-S04-003 Creator save as draft GR from PO then submit GR in Pending Submission status
     # Save as draft GR from PO => GR in Pending Submission status
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"

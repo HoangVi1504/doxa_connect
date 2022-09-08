@@ -1,7 +1,7 @@
 @pr @p2p
 Feature: 0035 Submit PR in Pending submission status after save as draft PR then cancel PR in Pending Approval status
 
-Scenario: 01 Save as draft PR
+Scenario: P2P-PR-S03-001-002-003 Save as draft PR
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to "Requisitions" link on header menu
@@ -50,7 +50,7 @@ Scenario: 01 Save as draft PR
 
     When Get PR number in PR list
 
-Scenario: 02 Submit PR in Pending Submission status after save as draft PR
+Scenario: P2P-PR-S06-001 Submit PR in Pending Submission status after save as draft PR
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to 'Dashboard' link on Header menu if it not be selected
@@ -77,7 +77,7 @@ Scenario: 02 Submit PR in Pending Submission status after save as draft PR
     When I input PR title from "pr_v1" json file to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING APPROVAL"
 
-Scenario: 03 Cancel PR in Pending Approval status after Submit PR in Pending Submission status
+Scenario: P2P-PR-S04-001 Cancel PR in Pending Approval status after Submit PR in Pending Submission status
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to 'Dashboard' link on Header menu if it not be selected

@@ -44,7 +44,7 @@ Scenario: 01 Creator convert PR to PO then issue PO
     Then I see PO status in list is "ISSUED"
     And I see Supplier Ack status is "NOT VIEWED"
 
-Scenario: 02 Connected supplier create DO from PO with partial quantity then issue DO 
+Scenario: P2P-GR-S01-002 P2P-GR-S02-001 Connected supplier create DO from PO with partial quantity then issue DO 
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "supplier 34"
     And I click to 'Dashboard' link on Header menu if it not be selected
@@ -104,7 +104,7 @@ Scenario: 02 Connected supplier create DO from PO with partial quantity then iss
     When I input DO No to filter DO in "DO" list
     Then I see DO status in list is "PENDING RECEIPT"
 
-Scenario: 03 Creator create GR from DO with partial DO quantity
+Scenario: P2P-GR-S03-002 Creator create GR from DO with partial DO quantity
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to 'Dashboard' link on Header menu if it not be selected
@@ -136,7 +136,7 @@ Scenario: 03 Creator create GR from DO with partial DO quantity
 
     When Get GR number in list
 
-Scenario: 04 Approver approval GR in Pending Approval status
+Scenario: P2P-GR-S05-001 Approver approval GR in Pending Approval status
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "approver 1"
     And I click to 'Dashboard' link on Header menu if it not be selected
@@ -161,7 +161,7 @@ Scenario: 04 Approver approval GR in Pending Approval status
     When I input GR No to filter GR in list
     Then I see GR status in GR list is "COMPLETED"
 
-Scenario: 05 Connected supplier create DO from PO with partial quantity then issue DO 
+Scenario: P2P-GR-S01-002 P2P-GR-S02-001 Connected supplier create DO from PO with partial quantity then issue DO 
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "supplier 34"
     And I click to 'Dashboard' link on Header menu if it not be selected
@@ -208,7 +208,7 @@ Scenario: 05 Connected supplier create DO from PO with partial quantity then iss
     When I input DO No to filter DO in "DO" list
     Then I see DO status in list is "PENDING RECEIPT"
 
-Scenario: 06 Creator creaate GR from DO and save as draft then Submitting GR in Pending Submission status
+Scenario: P2P-GR-S03-003 Creator creaate GR from DO and save as draft then Submitting GR in Pending Submission status
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to 'Dashboard' link on Header menu if it not be selected
@@ -253,7 +253,7 @@ Scenario: 06 Creator creaate GR from DO and save as draft then Submitting GR in 
     When I input GR No to filter GR in list
     Then I see GR status in GR list is "PENDING APPROVAL"
 
-Scenario: 07 Approver approval GR in Pending Approval status
+Scenario: P2P-GR-S05-001 Approver approval GR in Pending Approval status
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "approver 1"
     And I click to 'Dashboard' link on Header menu if it not be selected

@@ -1,7 +1,7 @@
 @pr @p2p
 Feature: 0031 Raise PR with Non-project, add manual item and 1 approver
 
-Scenario: 01 Raise PR with Non-project, add manual item and 1 approver
+Scenario: P2P-PR-S01-001 Raise PR with Non-project, add manual item and 1 approver
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to "Requisitions" link on header menu
@@ -29,7 +29,7 @@ Scenario: 01 Raise PR with Non-project, add manual item and 1 approver
 
     When Get PR number in PR list
 
-Scenario: 02 Approver approval PR
+Scenario: P2P-PR-S07-001 Approver approval PR
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "approver 1"
     And I click to 'Dashboard' link on Header menu if it not be selected

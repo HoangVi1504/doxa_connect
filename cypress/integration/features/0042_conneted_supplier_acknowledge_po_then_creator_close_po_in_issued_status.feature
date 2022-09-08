@@ -1,7 +1,7 @@
 @po @p2p
 Feature: 0042 Connected supplier acknowledge PO then creator close PO in issued status
 
-Scenario: 01 Creator convert PR to PO and issue PO
+Scenario: P2P-PO-S01-001 P2P-PO-S03-001 Creator convert PR to PO and issue PO
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And Call API Raise PR random
@@ -75,7 +75,7 @@ Scenario: 01 Creator convert PR to PO and issue PO
     Then I see PO status in list is "ISSUED"
     And I see Supplier Ack status is "NOT VIEWED"
 
-Scenario: 02 Pending connection supplier cannot Acknowledge PO and connected supplier acknowledge PO
+Scenario: P2P-PO-S04-001 Pending connection supplier cannot Acknowledge PO and connected supplier acknowledge PO
     # Pending connection supplier only able to view PO without acknoledge PO
 
     # Connected supplier able to view PO and acknowledge PO
@@ -107,7 +107,7 @@ Scenario: 02 Pending connection supplier cannot Acknowledge PO and connected sup
     Then I see PO status in list is "ISSUED"
     And I see Supplier Ack status is "ACKNOWLEDGED"
 
-Scenario: 03 Creator close PO in Issued status
+Scenario: P2P-PO-S06-001 Creator close PO in Issued status
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to 'Dashboard' link on Header menu if it not be selected

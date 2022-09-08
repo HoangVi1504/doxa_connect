@@ -1,7 +1,7 @@
 @po @p2p
 Feature: 0043 creator cancel PO in Pending Issue status and connected supplier reject PO
 
-Scenario: 01 Creator cancel PO in Pending Issue status
+Scenario: P2P-PO-S07-001 Creator cancel PO in Pending Issue status
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And Call API Raise PR random
@@ -67,7 +67,7 @@ Scenario: 01 Creator cancel PO in Pending Issue status
     When "buyer" input PO No to filter PO in "PO" list
     Then I see PO status in list is "CANCELLED"
 
-Scenario: 02 Connected supplier reject PO
+Scenario: P2P-PO-S08-001 Connected supplier reject PO
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And Call API Raise PR random

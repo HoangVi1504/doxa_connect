@@ -1,7 +1,7 @@
 @pr @p2p
 Feature: 0037 Cancel draft PR in Pending submission status and submit PR converted from PPR
 
-Scenario: 01 Cancel draft PR in Pending Submission status
+Scenario: P2P-PR-S04-002 Cancel draft PR in Pending Submission status
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And Call API Save draft PR random
@@ -29,7 +29,7 @@ Scenario: 01 Cancel draft PR in Pending Submission status
     When I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "CANCELLED"
 
-Scenario: 02 Submit PR converted from PPR
+Scenario: P2P-PR-S06-003 Submit PR converted from PPR
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And Call API Raise PPR random

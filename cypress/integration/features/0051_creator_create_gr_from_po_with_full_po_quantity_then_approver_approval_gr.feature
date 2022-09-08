@@ -1,7 +1,7 @@
 @gr @p2p
 Feature: 0051 Creator create GR from PO with full PO quantity then approver approval GR
 
-Scenario: 01 Creator create GR from PO with full PO quantity
+Scenario: P2P-GR-S04-001 P2P-GR-S04-004 P2P-GR-S04-005 Creator create GR from PO with full PO quantity
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And Call API Raise PR random
@@ -105,7 +105,7 @@ Scenario: 01 Creator create GR from PO with full PO quantity
 
     When Get GR number in list
 
-Scenario: 02 Approver approval GR
+Scenario: P2P-GR-S05-001 Approver approval GR
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "approver 1"
     And I click to 'Dashboard' link on Header menu if it not be selected

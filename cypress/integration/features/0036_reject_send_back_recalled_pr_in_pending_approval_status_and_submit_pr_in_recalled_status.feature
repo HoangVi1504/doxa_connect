@@ -1,7 +1,7 @@
 @pr @p2p
 Feature: 0036 Approver reject and send back PR in Pending Approval status
 
-Scenario: 01 Approver Reject PR in PENDING APPROVAL status
+Scenario: P2P-PR-S09-001 Approver Reject PR in PENDING APPROVAL status
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And Call API Raise PR random
@@ -39,7 +39,7 @@ Scenario: 01 Approver Reject PR in PENDING APPROVAL status
     When I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "REJECTED"
 
-Scenario: 02 Approver Send back PR in PENDING APPROVAL status
+Scenario: P2P-PR-S08-001 Approver Send back PR in PENDING APPROVAL status
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And Call API Raise PR random
@@ -77,7 +77,7 @@ Scenario: 02 Approver Send back PR in PENDING APPROVAL status
     When I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "SENT BACK"
 
-Scenario: 03 Creator recall PR in Pending Approval status then submit PR in Recalled status
+Scenario: P2P-PR-S05-001 Creator recall PR in Pending Approval status then submit PR in Recalled status
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And Call API Raise PR random

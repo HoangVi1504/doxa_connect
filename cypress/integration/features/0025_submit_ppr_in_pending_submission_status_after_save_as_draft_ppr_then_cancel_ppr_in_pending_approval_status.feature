@@ -1,7 +1,7 @@
 @ppr @p2p
 Feature: 0025 Submit PPR in Pending submission status after save as draft PPR then cancel PPR in Pending Approval status
 
-Scenario: 01 Save as draft PPR
+Scenario: P2P-PPR-S03-001-002-003 Save as draft PPR
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to "Requisitions" link on header menu
@@ -50,7 +50,7 @@ Scenario: 01 Save as draft PPR
     And I see Procurement type in PPR list from "ppr_v5" json file
     And I see Approval Route in PPR list from "ppr_v5" json file
 
-Scenario: 02 Submit PPR in Pending Submission status after save as draft PPR
+Scenario: P2P-PPR-S06-001 Submit PPR in Pending Submission status after save as draft PPR
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to 'Dashboard' link on Header menu if it not be selected
@@ -77,7 +77,7 @@ Scenario: 02 Submit PPR in Pending Submission status after save as draft PPR
     When I input PPR title from "ppr_v5" json file to 'Search PPR' textbox
     Then I see PPR status in PPR list is "PENDING APPROVAL"
 
-Scenario: 03 Cancel PPR in Pending Approval status after Submit PPR in Pending Submission status
+Scenario: P2P-PPR-S04-001 Cancel PPR in Pending Approval status after Submit PPR in Pending Submission status
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to 'Dashboard' link on Header menu if it not be selected

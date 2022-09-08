@@ -1,7 +1,7 @@
 @inv @p2p
 Feature: 0061 Creator create PO invoice with correct input
 
-Scenario: 01 Creator create PO invoice with correct input
+Scenario: P2P-INV-S01-001 Creator create PO invoice with correct input
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And Call API Raise PR random

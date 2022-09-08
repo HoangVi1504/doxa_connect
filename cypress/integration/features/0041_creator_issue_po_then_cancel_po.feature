@@ -1,7 +1,7 @@
 @po @p2p
 Feature: 0041 Creator issued PO then cancel PO
 
-Scenario: 01 Creator convert PR to PO and issue PO
+Scenario: P2P-PO-S01-001 P2P-PO-S03-001 Creator convert PR to PO and issue PO
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And Call API Raise PR random
@@ -75,7 +75,7 @@ Scenario: 01 Creator convert PR to PO and issue PO
     Then I see PO status in list is "ISSUED"
     And I see Supplier Ack status is "NOT VIEWED"
 
-Scenario: 02 Supplier can view PO once PO is issued to supplier
+Scenario: P2P-PO-S05-002 Supplier can view PO once PO is issued to supplier
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "supplier 34"
     And I click to 'Dashboard' link on Header menu if it not be selected
@@ -101,7 +101,7 @@ Scenario: 02 Supplier can view PO once PO is issued to supplier
     Then I see PO status in list is "ISSUED"
     And I see Supplier Ack status is "VIEWED"
 
-Scenario: 03 Creator can view PO then cancel PO in Issued status
+Scenario: P2P-PO-S05-001 Creator can view PO then cancel PO in Issued status
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to 'Dashboard' link on Header menu if it not be selected

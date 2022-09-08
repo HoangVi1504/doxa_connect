@@ -1,7 +1,7 @@
 @ppr @p2p
 Feature: 0024 Raise PPR with Project, add catalogue item and 2 approver
 
-Scenario: 01 Raise PPR with Project, add catalogue item and 2 approver
+Scenario: P2P-PPR-S02-002 Raise PPR with Project, add catalogue item and 2 approver
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to "Requisitions" link on header menu
@@ -26,7 +26,7 @@ Scenario: 01 Raise PPR with Project, add catalogue item and 2 approver
     And I see Procurement type in PPR list from "ppr_v4" json file
     And I see Approval Route in PPR list from "ppr_v4" json file
 
-Scenario: 02 Approver approval PPR
+Scenario: P2P-PPR-S07-001 Approver approval PPR
     # Approver 1 approval PPR
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "approver 1"
