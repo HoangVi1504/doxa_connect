@@ -1,25 +1,34 @@
 class UrlPageLocator{  
     constructor(){
         this.tax_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/transactional-setting/list-tax-record`;
-        this.create_tax_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/transactional-setting/create-tax-record`;
-        this.create_uom_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/transactional-setting/create-uom-record`;
-        this.api_user_me_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/users/me`;
+        this.role_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/dox/rbac/role`
+        this.entities_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/org/list`;
         this.category_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/category/list`;
-        this.create_address_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/address/create`;
-        this.create_project_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/projects/create`;
+        this.currency_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/currencies/list/`;
         this.catalogue_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/catalogue/v2/list?page=0&size=10&q=`;
-        this.create_category_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/category/add`;
-        this.create_catalogue_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/catalogue/add`;
-        this.update_user_role_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/${'%s'}/rbac/user/${'%s'}`;
+        this.organization_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/users/${'%s'}/entity/list`;
+        this.company_user_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/users/company/list/${'%s'}`;
         this.payment_term_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/payment-term/list`;
-        this.create_gl_account_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/transactional-setting/create-gl-account`;
-        this.item_catalogue_pr_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/catalogue/v2/list/feature?page=0&size=10&q=item+code+1`;
-        this.item_catalogue_ppr_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/catalogue/v2/list/feature?page=0&size=10&q=&project=auto+item+code+1`;
         this.manage_vendor_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/suppliers/list`;
-        this.create_company_user_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/users/create`;
+        this.approval_group_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/group/list?singleUserGroup=false`;
         this.company_address_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/address/company`;
         this.create_ap_specialist_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/ap-specialist/create`;
         this.approval_matrix_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/approval-matrix/list`;
+        this.supplier_bank_account_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/supplier-bank-account/list`;
+        
+        this.create_tax_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/transactional-setting/create-tax-record`;
+        this.create_uom_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/transactional-setting/create-uom-record`;
+        this.api_user_me_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/users/me`;
+        this.create_address_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/address/create`;
+        this.create_project_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/projects/create`;
+        this.create_category_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/category/add`;
+        this.create_catalogue_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/catalogue/add`;
+        this.update_user_role_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/${'%s'}/rbac/user/${'%s'}`;
+        this.create_gl_account_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/transactional-setting/create-gl-account`;
+        this.item_catalogue_pr_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/catalogue/v2/list/feature?page=0&size=10&q=item+code+1`;
+        this.entity_detail_page_url = `https://connex-${'%s'}.doxa-holdings.com/entity-details?uuid=${'%s'}`;
+        this.item_catalogue_ppr_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/catalogue/v2/list/feature?page=0&size=10&q=&project=auto+item+code+1`;
+        this.create_company_user_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/users/create`;
         this.create_external_vendor_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/suppliers/create`;
         this.create_approval_matrix_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/approval-matrix/create`;
         this.approval_configuration_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/approval-configuration/get`;

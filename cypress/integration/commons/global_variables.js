@@ -1,4 +1,5 @@
 var url
+var mailGetnadaUrl
 
 if (Cypress.env('ENV') == 'dev'){
     url = 'https://connex-dev.doxa-holdings.com'
@@ -8,8 +9,10 @@ else if (Cypress.env('ENV') == 'stag'){
 }
 else{
     url = 'https://connex-stag.doxa-holdings.com/'
+    mailGetnadaUrl = 'https://getnada.com'
 }
-
-module.exports = {
-    url
+    
+module.exports = { 
+    url,
+    mailGetnadaUrl,
 };

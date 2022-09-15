@@ -1,3 +1,4 @@
+import 'cypress-file-upload';
 const moment= require('moment')
 const fs = require('fs');
 
@@ -18,7 +19,6 @@ class BaseAction {
         cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="prNumber"]').then(($el) => {
             let text = $el.text()
             sessionStorage.setItem("prNumber", text)
-            cy.log(sessionStorage.getItem("prNumber"))
         });
     }
 
@@ -47,8 +47,19 @@ class BaseAction {
         cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="invoiceNo"]').then(($el) => {
             let text = $el.text()
             sessionStorage.setItem("invNumberList", text)
-            cy.log(sessionStorage.getItem("invNumberList"))
         });
+    }
+
+    getPasswordFromGetnada(){
+        this.wait(5)
+        cy.xpath("//*[@id='the_message_iframe']").then(function($ele){
+            cy.wrap($ele.contents().find('body').find('div[class="content"]').find('p').last()).then(($el) => {
+                let tmp = $el.text()
+                let text = tmp.replace('Login Now','').split(" ").pop()
+                cy.writeFile("dataTestGetnada.json", {passNewAccount: text});
+            })
+            
+        }) 
     }
 
     getTime(){
@@ -60,6 +71,24 @@ class BaseAction {
         let someDay = new Date();
         someDay.setDate(new Date().getDate()+ Number(day));
         return someDay
+    }
+
+    getSomeDateByMonth(day){
+        let someDay = new Date();
+        someDay.setDate(new Date().getDate()+ Number(day));
+        return someDay.getMonth()
+    }
+
+    getSomeDateByFullYear(day){
+        let someDay = new Date();
+        someDay.setDate(new Date().getDate()+ Number(day));
+        return someDay.getFullYear()
+    }
+
+    getSomeDateByYear(day){
+        let someDay = new Date();
+        someDay.setDate(new Date().getDate()+ Number(day));
+        return someDay.getYear()
     }
 
     getDate(day){
@@ -87,6 +116,10 @@ class BaseAction {
     }
 
     // CSS Selector
+    uploadFile(locator, fileName){
+        cy.get(locator).attachFile(fileName)
+    }
+
     enterValueToTextboxAfterClear(locator, value){
         cy.get(locator).clear()
         cy.get(locator).type(value)
@@ -104,6 +137,10 @@ class BaseAction {
         cy.get(locator).clear()
     }
 
+    doubleClickToElement(locator){
+        cy.get(locator).dblclick({force: true})
+    }
+
     checkCheckbox(locator){
         cy.get(locator).check({force: true})
     }
@@ -112,8 +149,20 @@ class BaseAction {
         cy.get(locator).click()
     }
 
+    forceClickToElement(locator){
+        cy.get(locator).click({force: true})
+    }
+
     getTextElement(locator){
         return cy.get(locator)
+    }
+
+    verifyCheckBoxIsChecked(locator){
+        cy.get(locator).should('be.checked')
+    }
+
+    verifyCheckBoxIsNotChecked(locator){
+        cy.get(locator).should('not.be.checked')
     }
 
     verifyElementVisible(locator){
@@ -122,6 +171,10 @@ class BaseAction {
 
     verifyElementNotVisible(locator){
         cy.get(locator).should('not.be.visible')
+    }
+
+    verifyElementDisable(locator){
+        cy.get(locator).should('be.disabled')
     }
 
     verifyElementNotExist(locator){
@@ -150,8 +203,12 @@ class BaseAction {
           .select(value)
     }
 
-    selectValueFromElement1(locator, option){
+    selectValueFromDropdownElement(locator, option){
         cy.get(locator).select(option).should('have.value', option)
+    }
+
+    setAttribute(locator, attributeName, attributeValue){
+        cy.get(locator).invoke('attr', attributeName, attributeValue)
     }
 
     submitForm(){
@@ -178,6 +235,14 @@ class BaseAction {
         cy.xpath(xpath).type(value)
     }
 
+    setAttributeByXpath(xpath, attributeName, attributeValue){
+        cy.xpath(xpath).invoke('attr', attributeName, attributeValue)
+    }
+
+    selectValueFromDropdownElementByXpath(dropdownXpath, option){
+        cy.xpath(dropdownXpath).select(option).should('have.value', option)
+    }
+
     selectOptionFromDropdownByXpath(dropdownXpath, optionXpath){
         this.clickToElementByXpath(dropdownXpath)
         this.clickToElementByXpath(optionXpath)
@@ -189,6 +254,10 @@ class BaseAction {
         this.clickToElementByXpath(optionXpath)
     }
 
+    uploadFileByXpath(xpath, fileName){
+        cy.xpath(xpath).attachFile(fileName)
+    }
+
     doubleClickToElementByXpath(xpath){
         cy.xpath(xpath).dblclick({force: true})
     }
@@ -197,7 +266,19 @@ class BaseAction {
         cy.xpath(xpath).check({force: true})
     }
 
-    forceClickToElement(xpath){
+    clickToElementByXpath(xpath){
+        cy.xpath(xpath).click()
+    }
+
+    uncheckCheckboxByXpath(xpath){
+        cy.xpath(xpath).uncheck({force: true})
+    }
+
+    clearValueInTextboxByXpath(xpath){
+        cy.xpath(xpath).clear()
+    }
+
+    forceClickToElementByXpath(xpath){
         cy.xpath(xpath).click({force: true})
     }
 
@@ -205,12 +286,24 @@ class BaseAction {
         cy.xpath(xpath).click()
     }
 
+    clickToElementWithTimeOutByXpath(xpath, time){
+        cy.xpath(xpath,{ timeout: time*1000 }).click()
+    }
+
     clickToElementWithCoordinatesByXpath(xpath){
         cy.xpath(xpath).click(0, 10)
     }
 
-    clickToBottomElement(xpath){
+    clickToBottomElementByXpath(xpath){
         cy.xpath(xpath).click('bottom', {force: true})
+    }
+
+    verifyCheckBoxIsCheckedByXpath(xpath){
+        cy.xpath(xpath).should('be.checked')
+    }
+
+    verifyCheckBoxIsNotCheckedByXpath(xpath){
+        cy.xpath(xpath).should('not.be.checked')
     }
 
     verifyElementByXpathExist(xpath){
@@ -229,7 +322,27 @@ class BaseAction {
         cy.xpath(xpath).should('not.exist')
     }
 
-    waitForElementInvisible(xpath,time){
+    verifyElementByXpathDisable(xpath){
+        cy.xpath(xpath).should(('be.disabled'))
+    }
+
+    verifyCheckBoxIsCheckedByXpath(xpath){
+        cy.xpath(xpath).should('be.checked')
+    }
+
+    verifyValueInTextboxExistByXpath(xpath, tmp){
+        cy.xpath(xpath).invoke('val').then((value) => {
+            if(value == tmp){
+                cy.xpath(xpath).invoke('val').should('equal', value)
+            }else this.verifyValueInTextboxExistByXpath(xpath, tmp)
+        })
+    }
+
+    getTextElementByXpath(xpath){
+        return cy.xpath(xpath)
+    }
+
+    waitForElementInvisibleByXpath(xpath,time){
         cy.xpath(xpath, {timeout:time*1000}).should('not.exist')
     }
 

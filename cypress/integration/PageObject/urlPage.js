@@ -55,4 +55,8 @@ class UrlPage{
     navigateToConvertPrToPoPage(uuid){
         commonAction.navigateTo(printf(urlPageLocator.convert_pr_to_po_url, this.env, uuid))
     }
+
+    navigateToEntityDetailPage(uuidEntity){
+        commonAction.navigateTo(printf(urlPageLocator.entity_detail_page_url, this.env, uuidEntity))
+    }
 }export default UrlPage

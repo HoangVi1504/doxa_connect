@@ -170,6 +170,92 @@ When(/^Call Api create approval matrix of feature "([^"]*)", approval level "([^
     apiAction.callApiCreateApprovalMatrix(featureCode, approvalLevel)
 })
 
+Given(/^Navigate to Getnada site$/, () => {
+    commonPage.navigateTo(globalVariables.mailGetnadaUrl)
+})
+
+Given(/^Create Random data for project$/, () => {
+    let addressLabel = "auto address label " + faker.random.alphaNumeric(5)
+    let address1 = faker.address.street()
+    let address2 = faker.address.secondaryAddress()
+    let postalCode = faker.address.zipCode()
+    let fullName = faker.internet.userName()
+    let email = fullName + "@getnada.com"
+    let phoneNumber = faker.random.numeric(10)
+
+    let companyName = "AUTO ENTITY " + faker.random.numeric(5)
+    let companyRegNo = "AUTO REG " + faker.random.numeric(5)
+    let entityName = "auto_entt_" + faker.random.numeric(5)
+    let entityEmail = entityName + "@getnada.com"
+
+    let projectCode = "prj"+ faker.random.numeric(5)
+    let erpProject = "ERP "+ faker.random.numeric(5)
+    let projectTitle = "auto project "+ faker.random.numeric(5)
+
+    let bankLabel = "auto bank label " + faker.random.alphaNumeric(5)
+    let bankBranch = "auto branch " + faker.random.alphaNumeric(5)
+    let bankBranchCode = "auto branch code " + faker.random.alphaNumeric(5)
+    let accountHolderName = "auto holder name " + faker.random.alphaNumeric(5)
+    let bankAccountNumber = faker.random.numeric(5)
+
+    let companyCodeExternalBuyer = "AUTO COMPANY CODE " + faker.random.numeric(5)
+    let companyNameExternalBuyer = "AUTO COMPANY NAME " + faker.random.numeric(5)
+    let companyRegExternalBuyer = "COMPANY_REG_" + faker.random.numeric(5)
+
+    let companyCodeExternalSupplier = "AUTO COMPANY CODE " + faker.random.numeric(5)
+    let companyNameExternalSupplier = "AUTO COMPANY NAME " + faker.random.numeric(5)
+    let companyRegExternalSupplier = "COMPANY_REG_" + faker.random.numeric(5)
+
+    commonAction.writeValueToJsonFile("cypress/integration/data/dataCommon.json",
+    {
+        email: email,
+        fullName: fullName,
+        address1: address1,
+        address2: address2,
+        postalCode: postalCode,
+        phoneNumber: phoneNumber,
+        addressLabel: addressLabel,
+    })
+
+    commonAction.writeValueToJsonFile("cypress/integration/data/manageProject.json",
+    {
+        projectCode: projectCode,
+        erpProject: erpProject,
+        projectTitle: projectTitle
+    })
+
+    commonAction.writeValueToJsonFile("cypress/integration/data/manageEntity.json",
+    { 
+        companyName: companyName,
+        companyRegNo: companyRegNo,
+        entityName: entityName,
+        entityEmail: entityEmail
+    })
+
+    commonAction.writeValueToJsonFile("cypress/integration/data/manageBankAccount.json",
+    {
+        bankLabel: bankLabel,
+        bankBranch: bankBranch,
+        bankBranchCode: bankBranchCode,
+        accountHolderName: accountHolderName,
+        bankAccountNumber: bankAccountNumber
+    })
+
+    commonAction.writeValueToJsonFile("cypress/integration/data/manageExternalBuyer.json",
+    {
+        companyCodeExternal: companyCodeExternalBuyer,
+        companyNameExternal: companyNameExternalBuyer,
+        companyRegExternal: companyRegExternalBuyer
+    })
+
+    commonAction.writeValueToJsonFile("cypress/integration/data/manageExternalSupplier.json",
+    {
+        companyCodeExternal: companyCodeExternalSupplier,
+        companyNameExternal: companyNameExternalSupplier,
+        companyRegExternal: companyRegExternalSupplier
+    })
+})
+
 When(/^I click to "([^"]*)" link on header menu$/, (linkName) => {
     commonPage.clickToOptionLinkOnHeaderMenu(linkName)
 });
@@ -190,6 +276,18 @@ When(/^I click to "([^"]*)" button format_2$/, (buttonName) => {
     commonPage.clickToButtonFormat2(buttonName)
 });
 
+When(/^I click to "([^"]*)" button format_3$/, (buttonName) => {
+    commonPage.clickToButtonFormat3(buttonName)
+});
+
+When(/^I click to text "([^"]*)"$/, (text) => {
+    commonPage.clickToText(text)
+});
+
+When(/^I click to 'User Profile' button$/, () => {
+    commonPage.clickToUserProfileButton()
+});
+
 When(/^I expand layout sidebar menu if it open$/, () => {
     commonAction.isElementVisible(commonPageLocator.layout_sidebar_xpath).then((isVisible) =>{
         if(isVisible){
@@ -207,10 +305,42 @@ When(/^I click to 'Dashboard' link on Header menu if it not be selected$/, () =>
     }) 
 })
 
+When(/^I click to Expand Collapse icon$/, () => {
+    commonPage.clickToExpandCollapseIcon()
+})
+
 When(/^Wait for "([^"]*)" seconds$/, (time) => {
     commonPage.waitTime(time)
 })
 
+Then(/^I see "([^"]*)" button format_1 is displayed$/, (buttonName) => {
+    commonPage.verifyButtonFormat1Display(buttonName)
+});
+
+Then(/^I see "([^"]*)" button format_1 is disabled$/, (buttonName) => {
+    commonPage.verifyButtonFormat1Disabled(buttonName)
+});
+
+Then(/^I see 'Dashboard' title$/, () => {
+    commonPage.verifyDashboardTitleDisplay()
+});
+
 Then(/^I see a message "([^"]*)" appears$/, (message) => {
     commonPage.verifyMediaHeadingMessageDisplay(message)
+});
+
+Then(/^I see a notification appears "([^"]*)"$/, (message) => {
+    commonPage.verifyModalMessageDisplay(message)
+});
+
+Then(/^I see "([^"]*)" link on the left menu is displayed$/, (linkName) => {
+    commonPage.verifyOptionLinkLeftMenuDisplay(linkName)
+});
+
+Then(/^I do not see "([^"]*)" link on the left menu$/, (linkName) => {
+    commonPage.verifyOptionLinkLeftMenuNotVisible(linkName)
+});
+
+Then(/^I do not see "([^"]*)" button format_1 visible$/, (buttonName) => {
+    commonPage.verifyButtonFormat1NotVisible(buttonName)
 });

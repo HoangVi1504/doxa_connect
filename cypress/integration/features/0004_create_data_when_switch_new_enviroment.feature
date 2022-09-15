@@ -23,7 +23,7 @@ Feature: 0003 Create data when switch new environment
 #    Given Navigate to Doxa Connect 2.0 site
 #    When I login with role "buyer"
 #    And Call Api create approval matrix of feature "<featureCode>", approval level "<approvalLevel>"
-
+  
 # Examples:
 #    | featureCode |         | approvalLevel |
 #    | Pr |                  |1|

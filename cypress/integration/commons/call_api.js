@@ -25,6 +25,21 @@ class ApiAction{
         this.env = 'stag'
     }
 
+    callApiNavigateToEntityDetailPage(entityName){
+        let token = window.localStorage.getItem("token")
+        cy.request({
+            method: 'GET',
+            url: printf(urlPageLocator.list_entities_url, this.env),            
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response)=>{
+            expect(response.body).has.property("status", "OK")
+            let elementEntity = response.body.data.find(element => element.entityName === entityName);
+            urlPage.navigateToEntityDetailPage(elementEntity.uuid)
+        })
+    }
+
     callApiGetDataItemCatalogue(){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
@@ -1236,6 +1251,12 @@ class ApiAction{
             let vendorUuid = elementVendor.uuid
             sessionStorage.setItem("vendorUuid", vendorUuid)
             cy.log(sessionStorage.getItem("vendorUuid"))
+        })
+    }
+
+    navigateToVendorDetailsPage(vendorName){
+        cy.wrap(this.callApiGetDataInManageVendorList(vendorName)).then((e)=>{
+            commonAction.navigateTo(printf(urlPageLocator.vendor_detail_url, this.env, sessionStorage.getItem("vendorUuid")))
         })
     }
 
