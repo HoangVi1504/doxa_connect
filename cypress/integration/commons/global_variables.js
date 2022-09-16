@@ -3,9 +3,11 @@ var mailGetnadaUrl
 
 if (Cypress.env('ENV') == 'dev'){
     url = 'https://connex-dev.doxa-holdings.com'
+    mailGetnadaUrl = 'https://getnada.com'
 }
 else if (Cypress.env('ENV') == 'stag'){ 
     url = 'https://connex-stag.doxa-holdings.com/'
+    mailGetnadaUrl = 'https://getnada.com'
 }
 else{
     url = 'https://connex-stag.doxa-holdings.com/'

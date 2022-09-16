@@ -6,7 +6,7 @@ Scenario: P2P-RFQ-S01-001 Raise Request for Quotations with non-project, One-off
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to "Request for Quotations" link on header menu
-    And I click to "Request for Quotation" link on the left menu
+    And I click to "Request for Quotations" link on the left menu
     And I click to "Raise RFQ" link on the left sub menu
     Then I see 'Raise RFQ' page title
 
@@ -22,3 +22,60 @@ Scenario: P2P-RFQ-S01-001 Raise Request for Quotations with non-project, One-off
     And I input RFQ title from "rfq_v1" json file to 'Search RFQ' textbox
     Then I see RFQ title from "rfq_v1" json file at the first row in RFQ list
     And I see RFQ status in RFQ list is "PENDING QUOTATION"
+
+Scenario: P2P-RFQ-S08-001-002 Connected supplier submits quote
+    # with invalid input
+    Given Navigate to Doxa Connect 2.0 site
+    When I login with role "supplier 1"
+    And I click to "Request for Quotations" link on header menu
+    And I click to "Request for Quotations" link on the left menu
+    And I click to "RFQ List" link on the left sub menu
+    Then I see 'RFQ List' page title
+
+    When I input RFQ title from "rfq_v1" json file to 'Search RFQ' textbox
+    Then I see RFQ title from "rfq_v1" json file at the first row in RFQ list
+    And I see RFQ status in RFQ list is "PENDING QUOTATION"
+
+    When I double click to RFQ title in RFQ list from "rfq_v1" json file
+    And Wait for "3" seconds
+    Then I see 'RFQ Detail' page title
+    And I see RFQ title at RFQ detail page from "rfq_v1" json file
+
+    When I click to "Submit Quote" button format_1
+    Then I see a message "Validation error, please check your input." appears
+
+    When I click to "OK" button format_1
+    Then I see a validation text of 'Currency Code' "Please select valid Currency" appears
+    And I see a validation text of 'Tax Code' "Please select valid Tax Code" appears
+
+    When I select "United States Dollar (+USD)" from 'Currency' dropdown at 'RFQ Detail' page
+    And I select "GST7" from 'Tax Code' dropdown at 'Request Terms' table on 'RFQ Detail' page
+    And I input "abc" to 'Quoted Unit Price' textbox at 'RFQ Detail' page
+    Then I see a message "Quoted Unit Price must be greater or equal than 0" appears
+
+    # with valid value
+    When I click to "OK" button format_1
+    And I input "25000" to 'Quoted Unit Price' textbox at 'RFQ Detail' page
+    And I input "comment negotiation auto" to 'Negotiation Comment' textbox at 'RFQ Detail' page
+    And I upload "TestImage.png" to 'Negotiation' table at 'RFQ Detail' page
+    And Wait for "3" seconds
+    And I click to "Send Message" button format_1
+    Then I see a message "Negotiation is sent successfully" appears
+    And I see comment "comment negotiation auto" in 'Negotiation' table at 'RFQ Detail' page
+
+    When I click to "I Understand" button format_1
+    Then I see comment "comment negotiation auto" in 'Negotiation' table at 'RFQ Detail' page
+
+    When I input "comment conversation auto" to 'Conversations Comment' textbox at 'RFQ Detail' page
+    And I click to "Send" button format_1
+    Then I see comment "comment conversation auto" in 'Conversation' table at 'RFQ Detail' page
+
+    When I click to "Submit Quote" button format_1
+    Then I see a message "Quotation Successfully Submitted" appears
+
+    When I click to "I Understand" button format_1
+    Then I see 'RFQ List' page title 
+
+    When I input RFQ title from "rfq_v1" json file to 'Search RFQ' textbox
+    Then I see RFQ title from "rfq_v1" json file at the first row in RFQ list
+    And I see RFQ status in RFQ list is "QUOTATION IN PROGRESS"

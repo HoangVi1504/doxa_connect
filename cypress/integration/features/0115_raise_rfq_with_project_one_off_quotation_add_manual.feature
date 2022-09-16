@@ -6,7 +6,7 @@ Scenario: P2P-RFQ-S03-001 Raise Request for Quotations with Project, One-off quo
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to "Request for Quotations" link on header menu
-    And I click to "Request for Quotation" link on the left menu
+    And I click to "Request for Quotations" link on the left menu
     And I click to "Raise RFQ" link on the left sub menu
     Then I see 'Raise RFQ' page title
 

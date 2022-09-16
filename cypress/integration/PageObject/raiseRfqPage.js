@@ -49,7 +49,7 @@ class RaiseRFQPage{
         cy.fixture(fileName).then((fileName) =>{
             commonAction.clickToElementByXpath(printf(commonPageLocator.button_format_2_xpath, "Add Catalogue"))
             this.enterValueToSearchTextboxInItemTable(fileName.itemCode)
-            commonAction.checkCheckboxByXpath(printf(raiseRFQPageLocator.item_catalogue_checkbox_xpath, fileName.itemCode))
+            commonAction.checkCheckboxByXpath(printf(raiseRFQPageLocator.item_catalogue_ckb_xpath, fileName.itemCode))
             commonAction.clickToElementByXpath(printf(commonPageLocator.button_format_1_xpath, "Add"))
             this.verifyItemDeleteButtonDisplay()
             this.scrollToQuantityItem("50%")
@@ -61,7 +61,7 @@ class RaiseRFQPage{
         cy.fixture(fileName).then((fileName) =>{
             commonAction.clickToElementByXpath(printf(commonPageLocator.button_format_2_xpath, "Add Catalogue"))
             this.enterValueToSearchTextboxInItemTable(fileName.itemCode)
-            commonAction.checkCheckboxByXpath(printf(raiseRFQPageLocator.item_catalogue_checkbox_xpath, fileName.itemCode))
+            commonAction.checkCheckboxByXpath(printf(raiseRFQPageLocator.item_catalogue_ckb_xpath, fileName.itemCode))
             commonAction.clickToElementByXpath(printf(commonPageLocator.button_format_1_xpath, "Add"))
             this.verifyItemDeleteButtonDisplay()
             this.clickToFilterSizeInItemTable()
@@ -123,6 +123,12 @@ class RaiseRFQPage{
         }) 
     }
 
+    enterValueToAwardedQuantityTextbox(fileName){
+        cy.fixture(fileName).then((fileName) =>{
+            commonAction.enterValueToTextbox(raiseRFQPageLocator.note_txb_css, fileName.quantity)
+        }) 
+    }
+
     enterValueToSearchTextboxInItemTable(keyWord){
         commonAction.enterValueToTextbox(raiseRFQPageLocator.search_item_catalogue_txb_css, keyWord)
     }
@@ -164,6 +170,40 @@ class RaiseRFQPage{
         commonAction.enterValueToTextboxByXpath(raiseRFQPageLocator.item_unit_price_xpath, price)
     }
 
+    enterValueToUnitPriceInItemTable(price) {
+        this.scrollToQuantityItem("55%")
+        commonAction.enterValueToTextboxByXpath(raiseRFQPageLocator.item_unit_price_xpath, price)
+    }
+
+    enterValueToTaxPercentageInItemTable(per) {
+        commonAction.enterValueToTextboxByXpath(raiseRFQPageLocator.item_tax_percentage_xpath, per)
+    }
+
+    enterValueToTaxCodeInRequestTerms(taxCode) {
+        commonAction.clearValueInTextbox(raiseRFQPageLocator.tax_code_txb_css)
+        commonAction.enterValueToTextbox(raiseRFQPageLocator.tax_code_txb_css, taxCode)
+    }
+
+    enterValueToCommentInNegotiation(comment){
+        commonAction.enterValueToTextbox(raiseRFQPageLocator.negotiation_comment_txb_css, comment)
+    }
+
+    enterValueToCommentInConversations(comment){
+        commonAction.enterValueToTextbox(raiseRFQPageLocator.conversation_comment_txb_css, comment)
+    }
+
+    uploadFileNegotiation(file) {
+        commonAction.setAttributeByXpath(raiseRFQPageLocator.upload_file_negotiation_xpath, "style", "display: block;")
+        commonAction.uploadFileByXpath(raiseRFQPageLocator.upload_file_negotiation_xpath, file)
+        commonAction.setAttributeByXpath(raiseRFQPageLocator.upload_file_negotiation_xpath, "style", "display: none;")
+    }
+
+    uploadFileConversation(file) {
+        commonAction.setAttributeByXpath(raiseRFQPageLocator.upload_file_conversation_xpath, "style", "display: block;")
+        commonAction.uploadFileByXpath(raiseRFQPageLocator.upload_file_conversation_xpath, file)
+        commonAction.setAttributeByXpath(raiseRFQPageLocator.upload_file_conversation_xpath, "style", "display: none;")
+    } 
+
     selectValueFromRequisitionTypeDropdown(value){
         commonAction.selectValueFromElement(raiseRFQPageLocator.requisition_type_dropdown_css, value)
     }
@@ -178,6 +218,18 @@ class RaiseRFQPage{
 
     selectValueFromCurrencyCodeDropdown(value){
         commonAction.selectValueFromElement(raiseRFQPageLocator.currency_code_dropdown_css, value)
+    }
+
+    selectValueFromTaxCodeDropdown(value){
+        commonAction.selectValueFromElement(raiseRFQPageLocator.tax_code_dropdown_css, value)
+    }
+
+    selectValueFromApprovalRouteDropdown(value){
+        commonAction.selectValueFromElement(raiseRFQPageLocator.approval_route_dropdown_css, value)
+    }
+
+    selectValueFromDeliveryAddressDropdown(value){
+        commonAction.selectValueFromElement(raiseRFQPageLocator.delivery_address_dropdown_css, value)
     }
 
     selectValueFromVendorDropdown(value){
@@ -204,12 +256,22 @@ class RaiseRFQPage{
         commonAction.selectOptionFromDropdownByXpath(raiseRFQPageLocator.uom_xpath, printf(commonPageLocator.text_xpath, uom))
     }
 
+    doubleClickToRFQTitleInRFQList(fileName, number){
+        cy.fixture(fileName).then((fileName) =>{
+            commonAction.doubleClickToElementByXpath(printf(raiseRFQPageLocator.rfq_title_in_rfq_list_xpath, fileName.rfqTitleInList + number))
+        })
+    }
+
     clearValueInDueDateTextbox(){
         commonAction.clearValueInTextbox(raiseRFQPageLocator.due_date_txb_css)
     }
 
     clearValueInDeliveryDateTextbox(){
         commonAction.clearValueInTextbox(raiseRFQPageLocator.delivery_date_txb_css)
+    }
+
+    clickToLinkOnTable(option) {
+        commonAction.clickToElementByXpath(printf(raiseRFQPageLocator.option_menu_table_xpath, option))
     }
 
     clickToNoteTextbox(){
@@ -238,7 +300,39 @@ class RaiseRFQPage{
     }
 
     clickToItemDeleteButton(){
-        commonAction.clickToElementByXpath(raiseRFQPageLocator.item_delete_button_xpath)
+        commonAction.clickToElementByXpath(raiseRFQPageLocator.item_delete_btn_xpath)
+    }
+
+    checkToSupplierCheckbox(){
+        commonAction.checkCheckboxByXpath(raiseRFQPageLocator.supplier_ckb_xpath)
+    }
+
+    verifyValidationTextApprovalRouteDisplay(validation){
+        commonAction.verifyElementByXpathVisible(printf(raiseRFQPageLocator.validation_text_approval_route_type_xpath, validation))
+    }
+
+    verifyNotificationRfqDisplay(notification){
+        commonAction.verifyElementByXpathVisible(printf(raiseRFQPageLocator.validation_text_notification_rfq_xpath, notification))
+    }
+
+    verifyCommentDisplay(comment){
+        commonAction.verifyElementByXpathVisible(printf(raiseRFQPageLocator.comment_in_table_xpath, comment))
+    }
+
+    verifyRFQListPageTitleDisplay(){
+        commonAction.verifyElementByXpathVisible(raiseRFQPageLocator.rfq_list_page_title_xpath)
+    }
+
+    verifyRFQDetailPageTitleDisplay(){
+        commonAction.verifyElementByXpathVisible(raiseRFQPageLocator.rfq_detail_page_title_xpath)
+    }
+
+    verifyValueInRFQTitleTextboxExist(rfqTitle) {
+        commonAction.verifyValueInTextboxExist(raiseRFQPageLocator.rfq_title_txb_css, rfqTitle)
+    }
+
+    veryfyFileNameInNegotiationExist(fileName) {
+        commonAction.verifyValueInTextboxExist(raiseRFQPageLocator.file_name_in_negotiation_btn_css,fileName)
     }
 
     verifyProjectCodeFieldNotDisplay(){
@@ -260,7 +354,7 @@ class RaiseRFQPage{
     }
 
     verifyItemDeleteButtonDisplay(){
-        commonAction.verifyElementByXpathVisible(raiseRFQPageLocator.item_delete_button_xpath)
+        commonAction.verifyElementByXpathVisible(raiseRFQPageLocator.item_delete_btn_xpath)
     }
 
     verifyRfqStatusInRfqListDisplay(rfqStatus){
@@ -277,6 +371,10 @@ class RaiseRFQPage{
 
     verifyValidationTextCurrencyCodeDisplay(validation){
         commonAction.verifyElementByXpathVisible(printf(raiseRFQPageLocator.validation_text_currency_code_xpath, validation))
+    }
+
+    verifyValidationTextTaxCodeDisplay(validation){
+        commonAction.verifyElementByXpathVisible(printf(raiseRFQPageLocator.validation_text_tax_code_xpath, validation))
     }
 
     verifyValidationTextVendorsDisplay(validation){

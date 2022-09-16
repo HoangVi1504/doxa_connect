@@ -15,6 +15,14 @@ class BaseAction {
         cy.writeFile(fileName, value);
     }
 
+    getRfqNumberInRfqList(){
+        cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="rfqNumber"]').then(($el) => {
+            let text = $el.text()
+            sessionStorage.setItem("rfqNumber", text)
+            cy.log(sessionStorage.getItem("rfqNumber"))
+        });
+    }
+
     getPrNumberInPrList(){
         cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="prNumber"]').then(($el) => {
             let text = $el.text()
@@ -58,8 +66,24 @@ class BaseAction {
                 let text = tmp.replace('Login Now','').split(" ").pop()
                 cy.writeFile("dataTestGetnada.json", {passNewAccount: text});
             })
-            
         }) 
+    }
+
+    getLinkFromGetnada() {
+        this.wait(7)
+        cy.xpath("//*[@id='the_message_iframe']").then(function ($ele) {
+            cy.get($ele.contents().find('body').find('div[class="content"]').find('p').last().find('a')).then(($el) => {
+                let link = $el.attr('href')
+                cy.writeFile("cypress/integration/data/urlRfq.json", { linkToRFQ: link });
+            })
+        })
+    }
+
+    getRFQNumberToFile() {
+        cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="rfqNumber"]').then(($el) => {
+            let tpm = $el.text()
+            cy.writeFile("cypress/integration/data/rfqNumber.json", { rfqNumber: tpm });
+        });
     }
 
     getTime(){

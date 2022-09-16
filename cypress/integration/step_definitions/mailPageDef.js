@@ -6,8 +6,13 @@ import MailPage from "../PageObject/mailPage"
 const mailPage = new MailPage()
 const commonPage = new CommonPage()
 const commonAction = new CommonAction()
+var dataRfqNoTestGetnada = require('../data/rfqNumber.json')
 var dataTest = require('../../../dataTest.json');
 const globalVariables = require("../../integration/commons/global_variables");
+
+Given(/^Navigate to Getnada site$/, () => {
+    commonPage.navigateTo(globalVariables.mailGetnadaUrl)
+})
 
 Given(/^Navigate to Getnada site and get password$/, () => {
     commonPage.navigateTo(globalVariables.mailGetnadaUrl)
@@ -19,8 +24,16 @@ Given(/^Navigate to Getnada site and get password$/, () => {
     commonAction.getPasswordFromGetnada()
 })
 
+When(/^I get link to RFQ from 'Getnada' page$/, () => {
+    commonAction.getLinkFromGetnada()
+})
+
 When(/^Get password in email$/, () => {
     commonAction.getPasswordFromGetnada()
+})
+
+When(/^I input "([^"]*)" to 'User' textbox at 'Getnada' page$/, (userName) => {
+    mailPage.enterValueToUserTextbox(userName)
 })
 
 When(/^I input entity name just created to 'User' textbox$/, () => {
@@ -40,5 +53,9 @@ When(/^I click to 'Add Now' button$/, () => {
 })
 
 When(/^I click to "([^"]*)" link at 'Getnada' page$/, (linkName) => {
-    mailPage.clickToOptionLinkGetnada(linkName)
+    mailPage.clickToOptionLinkGetnada(linkName, 60)
+})
+
+When(/^I click to mail subject RFQ is pending for quotation at 'Getnada' page$/, () => {
+    mailPage.clickToOptionLinkGetnada(dataRfqNoTestGetnada.rfqNumber, 60)
 })
