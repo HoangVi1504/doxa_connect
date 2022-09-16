@@ -17,6 +17,10 @@ class ManageApprovalMatrixPage{
         commonAction.enterValueToTextboxAfterClear(manageApprovalMatrixPageLocator.filter_approval_name_txb_css, approvalName)
     }
 
+    enterValueToSearchApprovalMatrixTextbox(approvalName){
+        commonAction.enterValueToTextboxAfterClearByXpath(manageApprovalMatrixPageLocator.search_approval_matrix_for_txb_xpath, approvalName)
+    }
+
     enterValueToApprovalCodeTextbox(approvalCode){
         commonAction.enterValueToTextboxAfterClear(manageApprovalMatrixPageLocator.approval_code_txb_css, approvalCode)
     }
@@ -67,6 +71,10 @@ class ManageApprovalMatrixPage{
 
     clickToApprovalActionInList(action, approvalCode){
         commonAction.clickToElementByXpath(printf(manageApprovalMatrixPageLocator.approval_action_in_list_xpath, approvalCode, action))
+    }
+
+    clickToApprovalMatrixDropdown(){
+        commonAction.clickToElementByXpath(manageApprovalMatrixPageLocator.approval_matrix_dropdown_xpath)
     }
 
     verifyValueInApprovalCodeTextboxExist(approvalCode){

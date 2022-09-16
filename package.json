@@ -40,7 +40,8 @@
     "manage_feature_matrix": "npm run pretest && npx cypress-tags run -e TAGS=\"@manage_feature_matrix\" --env allure=true",
     "manage_document_prefix": "npm run pretest && npx cypress-tags run -e TAGS=\"@manage_document_prefix\" --env allure=true",
     "manage_approval_matrix": "npm run pretest && npx cypress-tags run -e TAGS=\"@manage_approval_matrix\" --env allure=true",
-    "manage_external_vendor": "npm run pretest && npx cypress-tags run -e TAGS=\"@manage_external_vendor\" --env allure=true"
+    "manage_external_vendor": "npm run pretest && npx cypress-tags run -e TAGS=\"@manage_external_vendor\" --env allure=true",
+    "manage_approval_configuration": "npm run pretest && npx cypress-tags run -e TAGS=\"@manage_approval_configuration\" --env allure=true"
   },
   "author": "Quynh Le",
   "license": "ISC",

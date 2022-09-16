@@ -112,6 +112,14 @@ class CommonPage{
         commonAction.verifyElementByXpathNotExist(printf(commonPageLocator.button_format_1_xpath, buttonName))
     }
 
+    verifyValueInDropdownDisplay(value){
+        commonAction.verifyElementByXpathVisible(printf(commonPageLocator.option_value_in_dropdown_xpath, value))
+    }
+    
+    verifyValueInDropdownNotExist(value){
+        commonAction.verifyElementByXpathNotExist(printf(commonPageLocator.option_value_in_dropdown_xpath, value))
+    }
+
     waitTime(seconds){
         commonAction.wait(seconds)
     }

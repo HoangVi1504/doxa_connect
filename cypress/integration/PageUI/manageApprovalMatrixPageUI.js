@@ -25,6 +25,7 @@ class ManageApprovalMatrixPageLocator{
         this.option_range_to_txb_xpath = `//input[@name='approvalRange.${'%s'}.rangeTo']`
         this.option_range_from_txb_xpath = `//input[@name='approvalRange.${'%s'}.rangeFrom']`;
         this.search_assigned_approvers_txb_xpath = "(//*[text()='Assigned Approvers']/parent::*/parent::*/parent::*//*[@class=' css-g1d714-ValueContainer'])[%s]//input";
+        this.search_approval_matrix_for_txb_xpath = "//*[text()='Approval Matrix For']/parent::*//parent::*//input";
 
         // Xpath - Checkbox
         this.approval_code_ckb_in_list_xpath = "//*[contains(@class,'ag-row-first')]//*[@col-id='approvalCode']//*[contains(text(),'%s')]/parent::*//input[@type='checkbox']";

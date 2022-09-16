@@ -16,6 +16,10 @@ When(/^I input random approval name of approval just created to 'Filter Approval
     manageApprovalMatrixPage.enterValueToFilterApprovalNameTextbox(sessionStorage.getItem("approvalName"))
 })
 
+When(/^I input "([^"]*)" to 'Search Approval Matrix' textbox at 'Create New Approval' page$/, (approvalName) => {
+    manageApprovalMatrixPage.enterValueToSearchApprovalMatrixTextbox(approvalName)
+})
+
 When(/^I input "([^"]*)" to 'Approval Code' textbox at 'Create New Approval' page$/, (approvalCode) => {
     manageApprovalMatrixPage.enterValueToApprovalCodeTextbox(approvalCode)
 })
@@ -89,6 +93,10 @@ When(/^I click to action "([^"]*)" of approval just created in 'Approval' list$/
 
 When(/^I click to action "([^"]*)" of approval code "([^"]*)" in 'Approval' list$/, (action, approvalCode) => {
     manageApprovalMatrixPage.clickToApprovalActionInList(action, approvalCode)
+})
+
+When(/^I click to 'Approval Matrix' dropdown at 'Create New Approval' page$/, () => {
+    manageApprovalMatrixPage.clickToApprovalMatrixDropdown()
 })
 
 Then(/^I see 'Create New Approval' page$/, () => {

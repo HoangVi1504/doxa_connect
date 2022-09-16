@@ -344,3 +344,11 @@ Then(/^I do not see "([^"]*)" link on the left menu$/, (linkName) => {
 Then(/^I do not see "([^"]*)" button format_1 visible$/, (buttonName) => {
     commonPage.verifyButtonFormat1NotVisible(buttonName)
 });
+
+Then(/^I see "([^"]*)" in dropdown visible$/, (value) => {
+    commonPage.verifyValueInDropdownDisplay(value)
+});
+
+Then(/^I do not see "([^"]*)" in dropdown visible$/, (value) => {
+    commonPage.verifyValueInDropdownNotExist(value)
+});
