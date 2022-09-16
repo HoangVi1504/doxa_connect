@@ -180,8 +180,7 @@ class RaiseRFQPage{
     }
 
     enterValueToTaxCodeInRequestTerms(taxCode) {
-        commonAction.clearValueInTextbox(raiseRFQPageLocator.tax_code_txb_css)
-        commonAction.enterValueToTextbox(raiseRFQPageLocator.tax_code_txb_css, taxCode)
+        commonAction.enterValueToTextboxAfterClear(raiseRFQPageLocator.tax_code_txb_css, taxCode)
     }
 
     enterValueToCommentInNegotiation(comment){
@@ -305,14 +304,6 @@ class RaiseRFQPage{
 
     checkToSupplierCheckbox(){
         commonAction.checkCheckboxByXpath(raiseRFQPageLocator.supplier_ckb_xpath)
-    }
-
-    verifyValidationTextApprovalRouteDisplay(validation){
-        commonAction.verifyElementByXpathVisible(printf(raiseRFQPageLocator.validation_text_approval_route_type_xpath, validation))
-    }
-
-    verifyNotificationRfqDisplay(notification){
-        commonAction.verifyElementByXpathVisible(printf(raiseRFQPageLocator.validation_text_notification_rfq_xpath, notification))
     }
 
     verifyCommentDisplay(comment){

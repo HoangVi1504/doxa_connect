@@ -77,7 +77,3 @@ When(/^I click to Login button at 'Login' page$/, () => {
 Then(/^I see 'Doxa Connect' image appears$/, () => {
     loginPage.verifyDoxaConnectImgDisplay()
 })
-
-Then(/^I see Doxa Connect 2.0 title$/, () => {
-    loginPage.verifyDoxaConnectImgDisplay()
-})

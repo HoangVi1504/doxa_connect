@@ -1,6 +1,6 @@
 @rfq
 #@p2p
-Feature: 0114 Raise Request for Quotations with non-project, Contrat and add catalogue item
+Feature: 0114a Raise Request for Quotations with non-project, Contrat and add catalogue item
 
 Scenario: P2P-RFQ-S02-002 Raise Request for Quotations with non-project, Contrat and add catalogue item
     Given Navigate to Doxa Connect 2.0 site
@@ -22,3 +22,5 @@ Scenario: P2P-RFQ-S02-002 Raise Request for Quotations with non-project, Contrat
     And I input RFQ title from "rfq_v4" json file to 'Search RFQ' textbox
     Then I see RFQ title from "rfq_v4" json file at the first row in RFQ list
     And I see RFQ status in RFQ list is "PENDING QUOTATION"
+
+    When I get FRQ number in list
