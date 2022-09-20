@@ -83,6 +83,8 @@ class BaseAction {
         cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="rfqNumber"]').then(($el) => {
             let tpm = $el.text()
             cy.writeFile("cypress/integration/data/rfqNumber.json", { rfqNumber: tpm });
+            sessionStorage.setItem("rfqNumber", tpm)
+            cy.log("rfqNumber", sessionStorage.getItem("rfqNumber"))
         });
     }
 

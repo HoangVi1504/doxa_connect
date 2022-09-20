@@ -96,6 +96,10 @@ class PoPage{
         commonAction.clickToElementByXpath(poPageLocator.reject_po_button_xpath)
     }
 
+    verifyApprovalRouteDropdownIsDisable(){
+        commonAction.verifyElementDisable(poPageLocator.approval_route_dropdown_css)
+    }
+
     verifyValueInPrNumberTextboxExits(prNumber){
         commonAction.verifyValueInTextboxExist(poPageLocator.pr_number_txb_css, prNumber)
     }

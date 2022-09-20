@@ -53,6 +53,10 @@ When(/^I input DO No created from PO to filter DO in GR list$/, () => {
     grPage.enterValueToFilterDoNumberInList(sessionStorage.getItem("doNumberDoList"))
 })
 
+When(/^I input "([^"]*)" to 'Filter Status' in 'Create GR from DO' list$/, (status) => {
+    grPage.enterValueToFilterStatusInList(status)
+})
+
 When(/^I select approval route "([^"]*)" at 'Create GR' page$/, (value) => {
     grPage.selectValueFromApprovalRouteDropdown(value)
 })
@@ -83,6 +87,10 @@ Then(/^I see 'GR List' page$/, () => {
 
 Then(/^I see 'List Create GR From PO' page$/, () => {
     grPage.verifyListCreateGrFromPoPageTitleDisplay()
+})
+
+Then(/^I see 'Approval Route' dropdown at 'Create GR' page is disabled$/, () => {
+    grPage.verifyApprovalRouteDropdownIsDisable()
 })
 
 Then(/^I see GR No at 'GR Detail' page$/, () => {

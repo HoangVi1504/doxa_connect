@@ -1,12 +1,16 @@
 import { faker } from '@faker-js/faker';
+import ApiAction from "../commons/call_api"
 import CommonPage from '../PageObject/commonPage';
-import CommonAction from '../commons/common_actions'
 import RaiseRFQPage from "../PageObject/raiseRfqPage"
+import CommonAction from '../commons/common_actions'
 import { Given, When, Then } from "cypress-cucumber-preprocessor/steps"
 
+const apiAction = new ApiAction()
 const commonPage = new CommonPage()
 const raiseRfqPage = new RaiseRFQPage()
 const commonAction = new CommonAction()
+
+var dataRfqNumber = require('../data/rfqNumber.json') 
 var dataLinkRFQTestGetnada = require('../data/urlRfq.json')
 
 Given(/^Navigate to 'RFQ Detail' from link in email$/, () => {
@@ -18,6 +22,20 @@ Given(/^Navigate to 'RFQ Detail' from link in email$/, () => {
 
 When(/^I get FRQ number in list$/, () => {
     commonAction.getRFQNumberToFile()
+})
+
+When(/^Call API raise RFQ$/, () => {
+    sessionStorage.setItem("rfqTitleRandom", "auto RFQ " + faker.random.alphaNumeric(5))
+    apiAction.callApiRaiseRFQ(sessionStorage.getItem("rfqTitleRandom"))
+})
+
+When(/^Call API submit RFQ$/, () => {
+    //apiAction.callApiSubmitRfq(dataRfqNumber.rfqNumber)
+    apiAction.callApiSubmitRfq(sessionStorage.getItem("rfqNumber"))
+})
+
+When(/^Call API close RFQ$/, () => {
+    apiAction.callApiCloseRfq(sessionStorage.getItem("rfqNumber"))
 })
 
 When(/^I fill data in Raise Requisition tab from "([^"]*)" json file at Raise RFQ page$/, (keyWord) => {
@@ -66,7 +84,7 @@ When(/^I fill data in Raise Requisition tab from "([^"]*)" json file at Raise RF
 })
 
 When(/^I fill data in General Information tab from "([^"]*)" json file at Raise RFQ page$/, (keyWord) => {
-    let number = commonAction.getDateFormat1(0)
+    sessionStorage.setItem("numberRfqTitle", faker.random.numeric(5))
     let fileName;
     switch (keyWord) {
         case "rfq_v1":
@@ -108,7 +126,7 @@ When(/^I fill data in General Information tab from "([^"]*)" json file at Raise 
         default:
             break;
     }
-    raiseRfqPage.fillDataInGeneralInformationTab(fileName, number)
+    raiseRfqPage.fillDataInGeneralInformationTab(fileName, sessionStorage.getItem("numberRfqTitle"))
 })
 
 When(/^I fill data in Request Terms tab from "([^"]*)" json file at Raise RFQ page$/, (keyWord) => {
@@ -236,7 +254,6 @@ When(/^I add catalogue item without scroll bar from "([^"]*)" json file at Raise
 })
 
 When(/^I input RFQ title from "([^"]*)" json file to 'Search RFQ' textbox$/, (keyWord) => {
-    let number = commonAction.getDateFormat1(0)
     let fileName;
     switch (keyWord) {
         case "rfq_v1":
@@ -278,7 +295,17 @@ When(/^I input RFQ title from "([^"]*)" json file to 'Search RFQ' textbox$/, (ke
         default:
             break;
     }
-    raiseRfqPage.enterValueToSearchRfqTitleTextbox(fileName, number)
+    cy.fixture(fileName).then((fileName) =>{
+        raiseRfqPage.enterValueToSearchRfqTitleTextbox(fileName.rfqTitleInList + sessionStorage.getItem("numberRfqTitle"))
+    })
+})
+
+When(/^I input random RFQ title to 'Search RFQ' textbox in 'RFQ' list$/, () => {
+    raiseRfqPage.enterValueToSearchRfqTitleTextbox(sessionStorage.getItem("rfqTitleRandom"))
+})
+
+When(/^I input RFQ number just created to 'Filter RFQ No' in 'RFQ' list$/, () => {
+    raiseRfqPage.enterValueToFilterRfqNumberInList(sessionStorage.getItem("rfqNumber"))
 })
 
 When(/^I input note to from "([^"]*)" json file at Raise RFQ page$/, (keyWord) => {
@@ -356,7 +383,6 @@ When(/^I upload "([^"]*)" to 'Conversation' table at 'RFQ Detail' page$/, (file)
 })
 
 When(/^I double click to RFQ title in RFQ list from "([^"]*)" json file$/, (keyWord) => {
-    let number = commonAction.getDateFormat1(0)
     let fileName;
     switch (keyWord) {
         case "rfq_v1":
@@ -398,7 +424,13 @@ When(/^I double click to RFQ title in RFQ list from "([^"]*)" json file$/, (keyW
         default:
             break;
     }
-    raiseRfqPage.doubleClickToRFQTitleInRFQList(fileName, number)
+    cy.fixture(fileName).then((fileName) =>{
+        raiseRfqPage.doubleClickToRFQTitleInRFQList(fileName.rfqTitleInList + sessionStorage.getItem("numberRfqTitle"))
+    })
+})
+
+When(/^I double click to RFQ number just created in 'RFQ' list$/, () => {
+    raiseRfqPage.doubleClickToRfqNumberInRfqList(sessionStorage.getItem("rfqNumber"))
 })
 
 When(/^I select RFQ type from "([^"]*)" json file at Raise RFQ page$/, (keyWord) => {
@@ -463,8 +495,8 @@ When(/^I select "([^"]*)" from 'Currency' dropdown at 'RFQ Detail' page$/, (curr
     raiseRfqPage.selectValueFromCurrencyCodeDropdown(currency)
 })
 
-When(/^I select "([^"]*)" from 'Tax Code' dropdown at 'Request Terms' table on 'RFQ Detail' page$/, (taxcode) => {
-    raiseRfqPage.selectValueFromTaxCodeDropdown(taxcode)
+When(/^I select "([^"]*)" from 'Tax Code' dropdown at 'Request Terms' table on 'RFQ Detail' page$/, (taxCode) => {
+    raiseRfqPage.selectValueFromTaxCodeDropdown(taxCode)
 })
 
 When(/^I select "([^"]*)" from 'Vendor' dropdown at 'RFQ Detail' page$/, (vendor) => {
@@ -496,11 +528,10 @@ When(/^I click to "([^"]*)" link on the table menu at 'RFQ Detail' page$/, (opti
 })
 
 When(/^I see attachment file "([^"]*)" in 'Negotiation' table at 'RFQ Detail' page$/, (fileName) => {
-    raiseRfqPage.veryfyFileNameInNegotiationExist(fileName)
+    raiseRfqPage.verifyFileNameInNegotiationExist(fileName)
 })
 
 When(/^I see RFQ title at RFQ detail page from "([^"]*)" json file$/, (keyWord) => {
-    let number = commonAction.getDateFormat1(0)
     let fileName;
     switch (keyWord) {
         case "rfq_v1":
@@ -543,12 +574,11 @@ When(/^I see RFQ title at RFQ detail page from "([^"]*)" json file$/, (keyWord) 
             break;
     }
     cy.fixture(fileName).then((fileName) =>{
-        raiseRfqPage.verifyValueInRFQTitleTextboxExist(fileName.rfqTitle + number)
+        raiseRfqPage.verifyValueInRFQTitleTextboxExist(fileName.rfqTitle + sessionStorage.getItem("numberRfqTitle"))
     })
 })
 
 Then(/^I see RFQ title from "([^"]*)" json file at the first row in RFQ list$/, (keyWord) => {
-    let number = commonAction.getDateFormat1(0)
     let fileName;
     switch (keyWord) {
         case "rfq_v1":
@@ -590,7 +620,7 @@ Then(/^I see RFQ title from "([^"]*)" json file at the first row in RFQ list$/, 
         default:
             break;
     }
-    raiseRfqPage.verifyRfqTitleInRfqListDisplay(fileName, number)
+    raiseRfqPage.verifyRfqTitleInRfqListDisplay(fileName.rfqTitleInList + sessionStorage.getItem("numberRfqTitle"))
 })
 
 Then(/^I see RFQ status in RFQ list is "([^"]*)"$/, (rfqStatus) => {
@@ -615,6 +645,10 @@ Then(/^I see 'RFQ List' page title$/, () => {
 
 Then(/^I see 'RFQ Detail' page title$/, () => {
     raiseRfqPage.verifyRFQDetailPageTitleDisplay()
+})
+
+Then(/^I see 'Approval Route' dropdown at 'RFQ' page is disabled$/, () => {
+    raiseRfqPage.verifyApprovalRouteDropdownIsDisable()
 })
 
 Then(/^I see a validation text of 'RFQ title' "([^"]*)" appears$/, (validation) => {

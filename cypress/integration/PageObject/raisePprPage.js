@@ -250,6 +250,10 @@ class RaisePprPage{
         commonAction.verifyValueInTextboxExist(raisePprPageLocator.ppr_title_txb_css, pprTitle)
     }
 
+    verifyApprovalRouteDropdownIsDisable(){
+        commonAction.verifyElementDisable(raisePprPageLocator.approval_route_dropdown_css)
+    }
+
     verifyValueInProjectCodeExits(fileName, status){
         cy.fixture(fileName).then((fileName) =>{
             switch (status) {

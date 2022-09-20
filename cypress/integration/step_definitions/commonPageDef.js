@@ -309,6 +309,10 @@ When(/^I click to Expand Collapse icon$/, () => {
     commonPage.clickToExpandCollapseIcon()
 })
 
+When(/^I click to hamburger menu$/, () => {
+    commonPage.clickToHamburgerMenu()
+})
+
 When(/^Wait for "([^"]*)" seconds$/, (time) => {
     commonPage.waitTime(time)
 })

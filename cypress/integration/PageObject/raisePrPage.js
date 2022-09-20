@@ -412,6 +412,10 @@ class RaisePrPage{
         commonAction.verifyElementByXpathVisible(raisePrPageLocator.pr_to_be_converted_page_title_xpath)
     }
 
+    verifyApprovalRouteDropdownIsDisable(){
+        commonAction.verifyElementDisable(raisePrPageLocator.approval_route_dropdown_css)
+    }
+
     verifyRequesterNameInPrListDisplay(fileName){
         cy.fixture(fileName).then((fileName) =>{
             commonAction.verifyElementByXpathExist(printf(raisePrPageLocator.requester_in_pr_list_xpath, fileName.requesterName))

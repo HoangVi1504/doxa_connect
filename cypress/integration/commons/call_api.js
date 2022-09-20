@@ -534,6 +534,211 @@ class ApiAction{
         })
     }
 
+    callApiRaiseRFQ(rfqTitle){
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        // open when switch env stag
+        //cy.wrap(this.callApiGetDataInManageVendorList("AUTO SUPPLIER 1")).then((e)=>{ 
+            cy.request({
+                method: 'POST',
+                //url: printf(urlPageLocator.raise_rfq_url, this.env, buyerCompanyUuid),
+                url: urlPageLocator.raise_rfq_dev_url,
+                headers: {
+                    authorization: "Bearer " + token,
+                },
+                body: {
+                    currencyCode: "USD",
+                    deliveryAddress:
+                    {
+                        addressFirstLine: "1 XYZ Buildingg",
+                        addressLabel: "address auto",
+                        addressSecondLine: "12 New Industrial Rd Singapore, Singapore 536197",
+                        city: "Singapore",
+                        country: "Singapore",
+                        postalCode: "4000",
+                        state: "Singapore",
+                    },
+                    deliveryDate: commonAction.getDateFormat5(30),
+                    dueDate: commonAction.getDateFormat5(5,),
+                    note: "",
+                    procurementType: "Goods",
+                    project: false,
+                    requisitionType: "PR",
+                    rfqDocumentMetaDataDtoList: [],
+                    rfqItemDtoList: 
+                    [
+                        {
+                            address: 
+                            {
+                                addressFirstLine: "1 XYZ Buildingg",
+                                addressLabel: "address auto",
+                                addressSecondLine: "12 New Industrial Rd Singapore, Singapore 536197",
+                                city: "Singapore",
+                                country: "Singapore",
+                                postalCode: "4000",
+                                state: "Singapore",
+                            },
+                            exchangeRate: 1,
+                            itemBrand: "Panasonic",
+                            itemCode: "auto item code",
+                            itemDescription: "auto item description",
+                            itemModel: "auto model",
+                            itemName: "auto item name",
+                            itemQuantity: 1000,
+                            itemSize: "100",
+                            itemUnitPrice: 3000,
+                            manualItem: true,
+                            note: "",
+                            projectForecastTradeCode: "",
+                            requestedDeliveryDate: commonAction.getDateFormat5(30),
+                            sourceCurrency: "USD",
+                            uom: "CEN",
+                        }
+                    ],
+                    rfqTitle: rfqTitle,
+                    rfqType: "One-off",
+                    rfqVendorDtoList: 
+                    [
+                        {
+                            contactPersonEmail: "auto.supplier1@getnada.com",
+                            contactPersonName: "auto supplier 1",
+                            supplierUuid: "3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",
+                            //supplierUuid: sessionStorage.getItem("vendorUuid"), 
+                        }
+                    ],
+                    validityEndDate: "",
+                    validityStartDate: ""
+                }
+            }).then((response) => {
+                expect(response.body).has.property("status", "OK")
+            })
+        //})
+    }
+
+    callApiGetDataInRfqList(roleName, rfqNumber){
+        let urlRequest
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
+        switch (roleName) {
+            case "buyer":
+                //urlRequest = printf(urlPageLocator.rfq_list_url, this.env, buyerCompanyUuid, roleName)
+                urlRequest = printf(urlPageLocator.rfq_list_dev_buyer_url)
+                break;
+
+            case "supplier":
+                //urlRequest = printf(urlPageLocator.rfq_list_url, this.env, supplierCompanyUuid, roleName)
+                urlRequest = printf(urlPageLocator.rfq_list_dev_supplier_url)
+                break;
+        
+            default:
+                break;
+        }
+        cy.request({
+            method: 'GET',
+            url: urlRequest,
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            expect(response.body).has.property("status", "OK")
+            let elementRfq = response.body.data.find(element => element.rfqNumber === rfqNumber);
+            let rfqUuid = elementRfq.uuid
+            sessionStorage.setItem("rfqUuid", rfqUuid)
+            cy.log(sessionStorage.getItem("rfqUuid"))
+        })
+    }
+
+    callApiGetDataInRfqDetails(roleName, rfqNumber){
+        let urlRequest
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
+        cy.wrap(this.callApiGetDataInRfqList(roleName, rfqNumber)).then((e)=>{
+            switch (roleName) {
+                case "buyer":
+                    urlRequest = printf(urlPageLocator.rfq_detail_url, this.env, buyerCompanyUuid, roleName, sessionStorage.getItem("rfqUuid"))
+                    break;
+    
+                case "supplier":
+                    //urlRequest = printf(urlPageLocator.rfq_detail_url, this.env, supplierCompanyUuid, roleName, sessionStorage.getItem("rfqUuid"))
+                    urlRequest = printf(urlPageLocator.rfq_detail_dev_url, roleName, sessionStorage.getItem("rfqUuid"))
+                    break;
+            
+                default:
+                    break;
+            }
+            cy.request({
+                method: 'GET',
+                url: urlRequest,
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response) => {
+                expect(response.body).has.property("status", "OK")
+                let rfqItemId = response.body.data.rfqItemList[0].id
+                sessionStorage.setItem("rfqItemId", rfqItemId)
+                cy.log(sessionStorage.getItem("rfqItemId"))
+            })
+        })
+    }
+
+    callApiSubmitRfq(rfqNumber){
+        let token = window.localStorage.getItem("token")
+        let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
+        cy.log("rfqNumber", rfqNumber)
+        cy.wrap(this.callApiGetDataInRfqDetails("supplier", rfqNumber)).then((e)=>{
+            cy.request({
+                method: 'POST',
+                //url: printf(urlPageLocator.submit_rfq_url, this.env, supplierCompanyUuid),
+                url: urlPageLocator.submit_rfq_dev_url,
+                headers: {
+                    authorization: "Bearer " + token,
+                },
+                body: {
+                    currencyCode: "USD",
+                    documentMetaDataDtoList: [],
+                    quoteItemDtoList: 
+                    [
+                        {
+                            currencyCode: "USD",
+                            quoteItemNote: "",
+                            quotedUnitPrice: 3000,
+                            rfqItemId: sessionStorage.getItem("rfqItemId"),
+                            taxCode: "GST7",
+                            taxRate: 7,
+                        }
+                    ],
+                    rfqUuid: sessionStorage.getItem("rfqUuid"),
+                    taxCode: "GST7"
+                }
+            }).then((response)=>{
+                expect(response.body).has.property("message", "Quotation Successfully Submitted");
+            })
+        })
+    }
+
+    callApiCloseRfq(rfqNumber){
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.wrap(this.callApiGetDataInRfqList("buyer", rfqNumber)).then((e)=>{
+            cy.request({
+                method: 'PUT',
+                //url: printf(urlPageLocator.close_rfq_url, this.env, buyerCompanyUuid),
+                url: urlPageLocator.close_rfq_dev_url,
+                headers: {
+                    authorization: "Bearer " + token,
+                },
+                body: {
+                    newlyAddedDocumentList: [],
+                    uuid: sessionStorage.getItem("rfqUuid")
+                }
+            }).then((response)=>{
+                expect(response.body).has.property("message", "RFQ was closed successfully");
+            })
+        })
+    }
+
     callApiRaisePpr(pprTitle){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid

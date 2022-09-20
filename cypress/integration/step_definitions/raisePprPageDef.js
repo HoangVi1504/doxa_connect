@@ -203,6 +203,15 @@ When(/^I input PPR random to 'Search PPR' textbox$/, () => {
     raisePprPage.enterValueToSearchPPRTitleTextbox(sessionStorage.getItem("pprTitleRandom"))
 })
 
+When(/^I input PPR random to 'PPR Title' textbox at 'PPR' page$/, () => {
+    sessionStorage.setItem("pprTitleRandom", "auto PPR " + faker.random.alphaNumeric(5))
+    raisePprPage.enterValueToPprTitleTextbox(sessionStorage.getItem("pprTitleRandom"))
+})
+
+When(/^I select "([^"]*)" from 'Procurement Type' dropdown at 'PPR' page$/, (type) => {
+    raisePprPage.selectValueFromProcurementTypeDropdown(type)
+})
+
 When(/^I double click to PPR title in PPR list from "([^"]*)" json file$/, (keyWord) => {
     let fileName;
     switch (keyWord) {
@@ -246,6 +255,10 @@ When(/^I click to PPR title textbox at Raise PPR page$/, () => {
 
 When(/^I input reason cancel PPR "([^"]*)" at Raise PPR page$/, (reason) => {
     raisePprPage.enterValueToReasonCancelTextbox(reason)
+})
+
+Then(/^I see 'Approval Route' dropdown at 'PPR' page is disabled$/, () => {
+    raisePprPage.verifyApprovalRouteDropdownIsDisable()
 })
 
 Then(/^I see Requester name in PPR list from "([^"]*)" json file$/, (keyWord) => {

@@ -18,6 +18,7 @@ class RaiseRFQPageLocator{
         this.rfq_type_dropdown_css = '[name="rfqType"]';
         this.project_code_dropdown_css = '[name="projectCode"]';
         this.currency_code_dropdown_css = '[name="currencyCode"]';
+        this.approval_route_dropdown_css = '[name="approvalRouteUuid"]';
         this.delivery_address_dropdown_css = '[name="deliveryAddress"]';
         this.procurement_type_dropdown_css = '[name="procurementType"]';
         this.requisition_type_dropdown_css = '[name="requisitionType"]';
@@ -27,6 +28,7 @@ class RaiseRFQPageLocator{
         this.filter_rfq_title_css = '[aria-label="RFQ Title Filter Input"]';
         this.filter_uom_in_item_table_css = '[aria-label="UOM Filter Input"]';
         this.filter_size_in_item_table_css = '[aria-label="Size Filter Input"]';
+        this.filter_rfq_number_in_list_css = "[aria-label='RFQ No. Filter Input']";
         this.filter_brand_in_item_table_css = '[aria-label="Brand Filter Input"]';
 
         // Css - Other
@@ -45,6 +47,7 @@ class RaiseRFQPageLocator{
         // Xpath - Other
         this.comment_in_table_xpath = "//*[@col-id='comment' and text()='%s']";
         this.option_menu_table_xpath = '//*[@class="nav-item"]//*[text()="%s"]';
+        this.rfq_number_in_list_xpath = "//*[@col-id='rfqNumber' and text()='%s']";
         this.rfq_list_page_title_xpath = "//*[text()='Request for Quotations List']";
         this.raise_rfq_page_title_xpath = "//*[text()='Raise a Request for Quotation']";
         this.rfq_detail_page_title_xpath = "//*[text()='Request for Quotation Details']";

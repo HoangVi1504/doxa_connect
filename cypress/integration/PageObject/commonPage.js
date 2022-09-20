@@ -68,6 +68,10 @@ class CommonPage{
         commonAction.clickToElementByXpath(commonPageLocator.user_profile_button_xpath)
     }
 
+    clickToHamburgerMenu(){
+        commonAction.clickToElementByXpath(commonPageLocator.hamburger_menu_button_xpath)
+    }
+
     verifyButtonFormat1Display(buttonName){
         commonAction.verifyElementByXpathVisible(printf(commonPageLocator.button_format_1_xpath, buttonName))
     }

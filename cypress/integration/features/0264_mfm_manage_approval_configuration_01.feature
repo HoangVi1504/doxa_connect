@@ -3,7 +3,7 @@ Feature: 0264 Entity admin setup Approval Configuration
 
 Scenario: MFM-S001-001 Entity admin able to opt-out approval routing for a particular feature
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "buyer"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title

@@ -224,6 +224,15 @@ When(/^I input PR No to filter PR in "([^"]*)" list$/, (listName) => {
     raisePrPage.enterValueToFilterPrNumberInList(sessionStorage.getItem("prNumber"), listName)
 })
 
++When(/^I input PR random to 'PR Title' textbox at 'PR' page$/, () => {
+    sessionStorage.setItem("prTitleRandom", "auto PPR " + faker.random.alphaNumeric(5))
+    raisePrPage.enterValueToPrTitleTextbox(sessionStorage.getItem("prTitleRandom"))
+})
+
+When(/^I select "([^"]*)" from 'Procurement Type' dropdown at 'PR' page$/, (type) => {
+    raisePrPage.selectValueFromProcurementTypeDropdown(type)
+})
+
 When(/^I select delivery address from "([^"]*)" json file at Raise PR page$/, (keyWord) => {
     let fileName;
     switch (keyWord) {
@@ -480,6 +489,10 @@ Then(/^I see 'PR List' page title$/, () => {
 
 Then(/^I see 'PR To Be Converted List' title$/, () => {
     raisePrPage.verifyPrToBeConvertedPageTitleDisplay()
+})
+
+Then(/^I see 'Approval Route' dropdown at 'PR' page is disabled$/, () => {
+    raisePrPage.verifyApprovalRouteDropdownIsDisable()
 })
 
 Then(/^I see a validation text of 'Requisition Type' at 'Raise PR' page "([^"]*)" appears$/, (validation) => {

@@ -30,6 +30,10 @@ class GrPage{
         commonAction.enterValueToTextbox(grPageLocator.item_quantity_receiving_css, quantity)
     }
 
+    enterValueToFilterStatusInList(status){
+        commonAction.enterValueToTextbox(grPageLocator.filter_status_in_create_gr_from_do_list_css, status)
+    }
+
     enterValueToFilterGrNumberInList(grNumber){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
@@ -74,6 +78,10 @@ class GrPage{
     
     checkToPoNumberCheckbox(){
         commonAction.checkCheckbox(grPageLocator.po_number_checkbox_css)
+    }
+
+    verifyApprovalRouteDropdownIsDisable(){
+        commonAction.verifyElementDisable(grPageLocator.approval_route_dropdown_css)
     }
 
     verifyGrStatusInListDisplay(){

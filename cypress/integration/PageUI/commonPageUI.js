@@ -14,6 +14,7 @@ class CommonPageLocator{
         this.user_profile_button_xpath = "(//button[contains(@class,'btn-profile sidebar')])[1]";
         this.expand_collapse_icon_xpath = "//i[@class='fa fa-bars fa-fw']";
         this.option_link_left_menu_xpath = "//*[text()='%s']/parent::a";
+        this.hamburger_menu_button_xpath = "//*[contains(@class,'button-group')]//button[contains(@class,'btn-profile sidebar__link')]";
         this.option_link_header_menu_xpath = "//*[contains(@class,'doxa-navbar-link') and text()='%s']";
         this.option_value_in_dropdown_xpath = "//*[contains(@class,'MenuList')]//*[contains(@class,'option') and contains(text(),'%s')]";
         this.option_link_left_sub_menu_xpath = "//*[@class='sidebar-submenu']//*[text()='%s']";

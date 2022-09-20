@@ -3,7 +3,6 @@ class GrPageLocator{
         // Css
         this.gr_number_txb_css = '[name="grNumber"]';
         this.do_number_txb_css = '[name="deliveryOrderNumber"]';
-        this.filter_gr_in_list_css = '[aria-label="Goods Receipt No. Filter Input"]';
         this.delivery_date_txb_css = '[name="deliveryDate"]';
         this.gr_status_in_list_css = '.ag-row-first>[col-id="grStatus"]';
         this.delivery_order_txb_css = '[name="deliveryOrderNumber"]';
@@ -11,7 +10,10 @@ class GrPageLocator{
         this.approval_route_in_list_css = '.ag-row-first>[col-id="approvalRouteName"]';
         this.approval_route_dropdown_css = '[name="approvalRoute"]';
         this.item_quantity_receiving_css = ".ag-row-first>[col-id='qtyReceiving']";
+
+        this.filter_gr_in_list_css = '[aria-label="Goods Receipt No. Filter Input"]';
         this.filter_order_processed_in_list_css = '[aria-label="Order Processed No. Filter Input"]';
+        this.filter_status_in_create_gr_from_do_list_css = "[aria-label='Status Filter Input']";
         
         //Xpath
         this.gr_number_in_list_xpath = "//*[contains(@class,'ag-row-first')]//*[@col-id='grNumber' and text()='%s']";

@@ -76,6 +76,10 @@ Then(/^I see 'PO List' page$/, () => {
     poPage.verifyPoListPageTitleDisplay()
 })
 
+Then(/^I see 'Approval Route' dropdown at 'PO' page is disabled$/, () => {
+    poPage.verifyApprovalRouteDropdownIsDisable()
+})
+
 Then(/^I see PR No in 'PR No' textbox at 'PR Convert Detail' page$/, () => {
     poPage.verifyValueInPrNumberTextboxExits(sessionStorage.getItem("prNumber"))
 })

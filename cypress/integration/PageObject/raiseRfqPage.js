@@ -89,10 +89,12 @@ class RaiseRFQPage{
         })
     }
 
-    enterValueToSearchRfqTitleTextbox(fileName, number){
-        cy.fixture(fileName).then((fileName) =>{
-            commonAction.enterValueToTextbox(raiseRFQPageLocator.filter_rfq_title_css, fileName.rfqTitleInList + number)
-        })
+    enterValueToSearchRfqTitleTextbox(rfqTitle){
+        commonAction.enterValueToTextbox(raiseRFQPageLocator.filter_rfq_title_css, rfqTitle)
+    }
+
+    enterValueToFilterRfqNumberInList(rfqNumber){
+        commonAction.enterValueToTextbox(raiseRFQPageLocator.filter_rfq_number_in_list_css, rfqNumber)
     }
 
     enterValueToRfqTitleTextbox(rfqTitle){
@@ -255,10 +257,12 @@ class RaiseRFQPage{
         commonAction.selectOptionFromDropdownByXpath(raiseRFQPageLocator.uom_xpath, printf(commonPageLocator.text_xpath, uom))
     }
 
-    doubleClickToRFQTitleInRFQList(fileName, number){
-        cy.fixture(fileName).then((fileName) =>{
-            commonAction.doubleClickToElementByXpath(printf(raiseRFQPageLocator.rfq_title_in_rfq_list_xpath, fileName.rfqTitleInList + number))
-        })
+    doubleClickToRFQTitleInRFQList(rfqTitle){
+        commonAction.doubleClickToElementByXpath(printf(raiseRFQPageLocator.rfq_title_in_rfq_list_xpath, rfqTitle))
+    }
+
+    doubleClickToRfqNumberInRfqList(rfqNumber){
+        commonAction.doubleClickToElementByXpath(printf(raiseRFQPageLocator.rfq_number_in_list_xpath, rfqNumber))
     }
 
     clearValueInDueDateTextbox(){
@@ -318,11 +322,15 @@ class RaiseRFQPage{
         commonAction.verifyElementByXpathVisible(raiseRFQPageLocator.rfq_detail_page_title_xpath)
     }
 
+    verifyApprovalRouteDropdownIsDisable(){
+        commonAction.verifyElementDisable(raiseRFQPageLocator.approval_route_dropdown_css)
+    }
+
     verifyValueInRFQTitleTextboxExist(rfqTitle) {
         commonAction.verifyValueInTextboxExist(raiseRFQPageLocator.rfq_title_txb_css, rfqTitle)
     }
 
-    veryfyFileNameInNegotiationExist(fileName) {
+    verifyFileNameInNegotiationExist(fileName) {
         commonAction.verifyValueInTextboxExist(raiseRFQPageLocator.file_name_in_negotiation_btn_css,fileName)
     }
 
@@ -338,10 +346,8 @@ class RaiseRFQPage{
         commonAction.verifyElementByXpathVisible(raiseRFQPageLocator.raise_rfq_page_title_xpath)
     }
 
-    verifyRfqTitleInRfqListDisplay(fileName, number){
-        cy.fixture(fileName).then((fileName) =>{
-            commonAction.verifyElementByXpathVisible(printf(raiseRFQPageLocator.rfq_title_in_rfq_list_xpath, fileName.rfqTitleInList + number))
-        })
+    verifyRfqTitleInRfqListDisplay(rfqTitle){
+        commonAction.verifyElementByXpathVisible(printf(raiseRFQPageLocator.rfq_title_in_rfq_list_xpath, rfqTitle))
     }
 
     verifyItemDeleteButtonDisplay(){
