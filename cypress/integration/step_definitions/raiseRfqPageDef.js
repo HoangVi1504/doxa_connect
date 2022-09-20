@@ -308,6 +308,102 @@ When(/^I input RFQ number just created to 'Filter RFQ No' in 'RFQ' list$/, () =>
     raiseRfqPage.enterValueToFilterRfqNumberInList(sessionStorage.getItem("rfqNumber"))
 })
 
+When(/^I input a value is bigger than the required quantity from "([^"]*)" json file to 'Awarded Quantity' textbox$/, (keyWord) => {
+    let fileName;
+    switch (keyWord) {
+        case "rfq_v1":
+            fileName = 'rfq_v1.json'
+            break;
+
+        case "rfq_v2":
+            fileName = 'rfq_v2.json'
+            break;
+
+        case "rfq_v3":
+            fileName = 'rfq_v3.json'
+            break;
+
+        case "rfq_v4":
+            fileName = 'rfq_v4.json'
+            break;
+
+        case "rfq_v5":
+            fileName = 'rfq_v5.json'
+            break;
+        
+        case "rfq_v6":
+            fileName = 'rfq_v6.json'
+            break;
+
+        case "rfq_v7":
+            fileName = 'rfq_v7.json'
+            break;
+
+        case "rfq_v8":
+            fileName = 'rfq_v8.json'
+            break;
+
+        case "rfq_v9":
+            fileName = 'rfq_v9.json'
+            break;
+
+        default:
+            break;
+    }
+    cy.fixture(fileName).then((fileName) =>{
+        raiseRfqPage.enterValueToAwardedQuantityTextbox(fileName.awardQtyBigger)
+    })
+    commonPage.clickToText("Awarded Qty")
+})
+
+When(/^I input a value is smaller than the required quantity from "([^"]*)" json file to 'Awarded Quantity' textbox$/, (keyWord) => {
+    let fileName;
+    switch (keyWord) {
+        case "rfq_v1":
+            fileName = 'rfq_v1.json'
+            break;
+
+        case "rfq_v2":
+            fileName = 'rfq_v2.json'
+            break;
+
+        case "rfq_v3":
+            fileName = 'rfq_v3.json'
+            break;
+
+        case "rfq_v4":
+            fileName = 'rfq_v4.json'
+            break;
+
+        case "rfq_v5":
+            fileName = 'rfq_v5.json'
+            break;
+        
+        case "rfq_v6":
+            fileName = 'rfq_v6.json'
+            break;
+
+        case "rfq_v7":
+            fileName = 'rfq_v7.json'
+            break;
+
+        case "rfq_v8":
+            fileName = 'rfq_v8.json'
+            break;
+
+        case "rfq_v9":
+            fileName = 'rfq_v9.json'
+            break;
+
+        default:
+            break;
+    }
+    cy.fixture(fileName).then((fileName) =>{
+        raiseRfqPage.enterValueToAwardedQuantityTextbox(fileName.awardQtySmaller)
+    })
+    commonPage.clickToText("Awarded Qty")
+})
+
 When(/^I input note to from "([^"]*)" json file at Raise RFQ page$/, (keyWord) => {
     let fileName;
     switch (keyWord) {
@@ -495,6 +591,10 @@ When(/^I select "([^"]*)" from 'Currency' dropdown at 'RFQ Detail' page$/, (curr
     raiseRfqPage.selectValueFromCurrencyCodeDropdown(currency)
 })
 
+When(/^I select "([^"]*)" from 'Approval Route' dropdown at 'RFQ Detail' page$/, (approvalRoute) => {
+    raiseRfqPage.selectValueFromApprovalRouteDropdown(approvalRoute)
+})
+
 When(/^I select "([^"]*)" from 'Tax Code' dropdown at 'Request Terms' table on 'RFQ Detail' page$/, (taxCode) => {
     raiseRfqPage.selectValueFromTaxCodeDropdown(taxCode)
 })
@@ -525,6 +625,10 @@ When(/^I click to 'Note' textbox at Raise RFQ page$/, () => {
 
 When(/^I click to "([^"]*)" link on the table menu at 'RFQ Detail' page$/, (option) => {
     raiseRfqPage.clickToLinkOnTable(option)
+})
+
+When(/^I check to supplier checkbox at 'RFQ Detail' page$/, () => {
+    raiseRfqPage.checkToSupplierCheckbox()
 })
 
 When(/^I see attachment file "([^"]*)" in 'Negotiation' table at 'RFQ Detail' page$/, (fileName) => {
@@ -620,7 +724,9 @@ Then(/^I see RFQ title from "([^"]*)" json file at the first row in RFQ list$/, 
         default:
             break;
     }
-    raiseRfqPage.verifyRfqTitleInRfqListDisplay(fileName.rfqTitleInList + sessionStorage.getItem("numberRfqTitle"))
+    cy.fixture(fileName).then((fileName) =>{
+        raiseRfqPage.verifyRfqTitleInRfqListDisplay(fileName.rfqTitleInList + sessionStorage.getItem("numberRfqTitle"))
+    })
 })
 
 Then(/^I see RFQ status in RFQ list is "([^"]*)"$/, (rfqStatus) => {
@@ -685,4 +791,8 @@ Then(/^I see a validation text of 'Delivery Address' "([^"]*)" appears$/, (valid
 
 Then(/^I see a validation text of 'Delivery Date' "([^"]*)" appears$/, (validation) => {
     raiseRfqPage.verifyValidationTextDeliveryDateDisplay(validation)
+})
+
+Then(/^I see a validation text of 'Approval Route' at 'RFQ Detail' page "([^"]*)" appears$/, (validation) => {
+    raiseRfqPage.verifyValidationTextApprovalRouteDisplay(validation)
 })

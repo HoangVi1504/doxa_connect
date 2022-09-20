@@ -125,10 +125,9 @@ class RaiseRFQPage{
         }) 
     }
 
-    enterValueToAwardedQuantityTextbox(fileName){
-        cy.fixture(fileName).then((fileName) =>{
-            commonAction.enterValueToTextbox(raiseRFQPageLocator.note_txb_css, fileName.quantity)
-        }) 
+    enterValueToAwardedQuantityTextbox(value){
+        commonAction.doubleClickToElementByXpath(raiseRFQPageLocator.item_awarded_quantity_txb_xpath)
+        commonAction.enterValueToTextboxByXpath(raiseRFQPageLocator.awarded_quantity_txb_xpath, value)
     }
 
     enterValueToSearchTextboxInItemTable(keyWord){
@@ -221,12 +220,12 @@ class RaiseRFQPage{
         commonAction.selectValueFromElement(raiseRFQPageLocator.currency_code_dropdown_css, value)
     }
 
-    selectValueFromTaxCodeDropdown(value){
-        commonAction.selectValueFromElement(raiseRFQPageLocator.tax_code_dropdown_css, value)
-    }
-
     selectValueFromApprovalRouteDropdown(value){
         commonAction.selectValueFromElement(raiseRFQPageLocator.approval_route_dropdown_css, value)
+    }
+
+    selectValueFromTaxCodeDropdown(value){
+        commonAction.selectValueFromElement(raiseRFQPageLocator.tax_code_dropdown_css, value)
     }
 
     selectValueFromDeliveryAddressDropdown(value){
@@ -306,7 +305,8 @@ class RaiseRFQPage{
         commonAction.clickToElementByXpath(raiseRFQPageLocator.item_delete_btn_xpath)
     }
 
-    checkToSupplierCheckbox(){
+    checkToSupplierCheckbox() {
+        this.scrollToAwardedQuantityItem("75%")
         commonAction.checkCheckboxByXpath(raiseRFQPageLocator.supplier_ckb_xpath)
     }
 
@@ -394,8 +394,16 @@ class RaiseRFQPage{
         commonAction.verifyElementByXpathVisible(printf(raiseRFQPageLocator.validation_text_delivery_date_xpath, validation))
     }
 
+    verifyValidationTextApprovalRouteDisplay(validation){
+        commonAction.verifyElementByXpathVisible(printf(raiseRFQPageLocator.validation_text_approval_route_xpath, validation))
+    }
+
     scrollToQuantityItem(position){
         commonAction.scrollToPositionElement(raiseRFQPageLocator.scroll_bar_in_item_table_xpath, position)
+    }
+
+    scrollToAwardedQuantityItem(position){
+        commonAction.scrollToPositionElement(raiseRFQPageLocator.scroll_bar_in_view_quotation_table_xpath, position)
     }
 
 }export default RaiseRFQPage

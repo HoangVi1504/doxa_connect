@@ -14,8 +14,10 @@
     "itemModel": "auto model 5",
     "itemSize": "70",
     "itemBrand": "SHARP",
-    "uom": "IN",
+    "uom": "KM",
     "itemQuantity": "100",
+    "awardQtyBigger": "105",
+    "awardQtySmaller": "50",
     "currencyItem": "VND",
     "price": "1000000",
     "rfqTitleInList": "AUTO RFQ TITLE "
