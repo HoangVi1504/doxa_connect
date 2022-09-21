@@ -1,10 +1,12 @@
 import PoPage from "../PageObject/poPage"
 import ApiAction from "../commons/call_api"
+import CommonPage from "../PageObject/commonPage"
 import CommonAction from '../commons/common_actions'
 import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
 
 const poPage = new PoPage()
 const apiAction = new ApiAction()
+const commonPage = new CommonPage()
 const commonAction = new CommonAction()
 
 When(/^Get PO number in list$/, () => {
@@ -42,6 +44,11 @@ When(/^I input reason close PO at 'PO Detail' page is "([^"]*)"$/, (reason) => {
 
 When(/^I input reason reject PO at 'PO Detail' page is "([^"]*)"$/, (reason) => {
     poPage.enterValueToRejectTextbox(reason)
+})
+
+When(/^I input "([^"]*)" to 'Item Unit Price' textbox at 'PO Detail' page$/, (price) => {
+    poPage.enterValueToUnitPriceInPoItem(price)
+    commonPage.clickToText("Unit Price")
 })
 
 When(/^I select approval route "([^"]*)" at 'PO detail' page$/, (value) => {

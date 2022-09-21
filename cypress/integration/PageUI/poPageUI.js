@@ -8,8 +8,10 @@ class PoPageLocator{
         this.approval_route_dropdown_css = '[name="approvalRouteUuid"]';
 
         this.filter_po_number_in_list_css = '[aria-label="Purchase Order No. Filter Input"]';
+        this.filter_item_code_in_po_item_css = "[aria-label='Item Code Filter Input']";
 
         // Xpath
+        this.item_unit_price_xpath = "//*[contains(@class,'ag-row-first')]//*[@col-id='itemUnitPrice']";
         this.notification_po_xpath = "//*[@class='modal-content']//*[text()='%s']";
         this.reject_po_button_xpath = "(//button[text()='Reject'])[2]";
         this.po_number_in_list_xpath = "//*[@col-id='poNumber' and text()='%s']";
@@ -19,6 +21,7 @@ class PoPageLocator{
         this.po_detail_page_title_xpath = "//h1//*[text()='Purchase Order Details']";
         this.scroll_bar_in_po_list_xpath = "//*[@class='ag-body-horizontal-scroll-viewport']";
         this.mark_completed_po_button_xpath = "(//button[text()='Mark Completed'])[2]";
+        this.scroll_bar_in_po_item_table_xpath = "(//*[@class='ag-body-horizontal-scroll-viewport'])[1]";
         this.supplier_ack_status_in_list_xpath = "//*[contains(@class,'ag-row-first')]//*[@col-id='supplierAck' and text()='%s']";
         this.pr_convert_detail_page_title_xpath = "//h1//*[text()='Purchase Requisition To Convert Details']";
     }

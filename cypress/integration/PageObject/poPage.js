@@ -75,6 +75,13 @@ class PoPage{
         commonAction.enterValueToTextbox(poPageLocator.reject_po_reason_txb_css, reason)
     }
 
+    enterValueToUnitPriceInPoItem(price){
+        commonAction.clickToElement(poPageLocator.filter_item_code_in_po_item_css)
+        this.scrollToElementInPoItem("40%")
+        commonAction.clickToElementByXpath(poPageLocator.item_unit_price_xpath)
+        commonAction.enterValueToTextboxAfterClearByXpath(poPageLocator.item_unit_price_xpath, price)
+    }
+
     selectValueFromApprovalRouteDropdown(value){
         commonAction.selectValueFromElement(poPageLocator.approval_route_dropdown_css, value)
     }
@@ -135,6 +142,10 @@ class PoPage{
 
     scrollToElementInPoList(position){
         commonAction.scrollToPositionElement(poPageLocator.scroll_bar_in_po_list_xpath, position)
+    }
+
+    scrollToElementInPoItem(position){
+        commonAction.scrollToPositionElement(poPageLocator.scroll_bar_in_po_item_table_xpath, position)
     }
 
 }export default PoPage
