@@ -10,7 +10,7 @@ Scenario: Unconnected supplier submit quote to Buyer with valid value
     And I click to "Submit Quote" button format_1
     Then I see a message "Quotation Successfully Submitted" appears
 
-Scenario: Unconnected Supplier updated quote and Buyer close RFQ
+Scenario: P2P-RFQ-S09-002 P2P-RFQ-S07-004 Unconnected Supplier updated quote and Buyer close RFQ
     # P2P-RFQ-S09-002 Unconnected Supplier updated quote to Buyer with valid value
     When Navigate to 'RFQ Detail' from link in email
     And I input "tax code 02" to 'Tax Code' textbox in 'Request Terms' at 'RFQ Detail' page

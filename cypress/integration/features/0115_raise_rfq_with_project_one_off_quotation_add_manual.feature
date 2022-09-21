@@ -106,7 +106,7 @@ Scenario: Supplier submit quote
     Then I see RFQ title from "rfq_v5" json file at the first row in RFQ list
     And I see RFQ status in RFQ list is "QUOTATION IN PROGRESS"
 
-Scenario: P2P-RFQ-S011-011-001-002 Buyer shortlist RFQ
+Scenario: P2P-RFQ-S011-001-002 Buyer shortlist RFQ
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to "Request for Quotations" link on header menu
