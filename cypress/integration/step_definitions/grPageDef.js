@@ -10,7 +10,7 @@ const commonPage = new CommonPage()
 const commonAction = new CommonAction()
 
 When(/^Get GR number in list$/, () => {
-    commonAction.getPoNumberInGrList()
+    commonAction.getGrNumberInGrList()
 })
 
 When(/^Call API create GR from DO number "([^"]*)"$/, (doNumber) => {

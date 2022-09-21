@@ -9,6 +9,7 @@ class RaisePprPageLocator{
 
         this.filter_ppr_title_in_list_css = '[aria-label="Purchase Pre-requisition Title Filter Input"]';
         this.filter_uom_in_item_table_css = '[aria-label="UOM Filter Input"]';
+        this.filter_ppr_number_in_list_css = "[aria-label='Pre-Purchase Requisition No. Filter Input']";
         this.filter_brand_in_item_table_css = '[aria-label="Brand Filter Input"]';
         this.filter_quantity_in_item_table_css = '[aria-label="Quantity Filter Input"]';
 
@@ -50,6 +51,7 @@ class RaisePprPageLocator{
         this.ppr_title_in_ppr_list_xpath = "//*[@col-id='pprTitle' and text()='%s']";
         this.requester_in_ppr_list_xpath = "//*[@col-id='requesterName' and text()='%s']";
         this.ppr_status_in_ppr_list_xpath = "//*[@col-id='status' and text()='%s']";
+        this.ppr_number_in_ppr_list_xpath = "//*[@col-id='pprNumber' and text()='%s']";
         this.approval_route_in_ppr_list_xpath = "//*[@col-id='approvalCode' and text()='%s']";
         this.procurement_type_in_ppr_list_xpath = "//*[@col-id='procurementType' and text()='%s']";
 

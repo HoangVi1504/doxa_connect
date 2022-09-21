@@ -138,6 +138,22 @@ class RaisePprPage{
         })
     }
 
+    enterValueToFilterPprNumberInList(pprNumber){
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.request({
+            method: 'GET',
+            url: printf(urlPageLocator.ppr_list_url, this.env, buyerCompanyUuid),
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            expect(response.body).has.property("status", "OK")
+            commonAction.wait(1)
+            commonAction.enterValueToTextbox(raisePprPageLocator.filter_ppr_number_in_list_css, pprNumber)
+        })
+    }
+
     enterValueToPprTitleTextbox(pprTitle){
         commonAction.enterValueToTextbox(raisePprPageLocator.ppr_title_txb_css, pprTitle)
     }
@@ -193,14 +209,12 @@ class RaisePprPage{
         commonAction.selectOptionFromDropdownByXpath(raisePprPageLocator.item_uom_code_xpath, printf(commonPageLocator.text_xpath, uom))
     }
 
-    doubleClickToPprTitleInPprList(fileName, number){
-        cy.fixture(fileName).then((fileName) =>{
-            commonAction.doubleClickToElementByXpath(printf(raisePprPageLocator.ppr_title_in_ppr_list_xpath, fileName.pprTitle + number))
-        })
+    doubleClickToPprTitleInPprList(pprTitle){
+        commonAction.doubleClickToElementByXpath(printf(raisePprPageLocator.ppr_title_in_ppr_list_xpath, pprTitle))
     }
 
-    doubleClickToPprTitleRandomInPprList(pprTitle){
-        commonAction.doubleClickToElementByXpath(printf(raisePprPageLocator.ppr_title_in_ppr_list_xpath, pprTitle))
+    doubleClickToPprNumberInPprList(pprNumber){
+        commonAction.doubleClickToElementByXpath(printf(raisePprPageLocator.ppr_number_in_ppr_list_xpath, pprNumber))
     }
 
     clickToFilterBrandInItemTable(){

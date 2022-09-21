@@ -8,8 +8,17 @@ const apiAction = new ApiAction()
 const commonAction = new CommonAction()
 const raisePprPage = new RaisePprPage()
 
+When(/^Get PPR number in 'PPR' list$/, () => {
+    commonAction.getPprNumberInPprList()
+})
+
 When(/^Call API approver PPR random$/, () => {
     apiAction.callApiApproverPpr()
+})
+
+When(/^Call API save af draft PPR random$/, () => {
+    sessionStorage.setItem("pprTitleRandom", "auto PPR " + faker.random.alphaNumeric(5))
+    apiAction.callApiSaveAsDraftPpr(sessionStorage.getItem("pprTitleRandom"))
 })
 
 When(/^Call API Raise PPR random$/, () => {
@@ -203,6 +212,10 @@ When(/^I input PPR random to 'Search PPR' textbox$/, () => {
     raisePprPage.enterValueToSearchPPRTitleTextbox(sessionStorage.getItem("pprTitleRandom"))
 })
 
+When(/^I input PPR number just created to 'Filter PPR No' in 'PPR' list$/, () => {
+    raisePprPage.enterValueToFilterPprNumberInList(sessionStorage.getItem("pprNumber"))
+})
+
 When(/^I input PPR random to 'PPR Title' textbox at 'PPR' page$/, () => {
     sessionStorage.setItem("pprTitleRandom", "auto PPR " + faker.random.alphaNumeric(5))
     raisePprPage.enterValueToPprTitleTextbox(sessionStorage.getItem("pprTitleRandom"))
@@ -238,11 +251,17 @@ When(/^I double click to PPR title in PPR list from "([^"]*)" json file$/, (keyW
         default:
             break;
     }
-    raisePprPage.doubleClickToPprTitleInPprList(fileName, sessionStorage.getItem("numberPprTitle"))
+    cy.fixture(fileName).then((fileName) =>{
+        raisePprPage.doubleClickToPprTitleInPprList(fileName.pprTitle + sessionStorage.getItem("numberPprTitle"))
+    })
 })
 
 When(/^I double click to PPR title random in PPR list$/, () => {
-    raisePprPage.doubleClickToPprTitleRandomInPprList(sessionStorage.getItem("pprTitleRandom"))
+    raisePprPage.doubleClickToPprTitleInPprList(sessionStorage.getItem("pprTitleRandom"))
+})
+
+When(/^I double click to PPR number just created in 'PPR' list$/, () => {
+    raisePprPage.doubleClickToPprNumberInPprList(sessionStorage.getItem("pprNumber"))
 })
 
 When(/^I click to Item delete button at Raise PPR page$/, () => {

@@ -767,7 +767,10 @@ class ApiAction{
                                 approvalSequence: "auto.approver [auto.approver@getnada.com]",
                                 companyUuid: buyerCompanyUuid,                                                           //"689fbac5-7291-4cad-b84c-52e95d4499a8",
                                 currencyCode: "SGD",
-                                pprItemDtoList: [
+                                documentDtoList: [],
+                                note: "",
+                                pprItemDtoList: 
+                                [
                                     {
                                         accountNumber: "G/L auto 1",
                                         catalogueItemCode: "auto item code 2",
@@ -786,6 +789,8 @@ class ApiAction{
                                             active: true,
                                             addressFirstLine: "1 XYZ Buildingg",
                                             addressLabel: "address auto",
+                                            addressSecondLine: "12 New Industrial Rd Singapore, Singapore 536197",
+                                            city: "Singapore",  
                                             companyUuid: buyerCompanyUuid,                                                   //"689fbac5-7291-4cad-b84c-52e95d4499a8",
                                             country: "Singapore",
                                             postalCode: "4000",
@@ -812,6 +817,7 @@ class ApiAction{
                                 ],
                                 pprTitle: pprTitle,
                                 procurementType: "GOODS",
+                                requestedDeliveryDate: commonAction.getDateFormat5(1),
                                 requesterName: "auto creator",
                                 requesterUuid: sessionStorage.getItem("userUuid"),                                //"b809048e-d96c-4897-b5a4-8099f57b53a1",
                                 status: "PENDING_APPROVAL"
@@ -905,57 +911,92 @@ class ApiAction{
     callApiSaveAsDraftPpr(pprTitle){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
-        cy.request({
-            method: 'POST',
-            url: printf(urlPageLocator.save_draft_ppr_url, this.env, buyerCompanyUuid),
-            headers: {
-                authorization: "Bearer " + token,
-            }, 
-            body: {
-                approvalCodeUuid: "b921fa2d-e79f-458d-a7c8-726ac3bae307",
-                approvalSequence: "auto.approver [auto.approver@getnada.com]",
-                companyUuid: buyerCompanyUuid,                                              //"689fbac5-7291-4cad-b84c-52e95d4499a8",
-                currencyCode: "AOA",
-                pprItemDtoList: [
-                    {
-                    categoryDto: 
-                    {
-                        companyUuid: buyerCompanyUuid,                                      //"689fbac5-7291-4cad-b84c-52e95d4499a8",
-                        uuid: "3f0fb768-f68c-4895-9b8b-a9805528c56d"
-                    },
-                    currencyCode: "SGD",
-                    deliveryAddress: 
-                    {
-                        addressFirstLine: "1 XYZ Buildingg",
-                        addressLabel: "address auto",
-                        companyUuid: buyerCompanyUuid,                                      //"689fbac5-7291-4cad-b84c-52e95d4499a8",
-                        country: "Singapore",
-                        postalCode: "4000",
-                        state: "Singapore",
-                        uuid: "f9cdfeca-c150-47ed-8840-f17bdd6ff797"
-                    },
-                    isActive: true,
-                    isEditable: true,
-                    itemCategory: "AUTO EQUIPMENT",
-                    itemCode: "auto item code 2",
-                    itemName: "auto item name 2",
-                    quantity: "100",
-                    requestDeliveryDate: commonAction.getDateFormat5(1),
-                    supplierName: "TEST SUPPLIER 34",
-                    supplierUuid: "3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",
-                    taxCode: "11052022",
-                    taxRate: "0.5",
-                    unitPrice: "5000",
-                    uomCode: "CEN",      
-                    uuid: "ac4e3ff8-1ee4-4596-ad0f-f63981ea5d61"
-                    }
-                ],
-                pprTitle: pprTitle,
-                procurementType: "GOODS",
-                requesterName: "auto creator",
-                requesterUuid: "b809048e-d96c-4897-b5a4-8099f57b53a1",
-                status: "SAVED_AS_DRAFT"
-            }
+        cy.wrap(this.callApiGetDataAfterLogin()).then((e)=>{
+            cy.wrap(this.callApiGetDataInApprovalList("auto approval PPR 1")).then((e)=>{
+                cy.wrap(this.callApiGetDataInCatalogueList("auto item code 2")).then((e)=>{
+                    cy.wrap(this.callApiGetDataInManageAddress("address auto")).then((e)=>{
+                        cy.request({
+                            method: 'POST',
+                            url: printf(urlPageLocator.save_draft_ppr_url, this.env, buyerCompanyUuid),
+                            headers: {
+                                authorization: "Bearer " + token,
+                            }, 
+                            body: {
+                                address: 
+                                {
+                                    addressFirstLine: "1 XYZ Buildingg",
+                                    addressLabel: "address auto",
+                                    addressSecondLine: "12 New Industrial Rd Singapore, Singapore 536197",
+                                    city: "Singapore",
+                                    country: "Singapore",
+                                    postalCode: "4000",
+                                    state: "Singapore"
+                                },
+                                approvalCodeUuid: sessionStorage.getItem("approvalCodeUuid"),                            //"b921fa2d-e79f-458d-a7c8-726ac3bae307",
+                                approvalSequence: "auto.approver [auto.approver@getnada.com]",
+                                companyUuid: buyerCompanyUuid,                                                           //"689fbac5-7291-4cad-b84c-52e95d4499a8",
+                                currencyCode: "SGD",
+                                documentDtoList: [],
+                                note: "",
+                                pprItemDtoList: 
+                                [
+                                    {
+                                        accountNumber: "G/L auto 1",
+                                        catalogueItemCode: "auto item code 2",
+                                        catalogueItemName: "auto item name 2",
+                                        categoryDto: 
+                                        {
+                                            active: true,
+                                            categoryDescription: "auto equipment",
+                                            categoryName: "AUTO EQUIPMENT",
+                                            companyUuid: buyerCompanyUuid,                                                   //"689fbac5-7291-4cad-b84c-52e95d4499a8",
+                                            uuid: sessionStorage.getItem("categoryDtoUuid"),
+                                        },
+                                        currencyCode: "SGD",
+                                        deliveryAddress: 
+                                        {
+                                            active: true,
+                                            addressFirstLine: "1 XYZ Buildingg",
+                                            addressLabel: "address auto",
+                                            addressSecondLine: "12 New Industrial Rd Singapore, Singapore 536197",
+                                            city: "Singapore",  
+                                            companyUuid: buyerCompanyUuid,                                      //"689fbac5-7291-4cad-b84c-52e95d4499a8",
+                                            country: "Singapore",
+                                            postalCode: "4000",
+                                            state: "Singapore",
+                                            uuid: sessionStorage.getItem("addressUuid"),
+                                        },
+                                        isActive: true,
+                                        isEditable: true,
+                                        isManual: false,
+                                        itemCategory: "AUTO EQUIPMENT",
+                                        itemCode: "auto item code 2",
+                                        itemName: "auto item name 2",
+                                        quantity: "100",
+                                        requestDeliveryDate: commonAction.getDateFormat5(1),
+                                        supplierCode: "TEST_SUPPLIER_34",
+                                        supplierName: "TEST SUPPLIER 34",
+                                        supplierUuid: sessionStorage.getItem("supplierUuid"),
+                                        taxCode: "11052022",
+                                        taxRate: "0.5",
+                                        unitPrice: "5000",
+                                        uomCode: "CEN",      
+                                        uuid: sessionStorage.getItem("catalogueUuid"),
+                                    }
+                                ],
+                                pprTitle: pprTitle,
+                                procurementType: "GOODS",
+                                requestedDeliveryDate: commonAction.getDateFormat5(1),
+                                requesterName: "auto creator",
+                                requesterUuid: sessionStorage.getItem("userUuid"),
+                                status: "SAVED_AS_DRAFT"
+                            }
+                        }).then((response)=>{
+                            expect(response.body).has.property("message", "PPR saved draft successfully");
+                        })
+                    })
+                })
+            })
         })
     }
 

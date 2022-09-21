@@ -23,6 +23,14 @@ class BaseAction {
         });
     }
 
+    getPprNumberInPprList(){
+        cy.xpath("//*[@role='rowgroup']//*[contains(@class,'ag-row-first')]//*[@col-id='pprNumber']").then(($el) => {
+            let text = $el.text()
+            sessionStorage.setItem("pprNumber", text)
+            cy.log("pprNumber", sessionStorage.getItem("pprNumber"))
+        });
+    }
+
     getPrNumberInPrList(){
         cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="prNumber"]').then(($el) => {
             let text = $el.text()
@@ -37,7 +45,7 @@ class BaseAction {
         });
     }
 
-    getPoNumberInGrList(){
+    getGrNumberInGrList(){
         cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="grNumber"]').then(($el) => {
             let text = $el.text()
             sessionStorage.setItem("grNumber", text)
