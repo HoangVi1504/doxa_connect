@@ -28,7 +28,7 @@ Scenario: P2P-PPR-S04-002 Cancel draft PPR in PENDING SUBMISSION status
     When I click to "I Understand" button format_1
     Then I see 'PPR List' page title
 
-    When I input PPR number just created to 'Filter PPR No' in 'PPR' list
+    When I input PPR number just created to 'Filter PPR No' in "PPR" list
     Then I see PPR status in PPR list is "CANCELLED"
 
 Scenario: P2P-PPR-S05-001 P2P-PPR-S06-002 Recall submitted PPR in PENDING APPROVAL status then submit PPR in RECALLED status
@@ -59,7 +59,7 @@ Scenario: P2P-PPR-S05-001 P2P-PPR-S06-002 Recall submitted PPR in PENDING APPROV
     When I click to "I Understand" button format_1
     Then I see 'PPR List' page title
 
-    When I input PPR number just created to 'Filter PPR No' in 'PPR' list
+    When I input PPR number just created to 'Filter PPR No' in "PPR" list
     Then I see PPR status in PPR list is "RECALLED"
 
     # Submit PPR with RECALLED status
@@ -74,5 +74,5 @@ Scenario: P2P-PPR-S05-001 P2P-PPR-S06-002 Recall submitted PPR in PENDING APPROV
     When I click to "I Understand" button format_1
     Then I see 'PPR List' page title
 
-    When I input PPR number just created to 'Filter PPR No' in 'PPR' list
+    When I input PPR number just created to 'Filter PPR No' in "PPR" list
     Then I see PPR status in PPR list is "PENDING APPROVAL"

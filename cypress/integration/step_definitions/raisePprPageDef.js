@@ -212,8 +212,8 @@ When(/^I input PPR random to 'Search PPR' textbox$/, () => {
     raisePprPage.enterValueToSearchPPRTitleTextbox(sessionStorage.getItem("pprTitleRandom"))
 })
 
-When(/^I input PPR number just created to 'Filter PPR No' in 'PPR' list$/, () => {
-    raisePprPage.enterValueToFilterPprNumberInList(sessionStorage.getItem("pprNumber"))
+When(/^I input PPR number just created to 'Filter PPR No' in "([^"]*)" list$/, (listName) => {
+    raisePprPage.enterValueToFilterPprNumberInList(sessionStorage.getItem("pprNumber"), listName)
 })
 
 When(/^I input PPR random to 'PPR Title' textbox at 'PPR' page$/, () => {
@@ -274,6 +274,14 @@ When(/^I click to PPR title textbox at Raise PPR page$/, () => {
 
 When(/^I input reason cancel PPR "([^"]*)" at Raise PPR page$/, (reason) => {
     raisePprPage.enterValueToReasonCancelTextbox(reason)
+})
+
+When(/^I input reason send back PPR "([^"]*)" at 'PPR' page$/, (reason) => {
+    raisePprPage.enterValueToReasonSendBackTextbox(reason)
+})
+
+When(/^I input reason reject PPR "([^"]*)" at 'PPR' page$/, (reason) => {
+    raisePprPage.enterValueToReasonRejectTextbox(reason)
 })
 
 Then(/^I see 'Approval Route' dropdown at 'PPR' page is disabled$/, () => {

@@ -5,6 +5,8 @@ class RaisePprPageLocator{
         this.ppr_title_txb_css = '[name="pprTitle"]';
         this.reason_cancel_txb_css = '[name="reasonCancel"]'
         this.delivery_date_txb_css = '[name="deliveryDate"]';
+        this.reason_reject_txb_css = '[name="rejectReason"]';
+        this.reason_send_back_txb_css = '[name="sendBackReason"]';
         this.search_catalogue_item_txb_css = '[type="search"]';
 
         this.filter_ppr_title_in_list_css = '[aria-label="Purchase Pre-requisition Title Filter Input"]';

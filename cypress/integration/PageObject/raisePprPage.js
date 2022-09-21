@@ -138,12 +138,25 @@ class RaisePprPage{
         })
     }
 
-    enterValueToFilterPprNumberInList(pprNumber){
+    enterValueToFilterPprNumberInList(pprNumber, listName){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        let urlRequest
+        switch (listName) {
+            case "PPR":
+                urlRequest = printf(urlPageLocator.ppr_list_url, this.env, buyerCompanyUuid)
+                break;
+
+            case "PR":
+                urlRequest = printf(urlPageLocator.pr_list_url, this.env, buyerCompanyUuid)
+                break;
+        
+            default:
+                break;
+        }
         cy.request({
             method: 'GET',
-            url: printf(urlPageLocator.ppr_list_url, this.env, buyerCompanyUuid),
+            url: urlRequest,
             headers: {
                 authorization: "Bearer " + token,
             }
@@ -171,6 +184,14 @@ class RaisePprPage{
 
     enterValueToReasonCancelTextbox(reason){
         commonAction.enterValueToTextbox(raisePprPageLocator.reason_cancel_txb_css, reason)
+    }
+
+    enterValueToReasonSendBackTextbox(reason){
+        commonAction.enterValueToTextbox(raisePprPageLocator.reason_send_back_txb_css, reason)
+    }
+
+    enterValueToReasonRejectTextbox(reason){
+        commonAction.enterValueToTextbox(raisePprPageLocator.reason_reject_txb_css, reason)
     }
 
     selectValueFromRequisitionTypeDropdown(value){
