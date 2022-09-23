@@ -175,6 +175,7 @@ Scenario: 04 Approver approval GR then creator close PO
     Then I see GR status in GR list is "COMPLETED"
 
     # # Creator close PO in PARTIALLY DELIVERED status
+    # Bug: https://doxa-connex.atlassian.net/browse/D0R-5116
     # When I logout account
     # And I login with role "creator"
     # And I click to 'Dashboard' link on Header menu if it not be selected

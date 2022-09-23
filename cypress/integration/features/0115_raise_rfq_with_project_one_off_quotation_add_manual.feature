@@ -151,7 +151,7 @@ Scenario: P2P-RFQ-S011-001-002 Buyer shortlist RFQ
     When I click to "OK" button format_1
     Then I see a validation text of 'Approval Route' at 'RFQ Detail' page "Please select valid approval route" appears
 
-    When I select "RFQ APPROVER" from 'Approval Route' dropdown at 'RFQ Detail' page
+    When I select "auto approval RFQ" from 'Approval Route' dropdown at 'RFQ Detail' page
     And I check to supplier checkbox at 'RFQ Detail' page
     And I input a value is bigger than the required quantity from "rfq_v5" json file to 'Awarded Quantity' textbox
     And I click to "Shortlist Vendor" button format_3

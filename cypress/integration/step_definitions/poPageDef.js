@@ -38,6 +38,10 @@ When(/^"([^"]*)" input PO No to filter PO in "([^"]*)" list$/, (roleName, listNa
     poPage.enterValueToFilterPoNumberInList(roleName, sessionStorage.getItem("poNumber"), listName)
 })
 
+When(/^I input RFQ No to filter RFQ in 'PO' list$/, () => {
+    poPage.enterValueToFilterRfqNoInPoList(sessionStorage.getItem("rfqNumber"))
+})
+
 When(/^I input reason close PO at 'PO Detail' page is "([^"]*)"$/, (reason) => {
     poPage.enterValueToCancelReasonTextbox(reason)
 })
@@ -69,6 +73,10 @@ When(/^I click to Mark Complete button at 'PO Detail' page$/, () => {
 
 When(/^I click to Reject button at 'PO Detail' page$/, () => {
     poPage.clickToRejectButton()
+})
+
+When(/^I click to close preview PO button at 'PO Detail' page$/, () => {
+    poPage.clickToClosePreviewPoButton()
 })
 
 Then(/^I see 'PR Convert Detail' page$/, () => {
@@ -105,4 +113,8 @@ Then(/^I see Supplier Ack status is "([^"]*)"$/, (status) => {
 
 Then(/^I see notification PO "([^"]*)" display at 'PO Detail' page$/, (notification) => {
     poPage.verifyNotificationPoDisplay(notification)
+})
+
+Then(/^I see PO number in Preview PO at 'PO Detail' page$/, () => {
+    poPage.verifyPoNumberInPreviewPoDisplay(sessionStorage.getItem("poNumber"))
 })

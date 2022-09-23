@@ -330,6 +330,10 @@ class RaiseRFQPage{
         commonAction.verifyValueInTextboxExist(raiseRFQPageLocator.rfq_title_txb_css, rfqTitle)
     }
 
+    verifyValueInRfqNumberTextboxExist(rfqNumber){
+        commonAction.verifyValueInTextboxExist(raiseRFQPageLocator.rfq_number_txb_css, rfqNumber)
+    }
+
     verifyFileNameInNegotiationExist(fileName) {
         commonAction.verifyValueInTextboxExist(raiseRFQPageLocator.file_name_in_negotiation_btn_css,fileName)
     }

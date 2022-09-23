@@ -5,6 +5,7 @@ class RaiseRFQPageLocator{
         this.tax_code_txb_css = '[name="taxCode"]';
         this.due_date_txb_css = 'input[placeholder="Please select valid Due Date"]';
         this.rfq_title_txb_css = '[name="rfqTitle"]';
+        this.rfq_number_txb_css = "[name='rfqNumber']";
         this.delivery_date_txb_css = '[name="deliveryDate"]';
         this.validity_end_date_txb_css = '[name="validityEndDate"]';
         this.validity_start_date_txb_css = '[name="validityStartDate"]';

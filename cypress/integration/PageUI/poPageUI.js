@@ -8,6 +8,7 @@ class PoPageLocator{
         this.approval_route_dropdown_css = '[name="approvalRouteUuid"]';
 
         this.filter_po_number_in_list_css = '[aria-label="Purchase Order No. Filter Input"]';
+        this.filter_rfq_number_in_list_css = "[aria-label='Request For QuotationNo. Filter Input']";
         this.filter_item_code_in_po_item_css = "[aria-label='Item Code Filter Input']";
 
         // Xpath
@@ -20,6 +21,8 @@ class PoPageLocator{
         this.po_list_page_title_xpath = "//h1//*[text()='Purchase Orders List']";
         this.po_detail_page_title_xpath = "//h1//*[text()='Purchase Order Details']";
         this.scroll_bar_in_po_list_xpath = "//*[@class='ag-body-horizontal-scroll-viewport']";
+        this.close_preview_po_button_xpath = "//*[text()='Preview Purchase Order']/parent::*//button[@class='close']";
+        this.po_number_in_preview_po_xpath = "//*[text()='Preview Purchase Order']/parent::*//*[text()='PO No.']/following-sibling::*[text()='%s']";
         this.mark_completed_po_button_xpath = "(//button[text()='Mark Completed'])[2]";
         this.scroll_bar_in_po_item_table_xpath = "(//*[@class='ag-body-horizontal-scroll-viewport'])[1]";
         this.supplier_ack_status_in_list_xpath = "//*[contains(@class,'ag-row-first')]//*[@col-id='supplierAck' and text()='%s']";

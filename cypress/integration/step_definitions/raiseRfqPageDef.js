@@ -38,6 +38,14 @@ When(/^Call API close RFQ$/, () => {
     apiAction.callApiCloseRfq(sessionStorage.getItem("rfqNumber"))
 })
 
+When(/^Call API shortlist RFQ$/, () => {
+    apiAction.callApiShortlistRfq(sessionStorage.getItem("rfqNumber"))
+})
+
+When(/^Call API approval RFQ$/, () => {
+    apiAction.callApiApprovalRfq(sessionStorage.getItem("rfqNumber"))
+})
+
 When(/^I fill data in Raise Requisition tab from "([^"]*)" json file at Raise RFQ page$/, (keyWord) => {
     let fileName;
     switch (keyWord) {
@@ -680,6 +688,10 @@ When(/^I see RFQ title at RFQ detail page from "([^"]*)" json file$/, (keyWord) 
     cy.fixture(fileName).then((fileName) =>{
         raiseRfqPage.verifyValueInRFQTitleTextboxExist(fileName.rfqTitle + sessionStorage.getItem("numberRfqTitle"))
     })
+})
+
+Then(/^I see RFQ number just created in 'RFQ No' textbox at 'RFQ Details' page$/, () => {
+    raiseRfqPage.verifyValueInRfqNumberTextboxExist(sessionStorage.getItem("rfqNumber"))
 })
 
 Then(/^I see RFQ title from "([^"]*)" json file at the first row in RFQ list$/, (keyWord) => {

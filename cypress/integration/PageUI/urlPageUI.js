@@ -86,13 +86,18 @@ class UrlPageLocator{
         this.raise_rfq_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/request-for-quotation/submit`;
         this.rfq_detail_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/request-for-quotation/${'%s'}/details/${'%s'}`;
         this.submit_rfq_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/request-for-quotation/supplier/submit/quotations`;
+        this.approve_rfq_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/request-for-quotation/approve`;
+        this.shortlist_rfq_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/request-for-quotation/shortlist`;
         
         this.close_rfq_dev_url = `https://api-connex-dev.doxa-holdings.com/purchase/689fbac5-7291-4cad-b84c-52e95d4499a8/request-for-quotation/close`;
         this.raise_rfq_dev_url = `https://api-connex-dev.doxa-holdings.com/purchase/689fbac5-7291-4cad-b84c-52e95d4499a8/request-for-quotation/submit`;
-        this.rfq_detail_dev_url = `https://api-connex-dev.doxa-holdings.com/purchase/70becfb0-cb73-46b2-b372-8e78714eb507/request-for-quotation/${'%s'}/details/${'%s'}`;
         this.submit_rfq_dev_url = `https://api-connex-dev.doxa-holdings.com/purchase/70becfb0-cb73-46b2-b372-8e78714eb507/request-for-quotation/supplier/submit/quotations`;
+        this.approve_rfq_dev_url = 'https://api-connex-dev.doxa-holdings.com/purchase/689fbac5-7291-4cad-b84c-52e95d4499a8/request-for-quotation/approve';
+        this.shortlist_rfq_dev_url = 'https://api-connex-dev.doxa-holdings.com/purchase/689fbac5-7291-4cad-b84c-52e95d4499a8/request-for-quotation/shortlist';
         this.rfq_list_dev_buyer_url = `https://api-connex-dev.doxa-holdings.com/purchase/689fbac5-7291-4cad-b84c-52e95d4499a8/request-for-quotation/buyer/list`;
+        this.rfq_detail_buyer_dev_url = `https://api-connex-dev.doxa-holdings.com/purchase/689fbac5-7291-4cad-b84c-52e95d4499a8/request-for-quotation/${'%s'}/details/${'%s'}`;
         this.rfq_list_dev_supplier_url = `https://api-connex-dev.doxa-holdings.com/purchase/70becfb0-cb73-46b2-b372-8e78714eb507/request-for-quotation/supplier/list`;
+        this.rfq_detail_supplier_dev_url = `https://api-connex-dev.doxa-holdings.com/purchase/70becfb0-cb73-46b2-b372-8e78714eb507/request-for-quotation/${'%s'}/details/${'%s'}`;
 
         // URL Create Data
         this.create_entity_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/org/create`;

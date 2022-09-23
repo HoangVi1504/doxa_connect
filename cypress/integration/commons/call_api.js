@@ -255,9 +255,6 @@ class ApiAction{
             sessionStorage.setItem("userName", userName)
             sessionStorage.setItem("userUuid", userUuid)
             sessionStorage.setItem("companyUuid", companyUuid)
-            cy.log(sessionStorage.getItem("userName"))
-            cy.log(sessionStorage.getItem("userUuid"))
-            cy.log(sessionStorage.getItem("companyUuid"))
         })
     }
 
@@ -274,9 +271,7 @@ class ApiAction{
             expect(response.body).has.property("status", "OK")
             let elementApproval = response.body.data.find(element => element.approvalName === approvalName);
             let approvalCodeUuid = elementApproval.uuid
-            console.timeStamp()
             sessionStorage.setItem("approvalCodeUuid", approvalCodeUuid )
-            cy.log("approvalCodeUuid", approvalCodeUuid)
         })
     }
 
@@ -360,7 +355,6 @@ class ApiAction{
                 }).then((response)=>{
                     expect(response.body).has.property("status", "OK")
                     let itemId = response.body.data.goodsReceiptItem[0].itemId;
-                    cy.log(itemId)
                     cy.request({
                         method: 'POST',
                         url: printf(urlPageLocator.approval_gr_url, this.env, buyerCompanyUuid),
@@ -510,9 +504,6 @@ class ApiAction{
             sessionStorage.setItem("categoryDtoUuid", categoryDtoUuid)
             sessionStorage.setItem("supplierUuid", supplierUuid)
             sessionStorage.setItem("catalogueUuid", catalogueUuid)
-            cy.log(sessionStorage.getItem("categoryDtoUuid"))
-            cy.log(sessionStorage.getItem("supplierUuid"))
-            cy.log(sessionStorage.getItem("catalogueUuid"))
         })  
     }
 
@@ -530,7 +521,6 @@ class ApiAction{
             let elementAddress = response.body.data.find(element => element.addressLabel === addressLabel);
             let addressUuid = elementAddress.uuid
             sessionStorage.setItem("addressUuid", addressUuid)
-            cy.log(sessionStorage.getItem("addressUuid"))
         })
     }
 
@@ -645,7 +635,6 @@ class ApiAction{
             let elementRfq = response.body.data.find(element => element.rfqNumber === rfqNumber);
             let rfqUuid = elementRfq.uuid
             sessionStorage.setItem("rfqUuid", rfqUuid)
-            cy.log(sessionStorage.getItem("rfqUuid"))
         })
     }
 
@@ -657,12 +646,13 @@ class ApiAction{
         cy.wrap(this.callApiGetDataInRfqList(roleName, rfqNumber)).then((e)=>{
             switch (roleName) {
                 case "buyer":
-                    urlRequest = printf(urlPageLocator.rfq_detail_url, this.env, buyerCompanyUuid, roleName, sessionStorage.getItem("rfqUuid"))
+                    //urlRequest = printf(urlPageLocator.rfq_detail_url, this.env, buyerCompanyUuid, roleName, sessionStorage.getItem("rfqUuid"))
+                    urlRequest = printf(urlPageLocator.rfq_detail_buyer_dev_url, roleName, sessionStorage.getItem("rfqUuid"))
                     break;
     
                 case "supplier":
                     //urlRequest = printf(urlPageLocator.rfq_detail_url, this.env, supplierCompanyUuid, roleName, sessionStorage.getItem("rfqUuid"))
-                    urlRequest = printf(urlPageLocator.rfq_detail_dev_url, roleName, sessionStorage.getItem("rfqUuid"))
+                    urlRequest = printf(urlPageLocator.rfq_detail_supplier_dev_url, roleName, sessionStorage.getItem("rfqUuid"))
                     break;
             
                 default:
@@ -678,7 +668,6 @@ class ApiAction{
                 expect(response.body).has.property("status", "OK")
                 let rfqItemId = response.body.data.rfqItemList[0].id
                 sessionStorage.setItem("rfqItemId", rfqItemId)
-                cy.log(sessionStorage.getItem("rfqItemId"))
             })
         })
     }
@@ -686,7 +675,6 @@ class ApiAction{
     callApiSubmitRfq(rfqNumber){
         let token = window.localStorage.getItem("token")
         let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
-        cy.log("rfqNumber", rfqNumber)
         cy.wrap(this.callApiGetDataInRfqDetails("supplier", rfqNumber)).then((e)=>{
             cy.request({
                 method: 'POST',
@@ -735,6 +723,71 @@ class ApiAction{
                 }
             }).then((response)=>{
                 expect(response.body).has.property("message", "RFQ was closed successfully");
+            })
+        })
+    }
+
+    callApiShortlistRfq(rfqNumber){
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.wrap(this.callApiGetDataInApprovalList("auto approval RFQ")).then((e)=>{
+            cy.wrap(this.callApiGetDataInRfqDetails("buyer", rfqNumber)).then((e)=>{
+                cy.request({
+                    method: 'GET',
+                    //url: printf(urlPageLocator.rfq_detail_url, this.env, buyerCompanyUuid, "buyer", sessionStorage.getItem("rfqUuid"))
+                    url: printf(urlPageLocator.rfq_detail_buyer_dev_url, "buyer", sessionStorage.getItem("rfqUuid")),
+                    headers: {
+                        authorization: "Bearer " + token,
+                    }
+                }).then((response) => {
+                    expect(response.body).has.property("status", "OK")
+                    let quoteUuid = response.body.data.quoteDtoList[0].uuid
+                    sessionStorage.setItem("quoteUuid", quoteUuid)
+                    cy.request({
+                        method: 'PUT',
+                        //url: printf(urlPageLocator.shortlist_rfq_url, this.env, buyerCompanyUuid),
+                        url: urlPageLocator.shortlist_rfq_dev_url,
+                        headers: {
+                            authorization: "Bearer " + token,
+                        },
+                        body: {
+                            approvalRouteUuid: sessionStorage.getItem("approvalCodeUuid"),
+                            newlyAddedDocumentList: [],
+                            shortListRfqItemDtoList: 
+                            [
+                                {
+                                    awardedQty: 1000,
+                                    quoteUuid: sessionStorage.getItem("quoteUuid"),
+                                    rfqItemId: sessionStorage.getItem("rfqItemId"),
+                                }
+                            ],
+                            uuid: sessionStorage.getItem("rfqUuid"),
+                        }
+                    }).then((response)=>{
+                        expect(response.body).has.property("message", `RFQ has been successfully shortlisted for: ${rfqNumber}`);
+                    })
+                })
+            })
+        })
+    }
+
+    callApiApprovalRfq(rfqNumber){
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.wrap(this.callApiGetDataInRfqList("buyer", rfqNumber)).then((e)=>{
+            cy.request({
+                method: 'PUT',
+                //url: printf(urlPageLocator.approve_rfq_url, this.env, buyerCompanyUuid),
+                url: urlPageLocator.approve_rfq_dev_url,
+                headers: {
+                    authorization: "Bearer " + token,
+                },
+                body: {
+                    newlyAddedDocumentList: [],
+                    uuid: sessionStorage.getItem("rfqUuid"),
+                }
+            }).then((response)=>{
+                expect(response.body).has.property("message", "Approval is successful");
             })
         })
     }
@@ -1351,7 +1404,6 @@ class ApiAction{
             let elementPaymentTerm = response.body.data.find(element => element.ptName === paymentTerm);
             let ptUuid = elementPaymentTerm.ptUuid
             sessionStorage.setItem("ptUuid", ptUuid)
-            cy.log(sessionStorage.getItem("ptUuid"))
         })
     }
 
@@ -1369,7 +1421,6 @@ class ApiAction{
             let elementTax = response.body.data.find(element => element.taxCode === taxCode);
             let taxUuid = elementTax.uuid
             sessionStorage.setItem("taxUuid", taxUuid)
-            cy.log(sessionStorage.getItem("taxUuid"))
         })
     }
 
@@ -1478,7 +1529,6 @@ class ApiAction{
             let elementCategory = response.body.data.find(element => element.categoryName === categoryName);
             let categoryUuid = elementCategory.uuid
             sessionStorage.setItem("categoryUuid", categoryUuid)
-            cy.log(sessionStorage.getItem("categoryUuid"))
         })
     }
 
@@ -1496,7 +1546,6 @@ class ApiAction{
             let elementVendor = response.body.data.find(element => element.companyName === vendorName);
             let vendorUuid = elementVendor.uuid
             sessionStorage.setItem("vendorUuid", vendorUuid)
-            cy.log(sessionStorage.getItem("vendorUuid"))
         })
     }
 
@@ -1757,8 +1806,6 @@ class ApiAction{
             let featureUuid = elementFeature.featureUuid
             sessionStorage.setItem("featureCode", featureCode)
             sessionStorage.setItem("featureUuid", featureUuid)
-            cy.log(sessionStorage.getItem("featureCode"))
-            cy.log(sessionStorage.getItem("featureUuid"))
         })
     }
 
@@ -1777,8 +1824,6 @@ class ApiAction{
         var mpaym = require('../data/dataMpaym.json')
         var hpaym = require('../data/dataHpaym.json')
         var tmp = require(`../data/data${featureCode}.json`)
-        cy.log(tmp.featureName)
-        cy.log(tmp.approvalCode)
         let approvalRange
         switch (approvalLevel) {
             case "1":

@@ -67,6 +67,23 @@ class PoPage{
         })
     }
 
+    enterValueToFilterRfqNoInPoList(rfqNumber){
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.request({
+            method: 'GET',
+            url: printf(urlPageLocator.po_list_url, this.env, buyerCompanyUuid, "buyer"),
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            expect(response.body).has.property("status", "OK")
+            commonAction.wait(1)
+            commonAction.clickToElement(poPageLocator.filter_rfq_number_in_list_css)
+            commonAction.enterValueToTextbox(poPageLocator.filter_rfq_number_in_list_css, rfqNumber)
+        })
+    }
+
     enterValueToCancelReasonTextbox(reason){
         commonAction.enterValueToTextbox(poPageLocator.cancel_po_reason_txb_css, reason)
     }
@@ -101,6 +118,10 @@ class PoPage{
 
     clickToRejectButton(){
         commonAction.clickToElementByXpath(poPageLocator.reject_po_button_xpath)
+    }
+
+    clickToClosePreviewPoButton(){
+        commonAction.clickToElementByXpath(poPageLocator.close_preview_po_button_xpath)
     }
 
     verifyApprovalRouteDropdownIsDisable(){
@@ -138,6 +159,10 @@ class PoPage{
 
     verifyNotificationPoDisplay(notification){
         commonAction.verifyElementByXpathVisible(printf(poPageLocator.notification_po_xpath, notification))
+    }
+
+    verifyPoNumberInPreviewPoDisplay(poNumber){
+        commonAction.verifyElementByXpathVisible(printf(poPageLocator.po_number_in_preview_po_xpath, poNumber))
     }
 
     scrollToElementInPoList(position){
