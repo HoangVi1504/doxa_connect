@@ -90,7 +90,7 @@ class ApiAction{
                 authorization: "Bearer " + token,
             }
         }).then((response) => {
-            let elementRoot = response.body.data.find(element => element.pprTitle === pprTitle);
+            let elementRoot = response.body.data.data.find(element => element.pprTitle === pprTitle);
             let uuidRoot = elementRoot.pprUuid;
             urlPage.navigateToPprPage(pageName, uuidRoot)
         })
@@ -134,7 +134,8 @@ class ApiAction{
                 authorization: "Bearer " + token,
             }
         }).then((response) => {
-            let elementRoot = response.body.data.find(element => element.prNumber === prNumber);
+            expect(response.body).has.property("status", "OK")
+            let elementRoot = response.body.data.data.find(element => element.prNumber === prNumber);
             let uuidRoot = elementRoot.uuid;
             urlPage.navigateToPrPage(pageName, uuidRoot)
         })
@@ -167,7 +168,7 @@ class ApiAction{
             }
         }).then((response) => {
             expect(response.body).has.property("status", "OK")
-            let elementRoot = response.body.data.find(element => element.poNumber === poNumber);
+            let elementRoot = response.body.data.data.find(element => element.poNumber === poNumber);
             let uuidRoot = elementRoot.poUuid;
             cy.request({
                 method: 'POST',
@@ -204,7 +205,7 @@ class ApiAction{
                 authorization: "Bearer " + token,
             }
         }).then((response) => {
-            let elementPO = response.body.data.find(element => element.poNumber === poNumber);
+            let elementPO = response.body.data.data.find(element => element.poNumber === poNumber);
             let poUuidList = elementPO.poUuid;
             cy.request({
                 method: 'GET',
@@ -344,7 +345,7 @@ class ApiAction{
                 }
             }).then((response) => {
                 expect(response.body).has.property("message", "Retrieval of goods receipt list successful")
-                let elementGR = response.body.data.find(element => element.grNumber === grNumber);
+                let elementGR = response.body.data.data.find(element => element.grNumber === grNumber);
                 let grUuidList = elementGR.uuid;
                 cy.request({
                     method: 'GET',
@@ -410,7 +411,7 @@ class ApiAction{
                 authorization: "Bearer " + token,
             }
         }).then((response) => {
-            let elementRoot = response.body.data.find(element => element.poNumber === poNumber);
+            let elementRoot = response.body.data.data.find(element => element.poNumber === poNumber);
             let uuidRoot = elementRoot.poUuid;
             sessionStorage.setItem("poUuid", uuidRoot)
             urlPage.navigateToPoDetailPage(uuidRoot)
@@ -441,7 +442,7 @@ class ApiAction{
                 authorization: "Bearer " + token,
             }
         }).then((response) => {
-            let elementRoot = response.body.data.find(element => element.poNumber === poNumber);
+            let elementRoot = response.body.data.data.find(element => element.poNumber === poNumber);
             let poUuidRoot = elementRoot.poUuid;
             let viewPoUrl;
             switch (roleName) {

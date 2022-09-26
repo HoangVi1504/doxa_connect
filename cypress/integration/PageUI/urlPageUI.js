@@ -34,7 +34,7 @@ class UrlPageLocator{
         this.approval_configuration_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/approval-configuration/get`;
         
         // PPR URL 
-        this.ppr_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/prerequisition/list/`;
+        this.ppr_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/prerequisition/list-pagination/?page=0&size=50&q=&orderBy=pprNumber:desc`;
         this.ppr_detail_url = `https://connex-${'%s'}.doxa-holdings.com/pre-requisitions/details?uuid=${'%s'}`;
         this.create_ppr_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/prerequisition/create`;
         this.approval_ppr_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/prerequisition/approve?pprUuid=${'%s'}`;
@@ -42,24 +42,24 @@ class UrlPageLocator{
         this.convert_ppr_to_pr_url = `https://connex-${'%s'}.doxa-holdings.com/purchase-pre-requisitions/convert-to-pr?uuid=${'%s'}`;
 
         // PR URL
-        this.pr_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-requisition/list`;
+        this.pr_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-requisition/list-pagination?page=0&size=50&q=&orderBy=prNumber:desc`;
         this.pr_detail_url = `https://connex-${'%s'}.doxa-holdings.com/requisition/pr-details?uuid=${'%s'}`;
         this.create_pr_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-requisition/create`;
         this.approval_pr_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-requisition/approve`;
         this.edit_draft_pr_url = `https://connex-${'%s'}.doxa-holdings.com/requisition/edit-draft-pr?uuid=${'%s'}`;
-        this.buyer_po_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-order/buyer/list`;
         this.buyer_view_po_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-order/buyer/pdf/${'%s'}`;
         this.edit_pr_detail_url = `https://connex-${'%s'}.doxa-holdings.com/requisition/edit-pr-details?uuid=${'%s'}`;
         this.convert_pr_to_po_url = `https://connex-${'%s'}.doxa-holdings.com/convert-pr-to-po?uuid=${'%s'}`;
-        this.supplier_po_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-order/supplier/list`;
         this.supplier_view_po_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-order/supplier/pdf/${'%s'}`;
         this.convert_pr_to_po_api_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-requisition/${'%s'}/${'%s'}/convert-to-po`;
         this.pr_to_be_converted_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-requisition/to-be-converted/`;
-
+        
         // PO URL 
-        this.po_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-order/${'%s'}/list`
+        this.po_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-order/${'%s'}/list-pagination?page=0&size=50&q=&orderBy=poNumber:desc`
         this.po_detail_url = `https://connex-${'%s'}.doxa-holdings.com/po-details?uuid=${'%s'}`;
+        this.buyer_po_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-order/buyer/list-pagination?page=0&size=50&q=&orderBy=poNumber:desc`;
         this.acknowledge_po_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-order/supplier/acknowledge/${'%s'}`;
+        this.supplier_po_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-order/supplier/list-pagination?page=0&size=50&q=&orderBy=poNumber:desc`;
 
         // DO URL
         this.do_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/delivery-order/list`;
@@ -68,7 +68,7 @@ class UrlPageLocator{
         this.create_do_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/delivery-order/po/list`
 
         // GR URL
-        this.gr_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/goods-receipt/list`;
+        this.gr_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/goods-receipt/list-pagination?page=0&size=50&q=&orderBy=grNumber:desc`;
         this.gr_detail_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/goods-receipt/details?uuid=${'%s'}&grGlobalNumber=`
         this.approval_gr_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/goods-receipt/approve`;
         this.create_gr_from_do_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/delivery-order/list/for-gr`;
