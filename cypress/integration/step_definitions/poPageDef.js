@@ -55,6 +55,11 @@ When(/^I input "([^"]*)" to 'Item Unit Price' textbox at 'PO Detail' page$/, (pr
     commonPage.clickToText("Unit Price")
 })
 
+When(/^I input "([^"]*)" to 'Item Quantity' textbox at 'PO Detail' page$/, (quantity) => {
+    poPage.enterValueToItemQuantityInPoItem(quantity)
+    commonPage.clickToText("Quantity")
+})
+
 When(/^I select approval route "([^"]*)" at 'PO detail' page$/, (value) => {
     poPage.selectValueFromApprovalRouteDropdown(value)
 })
@@ -81,6 +86,14 @@ When(/^I click to close preview PO button at 'PO Detail' page$/, () => {
 
 Then(/^I see 'PR Convert Detail' page$/, () => {
     poPage.verifyPrConvertDetailPageTitleDisplay()
+})
+
+Then(/^I see 'PPR Convert List' page$/, () => {
+    poPage.verifyPprConvertListPageTitleDisplay()
+})
+
+Then(/^I see 'PPR Convert Detail' page$/, () => {
+    poPage.verifyPprConvertDetailPageTitleDisplay()
 })
 
 Then(/^I see 'PO Detail' page$/, () => {

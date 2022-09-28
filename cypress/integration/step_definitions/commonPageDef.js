@@ -51,6 +51,15 @@ When(/^Write data to 'dataSupplier.json' file$/, () => {
     })
 })
 
+When(/^Write data to 'dataUnconnectedSupplier.json' file$/, () => {
+    commonAction.writeValueToJsonFile("dataUnConnectSupplier.json", 
+    {   
+        supplierName: sessionStorage.getItem("userName"),
+        supplierUuid: sessionStorage.getItem("userUuid"),
+        supplierCompanyUuid: sessionStorage.getItem("companyUuid")
+    })
+})
+
 When(/^Call Api get data in catalogue list have catalogue item code is "([^"]*)"$/, (catalogueItemCode) => {
     apiAction.callApiGetDataInCatalogueList(catalogueItemCode)
 })

@@ -26,6 +26,11 @@ When(/^Call API Raise PPR random$/, () => {
     apiAction.callApiRaisePpr(sessionStorage.getItem("pprTitleRandom"))
 })
 
+When(/^Call API Raise PPR random with contract item and unconnected supplier$/, () => {
+    sessionStorage.setItem("pprTitleRandom", "auto PPR " + faker.random.alphaNumeric(5))
+    apiAction.callApiRaisePprWithContractItemUnconnectedSupplier(sessionStorage.getItem("pprTitleRandom"))
+})
+
 When(/^Call API navigate to "([^"]*)" page of PPR random$/, (pageName) => {
     apiAction.callApiNavigateToPprPage(pageName, sessionStorage.getItem("pprTitleRandom"))
 })

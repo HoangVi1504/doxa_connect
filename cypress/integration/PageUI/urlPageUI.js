@@ -5,7 +5,7 @@ class UrlPageLocator{
         this.entities_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/org/list`;
         this.category_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/category/list`;
         this.currency_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/currencies/list/`;
-        this.catalogue_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/catalogue/v2/list?page=0&size=10&q=`;
+        this.catalogue_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/catalogue/v2/list?page=0&size=50&q=`;
         this.organization_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/users/${'%s'}/entity/list`;
         this.company_user_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/users/company/list/${'%s'}`;
         this.payment_term_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/payment-term/list`;
@@ -40,6 +40,7 @@ class UrlPageLocator{
         this.approval_ppr_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/prerequisition/approve?pprUuid=${'%s'}`;
         this.save_draft_ppr_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/prerequisition/save-draft`;
         this.convert_ppr_to_pr_url = `https://connex-${'%s'}.doxa-holdings.com/purchase-pre-requisitions/convert-to-pr?uuid=${'%s'}`;
+        this.ppr_to_be_converted_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/prerequisition/pending-to-po`;
 
         // PR URL
         this.pr_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-requisition/list-pagination?page=0&size=50&q=&orderBy=prNumber:desc`;

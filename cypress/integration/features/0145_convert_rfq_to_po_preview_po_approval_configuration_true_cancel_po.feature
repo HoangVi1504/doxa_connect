@@ -1,4 +1,4 @@
-@po @p2p
+#@po @p2p
 Feature: 0145 Convert RFQ to PO, Preview PO, Approval Configuration set as true, cancel PO
 
 Scenario: Entity admin able to opt-out approval routing for Purchase Order feature

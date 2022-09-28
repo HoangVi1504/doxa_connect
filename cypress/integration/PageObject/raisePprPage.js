@@ -142,20 +142,33 @@ class RaisePprPage{
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
         let urlRequest
+        let method
         switch (listName) {
             case "PPR":
                 urlRequest = printf(urlPageLocator.ppr_list_url, this.env, buyerCompanyUuid)
+                method = 'GET'
                 break;
 
             case "PR":
                 urlRequest = printf(urlPageLocator.pr_list_url, this.env, buyerCompanyUuid)
+                method = 'GET'
+                break;
+
+            case "PO":
+                urlRequest = printf(urlPageLocator.po_list_url, this.env, buyerCompanyUuid, "buyer")
+                method = 'GET'
+                break;
+
+            case "PPRs To Be Converted":
+                urlRequest = printf(urlPageLocator.ppr_to_be_converted_list_url, this.env, buyerCompanyUuid)
+                method = 'POST'
                 break;
         
             default:
                 break;
         }
         cy.request({
-            method: 'GET',
+            method: method,
             url: urlRequest,
             headers: {
                 authorization: "Bearer " + token,

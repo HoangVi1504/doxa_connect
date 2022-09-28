@@ -12,6 +12,7 @@ class PoPageLocator{
         this.filter_item_code_in_po_item_css = "[aria-label='Item Code Filter Input']";
 
         // Xpath
+        this.item_quantity_xpath = "//*[contains(@class,'ag-row-first')]//*[@col-id='itemQuantity']";
         this.item_unit_price_xpath = "//*[contains(@class,'ag-row-first')]//*[@col-id='itemUnitPrice']";
         this.notification_po_xpath = "//*[@class='modal-content']//*[text()='%s']";
         this.reject_po_button_xpath = "(//button[text()='Reject'])[2]";
@@ -25,8 +26,10 @@ class PoPageLocator{
         this.po_number_in_preview_po_xpath = "//*[text()='Preview Purchase Order']/parent::*//*[text()='PO No.']/following-sibling::*[text()='%s']";
         this.mark_completed_po_button_xpath = "(//button[text()='Mark Completed'])[2]";
         this.scroll_bar_in_po_item_table_xpath = "(//*[@class='ag-body-horizontal-scroll-viewport'])[1]";
+        this.ppr_convert_list_page_title_xpath = "//h1//*[text()='Pre-Purchase Requisitions To Be Converted List']";
         this.supplier_ack_status_in_list_xpath = "//*[contains(@class,'ag-row-first')]//*[@col-id='supplierAck' and text()='%s']";
         this.pr_convert_detail_page_title_xpath = "//h1//*[text()='Purchase Requisition To Convert Details']";
+        this.ppr_convert_detail_page_title_xpath = "//h1//*[text()='Pre-Purchase Requisition To Convert Details']";
     }
 
 }export default PoPageLocator

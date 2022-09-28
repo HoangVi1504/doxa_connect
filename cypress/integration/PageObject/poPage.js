@@ -5,6 +5,7 @@ import UrlPageLocator from '../PageUI/urlPageUI'
 var printf = require('printf')
 var dataBuyer = require('../../../dataBuyer.json');
 var dataSupplier = require('../../../dataSupplier.json');
+var dataUnconnectedSupplier = require('../../../dataUnconnectedSupplier.json');
 
 const commonAction = new CommonAction()
 const poPageLocator = new PoPageLocator()
@@ -18,6 +19,7 @@ class PoPage{
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
         let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
+        let unconnectedSupplierUuid = dataUnconnectedSupplier.supplierCompanyUuid
         let urlRequest
         switch (listName) {
             case "PO":
@@ -28,6 +30,10 @@ class PoPage{
 
                     case "supplier":
                         urlRequest = printf(urlPageLocator.po_list_url, this.env, supplierCompanyUuid, roleName)
+                        break;
+
+                    case "Unconnected Supplier":
+                        urlRequest = printf(urlPageLocator.po_list_url, this.env, unconnectedSupplierUuid, "supplier")
                         break;
                 
                     default:
@@ -99,6 +105,13 @@ class PoPage{
         commonAction.enterValueToTextboxAfterClearByXpath(poPageLocator.item_unit_price_xpath, price)
     }
 
+    enterValueToItemQuantityInPoItem(quantity){
+        commonAction.clickToElement(poPageLocator.filter_item_code_in_po_item_css)
+        this.scrollToElementInPoItem("60%")
+        commonAction.clickToElementByXpath(poPageLocator.item_quantity_xpath)
+        commonAction.enterValueToTextboxAfterClearByXpath(poPageLocator.item_quantity_xpath, quantity)
+    }
+
     selectValueFromApprovalRouteDropdown(value){
         commonAction.selectValueFromElement(poPageLocator.approval_route_dropdown_css, value)
     }
@@ -138,6 +151,14 @@ class PoPage{
 
     verifyPrConvertDetailPageTitleDisplay(){
         commonAction.verifyElementByXpathVisible(poPageLocator.pr_convert_detail_page_title_xpath)
+    }
+
+    verifyPprConvertListPageTitleDisplay(){
+        commonAction.verifyElementByXpathVisible(poPageLocator.ppr_convert_list_page_title_xpath)
+    }
+
+    verifyPprConvertDetailPageTitleDisplay(){
+        commonAction.verifyElementByXpathVisible(poPageLocator.ppr_convert_detail_page_title_xpath)
     }
 
     verifyPoDetailPageTitleDisplay(){
