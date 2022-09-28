@@ -1066,6 +1066,81 @@ class ApiAction{
         }) 
     }
 
+    callApiRaisePrWithQuantityAndUnitPrice(prTitle, quantity, unitPrice){
+        let token = window.localStorage.getItem("token")    
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.wrap(this.callApiGetDataInApprovalList("auto approval PR 1")).then((e)=>{
+            cy.wrap(this.callApiGetDataInCatalogueList("auto item code 2")).then((e)=>{
+                cy.request({
+                    method: 'POST',
+                    url: printf(urlPageLocator.create_pr_url, this.env, buyerCompanyUuid),
+                    headers: {
+                        authorization: "Bearer " + token,
+                    }, 
+                    body: {
+                        address:
+                        {
+                            addressFirstLine: "1 XYZ Buildingg",
+                            addressLabel: "address auto",
+                            addressSecondLine: "12 New Industrial Rd Singapore, Singapore 536197",
+                            city: "Singapore",
+                            country: "Singapore",
+                            postalCode: "4000",
+                            state: "Singapore"
+                        },
+                        approvalRouteUuid: sessionStorage.getItem("approvalCodeUuid"),                      //"873bcd64-e460-45b3-8246-390280c81a1b",
+                        currencyCode: "USD",
+                        prTitle: prTitle,
+                        procurementType: "Goods",
+                        project: false,
+                        purchaseReqConversation: [],
+                        purchaseReqDocumentMetadata: [],
+                        purchaseReqItem: 
+                        [
+                            {
+                                address: 
+                                {
+                                    addressFirstLine: "1 XYZ Buildingg",
+                                    addressLabel: "address auto",
+                                    addressSecondLine: "12 New Industrial Rd Singapore, Singapore 536197",
+                                    city: "Singapore",
+                                    country: "Singapore",
+                                    postalCode: "4000",
+                                    state: "Singapore"
+                                },
+                                editableCurrency: false,
+                                editableExchangeRate: false,
+                                editableUnitPrice: false,
+                                exchangeRate: "0.7190623427051125",
+                                itemCategory: "AUTO EQUIPMENT",
+                                itemCode: "auto item code 2",
+                                itemName: "auto item name 2",
+                                itemQuantity: quantity,
+                                itemUnitPrice: unitPrice,
+                                requestedDeliveryDate: commonAction.getDateFormat5(1),
+                                sourceCurrency: "SGD",
+                                supplierName: "TEST SUPPLIER 34",
+                                supplierUuid: sessionStorage.getItem("supplierUuid"),                       //"3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",
+                                taxCode: "11052022",
+                                taxRate: 0.5,
+                                uom: "CEN"
+                            }
+                        ],
+                        requestedDeliveryDate: commonAction.getDateFormat5(1),
+                        rfqProcess: false,
+                        rfqTreshold: 0,
+                        saveAsDraft: false,
+                        totalAmount: 3613288.27
+                    }
+                }).then((response) =>{
+                   expect(response.body).has.property("message", `Purchase requisition successfully submitted for: ${prTitle}`);  
+                   let uuid = response.body.data
+                   sessionStorage.setItem("uuidPr", uuid)
+                })  
+            })   
+        }) 
+    }
+
     callApiSaveAsDraftPpr(pprTitle){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid

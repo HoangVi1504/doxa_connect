@@ -28,6 +28,13 @@ When(/^Call API Raise PR random$/, () => {
     apiAction.callApiRaisePr(sessionStorage.getItem("prTitleRandom"))
 })
 
+When(/^Call API Raise PR random with item quantity "([^"]*)", unit price "([^"]*)"$/, (quantity, unitPrice) => {
+    let number = faker.random.alphaNumeric(5)
+    let prTitleRandom = "auto PR " + number
+    sessionStorage.setItem("prTitleRandom", prTitleRandom)
+    apiAction.callApiRaisePrWithQuantityAndUnitPrice(sessionStorage.getItem("prTitleRandom"), quantity, unitPrice)
+})
+
 When(/^Call API Save draft PR random$/, () => {
     let number = faker.random.alphaNumeric(5)
     let prTitleRandom = "auto save draft PR " + number
