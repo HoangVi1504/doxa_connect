@@ -729,10 +729,10 @@ class ApiAction{
         })
     }
 
-    callApiShortlistRfq(rfqNumber){
+    callApiShortlistRfq(rfqNumber, approvalRoute){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
-        cy.wrap(this.callApiGetDataInApprovalList("auto approval RFQ")).then((e)=>{
+        cy.wrap(this.callApiGetDataInApprovalList(approvalRoute)).then((e)=>{
             cy.wrap(this.callApiGetDataInRfqDetails("buyer", rfqNumber)).then((e)=>{
                 cy.request({
                     method: 'GET',

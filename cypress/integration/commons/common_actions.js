@@ -45,6 +45,21 @@ class BaseAction {
         });
     }
 
+    clickToHyperLinkPoNumber() {
+        cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="poNumber"]').find('a')
+        .invoke('attr', 'href')
+        .then(href => {
+            cy.visit("https://connex-dev.doxa-holdings.com" + href);
+        });
+    }
+
+    getPoNumberInRFQList() {
+        cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="poNumber"]').find('a').then(($el) => {
+            let text = $el.text()
+            sessionStorage.setItem("poNumber", text)
+        });
+    }
+
     getGrNumberInGrList(){
         cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="grNumber"]').then(($el) => {
             let text = $el.text()

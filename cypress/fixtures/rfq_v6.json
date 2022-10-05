@@ -9,6 +9,6 @@
     "deliveryAddress": "address auto", 
     "note": "auto test note",
     "itemCode": "auto item code 1", 
-    "itemQuantity": "100",
+    "itemQuantity": "5000",
     "rfqTitleInList": "AUTO RFQ TITLE "
 }

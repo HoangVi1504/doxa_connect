@@ -42,14 +42,14 @@ Scenario: P2P-PO-S01-003 P2P-PO-S02-001 P2P-PO-S03-001 P2P-PO-S07-002 Convert RF
     Then I see 'RFQ List' page title
 
     When I input random RFQ title to 'Search RFQ' textbox in 'RFQ' list
-    And I get FRQ number in list
+    And I get RFQ number in list
     And I logout account
     And I login with role "supplier 1"
     And Call API submit RFQ
     And I logout account
     And I login with role "creator"
     And Call API close RFQ
-    And Call API shortlist RFQ
+    And Call API shortlist RFQ with approval route "auto approval RFQ"
     And I logout account
     And I login with role "approver 1"
     And Call API approval RFQ

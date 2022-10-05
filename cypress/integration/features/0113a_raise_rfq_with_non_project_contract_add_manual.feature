@@ -55,4 +55,4 @@ Scenario: P2P-RFQ-S07-001 Update RFQ that had already been issued to vendors
     Then I see RFQ title from "rfq_v3" json file at the first row in RFQ list
     And I see RFQ status in RFQ list is "PENDING QUOTATION"
 
-    When I get FRQ number in list
+    When I get RFQ number in list

@@ -20,8 +20,16 @@ Given(/^Navigate to 'RFQ Detail' from link in email$/, () => {
     });
 })
 
-When(/^I get FRQ number in list$/, () => {
+When(/^I get RFQ number in list$/, () => {
     commonAction.getRFQNumberToFile()
+})
+
+When(/^I get PO number in RFQ list$/, () => {
+    commonAction.getPoNumberInRFQList()
+})
+
+When(/^I visit 'PO Detail' page by hyperlink in PO No after convert RFQ$/, () => {
+    commonAction.clickToHyperLinkPoNumber()
 })
 
 When(/^Call API raise RFQ$/, () => {
@@ -38,8 +46,8 @@ When(/^Call API close RFQ$/, () => {
     apiAction.callApiCloseRfq(sessionStorage.getItem("rfqNumber"))
 })
 
-When(/^Call API shortlist RFQ$/, () => {
-    apiAction.callApiShortlistRfq(sessionStorage.getItem("rfqNumber"))
+When(/^Call API shortlist RFQ with approval route "([^"]*)"$/, (approvalRoute) => {
+    apiAction.callApiShortlistRfq(sessionStorage.getItem("rfqNumber"), approvalRoute)
 })
 
 When(/^Call API approval RFQ$/, () => {

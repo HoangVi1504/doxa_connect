@@ -23,4 +23,4 @@ Scenario: P2P-RFQ-S02-002 Raise Request for Quotations with non-project, Contrat
     Then I see RFQ title from "rfq_v4" json file at the first row in RFQ list
     And I see RFQ status in RFQ list is "PENDING QUOTATION"
 
-    When I get FRQ number in list
+    When I get RFQ number in list

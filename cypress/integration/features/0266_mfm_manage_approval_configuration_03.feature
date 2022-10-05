@@ -45,7 +45,7 @@ Scenario: MFM-S002-004 Entity admin able to opt-out approval routing for RFQ Pri
     Then I see 'RFQ List' page title
 
     When I input random RFQ title to 'Search RFQ' textbox in 'RFQ' list
-    And I get FRQ number in list
+    And I get RFQ number in list
     And I logout account
     And I login with role "supplier 1"
     And Call API submit RFQ
