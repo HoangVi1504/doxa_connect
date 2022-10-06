@@ -7,6 +7,7 @@ class RaiseRFQPageLocator{
         this.rfq_title_txb_css = '[name="rfqTitle"]';
         this.rfq_number_txb_css = "[name='rfqNumber']";
         this.delivery_date_txb_css = '[name="deliveryDate"]';
+        this.reason_send_back_txb_css = '[name="reason"]';
         this.validity_end_date_txb_css = '[name="validityEndDate"]';
         this.validity_start_date_txb_css = '[name="validityStartDate"]';
         this.negotiation_comment_txb_css = '[placeholder="Enter Your Comment..."]';
@@ -38,6 +39,7 @@ class RaiseRFQPageLocator{
         // Xpath - Button
         this.file_name_btn_xpath = '//button[text()="Upload Attachment"]/following-sibling::*/button[text()="TestImage.png"]';
         this.item_delete_btn_xpath = "(//button[contains(@class,'MuiIconButton')])[1]";
+        this.send_back_btn_in_dialog_xpath = '//*[@class="modal-footer"]/button[text()="Send Back"]';
 
         // Xpath - Txb
         this.unit_price_txb_xpath = "(//*[@col-id='itemUnitPrice'])[2]//input";

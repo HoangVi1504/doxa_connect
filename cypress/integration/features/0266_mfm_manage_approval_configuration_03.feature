@@ -57,7 +57,7 @@ Scenario: MFM-S002-004 Entity admin able to opt-out approval routing for RFQ Pri
     And I click to "RFQ List" link on the left sub menu
     Then I see 'RFQ List' page title
 
-    When I input RFQ number just created to 'Filter RFQ No' in 'RFQ' list
+    When "buyer" input RFQ number just created to 'Filter RFQ No' in 'RFQ' list
     Then I see RFQ status in RFQ list is "RFQ CLOSED"
 
     When I double click to RFQ number just created in 'RFQ' list

@@ -1,5 +1,5 @@
 class UrlPageLocator{  
-    constructor(){
+    constructor() {
         this.tax_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/transactional-setting/list-tax-record`;
         this.role_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/dox/rbac/role`
         this.entities_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/org/list`;

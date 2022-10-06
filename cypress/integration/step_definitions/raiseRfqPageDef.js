@@ -320,8 +320,8 @@ When(/^I input random RFQ title to 'Search RFQ' textbox in 'RFQ' list$/, () => {
     raiseRfqPage.enterValueToSearchRfqTitleTextbox(sessionStorage.getItem("rfqTitleRandom"))
 })
 
-When(/^I input RFQ number just created to 'Filter RFQ No' in 'RFQ' list$/, () => {
-    raiseRfqPage.enterValueToFilterRfqNumberInList(sessionStorage.getItem("rfqNumber"))
+When(/^"([^"]*)" input RFQ number just created to 'Filter RFQ No' in 'RFQ' list$/, (roleName) => {
+    raiseRfqPage.enterValueToFilterRfqNumberInList(roleName, sessionStorage.getItem("rfqNumber"))
 })
 
 When(/^I input a value is bigger than the required quantity from "([^"]*)" json file to 'Awarded Quantity' textbox$/, (keyWord) => {
@@ -486,6 +486,10 @@ When(/^I input "([^"]*)" to 'Quantity' textbox in 'Items List' table at 'RFQ Det
     raiseRfqPage.enterValueToItemQuantityInItemTable(quantity)
 })
 
+When(/^I input "([^"]*)" to 'Reason Send Back' textbox  at 'RFQ Detail' page$/, (reason) => {
+    raiseRfqPage.enterValueToReasonSendBackTextbox(reason)
+})
+
 When(/^I upload "([^"]*)" to 'Negotiation' table at 'RFQ Detail' page$/, (file) => {
     raiseRfqPage.uploadFileNegotiation(file)
 })
@@ -631,6 +635,10 @@ When(/^I clear value in 'Due date' textbox at Raise RFQ page$/, () => {
     raiseRfqPage.clearValueInDueDateTextbox()
 })
 
+When(/^I click to 'Send Back' button in 'Reason Dialog Box' at 'RFQ Detail' page$/, () => {
+    raiseRfqPage.clickToSendBackButtonInReasonDialogBox()
+})
+
 When(/^I click to RFQ title textbox$/, () => {
     raiseRfqPage.clickToRfqTitleTextbox()
 })
@@ -645,6 +653,10 @@ When(/^I click to "([^"]*)" link on the table menu at 'RFQ Detail' page$/, (opti
 
 When(/^I check to supplier checkbox at 'RFQ Detail' page$/, () => {
     raiseRfqPage.checkToSupplierCheckbox()
+})
+
+When(/^I uncheck to supplier checkbox at 'RFQ Detail' page$/, () => {
+    raiseRfqPage.uncheckToSupplierCheckbox()
 })
 
 When(/^I see attachment file "([^"]*)" in 'Negotiation' table at 'RFQ Detail' page$/, (fileName) => {
@@ -754,6 +766,10 @@ Then(/^I see RFQ status in RFQ list is "([^"]*)"$/, (rfqStatus) => {
 })
 
 Then(/^I see comment "([^"]*)" in 'Conversation' table at 'RFQ Detail' page$/, (comment) => {
+    raiseRfqPage.verifyCommentDisplay(comment)
+})
+
+Then(/^I see reason send back RFQ "([^"]*)" in 'Internal Conversation' table at 'RFQ Detail' page$/, (comment) => {
     raiseRfqPage.verifyCommentDisplay(comment)
 })
 

@@ -1,13 +1,20 @@
 import CommonAction from '../commons/common_actions'
+import UrlPageLocator from '../PageUI/urlPageUI'
 import CommonPageLocator from '../PageUI/commonPageUI'
 import RaiseRFQPageLocator from '../PageUI/raiseRfqPageUI'
 
 var printf = require('printf')
 const commonAction = new CommonAction()
+const urlPageLocator = new UrlPageLocator()
 const commonPageLocator = new CommonPageLocator()
 const raiseRFQPageLocator = new RaiseRFQPageLocator()
 
+var dataBuyer = require('../../../dataBuyer.json');
+var dataSupplier = require('../../../dataSupplier.json');
 class RaiseRFQPage{
+    constructor() {
+        this.env = 'stag'
+    }
 
     fillDataInRaiseRequisitionTab(fileName){
         cy.fixture(fileName).then((fileName) =>{
@@ -93,8 +100,34 @@ class RaiseRFQPage{
         commonAction.enterValueToTextbox(raiseRFQPageLocator.filter_rfq_title_css, rfqTitle)
     }
 
-    enterValueToFilterRfqNumberInList(rfqNumber){
-        commonAction.enterValueToTextbox(raiseRFQPageLocator.filter_rfq_number_in_list_css, rfqNumber)
+    enterValueToFilterRfqNumberInList(roleName, rfqNumber){
+        let token = window.localStorage.getItem("token")
+        let companyUuid;
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
+        switch (roleName) {
+            case "buyer":
+                companyUuid = buyerCompanyUuid
+                break;
+
+            case "supplier":
+                companyUuid = supplierCompanyUuid
+                break;
+
+            default:
+                break;
+        }
+        cy.request({
+            method: 'GET',
+            url: printf(urlPageLocator.rfq_list_url, this.env, companyUuid, roleName),
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            expect(response.body).has.property("status", "OK")
+            commonAction.clickToElement(raiseRFQPageLocator.filter_rfq_number_in_list_css)
+            commonAction.enterValueToTextbox(raiseRFQPageLocator.filter_rfq_number_in_list_css, rfqNumber)
+        })
     }
 
     enterValueToRfqTitleTextbox(rfqTitle){
@@ -125,9 +158,14 @@ class RaiseRFQPage{
         }) 
     }
 
-    enterValueToAwardedQuantityTextbox(value){
+    enterValueToAwardedQuantityTextbox(value) {
+        this.scrollToAwardedQuantityItem("75%")
         commonAction.doubleClickToElementByXpath(raiseRFQPageLocator.item_awarded_quantity_txb_xpath)
         commonAction.enterValueToTextboxByXpath(raiseRFQPageLocator.awarded_quantity_txb_xpath, value)
+    }
+
+    enterValueToReasonSendBackTextbox(reason){
+        commonAction.enterValueToTextbox(raiseRFQPageLocator.reason_send_back_txb_css, reason)
     }
 
     enterValueToSearchTextboxInItemTable(keyWord){
@@ -284,6 +322,10 @@ class RaiseRFQPage{
         commonAction.clickToElement(raiseRFQPageLocator.rfq_title_txb_css)
     }
 
+    clickToSendBackButtonInReasonDialogBox(){
+        commonAction.clickToElementByXpath(raiseRFQPageLocator.send_back_btn_in_dialog_xpath)
+    }
+
     clickToFilterSizeInItemTable(){
         commonAction.wait(3)
         commonAction.clickToElement(raiseRFQPageLocator.filter_size_in_item_table_css)
@@ -308,6 +350,11 @@ class RaiseRFQPage{
     checkToSupplierCheckbox() {
         this.scrollToAwardedQuantityItem("75%")
         commonAction.checkCheckboxByXpath(raiseRFQPageLocator.supplier_ckb_xpath)
+    }
+
+    uncheckToSupplierCheckbox() {
+        this.scrollToAwardedQuantityItem("75%")
+        commonAction.uncheckCheckboxByXpath(raiseRFQPageLocator.supplier_ckb_xpath)
     }
 
     verifyCommentDisplay(comment){

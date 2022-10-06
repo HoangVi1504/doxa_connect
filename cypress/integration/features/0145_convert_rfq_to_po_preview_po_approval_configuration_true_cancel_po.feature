@@ -60,7 +60,7 @@ Scenario: P2P-PO-S01-003 P2P-PO-S02-001 P2P-PO-S03-001 P2P-PO-S07-002 Convert RF
     And I click to "RFQ List" link on the left sub menu
     Then I see 'RFQ List' page title
 
-    When I input RFQ number just created to 'Filter RFQ No' in 'RFQ' list
+    When "buyer" input RFQ number just created to 'Filter RFQ No' in 'RFQ' list
     Then I see RFQ status in RFQ list is "SHORTLISTED"
 
     When I double click to RFQ number just created in 'RFQ' list
@@ -72,7 +72,7 @@ Scenario: P2P-PO-S01-003 P2P-PO-S02-001 P2P-PO-S03-001 P2P-PO-S07-002 Convert RF
     And I click to "I Understand" button format_1
     Then I see 'RFQ List' page title
 
-    When I input RFQ number just created to 'Filter RFQ No' in 'RFQ' list
+    When "buyer" input RFQ number just created to 'Filter RFQ No' in 'RFQ' list
     Then I see RFQ status in RFQ list is "COMPLETED"
 
     When I click to "Orders" link on header menu
