@@ -13,13 +13,15 @@ Scenario: Unconnected supplier submit quote to Buyer with valid value
 Scenario: P2P-RFQ-S09-002 P2P-RFQ-S07-004 Unconnected Supplier updated quote and Buyer close RFQ
     # P2P-RFQ-S09-002 Unconnected Supplier updated quote to Buyer with valid value
     When Navigate to 'RFQ Detail' from link in email
+    And I get RFQ No 'Initial Settings' table at 'RFQ Detail' page
+    And I get random number of RFQ title in 'General Information' table at 'RFQ Detail' page
     And I input "tax code 02" to 'Tax Code' textbox in 'Request Terms' at 'RFQ Detail' page
     And I input "5000" to 'Quoted Unit Price' textbox at 'RFQ Detail' page
     And I input "5" to 'Tax Percentage' textbox at 'RFQ Detail' page
     And I click to "Update Quote" button format_1
     Then I see a message "Quotation Successfully Submitted" appears
     And I see 'Doxa Connect' image appears
-
+    
     # P2P-RFQ-S07-004 Close RFQ that had already been issued to vendors
     When I login with role "creator"
     And I click to "Request for Quotations" link on header menu

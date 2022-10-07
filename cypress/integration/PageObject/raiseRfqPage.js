@@ -96,8 +96,29 @@ class RaiseRFQPage{
         })
     }
 
-    enterValueToSearchRfqTitleTextbox(rfqTitle){
-        commonAction.enterValueToTextbox(raiseRFQPageLocator.filter_rfq_title_css, rfqTitle)
+    enterValueToSearchRfqTitleTextbox(rfqTitle) {
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.request({
+            method: 'GET',
+            url: printf(urlPageLocator.rfq_list_url, this.env, buyerCompanyUuid, "buyer"),
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            expect(response.body).has.property("status", "OK")
+            cy.request({
+                method: 'GET',
+                url: printf(urlPageLocator.rfq_list_url, this.env, buyerCompanyUuid, "buyer"),
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response) => {
+                expect(response.body).has.property("status", "OK")
+                commonAction.clickToElement(raiseRFQPageLocator.filter_rfq_title_css)
+                commonAction.enterValueToTextbox(raiseRFQPageLocator.filter_rfq_title_css, rfqTitle)
+            })
+        })       
     }
 
     enterValueToFilterRfqNumberInList(roleName, rfqNumber){
@@ -125,8 +146,17 @@ class RaiseRFQPage{
             }
         }).then((response) => {
             expect(response.body).has.property("status", "OK")
-            commonAction.clickToElement(raiseRFQPageLocator.filter_rfq_number_in_list_css)
-            commonAction.enterValueToTextbox(raiseRFQPageLocator.filter_rfq_number_in_list_css, rfqNumber)
+            cy.request({
+                method: 'GET',
+                url: printf(urlPageLocator.rfq_list_url, this.env, companyUuid, roleName),
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response) => {
+                expect(response.body).has.property("status", "OK")
+                commonAction.clickToElement(raiseRFQPageLocator.filter_rfq_number_in_list_css)
+                commonAction.enterValueToTextbox(raiseRFQPageLocator.filter_rfq_number_in_list_css, rfqNumber)
+            })
         })
     }
 
@@ -164,8 +194,8 @@ class RaiseRFQPage{
         commonAction.enterValueToTextboxByXpath(raiseRFQPageLocator.awarded_quantity_txb_xpath, value)
     }
 
-    enterValueToReasonSendBackTextbox(reason){
-        commonAction.enterValueToTextbox(raiseRFQPageLocator.reason_send_back_txb_css, reason)
+    enterValueToReasonTextbox(reason){
+        commonAction.enterValueToTextbox(raiseRFQPageLocator.reason_txb_css, reason)
     }
 
     enterValueToSearchTextboxInItemTable(keyWord){
@@ -197,7 +227,8 @@ class RaiseRFQPage{
         commonAction.enterValueToTextboxByXpath(raiseRFQPageLocator.item_brand_xpath, brand)
     }
 
-    enterValueToItemQuantityInItemTable(quantity){
+    enterValueToItemQuantityInItemTable(quantity) {
+        this.scrollToQuantityItem("50%")
         commonAction.enterValueToTextboxByXpath(raiseRFQPageLocator.item_quantity_xpath, quantity)
     }
 
@@ -226,8 +257,8 @@ class RaiseRFQPage{
         commonAction.enterValueToTextbox(raiseRFQPageLocator.negotiation_comment_txb_css, comment)
     }
 
-    enterValueToCommentInConversations(comment){
-        commonAction.enterValueToTextbox(raiseRFQPageLocator.conversation_comment_txb_css, comment)
+    enterValueToCommentInConversations(comment, table){
+        commonAction.enterValueToTextboxByXpath(printf(raiseRFQPageLocator.conversation_comment_txb_xpath, table), comment)
     }
 
     uploadFileNegotiation(file) {
@@ -322,8 +353,8 @@ class RaiseRFQPage{
         commonAction.clickToElement(raiseRFQPageLocator.rfq_title_txb_css)
     }
 
-    clickToSendBackButtonInReasonDialogBox(){
-        commonAction.clickToElementByXpath(raiseRFQPageLocator.send_back_btn_in_dialog_xpath)
+    clickToOptionButtonInReasonDialogBox(btnName){
+        commonAction.clickToElementByXpath(printf(raiseRFQPageLocator.option_btn_in_dialog_box_xpath, btnName))
     }
 
     clickToFilterSizeInItemTable(){

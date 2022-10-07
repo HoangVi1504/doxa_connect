@@ -2,16 +2,15 @@ class RaiseRFQPageLocator{
     constructor(){
         // Css - Txb
         this.note_txb_css = '[name="note"]';
+        this.reason_txb_css = '[name="reason"]';
         this.tax_code_txb_css = '[name="taxCode"]';
         this.due_date_txb_css = 'input[placeholder="Please select valid Due Date"]';
         this.rfq_title_txb_css = '[name="rfqTitle"]';
         this.rfq_number_txb_css = "[name='rfqNumber']";
         this.delivery_date_txb_css = '[name="deliveryDate"]';
-        this.reason_send_back_txb_css = '[name="reason"]';
         this.validity_end_date_txb_css = '[name="validityEndDate"]';
         this.validity_start_date_txb_css = '[name="validityStartDate"]';
         this.negotiation_comment_txb_css = '[placeholder="Enter Your Comment..."]';
-        this.conversation_comment_txb_css = '[placeholder="Please enter your comment here..."]';
         this.search_item_catalogue_txb_css = '[type="search"]';
 
         // Css - Dropdown
@@ -39,12 +38,13 @@ class RaiseRFQPageLocator{
         // Xpath - Button
         this.file_name_btn_xpath = '//button[text()="Upload Attachment"]/following-sibling::*/button[text()="TestImage.png"]';
         this.item_delete_btn_xpath = "(//button[contains(@class,'MuiIconButton')])[1]";
-        this.send_back_btn_in_dialog_xpath = '//*[@class="modal-footer"]/button[text()="Send Back"]';
+        this.option_btn_in_dialog_box_xpath = '//*[@class="modal-footer"]/button[text()="%s"]';
 
         // Xpath - Txb
         this.unit_price_txb_xpath = "(//*[@col-id='itemUnitPrice'])[2]//input";
         this.awarded_quantity_txb_xpath = "(//*[@col-id='awardedQty0'])[2]//input";
         this.item_awarded_quantity_txb_xpath = "(//*[@col-id='awardedQty0'])[2]";
+        this.conversation_comment_txb_xpath = "//*[text()='%s']/parent::*/parent::*/following-sibling::*//input[@placeholder='Please enter your comment here...']";
 
         // Xpath - Ckb
         this.supplier_ckb_xpath = "(//*[@col-id='selected0'])[2]//*[contains(@class,'p-checkbox')]/parent::*//input[@type='checkbox']";

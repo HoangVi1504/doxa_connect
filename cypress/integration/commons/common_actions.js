@@ -45,11 +45,11 @@ class BaseAction {
         });
     }
 
-    clickToHyperLinkPoNumber() {
+    clickToHyperLinkPoNumber(url) {
         cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="poNumber"]').find('a')
         .invoke('attr', 'href')
         .then(href => {
-            cy.visit("https://connex-dev.doxa-holdings.com" + href);
+            this.navigateTo(url + href)
         });
     }
 
@@ -102,12 +102,25 @@ class BaseAction {
         })
     }
 
+    getRFQNumberInInitialSettingsTable() {
+        cy.get('[name="rfqNumber"]').then(($el) => {
+            let tpm = $el.attr('value')
+            sessionStorage.setItem("rfqNumber", tpm)
+        });
+    }
+
+    getNumberRFQTitleInGeneralInformationTable() {
+        cy.get('[name="rfqTitle"]').then(($el) => {
+            let tpm = $el.text().slice(-5)
+            sessionStorage.setItem("numberRfqTitle", tpm)
+        });
+    }
+
     getRFQNumberToFile() {
         cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="rfqNumber"]').then(($el) => {
             let tpm = $el.text()
             cy.writeFile("cypress/integration/data/rfqNumber.json", { rfqNumber: tpm });
             sessionStorage.setItem("rfqNumber", tpm)
-            cy.log("rfqNumber", sessionStorage.getItem("rfqNumber"))
         });
     }
 

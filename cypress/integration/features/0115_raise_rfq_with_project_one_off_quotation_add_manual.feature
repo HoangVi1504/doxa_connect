@@ -42,7 +42,8 @@ Scenario: P2P-RFQ-S03-001 P2P-RFQ-S07-002 P2P-RFQ-S016-001 Raise RFQ then close 
     And I see RFQ status in RFQ list is "PENDING QUOTATION"
 
     # P2P-RFQ-S07-002 Close RFQ that had already been issued to vendors
-    When I double click to RFQ title in RFQ list from "rfq_v5" json file
+    When I get RFQ number in list
+    And I double click to RFQ title in RFQ list from "rfq_v5" json file
     And Wait for "3" seconds
     Then I see 'RFQ Detail' page title
     And I see RFQ title at RFQ detail page from "rfq_v5" json file
@@ -76,7 +77,7 @@ Scenario: P2P-RFQ-S03-001 P2P-RFQ-S07-002 P2P-RFQ-S016-001 Raise RFQ then close 
     Then I see RFQ title from "rfq_v5" json file at the first row in RFQ list
     And I see RFQ status in RFQ list is "QUOTATION IN PROGRESS"
 
-Scenario: Supplier submit quote
+Scenario: P2P-RFQ-S018-002 Supplier manage RFQ list then submit quote
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "supplier 1"
     And I click to "Request for Quotations" link on header menu
@@ -84,7 +85,7 @@ Scenario: Supplier submit quote
     And I click to "RFQ List" link on the left sub menu
     Then I see 'RFQ List' page title
 
-    When I input RFQ title from "rfq_v5" json file to 'Search RFQ' textbox
+    When "supplier" input RFQ number just created to 'Filter RFQ No' in 'RFQ' list
     Then I see RFQ title from "rfq_v5" json file at the first row in RFQ list
     And I see RFQ status in RFQ list is "PENDING QUOTATION"
 
@@ -102,7 +103,7 @@ Scenario: Supplier submit quote
     When I click to "I Understand" button format_1
     Then I see 'RFQ List' page title
 
-    When I input RFQ title from "rfq_v5" json file to 'Search RFQ' textbox
+    When "supplier" input RFQ number just created to 'Filter RFQ No' in 'RFQ' list
     Then I see RFQ title from "rfq_v5" json file at the first row in RFQ list
     And I see RFQ status in RFQ list is "QUOTATION IN PROGRESS"
 

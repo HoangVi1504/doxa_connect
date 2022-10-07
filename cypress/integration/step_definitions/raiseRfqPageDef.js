@@ -9,6 +9,7 @@ const apiAction = new ApiAction()
 const commonPage = new CommonPage()
 const raiseRfqPage = new RaiseRFQPage()
 const commonAction = new CommonAction()
+const globalVariables = require("../commons/global_variables");
 
 var dataRfqNumber = require('../data/rfqNumber.json') 
 var dataLinkRFQTestGetnada = require('../data/urlRfq.json')
@@ -24,12 +25,20 @@ When(/^I get RFQ number in list$/, () => {
     commonAction.getRFQNumberToFile()
 })
 
+When(/^I get RFQ No 'Initial Settings' table at 'RFQ Detail' page$/, () => {
+    commonAction.getRFQNumberInInitialSettingsTable()
+})
+
+When(/^I get random number of RFQ title in 'General Information' table at 'RFQ Detail' page$/, () => {
+    commonAction.getNumberRFQTitleInGeneralInformationTable()
+})
+
 When(/^I get PO number in RFQ list$/, () => {
     commonAction.getPoNumberInRFQList()
 })
 
 When(/^I visit 'PO Detail' page by hyperlink in PO No after convert RFQ$/, () => {
-    commonAction.clickToHyperLinkPoNumber()
+    commonAction.clickToHyperLinkPoNumber(globalVariables.url)
 })
 
 When(/^Call API raise RFQ$/, () => {
@@ -454,8 +463,8 @@ When(/^I input "([^"]*)" to 'Negotiation Comment' textbox at 'RFQ Detail' page$/
     raiseRfqPage.enterValueToCommentInNegotiation(comment)
 })
 
-When(/^I input "([^"]*)" to 'Conversations Comment' textbox at 'RFQ Detail' page$/, (comment) => {
-    raiseRfqPage.enterValueToCommentInConversations(comment)
+When(/^I input "([^"]*)" to 'Comment' textbox in "([^"]*)" table at 'RFQ Detail' page$/, (comment, table) => {
+    raiseRfqPage.enterValueToCommentInConversations(comment, table)
 })
 
 When(/^I input delivery date as previous "([^"]*)" days to 'Delivery Date' textbox at Raise RFQ page$/, (date) => {
@@ -486,8 +495,8 @@ When(/^I input "([^"]*)" to 'Quantity' textbox in 'Items List' table at 'RFQ Det
     raiseRfqPage.enterValueToItemQuantityInItemTable(quantity)
 })
 
-When(/^I input "([^"]*)" to 'Reason Send Back' textbox  at 'RFQ Detail' page$/, (reason) => {
-    raiseRfqPage.enterValueToReasonSendBackTextbox(reason)
+When(/^I input "([^"]*)" to 'Reason' textbox at 'RFQ Detail' page$/, (reason) => {
+    raiseRfqPage.enterValueToReasonTextbox(reason)
 })
 
 When(/^I upload "([^"]*)" to 'Negotiation' table at 'RFQ Detail' page$/, (file) => {
@@ -635,8 +644,8 @@ When(/^I clear value in 'Due date' textbox at Raise RFQ page$/, () => {
     raiseRfqPage.clearValueInDueDateTextbox()
 })
 
-When(/^I click to 'Send Back' button in 'Reason Dialog Box' at 'RFQ Detail' page$/, () => {
-    raiseRfqPage.clickToSendBackButtonInReasonDialogBox()
+When(/^I click to "([^"]*)" button in 'Reason Dialog Box' at 'RFQ Detail' page$/, (btnName) => {
+    raiseRfqPage.clickToOptionButtonInReasonDialogBox(btnName)
 })
 
 When(/^I click to RFQ title textbox$/, () => {
@@ -765,11 +774,19 @@ Then(/^I see RFQ status in RFQ list is "([^"]*)"$/, (rfqStatus) => {
     raiseRfqPage.verifyRfqStatusInRfqListDisplay(rfqStatus)
 })
 
-Then(/^I see comment "([^"]*)" in 'Conversation' table at 'RFQ Detail' page$/, (comment) => {
+Then(/^I see comment "([^"]*)" in 'Internal Conversations' table at 'RFQ Detail' page$/, (comment) => {
+    raiseRfqPage.verifyCommentDisplay(comment)
+})
+
+Then(/^I see comment "([^"]*)" in 'External Conversations' table at 'RFQ Detail' page$/, (comment) => {
     raiseRfqPage.verifyCommentDisplay(comment)
 })
 
 Then(/^I see reason send back RFQ "([^"]*)" in 'Internal Conversation' table at 'RFQ Detail' page$/, (comment) => {
+    raiseRfqPage.verifyCommentDisplay(comment)
+})
+
+Then(/^I see reason recall RFQ "([^"]*)" in 'Internal Conversation' table at 'RFQ Detail' page$/, (comment) => {
     raiseRfqPage.verifyCommentDisplay(comment)
 })
 

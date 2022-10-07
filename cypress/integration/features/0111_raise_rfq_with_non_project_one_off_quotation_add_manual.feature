@@ -23,6 +23,8 @@ Scenario: P2P-RFQ-S01-001 Raise Request for Quotations with non-project, One-off
     Then I see RFQ title from "rfq_v1" json file at the first row in RFQ list
     And I see RFQ status in RFQ list is "PENDING QUOTATION"
 
+    When I get RFQ number in list
+
 Scenario: P2P-RFQ-S08-001-002 Connected supplier submits quote
     # with invalid input
     Given Navigate to Doxa Connect 2.0 site
@@ -32,7 +34,7 @@ Scenario: P2P-RFQ-S08-001-002 Connected supplier submits quote
     And I click to "RFQ List" link on the left sub menu
     Then I see 'RFQ List' page title
 
-    When I input RFQ title from "rfq_v1" json file to 'Search RFQ' textbox
+    When "supplier" input RFQ number just created to 'Filter RFQ No' in 'RFQ' list
     Then I see RFQ title from "rfq_v1" json file at the first row in RFQ list
     And I see RFQ status in RFQ list is "PENDING QUOTATION"
 
@@ -66,9 +68,9 @@ Scenario: P2P-RFQ-S08-001-002 Connected supplier submits quote
     When I click to "I Understand" button format_1
     Then I see comment "comment negotiation auto" in 'Negotiation' table at 'RFQ Detail' page
 
-    When I input "comment conversation auto" to 'Conversations Comment' textbox at 'RFQ Detail' page
+    When I input "comment external conversation auto" to 'Comment' textbox in "External Conversations" table at 'RFQ Detail' page
     And I click to "Send" button format_1
-    Then I see comment "comment conversation auto" in 'Conversation' table at 'RFQ Detail' page
+    Then I see comment "comment external conversation auto" in 'External Conversations' table at 'RFQ Detail' page
 
     When I click to "Submit Quote" button format_1
     Then I see a message "Quotation Successfully Submitted" appears
@@ -76,6 +78,6 @@ Scenario: P2P-RFQ-S08-001-002 Connected supplier submits quote
     When I click to "I Understand" button format_1
     Then I see 'RFQ List' page title 
 
-    When I input RFQ title from "rfq_v1" json file to 'Search RFQ' textbox
+    When "supplier" input RFQ number just created to 'Filter RFQ No' in 'RFQ' list
     Then I see RFQ title from "rfq_v1" json file at the first row in RFQ list
     And I see RFQ status in RFQ list is "QUOTATION IN PROGRESS"

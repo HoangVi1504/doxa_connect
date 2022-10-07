@@ -55,8 +55,8 @@ Scenario: P2P-RFQ-S014-001 P2P-RFQ-S015-002 P2P-RFQ-S018-001 Send back RFQ then 
     And I see RFQ title at RFQ detail page from "rfq_v7" json file
 
     When I click to "Send Back" button format_1
-    And I input "auto send back RFQ" to 'Reason Send Back' textbox  at 'RFQ Detail' page
-    And I click to 'Send Back' button in 'Reason Dialog Box' at 'RFQ Detail' page
+    And I input "auto send back RFQ" to 'Reason' textbox at 'RFQ Detail' page
+    And I click to "Send Back" button in 'Reason Dialog Box' at 'RFQ Detail' page
     Then I see a message "Your RFQ has been successfully sent back" appears
 
     When I click to "I Understand" button format_1
