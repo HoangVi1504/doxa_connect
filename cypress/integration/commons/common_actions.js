@@ -53,10 +53,25 @@ class BaseAction {
         });
     }
 
+    clickToHyperLinkContractNumber(url) {
+        cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="contractNumber"]').find('a')
+        .invoke('attr', 'href')
+        .then(href => {
+            this.navigateTo(url + href)
+        });
+    }
+
     getPoNumberInRFQList() {
         cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="poNumber"]').find('a').then(($el) => {
             let text = $el.text()
             sessionStorage.setItem("poNumber", text)
+        });
+    }
+
+    getContractNumberInRFQList() {
+        cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="contractNumber"]').find('a').then(($el) => {
+            let text = $el.text()
+            sessionStorage.setItem("contractNumber", text)
         });
     }
 

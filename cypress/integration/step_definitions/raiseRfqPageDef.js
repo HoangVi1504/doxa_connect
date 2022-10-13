@@ -37,8 +37,16 @@ When(/^I get PO number in RFQ list$/, () => {
     commonAction.getPoNumberInRFQList()
 })
 
-When(/^I visit 'PO Detail' page by hyperlink in PO No after convert RFQ$/, () => {
+When(/^I get Contract number in RFQ list$/, () => {
+    commonAction.getContractNumberInRFQList()
+})
+
+When(/^I visit 'PO Detail' page by hyperlink in PO No after convert RFQ type 'One-off-quotation'$/, () => {
     commonAction.clickToHyperLinkPoNumber(globalVariables.url)
+})
+
+When(/^I visit 'Contract Detail' page by hyperlink in Contract No after convert RFQ type 'Contract'$/, () => {
+    commonAction.clickToHyperLinkContractNumber(globalVariables.url)
 })
 
 When(/^Call API raise RFQ$/, () => {
@@ -485,6 +493,14 @@ When(/^I input due date as previous "([^"]*)" days to 'Due Date' textbox at Rais
 
 When(/^I input due date as next "([^"]*)" days to 'Due Date' textbox at Raise RFQ page$/, (date) => {
     raiseRfqPage.enterValueToDueDateTextbox(commonAction.getDateFormat1(date))
+})
+
+When(/^I input validity start date as next "([^"]*)" days to 'Validity Start Date' textbox at 'Raise RFQ' page$/, (date) => {
+    raiseRfqPage.enterValueToValidityStartDateTextbox(commonAction.getDateFormat4(date))
+})
+
+When(/^I input validity end date as next "([^"]*)" days to 'Validity End Date' textbox at 'Raise RFQ' page$/, (date) => {
+    raiseRfqPage.enterValueToValidityEndDateTextbox(commonAction.getDateFormat4(date))
 })
 
 When(/^I input due date as next "([^"]*)" days to 'Due Date' textbox at 'RFQ Detail' page$/, (date) => {

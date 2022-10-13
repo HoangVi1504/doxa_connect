@@ -166,10 +166,12 @@ class RaiseRFQPage{
 
     enterValueToValidityStartDateTextbox(date){
         commonAction.enterValueToTextbox(raiseRFQPageLocator.validity_start_date_txb_css, date)
+        commonAction.clickToElementByXpath(printf(commonPageLocator.label_xpath, "Validity Start Date"))
     }
 
     enterValueToValidityEndDateTextbox(date){
         commonAction.enterValueToTextbox(raiseRFQPageLocator.validity_end_date_txb_css, date)
+        commonAction.clickToElementByXpath(printf(commonPageLocator.label_xpath, "Validity End Date"))
     }
 
     enterValueToDueDateTextbox(date){
