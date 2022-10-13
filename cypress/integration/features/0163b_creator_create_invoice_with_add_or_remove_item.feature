@@ -1,5 +1,5 @@
 @inv @p2p
-Feature: 0163b Buyer create invoice with add/remove item
+Feature: 0163b Creator create invoice with add or remove item
 
 Scenario Outline: P2P-INV-S01-005 The buyer creates the invoice - add/remove item
     # Raise PR then Convert to PO and issue PO to supplier
@@ -51,26 +51,26 @@ Scenario Outline: P2P-INV-S01-005 The buyer creates the invoice - add/remove ite
 
     When I select "PO Invoice" from 'Invoice Type' dropdown at 'Create Invoice' page
     And I input Invoice No random to 'Invoice No' textbox at 'Create Invoice' page
-    And I select supplier code "TEST_SUPPLIER_34" from dropdown at 'Create Invoice' page
+    And I select "TEST_SUPPLIER_34" from 'Supplier Code' dropdown at 'Create Invoice' page
     Then I see company name "TEST SUPPLIER 34" at 'Create Invoice' page
 
     When I input PO No to filter PO in 'Select PO' table at 'Create Invoice' page
     And I check to PO No just created checkbox at 'Create Invoice' page
     Then I see PO No in 'Added PO' table at 'Create Invoice' page
 
-    When I input "<invQty>" to Invoice Quantity textbox at 'Create Invoice' page
+    When I input "<invQty>" to 'Invoice Quantity' textbox in "Added PO" table at 'Create Invoice' page
     And I select "11052022" from 'Tax Code' dropdown at 'Added PO' table at 'Create Invoice' page
     And I click to "Add Manual" button format_2
-    Then I see 'Item Delete' button at 'Create Invoice' page
+    Then I see 'Item Delete' button in 'Added PO' table at 'Create Invoice' page
     
-    When I input "item test inv" to 'Item Name' in 'Added PO' table at 'Create Invoice' page
+    When I input "item test inv" to 'Item Name' textbox in 'Added PO' table at 'Create Invoice' page
     And I input "item test inv" to filter 'Item Name' in 'Added PO' table at 'Create Invoice' page
-    And I input "20" to Invoice Quantity textbox at 'Create Invoice' page
+    And I input "20" to 'Invoice Quantity' textbox in "Added PO" table at 'Create Invoice' page
     And I input "item test inv" to filter 'Item Name' in 'Added PO' table at 'Create Invoice' page
-    And I input "1000" to 'Invoice Unit Price' in 'Added PO' table at 'Create Invoice' page
+    And I input "1000" to 'Invoice Unit Price' textbox in "Added PO" table at 'Create Invoice' page
     And I input "item test inv" to filter 'Item Name' in 'Added PO' table at 'Create Invoice' page
     And I select "11052022" from 'Tax Code' dropdown at 'Added PO' table at 'Create Invoice' page
-    And I click to 'Item Delete' button at 'Create Invoice' page
+    And I click to 'Item Delete' button in 'Added PO' table at 'Create Invoice' page
     Then I see 'Invoice Sub Total' is equal to "<invSubTotal>" at 'Create Invoice' page
     And I see 'Invoice Tax' is equal to "<tax>" at 'Create Invoice' page
     And I see 'Invoice Total' is equal to "<invTotal>" at 'Create Invoice' page

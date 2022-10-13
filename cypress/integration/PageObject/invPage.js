@@ -31,7 +31,20 @@ class InvPage{
     }
 
     enterValueToFilterPoInInvoiceApprovalList(poNumber){
-        commonAction.enterValueToTextbox(invPageLocator.filter_po_number_in_inv_approval_list_css, poNumber)
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.request({
+            method: 'GET',
+            url: printf(urlPageLocator.inv_pending_approval_list_url, this.env, buyerCompanyUuid),
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            expect(response.body).has.property("status", "OK")
+            commonAction.wait(1)
+            commonAction.clickToElementByXpath(invPageLocator.filter_po_number_in_inv_approval_list_xpath)
+            commonAction.enterValueToTextboxByXpath(invPageLocator.filter_po_number_in_inv_approval_list_xpath, poNumber)
+        })
     }
 
     enterValueToFilterInvNumberInList(invNumber, listName){
@@ -59,7 +72,8 @@ class InvPage{
         }).then((response) => {
             expect(response.body).has.property("status", "OK")
             commonAction.wait(1)
-            commonAction.enterValueToTextbox(invPageLocator.filter_inv_number_in_list_css, invNumber)
+            commonAction.clickToElementByXpath(invPageLocator.filter_inv_number_in_list_xpath)
+            commonAction.enterValueToTextboxByXpath(invPageLocator.filter_inv_number_in_list_xpath, invNumber)
         })
     }
 
@@ -71,50 +85,106 @@ class InvPage{
         commonAction.enterValueToTextbox(invPageLocator.inv_due_date_txb_css, date)
     }
 
-    enterValueToInvoiceQuantityTextbox(quantity){
-        commonAction.wait(2)
-        this.scrollToElementInAddedPoTable("20%")
-        commonAction.clickToElement(invPageLocator.filter_inv_quantity_in_added_po_table_css)
-        commonAction.doubleClickToElement(invPageLocator.inv_quantity_in_added_po_table_css)
-        commonAction.doubleClickToElement(invPageLocator.inv_quantity_in_added_po_table_css)
-        commonAction.enterValueToTextboxAfterClearByXpath(invPageLocator.inv_quantity_txb_in_added_po_table_xpath, quantity)
+    enterValueToInvoiceQuantityTextbox(quantity, table){
+        if (table == "Added PO") {
+            commonAction.wait(2)
+            this.scrollToElementInAddedPoTable("25%")
+        }
+        else{
+            this.scrollToInItemTable("20%")       
+        }
+        commonAction.doubleClickToElement(invPageLocator.inv_quantity_in_table_css)
+        commonAction.doubleClickToElement(invPageLocator.inv_quantity_in_table_css)
+        commonAction.enterValueToTextboxAfterClearByXpath(invPageLocator.inv_quantity_txb_in_table_xpath, quantity)
     }
 
-    enterValueToInvoiceUnitPriceTextbox(price){
-        commonAction.wait(2)
-        this.scrollToElementInAddedPoTable("20%")
-        commonAction.doubleClickToElement(invPageLocator.inv_unit_price_in_list_css)
-        commonAction.enterValueToTextboxAfterClearByXpath(invPageLocator.inv_unit_price_txb_in_added_po_table_xpath, price)
+    enterValueToInvoiceUnitPriceTextbox(price, table) {
+        if (table == "Added PO") {
+            this.scrollToElementInAddedPoTable("20%")
+        }
+        else {
+            this.scrollToInItemTable("50%")
+        }
+        commonAction.doubleClickToElement(invPageLocator.inv_unit_price_in_table_css)
+        commonAction.doubleClickToElement(invPageLocator.inv_unit_price_in_table_css)
+        commonAction.enterValueToTextboxAfterClearByXpath(invPageLocator.inv_unit_price_txb_in_table_xpath, price)
     }
 
-    enterValueToInvoiceItemNameTextbox(name){
-        commonAction.wait(2)
-        commonAction.doubleClickToElementByXpath(invPageLocator.item_name_in_added_po_table_xpath)
-        commonAction.enterValueToTextboxAfterClearByXpath(invPageLocator.item_name_txb_in_added_po_table_xpath, name)
-        commonAction.clickToElement(invPageLocator.filter_inv_item_name_in_added_po_table_css)
+    enterValueToRejectTextbox(reason) {
+        commonAction.clickToElement(invPageLocator.inv_reject_reason_txb_css)
+        commonAction.enterValueToTextbox(invPageLocator.inv_reject_reason_txb_css, reason)
     }
 
-    enterValueToInvoiceItemNameFilter(name){
+    enterValueToInvoiceItemNameTextboxInTable(name, table){
+        if (table == "Added PO") {
+            commonAction.wait(2)
+            commonAction.doubleClickToElementByXpath(invPageLocator.inv_item_name_in_added_po_table_xpath)
+        }
+        else {
+            commonAction.doubleClickToElement(invPageLocator.inv_item_name_in_add_item_table_css)
+        }
+        commonAction.enterValueToTextboxAfterClearByXpath(invPageLocator.inv_item_name_txb_in_table_xpath, name)
+        commonAction.clickToElement(invPageLocator.filter_inv_item_name_in_table_css)
+    }
+
+    enterValueToInvoiceItemCodeTextboxInAddItemTable(code){
         commonAction.wait(2)
+        commonAction.doubleClickToElement(invPageLocator.inv_item_code_in_add_item_table_css)
+        commonAction.doubleClickToElement(invPageLocator.inv_item_code_in_add_item_table_css)
+        commonAction.enterValueToTextboxAfterClearByXpath(invPageLocator.inv_item_code_txb_in_add_item_table_xpath, code)
+        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Item Code"))
+    }
+
+    enterValueToInvoiceItemModelTextboxInAddItemTable(model){
+        commonAction.doubleClickToElement(invPageLocator.inv_item_model_in_add_item_table_css)
+        commonAction.enterValueToTextboxAfterClearByXpath(invPageLocator.inv_item_model_txb_in_add_item_table_xpath, model)
+        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Model"))
+    }
+
+    enterValueToInvoiceItemSizeTextboxInAddItemTable(size){
+        commonAction.doubleClickToElement(invPageLocator.inv_item_size_in_add_item_table_css)
+        commonAction.enterValueToTextboxAfterClearByXpath(invPageLocator.inv_item_size_txb_in_add_item_table_xpath, size)
+        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Size"))
+    }
+
+    enterValueToInvoiceItemBrandTextboxInAddItemTable(brand){
+        commonAction.doubleClickToElement(invPageLocator.inv_item_brand_in_add_item_table_css)
+        commonAction.enterValueToTextboxAfterClearByXpath(invPageLocator.inv_item_brand_txb_in_add_item_table_xpath, brand)
+        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Brand"))
+    }
+
+    enterValueToInvoiceItemNameFilterInAddedPoTable(name){
         this.scrollToElementInAddedPoTable("0%")
-        commonAction.clickToElement(invPageLocator.filter_inv_item_name_in_added_po_table_css)
-        commonAction.enterValueToTextboxAfterClear(invPageLocator.filter_inv_item_name_in_added_po_table_css, name)
+        commonAction.clickToElement(invPageLocator.filter_inv_item_name_in_table_css)
+        commonAction.enterValueToTextboxAfterClear(invPageLocator.filter_inv_item_name_in_table_css, name)
     }
 
     enterValueToExpectedAmountTextbox(value){
-        commonAction.wait(2)
         commonAction.doubleClickToElement(invPageLocator.expected_amount_txb_css)
         commonAction.enterValueToTextboxAfterClear(invPageLocator.expected_amount_txb_css, value)
+        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Do you have an Expected Amount?"))
     }
 
-    selectValueFromTaxCodeDropdown(taxCode) {
-        this.scrollToElementInAddedPoTable("30%")
+    selectValueFromTaxCodeDropdownInTable(taxCode, table) {
+        if (table == "Added PO") {
+            this.scrollToElementInAddedPoTable("30%")
+        }
+        else {
+            this.scrollToInItemTable("50%")
+        }
         commonAction.doubleClickToElementByXpath(invPageLocator.tax_code_dropdown_xpath)
         commonAction.doubleClickToElementByXpath(invPageLocator.tax_code_dropdown_xpath)
         commonAction.clickToElementByXpath(printf(invPageLocator.option_item_from_dropdown_xpath, taxCode))
-        // commonAction.selectOptionFromDropdownByXpath(invPageLocator.tax_code_dropdown_xpath, printf(invPageLocator.option_item_from_dropdown_xpath, taxCode))
         commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Tax Code"))
-    } 
+    }
+
+    selectValueFromUomDropdownInAddItemTable(uom) {
+        this.scrollToInItemTable("100%")
+        commonAction.doubleClickToElement(invPageLocator.inv_item_uom_dropdown_in_add_item_table_css)
+        commonAction.doubleClickToElement(invPageLocator.inv_item_uom_dropdown_in_add_item_table_css)
+        commonAction.clickToElementByXpath(printf(invPageLocator.option_item_from_dropdown_xpath, uom))
+        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "UOM"))
+    }
 
     selectValueFromInvoiceTypeDropdown(invoiceType){
         commonAction.selectValueFromElement(invPageLocator.inv_type_dropdown_css, invoiceType)
@@ -141,21 +211,30 @@ class InvPage{
         commonAction.doubleClickToElementByXpath(printf(invPageLocator.inv_number_in_list_xpath, invNumber))
     }
 
+    clickToRejectButton(){
+        commonAction.clickToElementByXpath(invPageLocator.reject_inv_btn_xpath)
+    }
+
     clickToPlusTaxButton() {
         commonAction.clickToElementByXpath(invPageLocator.tax_plus_btn_xpath)
     }
 
-    clickToItemDeleteButton() {
-        this.scrollToElementInAddedPoTable("0%")
+    clickToItemDeleteButtonInTable(table) {
+        if (table == "Added PO") {
+            this.scrollToElementInAddedPoTable("0%")
+        }
+        else {
+            this.scrollToInItemTable("0%")
+        }
         commonAction.clickToElementByXpath(invPageLocator.item_delete_btn_xpath)
     }
 
     checkToPoNumberCheckbox(poNumber){
-        commonAction.checkCheckboxByXpath(printf(invPageLocator.po_number_checkbox_in_select_po_table_xpath, poNumber))
+        commonAction.checkCheckboxByXpath(printf(invPageLocator.po_number_ckb_in_select_po_table_xpath, poNumber))
     }
 
     checkToExpectedAmountCheckbox(){
-        commonAction.clickToElementByXpath(invPageLocator.expected_amount_checkbox_xpath)
+        commonAction.clickToElementByXpath(invPageLocator.expected_amount_ckb_xpath)
     }
 
     verifyValueInCompanyNameTextboxExits(value){
@@ -166,8 +245,14 @@ class InvPage{
         commonAction.verifyElementByXpathVisible(invPageLocator.create_inv_page_title_xpath)
     }
 
-    verifyItemDeleteButtonDisplay() {
-        this.scrollToElementInAddedPoTable("0%")
+    verifyInvoicePendingApprovalPageTitleDisplay(){
+        commonAction.verifyElementByXpathVisible(invPageLocator.inv_pending_approval_list_xpath)
+    }
+
+    verifyItemDeleteButtonInTableDisplay(table) {
+        if (table == "Added PO") {
+            this.scrollToElementInAddedPoTable("0%")
+        }
         commonAction.verifyElementByXpathVisible(invPageLocator.item_delete_btn_xpath)
     }
 

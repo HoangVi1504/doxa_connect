@@ -39,59 +39,59 @@ When(/^I input invoice due date as next "([^"]*)" days to 'Invoice Due Date' tex
     invPage.enterValueToInvoiceDueDateTextbox(commonAction.getDateFormat4(date))
 })
 
-When(/^I input "([^"]*)" to Invoice Quantity textbox at 'Create Invoice' page$/, (quantity) => {
-    invPage.enterValueToInvoiceQuantityTextbox(quantity)
+When(/^I input "([^"]*)" to 'Invoice Quantity' textbox in "([^"]*)" table at 'Create Invoice' page$/, (quantity, table) => {
+    invPage.enterValueToInvoiceQuantityTextbox(quantity, table)
 })
 
 When(/^I input "([^"]*)" to 'Expected Amount' textbox at 'Create Invoice' page$/, (value) => {
     invPage.enterValueToExpectedAmountTextbox(value)
 })
 
-When(/^I input "([^"]*)" to 'Item Name' in 'Added PO' table at 'Create Invoice' page$/, (name) => {
-    invPage.enterValueToInvoiceItemNameTextbox(name)
+When(/^I input "([^"]*)" to 'Item Name' textbox in "([^"]*)" table at 'Create Invoice' page$/, (name, table) => {
+    invPage.enterValueToInvoiceItemNameTextboxInTable(name, table)
 })
 
-When(/^I input "([^"]*)" to 'Item Code' in 'Added PO' table at 'Create Invoice' page$/, (code) => {
-    invPage.enterValueToInvoiceItemCodeTextbox(code)
+When(/^I input "([^"]*)" to 'Item Code' textbox in 'Add Item' table at 'Create Invoice' page$/, (code) => {
+    invPage.enterValueToInvoiceItemCodeTextboxInAddItemTable(code)
 })
 
-When(/^I input "([^"]*)" to 'Model' in 'Added PO' table at 'Create Invoice' page$/, (model) => {
-    invPage.enterValueToInvoiceItemModelTextbox(model)
+When(/^I input "([^"]*)" to 'Model' textbox in 'Add Item' table at 'Create Invoice' page$/, (model) => {
+    invPage.enterValueToInvoiceItemModelTextboxInAddItemTable(model)
 })
 
-When(/^I input "([^"]*)" to 'Size' in 'Added PO' table at 'Create Invoice' page$/, (size) => {
-    invPage.enterValueToInvoiceItemSizeTextbox(size)
+When(/^I input "([^"]*)" to 'Size' textbox in 'Add Item' table at 'Create Invoice' page$/, (size) => {
+    invPage.enterValueToInvoiceItemSizeTextboxInAddItemTable(size)
 })
 
-When(/^I input "([^"]*)" to 'Brand' in 'Added PO' table at 'Create Invoice' page$/, (brand) => {
-    invPage.enterValueToInvoiceItemBrandTextbox(brand)
+When(/^I input "([^"]*)" to 'Brand' textbox in 'Add Item' table at 'Create Invoice' page$/, (brand) => {
+    invPage.enterValueToInvoiceItemBrandTextboxInAddItemTable(brand)
 })
 
 When(/^I input "([^"]*)" to filter 'Item Name' in 'Added PO' table at 'Create Invoice' page$/, (name) => {
-    invPage.enterValueToInvoiceItemNameFilter(name)
+    invPage.enterValueToInvoiceItemNameFilterInAddedPoTable(name)
 })
 
-When(/^I input "([^"]*)" to 'Invoice Qty' in 'Added PO' table at 'Create Invoice' page$/, (quantity) => {
-    invPage.enterValueToInvoiceQuantityTextbox(quantity)
+When(/^I input "([^"]*)" to 'Invoice Unit Price' textbox in "([^"]*)" table at 'Create Invoice' page$/, (value, table) => {
+    invPage.enterValueToInvoiceUnitPriceTextbox(value, table)
 })
 
-When(/^I input "([^"]*)" to 'Invoice Unit Price' in 'Added PO' table at 'Create Invoice' page$/, (value) => {
-    invPage.enterValueToInvoiceUnitPriceTextbox(value)
+When(/^I input "([^"]*)" to 'Reason' textbox at 'Invoice Pending Approval' page$/, (reason) => {
+    invPage.enterValueToRejectTextbox(reason)
 })
 
-When(/^I select "([^"]*)" from 'Tax Code' dropdown at 'Added PO' table at 'Create Invoice' page$/, (taxCode) => {
-    invPage.selectValueFromTaxCodeDropdown(taxCode)
+When(/^I select "([^"]*)" from 'Tax Code' dropdown in "([^"]*)" table at 'Create Invoice' page$/, (taxCode, table) => {
+    invPage.selectValueFromTaxCodeDropdownInTable(taxCode, table)
 })
 
 When(/^I select "([^"]*)" from 'Invoice Type' dropdown at 'Create Invoice' page$/, (invoiceType) => {
     invPage.selectValueFromInvoiceTypeDropdown(invoiceType)
 })
 
-When(/^I select "([^"]*)" from 'UOM' dropdown in 'Added PO' table at 'Create Invoice' page$/, (uom) => {
-    invPage.selectValueFromUOMDropdown(uom)
+When(/^I select "([^"]*)" from 'UOM' dropdown in 'Add Item' table at 'Create Invoice' page$/, (uom) => {
+    invPage.selectValueFromUomDropdownInAddItemTable(uom)
 })
 
-When(/^I select supplier code "([^"]*)" from dropdown at 'Create Invoice' page$/, (supplierCode) => {
+When(/^I select "([^"]*)" from 'Supplier Code' dropdown at 'Create Invoice' page$/, (supplierCode) => {
     invPage.selectSupplierCodeFromDropdown(supplierCode)
 })
 
@@ -107,12 +107,16 @@ When(/^I double click to INV No in 'Invoice Pending Approval' list$/, () => {
     invPage.doubleClickToInvoiceInList(sessionStorage.getItem("invNumberList"))
 })
 
+When(/^I click to 'Reject' button in 'Reason Dialog Box' at 'Invoice Pending Approval' page$/, () => {
+    invPage.clickToRejectButton()
+})
+
 When(/^I click to 'Plus Tax' button at 'Create Invoice' page$/, () => {
     invPage.clickToPlusTaxButton()
 })
 
-When(/^I click to 'Item Delete' button at 'Create Invoice' page$/, () => {
-    invPage.clickToItemDeleteButton()
+When(/^I click to 'Item Delete' button in "([^"]*)" table at 'Create Invoice' page$/, (table) => {
+    invPage.clickToItemDeleteButtonInTable(table)
 })
 
 When(/^I check to PO No just created checkbox at 'Create Invoice' page$/, () => {
@@ -127,8 +131,12 @@ Then(/^I see 'Create Invoice' page$/, () => {
     invPage.verifyCreateInvoicePageTitleDisplay()
 })
 
-Then(/^I see 'Item Delete' button at 'Create Invoice' page$/, () => {
-    invPage.verifyItemDeleteButtonDisplay()
+Then(/^I see 'Invoices Pending Approval' page$/, () => {
+    invPage.verifyInvoicePendingApprovalPageTitleDisplay()
+})
+
+Then(/^I see 'Item Delete' button in "([^"]*)" table at 'Create Invoice' page$/, (table) => {
+    invPage.verifyItemDeleteButtonInTableDisplay(table)
 })
 
 Then(/^I see pop-up appears to show preview of invoice$/, () => {
@@ -181,4 +189,16 @@ Then(/^I see Invoice Type in list is "([^"]*)"$/, (invType) => {
 
 Then(/^I see Matching in list is "([^"]*)"$/, (matching) => {
     invPage.verifyMatchingInListDisplay().should('have.text', matching)
+})
+
+Then(/^I see a validation text of 'Invoice Type' "([^"]*)" appears$/, (validation) => {
+    invPage.verifyValidationTextInvoiceTypeDisplay(validation)
+})
+
+Then(/^I see a validation text of 'Due Date' "([^"]*)" appears$/, (validation) => {
+    invPage.verifyValidationTextDueDateDisplay(validation)
+})
+
+Then(/^I see a validation text of 'Supplier' "([^"]*)" appears$/, (validation) => {
+    invPage.verifyValidationTextSupplierDisplay(validation)
 })

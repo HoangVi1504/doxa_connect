@@ -21,6 +21,13 @@ Given(/^Navigate to Doxa Connect 2.0 site$/, () => {
     });
 })
 
+Given(/^Navigate to Invoice Module of Doxa Connect 2.0 site$/, () => {
+    commonPage.navigateTo(globalVariables.invUrl)
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+    });
+})
+
 When(/^Call Api get data after login$/, () => {
     apiAction.callApiGetDataAfterLogin()
 })
