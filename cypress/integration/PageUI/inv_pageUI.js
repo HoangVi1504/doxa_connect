@@ -30,6 +30,7 @@ class InvPageLocator{
         // Css - Filter
         this.filter_inv_quantity_in_table_css = '[aria-label="Qty Filter Input"]';     
         this.filter_inv_item_name_in_table_css = '[aria-label="Item Name Filter Input"]';
+        this.filter_inv_item_tax_code_in_table_css = '[aria-label="Tax Code Filter Input"]';
         this.filter_do_number_in_select_po_table_css = '[aria-label="DO No. Filter Input"]';
         
         // Xpath - Textbox

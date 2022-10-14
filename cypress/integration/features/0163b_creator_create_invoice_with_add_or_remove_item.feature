@@ -41,9 +41,14 @@ Scenario Outline: P2P-INV-S01-005 The buyer creates the invoice - add/remove ite
     When I click to "I Understand" button format_1
     Then I see 'PO List' page
 
+    When "buyer" input PO No to filter PO in "PO" list
+    Then I see PO status in list is "ISSUED"
+
     # Create PO Invoice
-    When I click to 'Dashboard' link on Header menu if it not be selected
-    And Wait for "2" seconds
+    When I click to hamburger menu
+    And I click to "Invoices" button format_2
+    And Wait for "3" seconds
+    And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Invoices" link on header menu
     And I click to "Invoices" link on the left menu
     And I click to "Create Invoice" link on the left sub menu
@@ -59,18 +64,18 @@ Scenario Outline: P2P-INV-S01-005 The buyer creates the invoice - add/remove ite
     Then I see PO No in 'Added PO' table at 'Create Invoice' page
 
     When I input "<invQty>" to 'Invoice Quantity' textbox in "Added PO" table at 'Create Invoice' page
-    And I select "11052022" from 'Tax Code' dropdown at 'Added PO' table at 'Create Invoice' page
+    And I select "11052022" from 'Tax Code' dropdown in "Added PO" table at 'Create Invoice' page
     And I click to "Add Manual" button format_2
-    Then I see 'Item Delete' button in 'Added PO' table at 'Create Invoice' page
+    Then I see 'Item Delete' button in "Added PO" table at 'Create Invoice' page
     
-    When I input "item test inv" to 'Item Name' textbox in 'Added PO' table at 'Create Invoice' page
+    When I input "item test inv" to 'Item Name' textbox in "Added PO" table at 'Create Invoice' page
     And I input "item test inv" to filter 'Item Name' in 'Added PO' table at 'Create Invoice' page
     And I input "20" to 'Invoice Quantity' textbox in "Added PO" table at 'Create Invoice' page
     And I input "item test inv" to filter 'Item Name' in 'Added PO' table at 'Create Invoice' page
     And I input "1000" to 'Invoice Unit Price' textbox in "Added PO" table at 'Create Invoice' page
     And I input "item test inv" to filter 'Item Name' in 'Added PO' table at 'Create Invoice' page
-    And I select "11052022" from 'Tax Code' dropdown at 'Added PO' table at 'Create Invoice' page
-    And I click to 'Item Delete' button in 'Added PO' table at 'Create Invoice' page
+    And I select "11052022" from 'Tax Code' dropdown in "Added PO" table at 'Create Invoice' page
+    And I click to 'Item Delete' button in "Added PO" table at 'Create Invoice' page
     Then I see 'Invoice Sub Total' is equal to "<invSubTotal>" at 'Create Invoice' page
     And I see 'Invoice Tax' is equal to "<tax>" at 'Create Invoice' page
     And I see 'Invoice Total' is equal to "<invTotal>" at 'Create Invoice' page
@@ -88,7 +93,7 @@ Scenario Outline: P2P-INV-S01-005 The buyer creates the invoice - add/remove ite
     And I click to "Invoice Pending Approval" link on the left sub menu
     Then I see 'Invoices Pending Approval List' page
 
-    When "buyer" input PO No to filter PO in "INV Pending Approval" list
+    When I input PO No to filter PO in 'Invoice Pending Approval' list
     Then I see Invoice status in list is "PENDING TWO WAY"
     And I see Invoice Type in list is "PO INVOICE"
 

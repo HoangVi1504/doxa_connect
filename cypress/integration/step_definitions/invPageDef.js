@@ -19,7 +19,7 @@ When(/^I input PO No to filter PO in 'Select PO' table at 'Create Invoice' page$
 })
 
 When(/^I input Invoice No random to 'Invoice No' textbox at 'Create Invoice' page$/, () => {
-    sessionStorage.setItem("invNumber", "INV-" + faker.random.numeric(5))
+    sessionStorage.setItem("invNumber", "INV-00" + faker.random.numeric(7))
     invPage.enterValueToInvoiceNoTextbox(sessionStorage.getItem("invNumber"))
 })
 

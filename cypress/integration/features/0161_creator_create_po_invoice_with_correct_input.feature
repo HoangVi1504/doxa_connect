@@ -1,6 +1,46 @@
 @inv @p2p
 Feature: 0161 Creator create PO invoice with correct input
 
+Scenario: Buyer set 'Invoice' Document Prefix as System Default
+    Given Navigate to Doxa Connect 2.0 site
+    When I login with role "buyer"
+    And I click to 'User Profile' button
+    And I click to "Admin" button format_1
+    Then I see 'Dashboard' title
+
+    When Wait for "2" seconds
+    And I click to 'Dashboard' link on Header menu if it not be selected
+    And I click to "System Configuration" link on header menu
+    And I click to "General Setting" link on the left menu
+    And I click to "Manage Document Prefix" link on the left sub menu
+    Then I see 'List of Document Prefix' page
+
+    When I click to text "Function"
+    And I input "Invoice" to 'Filter Function' in 'Document Prefix' list
+    Then I see function just searched in 'Document Prefix' list is "Invoice"
+
+    When I double click to function "Invoice" in 'Document Prefix' list
+    And Wait for "2" seconds
+    Then I see 'Document Prefix Details' page
+    And I see function in 'Function' textbox at 'Document Prefix Details' page is "Invoice"
+    
+    When I click to "Edit" button format_3
+    Then I see "Save" button format_1 is displayed
+
+    When I select "System Default" from 'Pre-fix Status' dropdown at 'Document Prefix Details' page
+    And I click to "Save" button format_1
+    Then I see a message "Update is successful" appears
+
+    When I click to "I Understand" button format_1
+    And I click to "Back" button format_1
+    Then I see 'List of Document Prefix' page
+
+    When I click to text "Function"
+    And I input "Invoice" to 'Filter Function' in 'Document Prefix' list
+    Then I see function just searched in 'Document Prefix' list is "Invoice"
+    And I see type of function just searched in 'Document Prefix' list is "Default"
+    And I see creator of function just searched in 'Document Prefix' list is "AUTO BUYER"
+
 Scenario: P2P-INV-S01-002 Creator create PO invoice with correct input
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
@@ -88,6 +128,9 @@ Scenario: P2P-INV-S01-002 Creator create PO invoice with correct input
     And Call API approval GR
     And I logout account
     And I login with role "creator"
+    And I click to hamburger menu
+    And I click to "Invoices" button format_2
+    And Wait for "3" seconds
     And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Invoices" link on header menu
     And I click to "Invoices" link on the left menu
@@ -105,15 +148,15 @@ Scenario: P2P-INV-S01-002 Creator create PO invoice with correct input
     Then I see PO No in 'Added PO' table at 'Create Invoice' page
 
     When I input "100" to 'Invoice Quantity' textbox in "Added PO" table at 'Create Invoice' page
-    And I select "11052022" from 'Tax Code' dropdown at 'Added PO' table at 'Create Invoice' page
+    And I select "11052022" from 'Tax Code' dropdown in "Added PO" table at 'Create Invoice' page
     And I click to "Issue" button format_1
     Then I see a message "Project invoice created" appears
+    And I see 'Invoice List' page
 
-    When I click to "I Understand" button format_1
-    And I click to "Invoice Pending Approval" link on the left sub menu
+    When I click to "Invoice Pending Approval" link on the left sub menu
     Then I see 'Invoices Pending Approval List' page
 
-    When "buyer" input PO No to filter PO in "INV Pending Approval" list
+    When I input PO No to filter PO in 'Invoice Pending Approval' list
     And I see Invoice status in list is "PENDING THREE WAY"
     And I see Invoice Type in list is "PO INVOICE"
 
@@ -128,6 +171,9 @@ Scenario: P2P-INV-S01-002 Creator create PO invoice with correct input
 Scenario: 02 AP Speciallist approval Invoice
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "ap specialist"
+    And I click to hamburger menu
+    And I click to "Invoices" button format_2
+    And Wait for "3" seconds
     And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Invoices" link on header menu
     And I click to "Invoices" link on the left menu

@@ -105,6 +105,7 @@ class InvPage{
         else {
             this.scrollToInItemTable("50%")
         }
+        commonAction.wait(1)
         commonAction.doubleClickToElement(invPageLocator.inv_unit_price_in_table_css)
         commonAction.doubleClickToElement(invPageLocator.inv_unit_price_in_table_css)
         commonAction.enterValueToTextboxAfterClearByXpath(invPageLocator.inv_unit_price_txb_in_table_xpath, price)
@@ -155,6 +156,7 @@ class InvPage{
 
     enterValueToInvoiceItemNameFilterInAddedPoTable(name){
         this.scrollToElementInAddedPoTable("0%")
+        commonAction.wait(1)
         commonAction.clickToElement(invPageLocator.filter_inv_item_name_in_table_css)
         commonAction.enterValueToTextboxAfterClear(invPageLocator.filter_inv_item_name_in_table_css, name)
     }
@@ -172,10 +174,11 @@ class InvPage{
         else {
             this.scrollToInItemTable("50%")
         }
+        commonAction.wait(1)
         commonAction.doubleClickToElementByXpath(invPageLocator.tax_code_dropdown_xpath)
         commonAction.doubleClickToElementByXpath(invPageLocator.tax_code_dropdown_xpath)
         commonAction.clickToElementByXpath(printf(invPageLocator.option_item_from_dropdown_xpath, taxCode))
-        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Tax Code"))
+        commonAction.clickToElement(invPageLocator.filter_inv_item_tax_code_in_table_css)
     }
 
     selectValueFromUomDropdownInAddItemTable(uom) {

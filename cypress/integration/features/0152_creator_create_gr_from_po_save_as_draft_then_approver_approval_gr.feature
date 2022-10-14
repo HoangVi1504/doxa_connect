@@ -34,7 +34,8 @@ Scenario: P2P-GR-S04-002 Creator create GR from PO with partial PO quantity
     Then I see 'PO Detail' page
     And I see PO No in 'PO No' textbox at 'PO Detail' page
 
-    When I click to "Issue" button format_1
+    When I select approval route "auto approval PO" at 'PO detail' page
+    And I click to "Issue" button format_1
     Then I see a message "PO has been issued to supplier" appears
 
     When I click to "I Understand" button format_1
@@ -175,30 +176,29 @@ Scenario: 04 Approver approval GR then creator close PO
     Then I see GR status in GR list is "COMPLETED"
 
     # # Creator close PO in PARTIALLY DELIVERED status
-    # Bug: https://doxa-connex.atlassian.net/browse/D0R-5116
-    # When I logout account
-    # And I login with role "creator"
-    # And I click to 'Dashboard' link on Header menu if it not be selected
-    # And I click to "Orders" link on header menu
-    # And I click to "Orders List" link on the left menu
-    # And I click to "POs List" link on the left sub menu
-    # Then I see 'PO List' page
+    When I logout account
+    And I login with role "creator"
+    And I click to 'Dashboard' link on Header menu if it not be selected
+    And I click to "Orders" link on header menu
+    And I click to "Orders List" link on the left menu
+    And I click to "POs List" link on the left sub menu
+    Then I see 'PO List' page
 
-    # When "buyer" input PO No to filter PO in "PO" list
-    # Then I see PO status in list is "PARTIALLY DELIVERED"
+    When "buyer" input PO No to filter PO in "PO" list
+    Then I see PO status in list is "PARTIALLY DELIVERED"
 
-    # When I double click to PO No in PO list
-    # And Wait for "6" seconds
-    # Then I see 'PO Detail' page
-    # And I see PO No in 'PO No' textbox at 'PO Detail' page
+    When I double click to PO No in PO list
+    And Wait for "6" seconds
+    Then I see 'PO Detail' page
+    And I see PO No in 'PO No' textbox at 'PO Detail' page
 
-    # When I click to "Mark Completed" button format_1
-    # And I input reason close PO at 'PO Detail' page is "auto close this PO"
-    # And I click to Mark Complete button at 'PO Detail' page
-    # Then I see a message "PO was closed successfully" appears
+    When I click to "Mark Completed" button format_1
+    And I input reason close PO at 'PO Detail' page is "auto close this PO"
+    And I click to Mark Complete button at 'PO Detail' page
+    Then I see a message "PO was closed successfully" appears
 
-    # When I click to "I Understand" button format_1
-    # Then I see 'PO List' page
+    When I click to "I Understand" button format_1
+    Then I see 'PO List' page
 
-    # When "buyer" input PO No to filter PO in "PO" list
-    # Then I see PO status in list is "CLOSED"
+    When "buyer" input PO No to filter PO in "PO" list
+    Then I see PO status in list is "CLOSED"

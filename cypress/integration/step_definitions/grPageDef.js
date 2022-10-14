@@ -10,6 +10,7 @@ const commonPage = new CommonPage()
 const commonAction = new CommonAction()
 
 When(/^Get GR number in list$/, () => {
+    grPage.scrollToInItemTable("0%")
     commonAction.getGrNumberInGrList()
 })
 

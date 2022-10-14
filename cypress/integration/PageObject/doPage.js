@@ -79,6 +79,7 @@ class DoPage{
 
     verifyDoPageTitleDisplay(){
         commonAction.verifyElementByXpathVisible(doPageLocator.do_page_title_xpath)
+        commonAction.wait(2)
     }
 
     verifyDoDetailsPageTitleDisplay(){

@@ -88,7 +88,8 @@ class GrPage{
         return commonAction.getTextElement(grPageLocator.gr_status_in_list_css)
     }
 
-    verifyApprovalRouteInListDisplay(){
+    verifyApprovalRouteInListDisplay() {
+        this.scrollToInItemTable("70%")
         return commonAction.getTextElement(grPageLocator.approval_route_in_list_css)
     }
 
@@ -102,6 +103,7 @@ class GrPage{
 
     verifyCreateGrFromPoPageTitleDisplay(){
         commonAction.verifyElementByXpathVisible(grPageLocator.create_gr_from_po_page_title_xpath)
+        commonAction.wait(2)
     }
 
     verifyCreateGrFromDoPageTitleDisplay(){
