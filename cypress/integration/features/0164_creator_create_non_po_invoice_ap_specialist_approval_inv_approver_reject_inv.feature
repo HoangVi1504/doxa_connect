@@ -76,7 +76,9 @@ Scenario Outline: P2P-INV-S02-001-002 Buyer create Non-PO invoice
     Then I see a message "Non project invoice created" appears
 
     When I click to "I Understand" button format_1
-    And I click to "Invoice Pending Approval" link on the left sub menu
+    Then I see 'Invoice List' page
+    
+    When I click to "Invoice Pending Approval" link on the left sub menu
     Then I see 'Invoices Pending Approval List' page
 
     When Get INV number in list

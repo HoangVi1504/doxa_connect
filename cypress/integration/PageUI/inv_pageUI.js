@@ -73,6 +73,7 @@ class InvPageLocator{
         
         this.create_inv_page_title_xpath = "//h1//*[text()='Create Invoice']";
         this.invoice_list_page_title_xpath = "//h1//*[text()='Invoices List']";
+        this.invoice_detail_page_title_xpath = "//h1//*[text()='Invoice Details']";
         this.inv_pending_approval_list_xpath = "//h1//*[text()='Invoices Pending Approval List']";
         this.inv_pending_approval_page_title_xpath = "//h1//*[text()='Invoice Pending Approval']";
 

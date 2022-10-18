@@ -1,13 +1,19 @@
 import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
 import CommonAction from '../commons/common_actions'
+import ApiAction from "../commons/call_api"
 import { faker } from '@faker-js/faker';
 import InvPage from "../PageObject/invPage"
 
 const commonAction = new CommonAction()
+const apiAction = new ApiAction()
 const invPage = new InvPage()
 
 When(/^Get INV number in list$/, () => {
     commonAction.getInvNoInList()
+})
+
+When(/^Call API set "([^"]*)" 'Document Prefix' as "([^"]*)"$/, (functionName, type) => {
+    apiAction.callAPIConfigDocumentPrefix(functionName, type)
 })
 
 When(/^I input DO No to filter DO in 'Select PO' table at 'Create Invoice' page$/, () => {
@@ -95,7 +101,7 @@ When(/^I select "([^"]*)" from 'Supplier Code' dropdown at 'Create Invoice' page
     invPage.selectSupplierCodeFromDropdown(supplierCode)
 })
 
-When(/^I select buyer code "([^"]*)" from dropdown at 'Create Invoice' page$/, (buyerCode) => {
+When(/^I select "([^"]*)" from 'Buyer Code' dropdown at 'Create Invoice' page$/, (supplierCode) => {
     invPage.selectBuyerCodeFromDropdown(buyerCode)
 })
 
@@ -108,6 +114,10 @@ When(/^I select "([^"]*)" from 'GL Account' dropdown at 'Invoice Pending Approva
 })
 
 When(/^I double click to INV No in 'Invoice Pending Approval' list$/, () => {
+    invPage.doubleClickToInvoiceInList(sessionStorage.getItem("invNumberList"))
+})
+
+When(/^I double click to INV No in 'Purchase Invoice' list$/, () => {
     invPage.doubleClickToInvoiceInList(sessionStorage.getItem("invNumberList"))
 })
 
@@ -149,6 +159,10 @@ Then(/^I see pop-up appears to show preview of invoice$/, () => {
 
 Then(/^I see 'Invoice List' page$/, () => {
     invPage.verifyInvoiceListPageTitleDisplay()
+})
+
+Then(/^I see 'Invoice Detail' page$/, () => {
+    invPage.verifyInvoiceDetailPageTitleDisplay()
 })
 
 Then(/^I see 'Invoice Pending Approval' page$/, () => {

@@ -2088,4 +2088,60 @@ class ApiAction{
         })
     }
 
+    callApiGetDataInDocumentPrefixList(functionName) {
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.request({
+            method: 'GET',
+            url: printf(urlPageLocator.document_prefix_list_url, this.env, buyerCompanyUuid),
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            expect(response.body).has.property("status", "OK")
+            let elementFunction = response.body.data.supplierPortalList.find(element => element.functionName === functionName);
+            let docPrefixUuid = elementFunction.prefixUuid;
+            sessionStorage.setItem("docPrefixUuid", docPrefixUuid)
+        })
+    }
+
+    callAPIConfigDocumentPrefix(functionName, prefixType) {
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        let buyerName = dataBuyer.buyerName
+        let buyerUuid = dataBuyer.buyerUuid
+        cy.wrap(this.callApiGetDataInDocumentPrefixList(functionName)).then((e) => {
+            cy.request({
+                method: 'PUT',
+                url: printf(urlPageLocator.update_document_prefix_url, this.env, buyerCompanyUuid),
+                headers: {
+                authorization: "Bearer " + token,
+                },
+                body: {
+                    creator: buyerName,
+                    creatorDesignation: "",
+                    creatorUuid: buyerUuid,
+                    dateDynamic: false,
+                    dateDynamicPrefix: "",
+                    defaultCurrentNumber: "",
+                    defaultNumberOfDigits: "",
+                    editStartingNumber: false,
+                    functionName: functionName,
+                    isDateDynamic: false,
+                    isProjectCode: false,
+                    numberOfDigits: -1,
+                    prefix: "",
+                    prefixSampleFormat: "",
+                    prefixSampleOutput: "",
+                    prefixUuid: sessionStorage.getItem("docPrefixUuid"),
+                    projectCode: false,
+                    startingNumber: 1,
+                    startingNumberFormat: "",
+                    type: prefixType
+                }
+            }).then((response) => {
+                expect(response.body).has.property("status", "OK")
+            })
+        })
+    }
 }export default ApiAction

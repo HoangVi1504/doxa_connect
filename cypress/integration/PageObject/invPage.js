@@ -63,16 +63,16 @@ class InvPage{
                     case "buyer":
                         urlRequest = printf(urlPageLocator.inv_list_url, this.env, buyerCompanyUuid, roleName)
                         break;
-                
+                    
                     case "supplier":
                         urlRequest = printf(urlPageLocator.inv_list_url, this.env, supplierCompanyUuid, roleName)
                         break;
-                        
+                    
                     default:
                         break;
                 }
                 break;
-
+            
             default:
                 break;
         }
@@ -100,12 +100,13 @@ class InvPage{
 
     enterValueToInvoiceQuantityTextbox(quantity, table){
         if (table == "Added PO") {
-            commonAction.wait(2)
+            commonAction.wait(1)
             this.scrollToElementInAddedPoTable("25%")
         }
         else{
             this.scrollToInItemTable("20%")       
         }
+        commonAction.wait(1)
         commonAction.doubleClickToElement(invPageLocator.inv_quantity_in_table_css)
         commonAction.doubleClickToElement(invPageLocator.inv_quantity_in_table_css)
         commonAction.enterValueToTextboxAfterClearByXpath(invPageLocator.inv_quantity_txb_in_table_xpath, quantity)
@@ -283,6 +284,10 @@ class InvPage{
 
     verifyInvoiceListPageTitleDisplay(){
         commonAction.verifyElementByXpathVisible(invPageLocator.invoice_list_page_title_xpath)
+    }
+
+    verifyInvoiceDetailPageTitleDisplay(){
+        commonAction.verifyElementByXpathVisible(invPageLocator.invoice_detail_page_title_xpath)
     }
 
     verifyPopUpPreviewInvoiceDisplay(){

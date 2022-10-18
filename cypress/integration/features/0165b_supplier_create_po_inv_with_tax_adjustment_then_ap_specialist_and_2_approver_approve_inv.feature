@@ -55,7 +55,7 @@ Scenario Outline: P2P-INV-S03-004 Supplier create PO invoice with tax adjustment
     Then I see 'Create Invoice' page
 
     When I select "PO Invoice" from 'Invoice Type' dropdown at 'Create Invoice' page
-    And I select buyer code "AUTO_BUYER" from dropdown at 'Create Invoice' page
+    And I select "AUTO_BUYER" from 'Buyer Code' dropdown at 'Create Invoice' page
     Then I see company name "AUTO BUYER" at 'Create Invoice' page
 
     When I input PO No to filter PO in 'Select PO' table at 'Create Invoice' page
