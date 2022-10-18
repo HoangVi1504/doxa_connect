@@ -101,7 +101,7 @@ Scenario Outline: P2P-INV-S01-005 The buyer creates the invoice - add/remove ite
     And I click to "Invoices List" link on the left sub menu
     Then I see 'Invoice List' page
 
-    When I input INV No to filter INV in "INV" list
+    When "buyer" input INV No to filter INV in "INV" list
     Then I see Invoice status in list is "PENDING TWO WAY"
     And I see Matching in list is "TWO WAY"
 

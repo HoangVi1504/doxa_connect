@@ -28,8 +28,9 @@ class InvPageLocator{
         this.inv_item_brand_in_add_item_table_css = '.ag-row-first>div[col-id="brand"]';
 
         // Css - Filter
-        this.filter_inv_quantity_in_table_css = '[aria-label="Qty Filter Input"]';     
+        this.filter_inv_quantity_in_table_css = '[aria-label="Qty Filter Input"]';
         this.filter_inv_item_name_in_table_css = '[aria-label="Item Name Filter Input"]';
+        this.filter_inv_unit_price_in_table_css = '[aria-label="Unit Price Filter Input"]'
         this.filter_inv_item_tax_code_in_table_css = '[aria-label="Tax Code Filter Input"]';
         this.filter_do_number_in_select_po_table_css = '[aria-label="DO No. Filter Input"]';
         

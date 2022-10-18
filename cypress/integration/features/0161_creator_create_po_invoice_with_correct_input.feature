@@ -164,7 +164,7 @@ Scenario: P2P-INV-S01-002 Creator create PO invoice with correct input
     And I click to "Invoices List" link on the left sub menu
     Then I see 'Invoice List' page
 
-    When I input INV No to filter INV in "INV" list
+    When "buyer" input INV No to filter INV in "INV" list
     Then I see Invoice status in list is "PENDING THREE WAY"
     And I see Matching in list is "THREE WAY"
 
@@ -180,7 +180,7 @@ Scenario: 02 AP Speciallist approval Invoice
     And I click to "Invoice Pending Approval" link on the left sub menu
     Then I see 'Invoices Pending Approval List' page
 
-    When I input INV No to filter INV in "INV Pending Approval" list
+    When "buyer" input INV No to filter INV in "INV Pending Approval" list
     Then I see Invoice status in list is "PENDING THREE WAY"
     And I see Invoice Type in list is "PO INVOICE"
 
@@ -197,7 +197,7 @@ Scenario: 02 AP Speciallist approval Invoice
     When I click to "I Understand" button format_1
     Then I see 'Invoices Pending Approval List' page
 
-    When I input INV No to filter INV in "INV Pending Approval" list
+    When "buyer" input INV No to filter INV in "INV Pending Approval" list
     Then I see Invoice status in list is "PENDING APPROVAL"
 
     When I logout account
@@ -208,7 +208,7 @@ Scenario: 02 AP Speciallist approval Invoice
     And I click to "Invoice Pending Approval" link on the left sub menu
     Then I see 'Invoices Pending Approval List' page
 
-    When I input INV No to filter INV in "INV Pending Approval" list
+    When "buyer" input INV No to filter INV in "INV Pending Approval" list
     Then I see Invoice status in list is "PENDING APPROVAL"
 
     When I double click to INV No in 'Invoice Pending Approval' list
@@ -225,5 +225,5 @@ Scenario: 02 AP Speciallist approval Invoice
     When I click to "Invoices List" link on the left sub menu
     Then I see 'Invoice List' page
 
-    When I input INV No to filter INV in "INV" list
+    When "buyer" input INV No to filter INV in "INV" list
     Then I see Invoice status in list is "APPROVED THREE WAY"

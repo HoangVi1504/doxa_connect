@@ -5,6 +5,7 @@ import CommonPageLocator from '../PageUI/commonPageUI'
 
 var printf = require('printf')
 var dataBuyer = require('../../../dataBuyer.json');
+var dataSupplier = require('../../../dataSupplier.json');
 
 const commonAction = new CommonAction()
 const invPageLocator = new InvPageLocator()
@@ -47,17 +48,29 @@ class InvPage{
         })
     }
 
-    enterValueToFilterInvNumberInList(invNumber, listName){
+    enterValueToFilterInvNumberInList(invNumber, roleName, listName){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
         let urlRequest
         switch (listName) {
             case "INV Pending Approval":
-                urlRequest = printf(urlPageLocator.inv_pending_approval_list_url, this.env, buyerCompanyUuid)
+                urlRequest = printf(urlPageLocator.inv_pending_approval_list_url, this.env, buyerCompanyUuid, roleName)
                 break;
         
             case "INV":
-                urlRequest = printf(urlPageLocator.inv_list_url, this.env, buyerCompanyUuid)
+                switch (roleName) {
+                    case "buyer":
+                        urlRequest = printf(urlPageLocator.inv_list_url, this.env, buyerCompanyUuid, roleName)
+                        break;
+                
+                    case "supplier":
+                        urlRequest = printf(urlPageLocator.inv_list_url, this.env, supplierCompanyUuid, roleName)
+                        break;
+                        
+                    default:
+                        break;
+                }
                 break;
 
             default:
@@ -96,6 +109,7 @@ class InvPage{
         commonAction.doubleClickToElement(invPageLocator.inv_quantity_in_table_css)
         commonAction.doubleClickToElement(invPageLocator.inv_quantity_in_table_css)
         commonAction.enterValueToTextboxAfterClearByXpath(invPageLocator.inv_quantity_txb_in_table_xpath, quantity)
+        commonAction.clickToElement(invPageLocator.filter_inv_unit_price_in_table_css)
     }
 
     enterValueToInvoiceUnitPriceTextbox(price, table) {
@@ -103,7 +117,7 @@ class InvPage{
             this.scrollToElementInAddedPoTable("20%")
         }
         else {
-            this.scrollToInItemTable("50%")
+            this.scrollToInItemTable("30%")
         }
         commonAction.wait(1)
         commonAction.doubleClickToElement(invPageLocator.inv_unit_price_in_table_css)
@@ -182,6 +196,7 @@ class InvPage{
     }
 
     selectValueFromUomDropdownInAddItemTable(uom) {
+        commonAction.wait(1)
         this.scrollToInItemTable("100%")
         commonAction.doubleClickToElement(invPageLocator.inv_item_uom_dropdown_in_add_item_table_css)
         commonAction.doubleClickToElement(invPageLocator.inv_item_uom_dropdown_in_add_item_table_css)
@@ -207,6 +222,13 @@ class InvPage{
         commonAction.clickToElementByXpath(invPageLocator.supplier_code_dropdown_xpath)
         commonAction.wait(2)
         commonAction.clickToElementByXpath(printf(commonPageLocator.option_result_xpath, supplierCode))
+        commonAction.wait(5)
+    }
+
+    selectBuyerCodeFromDropdown(buyerCode){
+        commonAction.clickToElementByXpath(invPageLocator.supplier_code_dropdown_xpath)
+        commonAction.wait(2)
+        commonAction.clickToElementByXpath(printf(commonPageLocator.option_result_xpath, buyerCode))
         commonAction.wait(5)
     }
 

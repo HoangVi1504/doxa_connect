@@ -83,7 +83,7 @@ Scenario Outline: P2P-INV-S02-001-002 Buyer create Non-PO invoice
     And I click to "Invoices List" link on the left sub menu
     Then I see 'Invoice List' page
 
-    When I input INV No to filter INV in "INV" list
+    When "buyer" input INV No to filter INV in "INV" list
     Then I see Invoice status in list is "PENDING TWO WAY"
     And I see Matching in list is "TWO WAY"
 
@@ -106,7 +106,7 @@ Scenario: P2P-INV-S07-003 P2P-INV-S08-003 AP Specialist approve invoice then App
     And I click to "Invoice Pending Approval" link on the left sub menu
     Then I see 'Invoices Pending Approval List' page
 
-    When I input INV No to filter INV in "INV Pending Approval" list
+    When "buyer" input INV No to filter INV in "INV Pending Approval" list
     Then I see Invoice status in list is "PENDING TWO WAY"
     And I see Invoice Type in list is "NON PO INVOICE"
 
@@ -123,7 +123,7 @@ Scenario: P2P-INV-S07-003 P2P-INV-S08-003 AP Specialist approve invoice then App
     When I click to "I Understand" button format_1
     Then I see 'Invoices Pending Approval List' page
 
-    When I input INV No to filter INV in "INV Pending Approval" list
+    When "buyer" input INV No to filter INV in "INV Pending Approval" list
     Then I see Invoice status in list is "PENDING APPROVAL"
 
     # Approver reject invoice
@@ -136,7 +136,7 @@ Scenario: P2P-INV-S07-003 P2P-INV-S08-003 AP Specialist approve invoice then App
     And I click to "Invoice Pending Approval" link on the left sub menu
     Then I see 'Invoices Pending Approval List' page
 
-    When I input INV No to filter INV in "INV Pending Approval" list
+    When "buyer" input INV No to filter INV in "INV Pending Approval" list
     Then I see Invoice status in list is "PENDING APPROVAL"
 
     When I double click to INV No in 'Invoice Pending Approval' list
@@ -155,5 +155,5 @@ Scenario: P2P-INV-S07-003 P2P-INV-S08-003 AP Specialist approve invoice then App
     When I click to "Invoices List" link on the left sub menu
     Then I see 'Invoice List' page
 
-    When I input INV No to filter INV in "INV" list
+    When "buyer" input INV No to filter INV in "INV" list
     Then I see Invoice status in list is "REJECTED TWO WAY"

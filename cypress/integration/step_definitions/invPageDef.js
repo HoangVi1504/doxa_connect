@@ -27,8 +27,8 @@ When(/^I input PO No to filter PO in 'Invoice Pending Approval' list$/, () => {
     invPage.enterValueToFilterPoInInvoiceApprovalList(sessionStorage.getItem("poNumber"))
 })
 
-When(/^I input INV No to filter INV in "([^"]*)" list$/, (listName) => {
-    invPage.enterValueToFilterInvNumberInList(sessionStorage.getItem("invNumberList"), listName)
+When(/^"([^"]*)" input INV No to filter INV in "([^"]*)" list$/, (roleName, listName) => {
+    invPage.enterValueToFilterInvNumberInList(sessionStorage.getItem("invNumberList"), roleName, listName)
 })
 
 When(/^I input invoice date as next "([^"]*)" days to 'Invoice Date' textbox at 'Create Invoice' page$/, (date) => {
@@ -93,6 +93,10 @@ When(/^I select "([^"]*)" from 'UOM' dropdown in 'Add Item' table at 'Create Inv
 
 When(/^I select "([^"]*)" from 'Supplier Code' dropdown at 'Create Invoice' page$/, (supplierCode) => {
     invPage.selectSupplierCodeFromDropdown(supplierCode)
+})
+
+When(/^I select buyer code "([^"]*)" from dropdown at 'Create Invoice' page$/, (buyerCode) => {
+    invPage.selectBuyerCodeFromDropdown(buyerCode)
 })
 
 When(/^I select "([^"]*)" from 'Approval Route' dropdown at 'Invoice Pending Approval' page$/, (approvalRoute) => {
