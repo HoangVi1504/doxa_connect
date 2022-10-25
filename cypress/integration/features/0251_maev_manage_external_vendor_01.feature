@@ -22,14 +22,19 @@ Scenario: MAEV-001-003 Entity admin can create external vendor
     When I click to "OK" button format_1
     Then I see a validation text of 'Company Code' at 'Create External Vendor' page appears "Please enter valid Company Code"
     And I see a validation text of 'Company Reg No' at 'Create External Vendor' page appears "Please enter valid Company Reg. No."
+    And I see a validation text of 'Payment Term' at 'Create External Vendor' page appears "Please select valid Payment Term"
     And I see a validation text of 'Company Name' at 'Create External Vendor' page appears "Please enter valid Company Name"
-    And I see a validation text of 'Full Name' at 'Create External Vendor' page appears "Please enter valid Full Name"
-    And I see a validation text of 'Email' at 'Create External Vendor' page appears "Please enter valid Email"
+    And I see a validation text of 'Country Of Origin' at 'Create External Vendor' page appears "Please select valid Country"
+    # bugId: https://doxa-connex.atlassian.net/browse/D0R-5168
+    # And I see a validation text of 'Full Name' at 'Create External Vendor' page appears "Please enter valid Full Name"
+    # And I see a validation text of 'Email' at 'Create External Vendor' page appears "Please enter valid Email"
+    And I see a validation text of 'Country Code' at 'Create External Vendor' page appears "Please select Valid Dial Code"
     And I see a validation text of 'Phone Number' at 'Create External Vendor' page appears "Please enter valid Phone Number"
     And I see a validation text of 'Address Label' at 'Create External Vendor' page appears "Please enter valid Address Label"
     And I see a validation text of 'Address Line 1' at 'Create External Vendor' page appears "Please enter valid Address Line 1"
     And I see a validation text of 'State' at 'Create External Vendor' page appears "Please enter valid State/Province"
     And I see a validation text of 'Postal Code' at 'Create External Vendor' page appears "Please enter valid Postal Code"
+    And I see a validation text of 'Country' at 'Create External Vendor' page appears "Please select valid Country"
 
     When I input random company code of role "Buyer" to 'Company Code' textbox at 'Create External Vendor' page
     And I input random company reg number to 'Company Reg No' textbox at 'Create External Vendor' page

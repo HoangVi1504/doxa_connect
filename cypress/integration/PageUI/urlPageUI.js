@@ -1,7 +1,8 @@
 class UrlPageLocator{  
     constructor() {
         this.tax_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/transactional-setting/list-tax-record`;
-        this.role_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/dox/rbac/role`
+        this.role_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/${'%s'}/rbac/role`
+        this.module_list_url = `https://api-connex-${"%s"}.doxa-holdings.com/auth/api/${'%s'}/${'%s'}`;
         this.entities_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/org/list`;
         this.category_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/category/list`;
         this.currency_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/currencies/list/`;
@@ -34,6 +35,8 @@ class UrlPageLocator{
         this.create_approval_matrix_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/approval-matrix/create`;
         this.approval_configuration_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/approval-configuration/get`;
         this.update_document_prefix_url =`https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/prefix/update`
+        this.update_approval_configuration_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/approval-configuration/update`;
+
         // PPR URL 
         this.ppr_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/prerequisition/list-pagination/?page=0&size=50&q=&orderBy=pprNumber:desc`;
         this.ppr_detail_url = `https://connex-${'%s'}.doxa-holdings.com/pre-requisitions/details?uuid=${'%s'}`;

@@ -41,6 +41,15 @@ When(/^Write data to 'dataBuyer.json' file$/, () => {
     })
 })
 
+When(/^Write data to 'dataEntityAdmin.json' file$/, () => {
+    commonAction.writeValueToJsonFile("dataEntityAdmin.json", 
+    {   
+        entityName: sessionStorage.getItem("userName"),
+        entityUuid: sessionStorage.getItem("userUuid"),
+        entityCompanyUuid: sessionStorage.getItem("companyUuid")
+    })
+})
+
 When(/^Write data to 'dataApSpecialist.json' file$/, () => {
     commonAction.writeValueToJsonFile("dataApSpecialist.json", 
     {   

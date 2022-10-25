@@ -22,7 +22,7 @@ class ManageCategoryPageLocator{
         this.category_name_in_list_xpath = "//*[contains(@class,'ag-row-first')]//*[@col-id='categoryName']//*[contains(text(),'%s')]";
         this.action_category_in_list_xpath = "//*[contains(@class,'ag-row-first')]//*[@col-id='action']//*[contains(text(),'%s')]";
         this.list_category_page_title_xpath = "//h1//*[text()='List of Category']";
-        this.create_category_page_title_xpath = "//h1//*[text()='CreateNewCategory']";
+        this.create_category_page_title_xpath = "//h1//*[text()='Create New Category']";
         this.category_details_page_title_xpath = "//h1//*[text()='Category Details']";
 
         // Xpath - Validation

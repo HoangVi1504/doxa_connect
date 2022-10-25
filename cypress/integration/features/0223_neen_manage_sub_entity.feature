@@ -3,7 +3,7 @@ Feature: 0223 Entity admin can create, update, deactivate and reactivate an sub-
 
 Scenario: NEEN-001-005 Entity admin can create a new sub-entity
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
@@ -36,9 +36,9 @@ Scenario: NEEN-001-005 Entity admin can create a new sub-entity
     # And I select "GENERAL PARTNERSHIP" from 'Entity Type' dropdown at 'Create New Company' page
     # And I select "CONSTRUCTION" from 'Industry Type' dropdown at 'Create New Company' page
     And I click to "Module Subscription" link at 'Create New Company' page
-    And I check 'Transaction Settings' checkbox at 'Create New Company' page
-    And I check 'Entity Settings' checkbox at 'Create New Company' page
-    And I check 'Procurement To Pay' checkbox at 'Create New Company' page
+    And I check 'Settings' checkbox at 'Create New Company' page
+    And I check 'Payment & Financing' checkbox at 'Create New Company' page
+    And I check 'Purchase' checkbox at 'Create New Company' page
     And I click to "Company Logo" link at 'Create New Company' page
     And I upload "logo_company.jpg" to 'Company Logo' table at 'Create New Company' page
     And I click to "Crop" button format_1
@@ -60,7 +60,7 @@ Scenario: NEEN-001-005 Entity admin can create a new sub-entity
 
 Scenario: NEEN-002 Entity admin can update an existing sub-entity
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
@@ -86,7 +86,7 @@ Scenario: NEEN-002 Entity admin can update an existing sub-entity
 
     When I click to "Edit" button format_3
     And I click to "Module Subscription" link at 'Create New Company' page
-    And I check to 'Manage Vendor' checkbox at 'Create New Company' page
+    And I check to 'Contract' checkbox at 'Create New Company' page
     And I click to "Company Logo" link at 'Create New Company' page
     And I upload "logo_company_2.jpg" to 'Company Logo' table at 'Create New Company' page
     And I click to "Crop" button format_1
@@ -100,7 +100,7 @@ Scenario: NEEN-002 Entity admin can update an existing sub-entity
 Scenario: NEEN-003-004 Entity admin can deactivate and reactivate an existing sub-entity
     # Entity admin can deactivate an existing sub-entity
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title

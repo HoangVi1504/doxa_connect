@@ -4,6 +4,7 @@ Feature: 0145 Convert RFQ to PO, Preview PO, Approval Configuration set as true,
 Scenario: Entity admin able to opt-out approval routing for Purchase Order feature
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "buyer"
+    And Call API uncheck all function in Approval Configuration
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
@@ -13,16 +14,6 @@ Scenario: Entity admin able to opt-out approval routing for Purchase Order featu
     And I click to "Entity Management" link on header menu
     And I click to "Approval Setting" link on the left menu
     And I click to "Manage Approval Configuration" link on the left sub menu
-    Then I see 'Approval Configuration' page
-
-    When I click to "Manage Approval Configuration" link on the left sub menu
-    Then I see 'Approval Configuration' page
-
-    When I uncheck the checkbox 'Approval Configuration' page if it is checked
-    And I click to "Manage Approval Group" link on the left sub menu
-    Then I see 'List Approval Group' page
-
-    When I click to "Manage Approval Configuration" link on the left sub menu
     Then I see 'Approval Configuration' page
     
     When I check to "Purchase Order" checkbox at 'Approval Configuration' page
@@ -120,18 +111,7 @@ Scenario: P2P-PO-S01-003 P2P-PO-S02-001 P2P-PO-S03-001 P2P-PO-S07-002 Convert RF
     Then I see PO status in list is "CANCELLED"
     And I see Supplier Ack status is "NOT VIEWED"
 
-Scenario: Entity admin uncheck all function in Manage Approval Configuration
-    Given Navigate to Doxa Connect 2.0 site
-    When I login with role "buyer"
-    And I click to 'User Profile' button
-    And I click to "Admin" button format_1
-    Then I see 'Dashboard' title
-
-    When Wait for "2" seconds
-    And I click to 'Dashboard' link on Header menu if it not be selected
-    And I click to "Entity Management" link on header menu
-    And I click to "Approval Setting" link on the left menu
-    And I click to "Manage Approval Configuration" link on the left sub menu
-    Then I see 'Approval Configuration' page
-
-    When I uncheck the checkbox 'Approval Configuration' page if it is checked
+    # Entity admin uncheck all function in Approval Configuration
+    When I logout account
+    And I login with role "buyer"
+    And Call API uncheck all function in Approval Configuration

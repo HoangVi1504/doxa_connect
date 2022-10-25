@@ -193,6 +193,12 @@ class BaseAction {
     }
 
     // CSS Selector
+    pasteValueToTextbox(locator, value) {
+        this.clickToElement(locator)
+        cy.get(locator).invoke('val', value)
+        this.wait(1)
+    }
+
     uploadFile(locator, fileName){
         cy.get(locator).attachFile(fileName)
     }
@@ -299,7 +305,7 @@ class BaseAction {
         });
     }
 
-    pasteValueToTextbox(xpath, value){
+    pasteValueToTextboxByXpath(xpath, value){
         cy.xpath(xpath).invoke('val', value)
     }
 

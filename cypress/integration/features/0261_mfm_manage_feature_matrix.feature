@@ -20,8 +20,9 @@ Scenario: MFM-S001-001 Entity amdin can update the access permission for a user
     And I see designation of user at 'Manage Feature Matrix' page is "auto ap_specialist"
 
     When I click to text "User Name"
-    And I select "Manage Vendor" from 'Select Module' dropdown at 'Manage Feature Matrix' page
+    And I select "Settings" from 'Select Module' dropdown at 'Manage Feature Matrix' page
     And I click to "Search" button format_1
+    And I input "Account" to 'Filter Feature Name' at 'Manage Feature Matrix' page
     Then I see read checkbox of feature "Manage Supplier Bank Accounts" at 'Manage Feature Matrix' page is checked
     And I see write checkbox of feature "Manage Supplier Bank Accounts" at 'Manage Feature Matrix' page is checked
     And I see approve checkbox of feature "Manage Supplier Bank Accounts" at 'Manage Feature Matrix' page is checked
@@ -46,8 +47,9 @@ Scenario: MFM-S001-001 Entity amdin can update the access permission for a user
 
     When I select "auto ap_specialist" from 'Select User' dropdown at 'Manage Feature Matrix' page
     And I click to text "User Name"
-    And I select "Manage Vendor" from 'Select Module' dropdown at 'Manage Feature Matrix' page
+    And I select "Settings" from 'Select Module' dropdown at 'Manage Feature Matrix' page
     And I click to "Search" button format_1
+    And I input "Account" to 'Filter Feature Name' at 'Manage Feature Matrix' page
     Then I see read checkbox of feature "Manage Supplier Bank Accounts" at 'Manage Feature Matrix' page is unchecked
     And I see write checkbox of feature "Manage Supplier Bank Accounts" at 'Manage Feature Matrix' page is unchecked
     And I see write checkbox of feature "Manage Bank Account" at 'Manage Feature Matrix' page is unchecked
@@ -71,8 +73,9 @@ Scenario: MFM-S001-001 Entity amdin can update the access permission for a user
 
     When I select "auto ap_specialist" from 'Select User' dropdown at 'Manage Feature Matrix' page
     And I click to text "User Name"
-    And I select "Manage Vendor" from 'Select Module' dropdown at 'Manage Feature Matrix' page
+    And I select "Settings" from 'Select Module' dropdown at 'Manage Feature Matrix' page
     And I click to "Search" button format_1
+    And I input "Account" to 'Filter Feature Name' at 'Manage Feature Matrix' page
     And I check to read checkbox of feature "Manage Supplier Bank Accounts" at 'Manage Feature Matrix' page
     And I check to write checkbox of feature "Manage Supplier Bank Accounts" at 'Manage Feature Matrix' page
     And I check to write checkbox of feature "Manage Bank Account" at 'Manage Feature Matrix' page

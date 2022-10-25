@@ -52,6 +52,10 @@ When(/^I login with role "([^"]*)"$/, (role) => {
         case "entity admin":
             fileName = 'entity_admin.json'
             break;
+        
+        case "entity admin stag":
+            fileName = 'entity_admin_stag.json'
+            break;
 
         case "buyer":
             fileName = 'buyer.json'

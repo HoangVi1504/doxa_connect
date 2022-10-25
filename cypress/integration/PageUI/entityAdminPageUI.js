@@ -6,7 +6,7 @@ class EntityAdminPageLocator{
         this.country_origin_in_list_css = ".ag-row-first>[col-id='country']";
         this.company_reg_number_in_list = '.ag-row-first>[col-id="companyRegistrationNumber"]';
         this.file_name_in_document_table_css = '.ag-row-first>[col-id="fileName"]';
-        this.entity_active_status_in_list_css = '.ag-row-first>[col-id="0"]';
+        this.entity_active_status_in_list_css = '.ag-row-first>[col-id="1"]';
         this.file_title_in_document_table_css = '.ag-row-first>[col-id="title"]';
         
         // Css - Checkbox
@@ -48,9 +48,9 @@ class EntityAdminPageLocator{
         this.entity_name_in_list_xpath = "//*[contains(@class,'ag-row-first')]//*[@col-id='entityName' and text()='%s']";
 
         // Xpath - Checkbox
-        this.entity_setting_checkbox_xpath = "//*[@id='Entity Settings']";
-        this.procurement_to_pay_checkbox_xpath = "//*[@id='Procurement To Pay']";
-        this.transaction_setting_checkbox_xpath = "//*[@id='Transaction Settings']";
+        this.purchase_checkbox_xpath = "//*[@id='Purchase']";
+        this.invoices_checkbox_xpath = "//*[@id='Invoices']";
+        this.setting_checkbox_xpath = "//*[@id='Settings']";
 
         // Xpath - Validation text
         this.validation_text_country_xpath = "//*[@id='country']//following-sibling::*[@class='invalid-feedback' and text()='%s']";

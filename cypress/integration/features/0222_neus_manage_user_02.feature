@@ -3,12 +3,12 @@ Feature: 0222 Entity Admin Create Company User
 
 Scenario: NEUS-006-007 Entity admin create company user
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
 
-    When Wait for "4" seconds
+    When Wait for "3" seconds
     And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Entity Management" link on header menu
     And I click to "Manage Company User" link on the left menu
@@ -51,7 +51,7 @@ Scenario: NEUS-006-007 Entity admin create company user
 
 Scenario: NEUS-008 Entity admin update company user
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
@@ -75,10 +75,10 @@ Scenario: NEUS-008 Entity admin update company user
     And I input designation "test update designation" to 'Designation' textbox at 'Company User' page
     And I input role name "PPR APPROVER" to 'Search Role' textbox at 'Company User' page
     And I check to role "PPR APPROVER" from 'Assigned Roles' list at 'Company User' page
-    And I input feature "Pre-Purchase Order" to 'Search Feature' textbox
-    And I check to 'Read' "Pre-Purchase Order" checkbox in 'Assign Task' tab
-    And I check to 'Write' "Pre-Purchase Order" checkbox in 'Assign Task' tab
-    And I check to 'Approve' "Pre-Purchase Order" checkbox in 'Assign Task' tab
+    And I input feature "Purchase Order" to 'Search Feature' textbox
+    And I check to 'Read' "Purchase Order" checkbox in 'Assign Task' tab
+    And I check to 'Write' "Purchase Order" checkbox in 'Assign Task' tab
+    And I check to 'Approve' "Purchase Order" checkbox in 'Assign Task' tab
     And I click to "Save" button format_2
     Then I see a message "Update Successfully" appears
 
@@ -95,7 +95,7 @@ Scenario: NEUS-008 Entity admin update company user
 
 Scenario: NEUS-009-010 Entity admin deactivate and reactivate an existing company user
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title

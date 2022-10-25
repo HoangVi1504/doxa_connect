@@ -3,12 +3,12 @@ Feature: 0221 Entity Admin Create Organization User
 
 Scenario: NEUS-001-002 Entity admin create organization user
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
 
-    When Wait for "4" seconds
+    When Wait for "3" seconds
     And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Entity Management" link on header menu
     And I click to "Manage Organization Users" link on the left menu
@@ -31,10 +31,10 @@ Scenario: NEUS-001-002 Entity admin create organization user
     And I input role name "RFQ CREATOR" to 'Search Role' textbox at 'Organization User' page
     And I check to role "RFQ CREATOR" from 'Assigned Roles' list
     And I click to "Add" button format_1
-    And I input company "AUTO ENTITY ADMIN  DX" to 'Search Company' textbox at 'Organization User' page
-    And I click company "AUTO ENTITY ADMIN  DX" in Company list at 'Organization User' page
+    And I input company "AUTO ENTITY ADMIN" to 'Search Company' textbox at 'Organization User' page
+    And I click company "AUTO ENTITY ADMIN" in Company list at 'Organization User' page
     And I click to 'Add' button in Company list at 'Organization User' page
-    Then I see entity admin "AUTO ENTITY ADMIN  DX" in 'Companies List' tab
+    Then I see entity admin "AUTO ENTITY ADMIN" in 'Companies List' tab
  
     When I check to company admin checkbox at 'Company List'
     And I click to 'Custom Password' radio button at 'Organization User' page
@@ -54,7 +54,7 @@ Scenario: NEUS-001-002 Entity admin create organization user
 
 Scenario: NEUS-003 Entity admin update organization user
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
@@ -94,7 +94,7 @@ Scenario: NEUS-003 Entity admin update organization user
 
 Scenario: NEUS-004-005 Entity admin deactivate and reactivate an existing user
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title

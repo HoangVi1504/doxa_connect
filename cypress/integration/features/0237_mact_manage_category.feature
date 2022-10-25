@@ -65,7 +65,7 @@ Scenario: MACT-S001-001-002 MACT-S006- 001 MACT-S003- 001 Entity admin can creat
     When I input category name of category just created to 'Filter Category Name' in 'Category' list
     Then I see random category name of category just created in 'Category' list
     And I see active category status of category just searched in 'Category' list is "No"
-    And I see action of category just searched in 'Category' list is "Activate"
+    And I see action of category just searched in 'Category' list is "Reactivate"
     # end work around
 
 Scenario: MACT-S002-002 MACT-S006-002-003 MACT-S003-001 Entity admin can update, active and delete an existing category
@@ -104,9 +104,9 @@ Scenario: MACT-S002-002 MACT-S006-002-003 MACT-S003-001 Entity admin can update,
     Then I see random category name of category just created in 'Category' list
     And I see category description of category just searched in 'Category' list is "auto update this category"
     And I see active category status of category just searched in 'Category' list is "No"
-    And I see action of category just searched in 'Category' list is "Activate"
+    And I see action of category just searched in 'Category' list is "Reactivate"
 
-    When I click to action "Activate" of category just created in 'Category' list
+    When I click to action "Reactivate" of category just created in 'Category' list
     Then I see a notification appears "Are you sure you want to activate"
 
     When I click to 'Activate' button in notification at 'Category' list

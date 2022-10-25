@@ -2,27 +2,15 @@
 #@p2p
 Feature: 0115 Raise Request for Quotations with Project, One-off-Quotation and add manual items
 
-Scenario: Uncheck checkbox if it is checked at Approval Configuration page
+Scenario: P2P-RFQ-S03-001 P2P-RFQ-S07-002 P2P-RFQ-S016-001 Raise RFQ then close RFQ and Reopen RFQ
+    # Entity admin uncheck all function in Approval Configuration
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "buyer"
-    And I click to 'User Profile' button
-    And I click to "Admin" button format_1
-    Then I see 'Dashboard' title
+    And Call API uncheck all function in Approval Configuration
 
-    When Wait for "2" seconds
-    And I click to 'Dashboard' link on Header menu if it not be selected
-    And I click to "Entity Management" link on header menu
-    And I click to "Approval Setting" link on the left menu
-    And I click to "Manage Approval Configuration" link on the left sub menu
-    Then I see 'Approval Configuration' page
-
-    When I uncheck the checkbox 'Approval Configuration' page if it is checked
-    And Wait for "3" seconds
-
-Scenario: P2P-RFQ-S03-001 P2P-RFQ-S07-002 P2P-RFQ-S016-001 Raise RFQ then close RFQ and Reopen RFQ
     # P2P-RFQ-S03-001 Raise Request for Quotations with Project, One-off quotation, add manual item
-    Given Navigate to Doxa Connect 2.0 site
-    When I login with role "creator"
+    When I logout account 
+    And I login with role "creator"
     And I click to "Request for Quotations" link on header menu
     And I click to "Request for Quotations" link on the left menu
     And I click to "Raise RFQ" link on the left sub menu

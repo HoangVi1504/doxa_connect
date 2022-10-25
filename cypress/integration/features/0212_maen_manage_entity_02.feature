@@ -1,4 +1,4 @@
-@manage_entity @entity_admin
+# @manage_entity @entity_admin
 Feature: 0212 Doxa admin updates new password then deactivated and reactivated an existing entity
 
 # Scenario: 01 Doxa Admin update new password
@@ -25,6 +25,12 @@ Feature: 0212 Doxa admin updates new password then deactivated and reactivated a
 Scenario: MAEN-002 Doxa Admin can update existing entity
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "doxa admin stag"
+    And I click to 'User Profile' button
+    And I click to "Admin" button format_1
+    Then I see 'Dashboard' title
+
+    When Wait for "2" seconds
+    And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "List of Entities" link on the left menu
     Then I see 'List of Entities' page
 
@@ -67,6 +73,12 @@ Scenario: MAEN-002 Doxa Admin can update existing entity
 Scenario: MAEN-003 Doxa admin can deactivate an existing entity under active status
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "doxa admin stag"
+    And I click to 'User Profile' button
+    And I click to "Admin" button format_1
+    Then I see 'Dashboard' title
+
+    When Wait for "2" seconds
+    And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "List of Entities" link on the left menu
     Then I see 'List of Entities' page
 
@@ -89,7 +101,7 @@ Scenario: MAEN-003 Doxa admin can deactivate an existing entity under active sta
 
     When I click to "I Understand" button format_1
     Then I see "Reactivate Account" button format_1 is displayed
-    And I see "Reset 2FA" button format_1 is disabled
+        And I see "Reset Two FA" button format_1 is disabled
     And I see "Reset Password" button format_1 is disabled
 
     When I click to "Back" button format_1
@@ -102,6 +114,12 @@ Scenario: MAEN-003 Doxa admin can deactivate an existing entity under active sta
 Scenario: MAEN-004 Doxa adamin can Reactivate an existing entity under deactive status
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "doxa admin stag"
+    And I click to 'User Profile' button
+    And I click to "Admin" button format_1
+    Then I see 'Dashboard' title
+
+    When Wait for "2" seconds
+    And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "List of Entities" link on the left menu
     Then I see 'List of Entities' page
 
@@ -123,7 +141,7 @@ Scenario: MAEN-004 Doxa adamin can Reactivate an existing entity under deactive 
     Then I see a message "Entity Reactivation Successful" appears
 
     When I click to "I Understand" button format_1
-    Then I see "Reset 2FA" button format_1 is displayed
+    Then I see "Reset Two FA" button format_1 is displayed
     And I see "Reset Password" button format_1 is displayed
 
     When I click to "Back" button format_1
@@ -136,6 +154,12 @@ Scenario: MAEN-004 Doxa adamin can Reactivate an existing entity under deactive 
 Scenario: MAEN-005-006 Doxa admin can reset 2FA and reset password of an existing entity
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "doxa admin stag"
+    And I click to 'User Profile' button
+    And I click to "Admin" button format_1
+    Then I see 'Dashboard' title
+
+    When Wait for "2" seconds
+    And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "List of Entities" link on the left menu
     Then I see 'List of Entities' page
 
@@ -150,7 +174,7 @@ Scenario: MAEN-005-006 Doxa admin can reset 2FA and reset password of an existin
     And I see company name just created in 'Company Name' textbox at 'Entity Details' page
     And I see company reg number in 'Company Reg No' textbox at 'Entity Details' page
 
-    When I click to "Reset 2FA" button format_1
+    When I click to "Reset Two FA" button format_1
     Then I see a notification appears "Are you sure you want to reset user"
 
     When I click to "Reset" button format_2

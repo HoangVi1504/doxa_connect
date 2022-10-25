@@ -1,25 +1,14 @@
 @po @p2p
 Feature: 0144 Convert PPR to PO then Unconnected supplier cannot acknowledge PO
 
-Scenario: P2P-PO-S03-002 Approval Configuration set as FALSE
+Scenario: P2P-PO-S01-002 Convert PPR to PO
+    # Entity admin uncheck all function in Approval Configuration
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "buyer"
-    And I click to 'User Profile' button
-    And I click to "Admin" button format_1
-    Then I see 'Dashboard' title
-
-    When Wait for "2" seconds
-    And I click to 'Dashboard' link on Header menu if it not be selected
-    And I click to "Entity Management" link on header menu
-    And I click to "Approval Setting" link on the left menu
-    And I click to "Manage Approval Configuration" link on the left sub menu
-    Then I see 'Approval Configuration' page
-
-    When I uncheck the checkbox 'Approval Configuration' page if it is checked
-
-Scenario: P2P-PO-S01-002 Convert PPR to PO
-    Given Navigate to Doxa Connect 2.0 site
-    When I login with role "creator"
+    And Call API uncheck all function in Approval Configuration
+    # Convert PPR to PO
+    And I logout account 
+    And I login with role "creator"
     And Call API Raise PPR random with contract item and unconnected supplier
     And I logout account
     And I login with role "approver 1"

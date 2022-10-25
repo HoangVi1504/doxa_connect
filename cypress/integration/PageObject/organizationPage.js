@@ -29,11 +29,15 @@ class OrganizationPage{
     enterValueToFilterCompanyNameInList(companyName){
         let token = window.localStorage.getItem("token")
         cy.request({
-            method: 'GET',
-            url: printf(urlPageLocator.organization_list_url, this.env, dataEntityAdmin.entityCompanyUuid),
+            method: "GET",
+            url: printf(
+                urlPageLocator.organization_list_url,
+                this.env,
+                dataEntityAdmin.entityCompanyUuid
+            ),
             headers: {
                 authorization: "Bearer " + token,
-            }
+            },
         }).then((response) => {
             expect(response.body).has.property("status", "OK")
             commonAction.wait(1)

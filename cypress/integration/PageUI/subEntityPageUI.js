@@ -37,10 +37,10 @@ class SubEntityPageLocator{
         this.company_reg_number_in_detail_xpath = "//label[text()='Company Registration No.:']/parent::*/parent::*//*[text()='%s']";
 
         // Xpath - Checkbox
-        this.manage_vendor_checkbox_xpath = "//*[@id='Manage Vendor']";
-        this.entity_setting_checkbox_xpath = "//*[@id='Entity Settings']";
-        this.procurement_to_pay_checkbox_xpath = "//*[@id='Procurement To Pay']";
-        this.transaction_setting_checkbox_xpath = "//*[@id='Transaction Settings']";
+        this.contract_checkbox_xpath = "//*[@id='Contract']";
+        this.invoice_checkbox_xpath = "//*[@id='Invoices']";
+        this.purchase_checkbox_xpath = "//*[@id='Purchase']";
+        this.setting_checkbox_xpath = "//*[@id='Settings']";
 
         // Xpath - validation
         this.validation_text_entity_type_xpath = "//label[text()='Entity Type']/parent::*/parent::*//*[@class='invalid-feedback' and text()='%s']";

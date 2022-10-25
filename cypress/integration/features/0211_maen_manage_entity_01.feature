@@ -1,13 +1,20 @@
-@manage_entity @entity_admin
+# @manage_entity @entity_admin
 Feature: 0211 Doxa admin can create and update entity
 
 Scenario: MAEN-001-007 Create a new entity then entity reset password and login
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "doxa admin stag"
+    And I click to 'User Profile' button
+    And I click to "Admin" button format_1
+    Then I see 'Dashboard' title
+
+    When Wait for "2" seconds
+    And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Onboard Entity" link on the left menu
     Then I see 'Onboard New Entity' page
 
-    When I click to "Create" button format_1
+    When Wait for "2" seconds
+    And I click to "Create" button format_1
     Then I see a message "Validation error, please check your input" appears
 
     When I click to "OK" button format_1
@@ -45,9 +52,9 @@ Scenario: MAEN-001-007 Create a new entity then entity reset password and login
     And I select "84" from 'Dia Code' dropdown at 'Entity Administrator'
     And I input random phone to 'Work Phone' textbox at 'Entity Administrator'
     And I click to "Module Subscription" link at 'Onboard New Entity' page
-    And I check 'Transaction Settings' checkbox at 'Onboard New Entity' page
-    And I check 'Entity Settings' checkbox at 'Onboard New Entity' page
-    And I check 'Procurement To Pay' checkbox at 'Onboard New Entity' page
+    And I check 'Settings' checkbox at 'Onboard New Entity' page
+    And I check 'Purchase' checkbox at 'Onboard New Entity' page
+    And I check 'Invoices' checkbox at 'Onboard New Entity' page
     And I click to "Remarks" link at 'Onboard New Entity' page
     And I input "this account is created by automation" to 'Remark' textbox at 'Onboard New Entity' page
     And I click to "Create" button format_1

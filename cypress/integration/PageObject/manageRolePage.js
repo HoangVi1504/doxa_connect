@@ -7,6 +7,7 @@ const commonAction = new CommonAction()
 const urlPageLocator = new UrlPageLocator()
 const manageRolePageLocator = new ManageRolePageLocator()
 
+var dataEntityAdmin = require('../../../dataEntityAdmin.json');
 class ManageRolePage{
     constructor() {
         this.env = 'stag'
@@ -22,19 +23,31 @@ class ManageRolePage{
         commonAction.enterValueToTextbox(manageRolePageLocator.filter_feature_name_css, featureName)
     }
 
-    enterValueToFilterRole(roleName){
+    enterValueToFilterRole(account, roleName) {
         let token = window.localStorage.getItem("token")
+        let entityCompanyUuid = dataEntityAdmin.entityCompanyUuid
+        let companyUuid
+        switch (account) {
+            case "doxa admin stag":
+                companyUuid = "dox"
+                break;
+            case "entity admin":
+                companyUuid = entityCompanyUuid
+                break;
+            default:
+                break;
+        }
         cy.request({
-            method: 'GET',
-            url: printf(urlPageLocator.role_list_url, this.env),
-            headers: {
-                authorization: "Bearer " + token,
-            }
+          method: "GET",
+          url: printf(urlPageLocator.role_list_url, this.env, companyUuid),
+          headers: {
+            authorization: "Bearer " + token,
+          }
         }).then((response) => {
-            expect(response.body).has.property("status", "OK")
-            commonAction.clickToElement(manageRolePageLocator.filter_role_in_list_css)
-            commonAction.enterValueToTextbox(manageRolePageLocator.filter_role_in_list_css, roleName)
-        })
+            expect(response.body).has.property("status", "OK");
+            commonAction.clickToElement(manageRolePageLocator.filter_role_in_list_css);
+            commonAction.enterValueToTextbox(manageRolePageLocator.filter_role_in_list_css, roleName);
+        });
     }
 
     doubleClickToRoleName(roleName){
@@ -95,7 +108,6 @@ class ManageRolePage{
 
     verifyListRolePageTitleDisplay(){
         commonAction.verifyElementByXpathVisible(manageRolePageLocator.list_role_page_title_xpath)
-        commonAction.wait(3)
     }
 
     verifyRoleNameInListDisplay(roleName){
@@ -104,6 +116,35 @@ class ManageRolePage{
 
     verifyValueInRoleTextboxExist(roleName){
         commonAction.verifyValueInTextboxExist(manageRolePageLocator.role_txb_css, roleName)
+    }
+
+    verifyDefaultFeaturesTableDisplay(account) {
+        let token = window.localStorage.getItem("token")
+        let entityCompanyUuid = dataEntityAdmin.entityCompanyUuid
+        let companyUuid, suffixUrl
+        switch (account) {
+            case "doxa admin stag":
+                companyUuid = "dox"
+                suffixUrl = "module"
+                break;
+            
+            case "entity admin":
+                companyUuid = entityCompanyUuid
+                suffixUrl = "authorities"
+                break;
+            
+            default:
+                break;
+        }
+        cy.request({
+            method: "GET",
+            url: printf(urlPageLocator.module_list_url, this.env, companyUuid, suffixUrl),
+            headers: {
+                authorization: "Bearer " + token,
+            },
+        }).then((response) => {
+            expect(response.body).has.property("status", "OK");
+        });
     }
 
     getRoleStatusInList(){

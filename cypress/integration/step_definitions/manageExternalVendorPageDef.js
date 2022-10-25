@@ -287,8 +287,16 @@ Then(/^I see a validation text of 'Company Reg No' at 'Create External Vendor' p
     manageExternalVendorPage.getValidationCompanyRegNo().should('have.text', validation)
 })
 
+Then(/^I see a validation text of 'Payment Term' at 'Create External Vendor' page appears "([^"]*)"$/, (validation) => {
+    manageExternalVendorPage.getValidationPaymentTerm().should('have.text', validation)
+})
+
 Then(/^I see a validation text of 'Company Name' at 'Create External Vendor' page appears "([^"]*)"$/, (validation) => {
     manageExternalVendorPage.getValidationCompanyName().should('have.text', validation)
+})
+
+Then(/^I see a validation text of 'Country Of Origin' at 'Create External Vendor' page appears "([^"]*)"$/, (validation) => {
+    manageExternalVendorPage.getValidationCountryOfOrigin().should('have.text', validation)
 })
 
 Then(/^I see a validation text of 'Full Name' at 'Create External Vendor' page appears "([^"]*)"$/, (validation) => {
@@ -297,6 +305,10 @@ Then(/^I see a validation text of 'Full Name' at 'Create External Vendor' page a
 
 Then(/^I see a validation text of 'Email' at 'Create External Vendor' page appears "([^"]*)"$/, (validation) => {
     manageExternalVendorPage.getValidationEmail().should('have.text', validation)
+})
+
+Then(/^I see a validation text of 'Country Code' at 'Create External Vendor' page appears "([^"]*)"$/, (validation) => {
+    manageExternalVendorPage.getValidationCountryCode().should('have.text', validation)
 })
 
 Then(/^I see a validation text of 'Phone Number' at 'Create External Vendor' page appears "([^"]*)"$/, (validation) => {
@@ -317,6 +329,10 @@ Then(/^I see a validation text of 'State' at 'Create External Vendor' page appea
 
 Then(/^I see a validation text of 'Postal Code' at 'Create External Vendor' page appears "([^"]*)"$/, (validation) => {
     manageExternalVendorPage.getValidationPostalCode().should('have.text', validation)
+})
+
+Then(/^I see a validation text of 'Country' at 'Create External Vendor' page appears "([^"]*)"$/, (validation) => {
+    manageExternalVendorPage.getValidationCountry().should('have.text', validation)
 })
 
 Then(/^I see a validation text of 'Tax Reg.No' at 'Create External Vendor' page appears "([^"]*)"$/, (validation) => {

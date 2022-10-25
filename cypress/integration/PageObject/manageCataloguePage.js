@@ -97,7 +97,7 @@ class ManageCataloguePage{
     selectValueFromProjectDropdown(){
         commonAction.clickToElementByXpath(manageCataloguePageLocator.project_dropdown_xpath)
         commonAction.wait(1)
-        commonAction.clickToElement("#react-select-10-option-3")
+        commonAction.clickToElement("#react-select-10-option-1")
     }
 
     doubleClickToItemCodeInList(itemCode){

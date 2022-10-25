@@ -19,8 +19,8 @@ When(/^I input "([^"]*)" to filter 'Feature Name' at 'Assign default features'$/
     manageRolePage.enterValueToFilterFeatureName(featureName)
 })
 
-When(/^I input role name just created to filer 'Role name' in list$/, () => {
-    manageRolePage.enterValueToFilterRole(sessionStorage.getItem("roleName"))
+When(/^"([^"]*)" input role name just created to filer 'Role name' in list$/, (account) => {
+    manageRolePage.enterValueToFilterRole(account, sessionStorage.getItem("roleName"))
 })
 
 When(/^I double click to role name just created in list$/, () => {
@@ -62,6 +62,10 @@ Then(/^I see 'Create New Role' page$/, () => {
 Then(/^I see 'Role Details' page$/, () => {
     manageRolePage.verifyRoleDetailsPageTitleDisplay()
 })
+
+Then(/^"([^"]*)" see 'Default Features' table at 'Create New Role' page$/, (account) => {
+    manageRolePage.verifyDefaultFeaturesTableDisplay(account);
+});
 
 Then(/^I see 'List of Role' page$/, () => {
     manageRolePage.verifyListRolePageTitleDisplay()

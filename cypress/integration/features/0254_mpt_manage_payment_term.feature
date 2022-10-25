@@ -3,7 +3,7 @@ Feature: 0254 Entity admin can create and update payment term
 
 Scenario: MPT-S002-001-002, MPT-S004-001 Entity admin can create a new payment term
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
@@ -44,11 +44,11 @@ Scenario: MPT-S002-001-002, MPT-S004-001 Entity admin can create a new payment t
     Then I see random name of payment term just created in 'Payment Term' list
     And I see random pay in of payment term just created in 'Payment Term' list
     And I see remarks of payment term just created in 'Payment Term' list is "auto create this payment term"
-    And I see updater of payment term just created in 'Payment Term' list is "AUTO ENTITY DX"
+    And I see updater of payment term just created in 'Payment Term' list is "AUTO ENTITY ADMIN"
 
 Scenario: MPT-S003-001, MPT-S004-001 Entity admin can update an existing payment term
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
@@ -64,7 +64,7 @@ Scenario: MPT-S003-001, MPT-S004-001 Entity admin can update an existing payment
     Then I see random name of payment term just created in 'Payment Term' list
     And I see random pay in of payment term just created in 'Payment Term' list
     And I see remarks of payment term just created in 'Payment Term' list is "auto create this payment term"
-    And I see updater of payment term just created in 'Payment Term' list is "AUTO ENTITY DX"
+    And I see updater of payment term just created in 'Payment Term' list is "AUTO ENTITY ADMIN"
 
     When I double click to random payment term of payment term just created in 'Payment Term' list
     And Wait for "3" seconds
@@ -87,4 +87,4 @@ Scenario: MPT-S003-001, MPT-S004-001 Entity admin can update an existing payment
     Then I see random value name of payment term just created in 'Payment Term' list
     And I see random pay in of payment term just created in 'Payment Term' list
     And I see remarks of payment term just created in 'Payment Term' list is "auto update this payment term"
-    And I see updater of payment term just created in 'Payment Term' list is "AUTO ENTITY DX"
+    And I see updater of payment term just created in 'Payment Term' list is "AUTO ENTITY ADMIN"

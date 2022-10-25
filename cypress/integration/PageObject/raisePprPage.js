@@ -122,7 +122,7 @@ class RaisePprPage{
     }
 
     // Raise PPR
-    enterValueToSearchPPRTitleTextbox(pprTitle){
+    enterValueToSearchPprTitleTextbox(pprTitle){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
         cy.request({
@@ -133,8 +133,16 @@ class RaisePprPage{
             }
         }).then((response) => {
             expect(response.body).has.property("status", "OK")
-            commonAction.wait(1)
-            commonAction.enterValueToTextbox(raisePprPageLocator.filter_ppr_title_in_list_css, pprTitle)
+            cy.request({
+                method: 'GET',
+                url: printf(urlPageLocator.ppr_list_url, this.env, buyerCompanyUuid),
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response) => {
+                expect(response.body).has.property("status", "OK")
+                commonAction.enterValueToTextbox(raisePprPageLocator.filter_ppr_title_in_list_css, pprTitle)
+            })
         })
     }
 
@@ -175,8 +183,16 @@ class RaisePprPage{
             }
         }).then((response) => {
             expect(response.body).has.property("status", "OK")
-            commonAction.wait(1)
-            commonAction.enterValueToTextbox(raisePprPageLocator.filter_ppr_number_in_list_css, pprNumber)
+            cy.request({
+                method: method,
+                url: urlRequest,
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response) => {
+                expect(response.body).has.property("status", "OK")
+                commonAction.enterValueToTextbox(raisePprPageLocator.filter_ppr_number_in_list_css, pprNumber)
+            }) 
         })
     }
 

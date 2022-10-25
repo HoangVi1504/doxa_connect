@@ -9,6 +9,10 @@ const manageFeatureMatrixPageLocator = new ManageFeatureMatrixPageLocator()
 
 class ManageFeatureMatrixPage{
 
+    enterValueToFilterFeatureName(featureName){
+        commonAction.enterValueToTextbox(manageFeatureMatrixPageLocator.filter_feature_name_css, featureName)
+    }
+
     selectValueFromSelectUserDropdown(user){
         commonAction.selectOptionFromDropdownByXpath(manageFeatureMatrixPageLocator.select_user_dropdown_xpath, printf(commonPageLocator.option_value_in_dropdown_xpath, user))
     }

@@ -1,5 +1,8 @@
 class ManageFeatureMatrixPageLocator{
     constructor(){
+        // Css- Txb
+        this.filter_feature_name_css = "[aria-label='Feature Name Filter Input']";
+
         // Xpath - Dropdown
         this.select_user_dropdown_xpath = "(//*[@class=' css-tlfecz-indicatorContainer'])[1]";
         this.select_module_dropdown_xpath = "(//*[@class=' css-tlfecz-indicatorContainer'])[2]";

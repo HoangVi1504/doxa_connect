@@ -3,6 +3,10 @@ import ManageFeatureMatrixPage from "../PageObject/manageFeatureMatrixPage"
 
 const manageFeatureMatrixPage = new ManageFeatureMatrixPage()
 
+When(/^I input "([^"]*)" to 'Filter Feature Name' at 'Manage Feature Matrix' page$/, (featureName) => {
+    manageFeatureMatrixPage.enterValueToFilterFeatureName(featureName)
+})
+
 When(/^I select "([^"]*)" from 'Select User' dropdown at 'Manage Feature Matrix' page$/, (user) => {
     manageFeatureMatrixPage.selectValueFromSelectUserDropdown(user)
 })

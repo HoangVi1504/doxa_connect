@@ -40,8 +40,16 @@ class DoPage{
             }
         }).then((response) => {
             expect(response.body).has.property("status", "OK")
-            commonAction.wait(1)
-            commonAction.enterValueToTextbox(doPageLocator.filter_do_in_list_css, doNumber)
+            cy.request({
+                method: 'GET',
+                url: urlRequest,
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response) => {
+                expect(response.body).has.property("status", "OK")
+                commonAction.enterValueToTextbox(doPageLocator.filter_do_in_list_css, doNumber)
+            })
         })
     }
 

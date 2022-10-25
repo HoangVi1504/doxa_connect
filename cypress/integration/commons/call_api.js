@@ -253,7 +253,8 @@ class ApiAction{
             expect(response.body).has.property("status", "OK")
             let userName = response.body.data.name
             let userUuid = response.body.data.uuid
-            let companyUuid = response.body.data.companies[0].companyUuid;
+            let elementEntityAdmin = response.body.data.companies.find(element => element.role.find(el => el === "ENTITY_ADMIN"));
+            let companyUuid = elementEntityAdmin.companyUuid
             sessionStorage.setItem("userName", userName)
             sessionStorage.setItem("userUuid", userUuid)
             sessionStorage.setItem("companyUuid", companyUuid)
@@ -2105,7 +2106,7 @@ class ApiAction{
         })
     }
 
-    callAPIConfigDocumentPrefix(functionName, prefixType) {
+    callApiConfigDocumentPrefix(functionName, prefixType) {
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
         let buyerName = dataBuyer.buyerName
@@ -2142,6 +2143,21 @@ class ApiAction{
             }).then((response) => {
                 expect(response.body).has.property("status", "OK")
             })
+        })
+    }
+
+    callApiUncheckApprovalConfiguration(){
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.request({
+            method: 'POST',
+            url: printf(urlPageLocator.update_approval_configuration_url, this.env, buyerCompanyUuid),
+            headers: {
+            authorization: "Bearer " + token,
+            },
+            body: []
+        }).then((response) => {
+            expect(response.body).has.property("message", "Update is successful")
         })
     }
 }export default ApiAction

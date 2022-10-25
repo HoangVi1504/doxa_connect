@@ -3,7 +3,7 @@ Feature: 0232 Entity Admin can create and update manage uom
 
 Scenario: MAUO-001-002 Entity admin can create manage uom
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
@@ -51,7 +51,7 @@ Scenario: MAUO-001-002 Entity admin can create manage uom
 
 Scenario: MAUO-004 Entity admin can update the existing UOM
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title

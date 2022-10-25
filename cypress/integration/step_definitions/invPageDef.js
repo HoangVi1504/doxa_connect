@@ -13,7 +13,7 @@ When(/^Get INV number in list$/, () => {
 })
 
 When(/^Call API set "([^"]*)" 'Document Prefix' as "([^"]*)"$/, (functionName, type) => {
-    apiAction.callAPIConfigDocumentPrefix(functionName, type)
+    apiAction.callApiConfigDocumentPrefix(functionName, type)
 })
 
 When(/^I input DO No to filter DO in 'Select PO' table at 'Create Invoice' page$/, () => {

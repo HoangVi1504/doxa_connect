@@ -3,7 +3,7 @@ Feature: 0231 Entity admin can create and update company address
 
 Scenario: MAAD-001-002 Entity admin can create company address
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
@@ -53,7 +53,7 @@ Scenario: MAAD-001-002 Entity admin can create company address
 
 Scenario: MAAD-004 Entity admin can update the existing address
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title

@@ -65,20 +65,20 @@ When(/^I double click to company name just created in list of Companies$/, () =>
     subEntityPage.doubleClickToCompanyNameInList(sessionStorage.getItem("companyName"))
 })
 
-When(/^I check 'Transaction Settings' checkbox at 'Create New Company' page$/, () => {
-    subEntityPage.checkToTransactionSettingsCheckbox()
+When(/^I check 'Settings' checkbox at 'Create New Company' page$/, () => {
+    subEntityPage.checkToSettingsCheckbox()
 })
 
-When(/^I check 'Entity Settings' checkbox at 'Create New Company' page$/, () => {
-    subEntityPage.checkToEntitySettingsCheckbox()
+When(/^I check 'Payment & Financing' checkbox at 'Create New Company' page$/, () => {
+    subEntityPage.checkToInvoicesCheckbox()
 })
 
-When(/^I check 'Procurement To Pay' checkbox at 'Create New Company' page$/, () => {
-    subEntityPage.checkToP2PCheckbox()
+When(/^I check 'Purchase' checkbox at 'Create New Company' page$/, () => {
+    subEntityPage.checkToPurchaseCheckbox()
 })
 
-When(/^I check to 'Manage Vendor' checkbox at 'Create New Company' page$/, () => {
-    subEntityPage.checkToManageVendorCheckbox()
+When(/^I check to 'Contract' checkbox at 'Create New Company' page$/, () => {
+    subEntityPage.checkToContractCheckbox()
 })
 
 When(/^I click to "([^"]*)" link at 'Create New Company' page$/, (linkName) => {

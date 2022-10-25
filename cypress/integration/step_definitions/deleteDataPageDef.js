@@ -10,9 +10,9 @@ const commonAction = new CommonAction()
 const manageRolePage = new ManageRolePage()
 const manageCategoryPage = new ManageCategoryPage()
 
-When(/^Delete all role by created entity admin$/, () => {
+When(/^Delete all role created by entity admin$/, () => {
     manageRolePage.clearValueInFilterRoleName()
-    manageRolePage.enterValueToFilterRole("auto role")
+    manageRolePage.enterValueToFilterRole("entity admin", "auto role")
     commonAction.wait(3)
     cy.xpath(`count(${"//button[@style='color: red;']"})`).then(count =>{
         while(count>0){

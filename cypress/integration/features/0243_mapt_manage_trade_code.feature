@@ -3,7 +3,7 @@ Feature: 0243 Entity admin can create and updata manage trade code
 
 Scenario: MAPT-001-003 Entity admin can create manage trade code
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
@@ -36,7 +36,7 @@ Scenario: MAPT-001-003 Entity admin can create manage trade code
     Then I see random trade code in 'Trade Code' list
     And I see random trade title in 'Trade Code' list
     And I see description trade code in 'Trade Code' list is "auto create this trade code"
-    And I see creator trade code in 'Trade Code' list is "AUTO ENTITY DX"
+    And I see creator trade code in 'Trade Code' list is "AUTO ENTITY ADMIN"
     And I see trade code status in 'Trade Code' list is "Yes"
     And I see trade code action in 'Trade Code' list is "Deactivate"
 
@@ -52,7 +52,7 @@ Scenario: MAPT-001-003 Entity admin can create manage trade code
 
 Scenario: MAPT-002-003 Entity admin can update the existing Trade Code
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title

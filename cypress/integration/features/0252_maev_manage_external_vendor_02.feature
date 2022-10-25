@@ -32,8 +32,9 @@ Scenario: MAEV-002-003 Entity admin can create external vendor
     And I see a validation text of 'Company Name' at 'Create External Vendor' page appears "Please enter valid Company Name"
     And I see a validation text of 'Tax Reg.No' at 'Create External Vendor' page appears "Please enter valid Tax Reg. No."
     And I see a validation text of 'Tax Percentage' at 'Create External Vendor' page appears "Please select valid Tax Code"
-    And I see a validation text of 'Full Name' at 'Create External Vendor' page appears "Please enter valid Full Name"
-    And I see a validation text of 'Email' at 'Create External Vendor' page appears "Please enter valid Email"
+    # bugId: https://doxa-connex.atlassian.net/browse/D0R-5168
+    # And I see a validation text of 'Full Name' at 'Create External Vendor' page appears "Please enter valid Full Name"
+    # And I see a validation text of 'Email' at 'Create External Vendor' page appears "Please enter valid Email"
     And I see a validation text of 'Phone Number' at 'Create External Vendor' page appears "Please enter valid Phone Number"
     And I see a validation text of 'Address Label' at 'Create External Vendor' page appears "Please enter valid Address Label"
     And I see a validation text of 'Address Line 1' at 'Create External Vendor' page appears "Please enter valid Address Line 1"

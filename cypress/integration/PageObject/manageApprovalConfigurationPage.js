@@ -30,8 +30,7 @@ class ManageApprovalConfigurationPage{
                 commonPage.verifyMediaHeadingMessageDisplay("Update is successful")
                 commonPage.clickToButtonFormat1("I Understand")
             } 
-        })
-        
+        }) 
     }
 
     verifyApprovalConfigurationTitleDisplay(){

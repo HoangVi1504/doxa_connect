@@ -139,16 +139,16 @@ class EntityAdminPage{
         commonAction.checkCheckbox(entityAdminPageLocator.supplier_checkbox_css)
     }
 
-    checkToTransactionSettingsCheckbox(){
-        commonAction.checkCheckboxByXpath(entityAdminPageLocator.transaction_setting_checkbox_xpath)
+    checkToSettingsCheckbox(){
+        commonAction.checkCheckboxByXpath(entityAdminPageLocator.setting_checkbox_xpath)
     }
 
-    checkToEntitySettingsCheckbox(){
-        commonAction.checkCheckboxByXpath(entityAdminPageLocator.entity_setting_checkbox_xpath)
+    checkToPurchaseCheckbox(){
+        commonAction.checkCheckboxByXpath(entityAdminPageLocator.purchase_checkbox_xpath)
     }
 
-    checkToP2PCheckbox(){
-        commonAction.checkCheckboxByXpath(entityAdminPageLocator.procurement_to_pay_checkbox_xpath)
+    checkToInvoicesCheckbox(){
+        commonAction.checkCheckboxByXpath(entityAdminPageLocator.invoices_checkbox_xpath)
     }
 
     clearValueInCompanyRegNoTextbox(){

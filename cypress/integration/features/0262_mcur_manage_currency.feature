@@ -3,7 +3,7 @@ Feature: 0262 Entity admin can update and activate or deactivate a existing curr
 
 Scenario: MCUR-001-002-003 Entity admin can update and activate or deactivate a existing currency
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title

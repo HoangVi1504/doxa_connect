@@ -209,12 +209,12 @@ When(/^I input PPR title from "([^"]*)" json file to 'Search PPR' textbox$/, (ke
             break;
     }
     cy.fixture(fileName).then((fileName) =>{
-        raisePprPage.enterValueToSearchPPRTitleTextbox(fileName.pprTitle + sessionStorage.getItem("numberPprTitle"))
+        raisePprPage.enterValueToSearchPprTitleTextbox(fileName.pprTitle + sessionStorage.getItem("numberPprTitle"))
     })
 })
 
 When(/^I input PPR random to 'Search PPR' textbox$/, () => {
-    raisePprPage.enterValueToSearchPPRTitleTextbox(sessionStorage.getItem("pprTitleRandom"))
+    raisePprPage.enterValueToSearchPprTitleTextbox(sessionStorage.getItem("pprTitleRandom"))
 })
 
 When(/^I input PPR number just created to 'Filter PPR No' in "([^"]*)" list$/, (listName) => {

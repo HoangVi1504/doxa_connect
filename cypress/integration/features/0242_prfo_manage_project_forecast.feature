@@ -4,7 +4,7 @@ Feature: 0242 Entity admin forecast and close peoject
 
 Scenario: PRFO-S001-001 PRFO-S002-001 Entity admin forecast project
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
@@ -22,7 +22,7 @@ Scenario: PRFO-S001-001 PRFO-S002-001 Entity admin forecast project
     And I see random project title in 'Project' list
     And I see project status in 'Project' list is "PENDING FORECAST"
     And I see project description in 'Project' list is "auto update project description"
-    And I see project admin in 'Project' list is "AUTO ENTITY DX"
+    And I see project admin in 'Project' list is "AUTO ENTITY ADMIN"
     And I see start date in 'Project' list as next "2" days
     And I see end date in 'Project' list as next "4" days
 
@@ -76,7 +76,7 @@ Scenario: PRFO-S001-001 PRFO-S002-001 Entity admin forecast project
 
 Scenario: PRFO-S005-001 Entity admin can close an existing project
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title

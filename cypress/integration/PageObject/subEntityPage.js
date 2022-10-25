@@ -59,20 +59,20 @@ class SubEntityPage{
         commonAction.doubleClickToElementByXpath(printf(subEntityPageLocator.company_name_in_list_xpath, companyName))
     }
 
-    checkToTransactionSettingsCheckbox(){
-        commonAction.checkCheckboxByXpath(subEntityPageLocator.transaction_setting_checkbox_xpath)
+    checkToSettingsCheckbox(){
+        commonAction.checkCheckboxByXpath(subEntityPageLocator.setting_checkbox_xpath)
     }
 
-    checkToEntitySettingsCheckbox(){
-        commonAction.checkCheckboxByXpath(subEntityPageLocator.entity_setting_checkbox_xpath)
+    checkToInvoicesCheckbox(){
+        commonAction.checkCheckboxByXpath(subEntityPageLocator.invoice_checkbox_xpath)
     }
 
-    checkToP2PCheckbox(){
-        commonAction.checkCheckboxByXpath(subEntityPageLocator.procurement_to_pay_checkbox_xpath)
+    checkToPurchaseCheckbox(){
+        commonAction.checkCheckboxByXpath(subEntityPageLocator.purchase_checkbox_xpath)
     }
 
-    checkToManageVendorCheckbox(){
-        commonAction.checkCheckboxByXpath(subEntityPageLocator.manage_vendor_checkbox_xpath)
+    checkToContractCheckbox(){
+        commonAction.checkCheckboxByXpath(subEntityPageLocator.contract_checkbox_xpath)
     }
 
     clickToOptionLink(linkName){

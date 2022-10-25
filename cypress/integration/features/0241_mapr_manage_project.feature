@@ -4,7 +4,7 @@ Feature: 0241 Entity admin can create and update project
 
 Scenario: MAPR-001-003 Entity admin can create project
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
@@ -45,11 +45,11 @@ Scenario: MAPR-001-003 Entity admin can create project
     And I see value in 'City' textbox at 'Create New Project' page is "Ho Chi Minh"
 
     When I input "auto project description" to 'Project Description' textbox at 'Create New Project' page
-    And I select "AUTO ENTITY DX" from 'Overall Project In-Charge' dropdown at 'Create New Project' page
+    And I select "AUTO ENTITY ADMIN" from 'Overall Project In-Charge' dropdown at 'Create New Project' page
     And I input "auto remark Overall Project In-Charge" to 'Remark Overall Project In-Charge' textbox at 'Create New Project' page
-    And I select "AUTO ENTITY DX" from 'Project Admin' dropdown at 'Create New Project' page
+    And I select "AUTO ENTITY ADMIN" from 'Project Admin' dropdown at 'Create New Project' page
     And I input "auto remark project admin" to 'Remark Project Admin' textbox at 'Create New Project' page
-    And I select "AUTO ENTITY DX" from 'Project Team Members' dropdown at 'Create New Project' page
+    And I select "AUTO ENTITY ADMIN" from 'Project Team Members' dropdown at 'Create New Project' page
     And I input "auto remark project team members" to 'Remark Project Team Members' textbox at 'Create New Project' page
     And I click to "Create" button format_2
     Then I see a notification appears "Do you wish to create this project?"
@@ -66,7 +66,7 @@ Scenario: MAPR-001-003 Entity admin can create project
     And I see random project title in 'Project' list
     And I see project status in 'Project' list is "PENDING FORECAST"
     And I see project description in 'Project' list is "auto project description"
-    And I see project admin in 'Project' list is "AUTO ENTITY DX"
+    And I see project admin in 'Project' list is "AUTO ENTITY ADMIN"
     And I see start date in 'Project' list as next "2" days
     And I see end date in 'Project' list as next "4" days
     And I see project currency in 'Project' list is "SGD"
@@ -82,7 +82,7 @@ Scenario: MAPR-001-003 Entity admin can create project
 
 Scenario: MAPR-002-003 Entity admin can update the existing Project
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title

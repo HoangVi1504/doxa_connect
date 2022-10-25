@@ -124,16 +124,16 @@ When(/^I uncheck Buyer Role checkbox$/, () => {
     entityAdminPage.checkToBuyerCheckbox()
 })
 
-When(/^I check 'Transaction Settings' checkbox at 'Onboard New Entity' page$/, () => {
-    entityAdminPage.checkToTransactionSettingsCheckbox()
+When(/^I check 'Settings' checkbox at 'Onboard New Entity' page$/, () => {
+    entityAdminPage.checkToSettingsCheckbox()
 })
 
-When(/^I check 'Entity Settings' checkbox at 'Onboard New Entity' page$/, () => {
-    entityAdminPage.checkToEntitySettingsCheckbox()
+When(/^I check 'Purchase' checkbox at 'Onboard New Entity' page$/, () => {
+    entityAdminPage.checkToPurchaseCheckbox()
 })
 
-When(/^I check 'Procurement To Pay' checkbox at 'Onboard New Entity' page$/, () => {
-    entityAdminPage.checkToP2PCheckbox()
+When(/^I check 'Invoices' checkbox at 'Onboard New Entity' page$/, () => {
+    entityAdminPage.checkToInvoicesCheckbox()
 })
 
 When(/^I clear value in 'Company Registration No' textbox at 'Onboard New Entity' page$/, () => {

@@ -45,8 +45,16 @@ class GrPage{
             }
         }).then((response) => {
             expect(response.body).has.property("status", "OK")
-            commonAction.wait(1)
-            commonAction.enterValueToTextbox(grPageLocator.filter_gr_in_list_css, grNumber)
+            cy.request({
+                method: 'GET',
+                url: printf(urlPageLocator.gr_list_url, this.env, buyerCompanyUuid),
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response) => {
+                expect(response.body).has.property("status", "OK")
+                commonAction.enterValueToTextbox(grPageLocator.filter_gr_in_list_css, grNumber)
+            })
         })
     }
 
@@ -61,8 +69,16 @@ class GrPage{
             }
         }).then((response) => {
             expect(response.body).has.property("status", "OK")
-            commonAction.wait(1)
-            commonAction.enterValueToTextbox(grPageLocator.filter_order_processed_in_list_css, doNumber)
+            cy.request({
+                method: 'GET',
+                url: printf(urlPageLocator.gr_list_url, this.env, buyerCompanyUuid),
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response) => {
+                expect(response.body).has.property("status", "OK")
+                commonAction.enterValueToTextbox(grPageLocator.filter_order_processed_in_list_css, doNumber)
+            })
         })
     }
 

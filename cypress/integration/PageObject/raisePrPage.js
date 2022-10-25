@@ -130,8 +130,16 @@ class RaisePrPage{
             }
         }).then((response) => {
             expect(response.body).has.property("status", "OK")
-            commonAction.wait(1)
-            commonAction.enterValueToTextbox(raisePrPageLocator.filter_pr_number_in_list_css, prNumber)
+            cy.request({
+                method: 'GET',
+                url: urlRequest,
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response) => {
+                expect(response.body).has.property("status", "OK")
+                commonAction.enterValueToTextbox(raisePrPageLocator.filter_pr_number_in_list_css, prNumber)
+            })
         })
     }
 
@@ -217,10 +225,18 @@ class RaisePrPage{
             }
         }).then((response) => {
             expect(response.body).has.property("status", "OK")
-            this.scrollToElementInPrList("20%")
-            commonAction.wait(1)
-            commonAction.clickToElement(raisePrPageLocator.filter_pr_title_in_list_css)
-            commonAction.enterValueToTextbox(raisePrPageLocator.filter_pr_title_in_list_css, prTitle)
+            cy.request({
+                method: 'GET',
+                url: printf(urlPageLocator.pr_list_url, this.env, buyerCompanyUuid),
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response) => {
+                expect(response.body).has.property("status", "OK")
+                this.scrollToElementInPrList("20%")
+                commonAction.clickToElement(raisePrPageLocator.filter_pr_title_in_list_css)
+                commonAction.enterValueToTextbox(raisePrPageLocator.filter_pr_title_in_list_css, prTitle)
+            })
         })
     }
 

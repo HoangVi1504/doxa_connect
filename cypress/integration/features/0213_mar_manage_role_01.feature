@@ -1,12 +1,19 @@
-@manage_role @entity_admin
+# @manage_role @entity_admin
 Feature: 0213 Doxa admin can create new role and clone role
 
 Scenario: MAR-001-002 Doxa admin can create new role
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "doxa admin stag"
+    And I click to 'User Profile' button
+    And I click to "Admin" button format_1
+    Then I see 'Dashboard' title
+
+    When Wait for "3" seconds
+    And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Manage Role" link on the left menu
     And I click to "Create New" button format_2
     Then I see 'Create New Role' page
+    And "doxa admin stag" see 'Default Features' table at 'Create New Role' page
 
     When I input random role name to 'Role' textbox at 'Create New Role' page
     And I input "Manage Address" to filter 'Feature Name' at 'Assign default features'
@@ -24,7 +31,7 @@ Scenario: MAR-001-002 Doxa admin can create new role
     When I click to "I Understand" button format_1
     Then I see 'List of Role' page
 
-    When I input role name just created to filer 'Role name' in list
+    When "doxa admin stag" input role name just created to filer 'Role name' in list
     Then I see role name just created at first row in list
     And I see role status in list is "RESERVED"
     And I see role creator in list is "Doxa Admin"
@@ -48,10 +55,16 @@ Scenario: MAR-001-002 Doxa admin can create new role
 Scenario: MAR-003 Doxa admin can CREATE a new role by clicking on the Clone icon
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "doxa admin stag"
+    And I click to 'User Profile' button
+    And I click to "Admin" button format_1
+    Then I see 'Dashboard' title
+
+    When Wait for "3" seconds
+    And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Manage Role" link on the left menu
     Then I see 'List of Role' page
 
-    When I input role name just created to filer 'Role name' in list
+    When "doxa admin stag" input role name just created to filer 'Role name' in list
     Then I see role name just created at first row in list
     And I see role status in list is "RESERVED"
     And I see role creator in list is "Doxa Admin"
@@ -71,7 +84,7 @@ Scenario: MAR-003 Doxa admin can CREATE a new role by clicking on the Clone icon
     When I click to "I Understand" button format_1
     Then I see 'List of Role' page
 
-    When I input role name just created to filer 'Role name' in list
+    When "doxa admin stag" input role name just created to filer 'Role name' in list
     Then I see role name just created at first row in list
     And I see role status in list is "RESERVED"
     And I see role creator in list is "Doxa Admin"

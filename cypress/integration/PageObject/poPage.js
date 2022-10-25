@@ -53,10 +53,6 @@ class PoPage{
                 urlRequest = printf(urlPageLocator.do_list_url, this.env, supplierCompanyUuid)
                 break;
 
-            case "INV Pending Approval":
-                urlRequest = printf(urlPageLocator.inv_pending_approval_list_url, this.env, buyerCompanyUuid)
-                break;
-
             default:
                 break;
         }
@@ -68,8 +64,16 @@ class PoPage{
             }
         }).then((response) => {
             expect(response.body).has.property("status", "OK")
-            commonAction.wait(1)
-            commonAction.enterValueToTextbox(poPageLocator.filter_po_number_in_list_css, poNumber)
+            cy.request({
+                method: 'GET',
+                url: urlRequest,
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response) => {
+                expect(response.body).has.property("status", "OK")
+                commonAction.enterValueToTextbox(poPageLocator.filter_po_number_in_list_css, poNumber)
+            })
         })
     }
 
@@ -84,9 +88,17 @@ class PoPage{
             }
         }).then((response) => {
             expect(response.body).has.property("status", "OK")
-            commonAction.wait(1)
-            commonAction.clickToElement(poPageLocator.filter_rfq_number_in_list_css)
-            commonAction.enterValueToTextbox(poPageLocator.filter_rfq_number_in_list_css, rfqNumber)
+            cy.request({
+                method: 'GET',
+                url: printf(urlPageLocator.po_list_url, this.env, buyerCompanyUuid, "buyer"),
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response) => {
+                expect(response.body).has.property("status", "OK")
+                commonAction.clickToElement(poPageLocator.filter_rfq_number_in_list_css)
+                commonAction.enterValueToTextbox(poPageLocator.filter_rfq_number_in_list_css, rfqNumber)
+            })
         })
     }
 

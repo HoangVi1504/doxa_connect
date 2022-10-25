@@ -4,6 +4,7 @@ Feature: 0265 Entity admin setup more Approval Configuration with PPR, PR, PO
 Scenario: MFM-S002-001 Entity admin able to opt-out approval routing for Pre Purchase Requisition feature
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "buyer"
+    And Call API uncheck all function in Approval Configuration
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
@@ -13,16 +14,6 @@ Scenario: MFM-S002-001 Entity admin able to opt-out approval routing for Pre Pur
     And I click to "Entity Management" link on header menu
     And I click to "Approval Setting" link on the left menu
     And I click to "Manage Approval Configuration" link on the left sub menu
-    Then I see 'Approval Configuration' page
-
-    When I click to "Manage Approval Configuration" link on the left sub menu
-    Then I see 'Approval Configuration' page
-
-    When I uncheck the checkbox 'Approval Configuration' page if it is checked
-    And I click to "Manage Approval Group" link on the left sub menu
-    Then I see 'List Approval Group' page
-
-    When I click to "Manage Approval Configuration" link on the left sub menu
     Then I see 'Approval Configuration' page
     
     When I check to "Pre Purchase Requisition" checkbox at 'Approval Configuration' page
@@ -61,6 +52,7 @@ Scenario: MFM-S002-001 Entity admin able to opt-out approval routing for Pre Pur
 Scenario: MFM-S002-002 Entity admin able to opt-out approval routing for Purchase Requisition feature
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "buyer"
+    And Call API uncheck all function in Approval Configuration
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
@@ -70,16 +62,6 @@ Scenario: MFM-S002-002 Entity admin able to opt-out approval routing for Purchas
     And I click to "Entity Management" link on header menu
     And I click to "Approval Setting" link on the left menu
     And I click to "Manage Approval Configuration" link on the left sub menu
-    Then I see 'Approval Configuration' page
-
-    When I click to "Manage Approval Configuration" link on the left sub menu
-    Then I see 'Approval Configuration' page
-
-    When I uncheck the checkbox 'Approval Configuration' page if it is checked
-    And I click to "Manage Approval Group" link on the left sub menu
-    Then I see 'List Approval Group' page
-
-    When I click to "Manage Approval Configuration" link on the left sub menu
     Then I see 'Approval Configuration' page
 
     When I check to "Purchase Requisition" checkbox at 'Approval Configuration' page
@@ -118,6 +100,7 @@ Scenario: MFM-S002-002 Entity admin able to opt-out approval routing for Purchas
 Scenario: MFM-S002-003 Entity admin able to opt-out approval routing for Purchase Order feature
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "buyer"
+    And Call API uncheck all function in Approval Configuration
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
@@ -127,16 +110,6 @@ Scenario: MFM-S002-003 Entity admin able to opt-out approval routing for Purchas
     And I click to "Entity Management" link on header menu
     And I click to "Approval Setting" link on the left menu
     And I click to "Manage Approval Configuration" link on the left sub menu
-    Then I see 'Approval Configuration' page
-
-    When I click to "Manage Approval Configuration" link on the left sub menu
-    Then I see 'Approval Configuration' page
-
-    When I uncheck the checkbox 'Approval Configuration' page if it is checked
-    And I click to "Manage Approval Group" link on the left sub menu
-    Then I see 'List Approval Group' page
-
-    When I click to "Manage Approval Configuration" link on the left sub menu
     Then I see 'Approval Configuration' page
     
     When I check to "Purchase Order" checkbox at 'Approval Configuration' page

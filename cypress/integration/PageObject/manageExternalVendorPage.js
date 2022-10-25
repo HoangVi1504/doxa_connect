@@ -263,8 +263,16 @@ class ManageExternalVendorPage{
         return commonAction.getTextElementByXpath(manageExternalVendorPageLocator.validation_text_company_reg_xpath)
     }
 
+    getValidationPaymentTerm(){
+        return commonAction.getTextElementByXpath(manageExternalVendorPageLocator.validation_text_payment_term_xpath)
+    }
+
     getValidationCompanyName(){
         return commonAction.getTextElementByXpath(manageExternalVendorPageLocator.validation_text_company_name_xpath)
+    }
+
+    getValidationCountryOfOrigin(){
+        return commonAction.getTextElementByXpath(manageExternalVendorPageLocator.validation_text_country_of_origin_xpath)
     }
 
     getValidationFullName(){
@@ -273,6 +281,10 @@ class ManageExternalVendorPage{
 
     getValidationEmail(){
         return commonAction.getTextElementByXpath(manageExternalVendorPageLocator.validation_text_email_xpath)
+    }
+
+    getValidationCountryCode(){
+        return commonAction.getTextElementByXpath(manageExternalVendorPageLocator.validation_text_country_code_xpath)
     }
 
     getValidationPhoneNumber(){
@@ -293,6 +305,10 @@ class ManageExternalVendorPage{
 
     getValidationPostalCode(){
         return commonAction.getTextElementByXpath(manageExternalVendorPageLocator.validation_text_postal_code_xpath)
+    }
+
+    getValidationCountry(){
+        return commonAction.getTextElementByXpath(manageExternalVendorPageLocator.validation_text_country_xpath)
     }
 
     getValidationTaxRegNo(){

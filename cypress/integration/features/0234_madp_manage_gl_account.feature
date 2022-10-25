@@ -3,7 +3,7 @@ Feature: 0234 Entity admin can create and update GL Account
 
 Scenario: MADP-001 004 Entity admin can create GL Account
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
@@ -46,7 +46,7 @@ Scenario: MADP-001 004 Entity admin can create GL Account
     And I see remark department code in 'Department Code' list is "auto remark for this Department Code"
 
     When I click to "Create" button format_2
-    Then I see a message "G/L created successfully." appears
+    Then I see a message "G/L created successfully" appears
 
     When I click to "I Understand" button format_1
     Then I see 'List of GL Account' title
@@ -63,7 +63,7 @@ Scenario: MADP-001 004 Entity admin can create GL Account
     Then I see a notification of gl account appears "Are you sure you want to deactivate"
 
     When I click to 'Deactivate' button in notification at GL list
-    Then I see a message "G/L Deactivated" appears
+    Then I see a message "Deactivated" appears
 
     When I click to "I Understand" button format_1
     Then I see GL active status in GL list is "No"
@@ -71,7 +71,7 @@ Scenario: MADP-001 004 Entity admin can create GL Account
 
 Scenario: MADP-002 004 Entity admin can update an existing GL Account
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
@@ -114,7 +114,7 @@ Scenario: MADP-002 004 Entity admin can update an existing GL Account
     Then I see a notification of gl account appears "Are you sure you want to deactivate"
 
     When I click to 'Deactivate' button in notification at GL list
-    Then I see a message "G/L Deactivated" appears
+    Then I see a message "Deactivated" appears
 
     When I click to "I Understand" button format_1
     Then I see GL active status in GL list is "No"
@@ -125,7 +125,7 @@ Scenario: MADP-002 004 Entity admin can update an existing GL Account
     Then I see a notification of gl account appears "Are you sure you want to activate"
 
     When I click to 'Activate' button in notification at GL list
-    Then I see a message "G/L Activated" appears
+    Then I see a message "Activated" appears
 
     When I click to "I Understand" button format_1
     Then I see GL active status in GL list is "Yes"

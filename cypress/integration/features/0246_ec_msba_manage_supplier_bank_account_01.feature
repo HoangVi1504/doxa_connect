@@ -26,7 +26,7 @@ Scenario: EC-MSBA-S001-001-002, EC-MSBA-S005-001 Creator add new supplier bank a
     And I see a validation text of 'Swift Code' at 'Add New Supplier Bank Account' page appears "Please enter valid Swift Code"
     And I see a validation text of 'Bank Account No' at 'Add New Supplier Bank Account' page appears "Please enter valid Bank Account No"
     And I see a validation text of 'Account Holder Name' at 'Add New Supplier Bank Account' page appears "Please enter valid Account Holder Name"
-    And I see a validation text of 'Currency' at 'Add New Supplier Bank Account' page appears "Please select valid currency"
+    And I see a validation text of 'Currency' at 'Add New Supplier Bank Account' page appears "Please select valid Currency"
     And I see a validation text of 'Branch' at 'Add New Supplier Bank Account' page appears "Please enter valid Branch"
     And I see a validation text of 'Branch Address Line 1' at 'Add New Supplier Bank Account' page appears "Please enter valid Branch Address Line 1"
     And I see a validation text of 'Branch Address Line 2' at 'Add New Supplier Bank Account' page appears "Please enter valid Branch Address Line 2"

@@ -63,17 +63,21 @@ class ManageExternalVendorPageLocator{
 
         // Xpath - Validation
         this.validation_text_email_xpath = "//*[@name='emailAddress']//following-sibling::*[contains(@class,'invalid-feedback')]";
-        this.validation_text_state_xpath = "//*[@name='addressesDto.0.state']//following-sibling::*[contains(@class,'invalid-feedback')]";
+        this.validation_text_state_xpath = "//*[@name='addressesDto.0.state']//following-sibling::div";
         this.validation_text_reg_no_xpath = "//*[@name='gstRegNo']//following-sibling::*[contains(@class,'invalid-feedback')]";
+        this.validation_text_country_xpath = "//*[text()='Country']/parent::*/parent::*//*[@class='invalid-feedback']";
         this.validation_text_full_name_xpath = "//*[@name='fullName']//following-sibling::*[contains(@class,'invalid-feedback')]";
         this.validation_text_company_reg_xpath = "//*[@name='uen']//following-sibling::*[contains(@class,'invalid-feedback')]";
-        this.validation_text_postal_code_xpath = "//*[@name='addressesDto.0.postalCode']//following-sibling::*[contains(@class,'invalid-feedback')]";
-        this.validation_text_phone_number_xpath = "//*[@name='workNumber']//following-sibling::*[contains(@class,'invalid-feedback')]";
+        this.validation_text_postal_code_xpath = "//*[@name='addressesDto.0.postalCode']//following-sibling::div";
+        this.validation_text_phone_number_xpath = "//*[@name='workNumber']//following-sibling::div";
+        this.validation_text_country_code_xpath = "//*[@name='countryCode']/parent::*/following-sibling::div";
+        this.validation_text_payment_term_xpath = "//*[text()='Payment Term']/parent::*/parent::*//*[@class='invalid-feedback']";
         this.validation_text_company_name_xpath = "//*[@name='companyName']//following-sibling::*[contains(@class,'invalid-feedback')]";
         this.validation_text_company_code_xpath = "//*[@name='companyCode']//following-sibling::*[contains(@class,'invalid-feedback')]";
-        this.validation_text_address_label_xpath = "//*[@name='addressesDto.0.addressLabel']//following-sibling::*[contains(@class,'invalid-feedback')]";
+        this.validation_text_address_label_xpath = "//*[@name='addressesDto.0.addressLabel']//following-sibling::div";
         this.validation_text_tax_percentage_xpath = "//*[@name='taxPercentage']//following-sibling::*[contains(@class,'invalid-feedback')]";
-        this.validation_text_address_line_1_xpath = "//*[@name='addressesDto.0.addressFirstLine']//following-sibling::*[contains(@class,'invalid-feedback')]";
+        this.validation_text_address_line_1_xpath = "//*[@name='addressesDto.0.addressFirstLine']//following-sibling::div";
+        this.validation_text_country_of_origin_xpath = "//*[text()='Country Of Origin']/parent::*/parent::*//*[@class='invalid-feedback']";
     }
 
 }export default ManageExternalVendorPageLocator

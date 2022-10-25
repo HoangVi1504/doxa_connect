@@ -3,7 +3,7 @@ Feature: 0233 Entity admin can create and update manage tax
 
 Scenario: MATA-001-002 Entity admin can create manage tax
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
@@ -26,7 +26,6 @@ Scenario: MATA-001-002 Entity admin can create manage tax
     When I input random tax code to 'Tax Code' textbox at 'Create Tax Record' page
     And I input "0.7" to 'Tax Rate' textbox at 'Create Tax Record' page
     And I input "auto test create tax" to 'Description tax' textbox at 'Create Tax Record' page
-    And I check to 'Set Default Tax' checkbox at 'Create Tax Record' page
     And I click to "Create" button format_2
     Then I see a message "Tax has been created successfully" appears
 
@@ -37,7 +36,7 @@ Scenario: MATA-001-002 Entity admin can create manage tax
     Then I see random tax code in Tax list
     And I see tax rate in Tax list is "0.70"
     And I see description tax in Tax list is "auto test create tax"
-    And I see tax default status in Tax list is "Yes"
+    And I see tax default status in Tax list is "No"
     And I see tax active status in Tax list is "Yes"
     And I see tax action in Tax list is "Deactivate"
 
@@ -53,7 +52,7 @@ Scenario: MATA-001-002 Entity admin can create manage tax
 
 Scenario: MATA-004 Entity admin can update the existing Tax
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "entity admin"
+    When I login with role "entity admin stag"
     And I click to 'User Profile' button
     And I click to "Admin" button format_1
     Then I see 'Dashboard' title
@@ -69,7 +68,7 @@ Scenario: MATA-004 Entity admin can update the existing Tax
     Then I see random tax code in Tax list
     And I see tax rate in Tax list is "0.70"
     And I see description tax in Tax list is "auto test create tax"
-    And I see tax default status in Tax list is "Yes"
+    And I see tax default status in Tax list is "No"
     Then I see tax active status in Tax list is "No"
     And I see tax action in Tax list is "Reactivate"
 
@@ -88,10 +87,6 @@ Scenario: MATA-004 Entity admin can update the existing Tax
 
     When I input "0.5" to 'Tax Rate' textbox at 'Create Tax Record' page
     And I input "auto test update tax" to 'Description tax' textbox at 'Create Tax Record' page
-    And I click to "Save" button format_2
-    Then I see a message "Tax cannot be default and inactive at the same time" appears
-
-    When I click to "OK" button format_1
     And I check to 'Set Active Status' checkbox at 'Tax Detail' page
     And I click to "Save" button format_2
     Then I see a message "Update Successfully" appears
@@ -103,7 +98,7 @@ Scenario: MATA-004 Entity admin can update the existing Tax
     When I input tax code just created to 'Filter Tax Code' in Tax list
     Then I see random tax code in Tax list
     And I see tax rate in Tax list is "0.50"
-    And I see tax default status in Tax list is "Yes"
+    And I see tax default status in Tax list is "No"
     And I see tax active status in Tax list is "Yes"
     And I see tax action in Tax list is "Deactivate"
 

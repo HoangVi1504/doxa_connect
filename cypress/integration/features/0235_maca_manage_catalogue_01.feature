@@ -91,7 +91,7 @@ Scenario: MACA-001-006 Entity admin can create non contracted catalogue item
 
     When I click to 'Deactivate' button in notification at 'Catalogue' list
     And Wait for "2" seconds
-    Then I see a message "1 Catalogue(s) deactivated" appears
+    Then I see a message "Catalogue Deactivated" appears
 
     When I click to "I Understand" button format_1
     And I input item code of catalogue just created to 'Filter Item Code' in 'Catalogue' list
@@ -162,7 +162,7 @@ Scenario: MACA-003 Entity admin can update and delete non contracted catalogue
     Then I see a notification appears "Are you sure you want to activate these catalogue items?"
 
     When I click to 'Activate' button in notification at 'Catalogue' list
-    Then I see a message "1 Catalogue(s) activated" appears
+    Then I see a message "Catalogue Activated" appears
 
     When I click to "I Understand" button format_1
     And I input item code of catalogue just created to 'Filter Item Code' in 'Catalogue' list
@@ -175,7 +175,7 @@ Scenario: MACA-003 Entity admin can update and delete non contracted catalogue
     Then I see a notification appears "Are you sure you want to deactivate these catalogue items?"
 
     When I click to 'Deactivate' button in notification at 'Catalogue' list
-    Then I see a message "1 Catalogue(s) deactivated" appears
+    Then I see a message "Catalogue Deactivated" appears
 
     When I click to "I Understand" button format_1
     And I input item name of catalogue just created to 'Filter Item Name' in 'Catalogue' list
@@ -188,6 +188,6 @@ Scenario: MACA-003 Entity admin can update and delete non contracted catalogue
     Then I see a notification appears "Are you sure you want to delete these catalogue items?"
 
     When I click to 'Delete' button in notification at 'Catalogue' list
-    Then I see a message "Catalogue(s) deleted successfully" appears
+    Then I see a message "Catalogue Deleted" appears
 
     When I click to "I Understand" button format_1
