@@ -1,9 +1,15 @@
 @po @p2p
 Feature: 0141 Creator issued PO then cancel PO
-
+    
 Scenario: P2P-PO-S01-001 P2P-PO-S03-001 Creator convert PR to PO and issue PO
+    # Entity admin uncheck all function in Approval Configuration
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "creator"
+    When I login with role "buyer"
+    And Call API uncheck all function in Approval Configuration
+
+    # Creator convert PR to PO
+    When I logout account
+    And I login with role "creator"
     And Call API Raise PR random
     And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Requisitions" link on header menu
@@ -50,6 +56,7 @@ Scenario: P2P-PO-S01-001 P2P-PO-S03-001 Creator convert PR to PO and issue PO
     And I click to "Back" button format_1
     Then I see 'PR To Be Converted List' title
 
+    # Issue PO
     When I click to "Orders List" link on the left menu
     And I click to "POs List" link on the left sub menu
     Then I see 'PO List' page

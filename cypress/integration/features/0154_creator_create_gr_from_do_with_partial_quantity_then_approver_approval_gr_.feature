@@ -209,8 +209,14 @@ Scenario: P2P-GR-S01-002 P2P-GR-S02-001 Connected supplier create DO from PO wit
     Then I see DO status in list is "PENDING RECEIPT"
 
 Scenario: P2P-GR-S03-003 Creator creaate GR from DO and save as draft then Submitting GR in Pending Submission status
+    # Entity admin uncheck all function in Approval Configuration
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "creator"
+    When I login with role "buyer"
+    And Call API uncheck all function in Approval Configuration
+
+    # Creator creaate GR from DO and save as draft then Submitting GR in Pending Submission status
+    When I logout account 
+    And I login with role "creator"
     And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Receipts" link on header menu
     And I click to "Create Receipt From DO" link on the left menu

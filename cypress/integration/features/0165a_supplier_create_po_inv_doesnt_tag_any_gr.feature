@@ -1,4 +1,4 @@
-@inv @p2p
+@inv @inv_cn
 Feature: 0165a Supplier create po inv doesnt tag any gr
 
 Scenario Outline: P2P-INV-S03-001 The supplier creates the first invoice for a PO that doesn't tag any GR with the correct input.

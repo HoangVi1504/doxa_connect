@@ -28,8 +28,8 @@ Given(/^Navigate to Invoice Module of Doxa Connect 2.0 site$/, () => {
     });
 })
 
-When(/^Call Api get data after login$/, () => {
-    apiAction.callApiGetDataAfterLogin()
+When(/^Call Api get data after "([^"]*)" login$/, (account) => {
+    apiAction.callApiGetDataAfterLogin(account)
 })
 
 When(/^Write data to 'dataBuyer.json' file$/, () => {

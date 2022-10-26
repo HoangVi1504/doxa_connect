@@ -1,4 +1,4 @@
-@inv @p2p
+@inv @inv_cn
 Feature: 0164 Creator create non-po invoice, AP Specialist approve invoice, Approver reject invoice
 
 Scenario Outline: P2P-INV-S02-001-002 Buyer create Non-PO invoice

@@ -241,7 +241,7 @@ class ApiAction{
         })
     }
 
-    callApiGetDataAfterLogin(){
+    callApiGetDataAfterLogin(account){
         let token = window.localStorage.getItem("token")
         cy.request({
             method: 'GET',
@@ -253,8 +253,8 @@ class ApiAction{
             expect(response.body).has.property("status", "OK")
             let userName = response.body.data.name
             let userUuid = response.body.data.uuid
-            let elementEntityAdmin = response.body.data.companies.find(element => element.role.find(el => el === "ENTITY_ADMIN"));
-            let companyUuid = elementEntityAdmin.companyUuid
+            let elementCompany = response.body.data.companies.find(element => element.role.find(el => el === account));
+            let companyUuid = elementCompany.companyUuid
             sessionStorage.setItem("userName", userName)
             sessionStorage.setItem("userUuid", userUuid)
             sessionStorage.setItem("companyUuid", companyUuid)
@@ -798,7 +798,7 @@ class ApiAction{
     callApiRaisePprWithContractItemUnconnectedSupplier(pprTitle){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
-        cy.wrap(this.callApiGetDataAfterLogin()).then((e)=>{
+        cy.wrap(this.callApiGetDataAfterLogin("ENTITY_USER")).then((e)=>{
             cy.wrap(this.callApiGetDataInApprovalList("auto approval PPR 1")).then((e)=>{
                 cy.wrap(this.callApiGetDataInCatalogueList("auto item code 4")).then((e)=>{
                     cy.wrap(this.callApiGetDataInManageAddress("address auto")).then((e)=>{
@@ -901,7 +901,7 @@ class ApiAction{
     callApiRaisePpr(pprTitle){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
-        cy.wrap(this.callApiGetDataAfterLogin()).then((e)=>{
+        cy.wrap(this.callApiGetDataAfterLogin("ENTITY_USER")).then((e)=>{
             cy.wrap(this.callApiGetDataInApprovalList("auto approval PPR 1")).then((e)=>{
                 cy.wrap(this.callApiGetDataInCatalogueList("auto item code 2")).then((e)=>{
                     cy.wrap(this.callApiGetDataInManageAddress("address auto")).then((e)=>{
@@ -1145,7 +1145,7 @@ class ApiAction{
     callApiSaveAsDraftPpr(pprTitle){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
-        cy.wrap(this.callApiGetDataAfterLogin()).then((e)=>{
+        cy.wrap(this.callApiGetDataAfterLogin("ENTITY_USER")).then((e)=>{
             cy.wrap(this.callApiGetDataInApprovalList("auto approval PPR 1")).then((e)=>{
                 cy.wrap(this.callApiGetDataInCatalogueList("auto item code 2")).then((e)=>{
                     cy.wrap(this.callApiGetDataInManageAddress("address auto")).then((e)=>{

@@ -36,7 +36,7 @@ Scenario: P2P-PO-S03-002-004-005 Approval Configuration set as FALSE, creator re
 
     When I input "4500" to 'Item Unit Price' textbox at 'PO Detail' page
     And I click to "Issue" button format_1
-    Then I see a message "Approval route is required" appears
+    Then I see a message "Please select valid approval route" appears
 
     When I click to "OK" button format_1
     And I select approval route "auto approval PO" at 'PO detail' page

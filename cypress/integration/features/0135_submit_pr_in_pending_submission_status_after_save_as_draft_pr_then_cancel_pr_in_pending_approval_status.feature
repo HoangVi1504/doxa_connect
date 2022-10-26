@@ -30,11 +30,12 @@ Scenario: P2P-PR-S03-001-002-003 Save as draft PR
     And I click to "Add Manual" button format_2
     Then I see Item delete button at Raise PR page
 
-    When I click to "Submit" button format_1
-    Then I see a message "Quantity must be greater than 0." appears
+    # bugId: https://doxa-connex.atlassian.net/browse/D0R-5757
+    # When I click to "Submit" button format_1
+    # Then I see a message "Quantity must be greater than 0." appears
 
-    When I click to "OK" button format_2
-    And I click to Item delete button at Raise PR page
+    # When I click to "OK" button format_2
+    When I click to Item delete button at Raise PR page
     And I add catalogue item from "pr_v5" json file at Raise PR page
     # Save as draft PR => PENDING SUBMISSION status
     And I click to "Save As Draft" button format_2

@@ -1,4 +1,4 @@
-@inv @p2p
+@inv @inv_cn
 Feature: 0162 Create first invoice from po then create subsequent invoice for a po
 
 Scenario Outline: P2P-INV-S01-001 P2P-INV-S09-002 Buyer create PO invoice that doesn't tag any GR and manage list of invoice and list of invoice pending approval

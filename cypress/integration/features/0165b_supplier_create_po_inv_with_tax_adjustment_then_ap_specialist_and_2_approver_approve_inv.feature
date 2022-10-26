@@ -1,4 +1,4 @@
-@inv @p2p
+@inv @inv_cn
 Feature: 0165b Supplier create po inv with tax adjustment then AP Specialist approve and 2 approver approve inv
 
 Scenario Outline: P2P-INV-S03-004 Supplier create PO invoice with tax adjustment

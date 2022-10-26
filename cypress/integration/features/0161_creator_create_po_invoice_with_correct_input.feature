@@ -1,4 +1,4 @@
-@inv @p2p
+@inv @inv_cn
 Feature: 0161 Creator create PO invoice with correct input
 
 Scenario: P2P-INV-S01-002 Creator create PO invoice with correct input

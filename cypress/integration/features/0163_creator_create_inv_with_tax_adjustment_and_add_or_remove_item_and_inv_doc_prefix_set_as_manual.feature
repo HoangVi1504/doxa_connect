@@ -1,4 +1,4 @@
-@inv @p2p
+@inv @inv_cn
 Feature: 0163 Creator create invoice with tax adjustment, add/remove item and invoice document prefix set as manual
 
 Scenario Outline: P2P-INV-S01-004 Buyer create PO invoice with tax adjustment
