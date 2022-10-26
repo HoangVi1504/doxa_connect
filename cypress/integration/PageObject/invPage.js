@@ -199,8 +199,7 @@ class InvPage{
     selectValueFromUomDropdownInAddItemTable(uom) {
         commonAction.wait(1)
         this.scrollToInItemTable("100%")
-        commonAction.doubleClickToElement(invPageLocator.inv_item_uom_dropdown_in_add_item_table_css)
-        commonAction.doubleClickToElement(invPageLocator.inv_item_uom_dropdown_in_add_item_table_css)
+        commonAction.clickToElement(invPageLocator.inv_item_uom_dropdown_in_add_item_table_css)
         commonAction.clickToElementByXpath(printf(invPageLocator.option_item_from_dropdown_xpath, uom))
         commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "UOM"))
     }

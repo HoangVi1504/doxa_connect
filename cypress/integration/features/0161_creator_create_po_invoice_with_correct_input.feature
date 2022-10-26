@@ -43,7 +43,7 @@ Scenario: P2P-INV-S01-002 Creator create PO invoice with correct input
     When I click to "I Understand" button format_1
     And I logout account
     And I login with role "supplier 34"
-    And Call Api get data after login
+    And Call Api get data after "ENTITY_ADMIN" login
     And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Orders" link on header menu
     And I click to "Orders List" link on the left menu

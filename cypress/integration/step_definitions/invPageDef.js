@@ -101,7 +101,7 @@ When(/^I select "([^"]*)" from 'Supplier Code' dropdown at 'Create Invoice' page
     invPage.selectSupplierCodeFromDropdown(supplierCode)
 })
 
-When(/^I select "([^"]*)" from 'Buyer Code' dropdown at 'Create Invoice' page$/, (supplierCode) => {
+When(/^I select "([^"]*)" from 'Buyer Code' dropdown at 'Create Invoice' page$/, (buyerCode) => {
     invPage.selectBuyerCodeFromDropdown(buyerCode)
 })
 
