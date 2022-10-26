@@ -94,7 +94,7 @@ When(/^I select "([^"]*)" from 'GL Account' dropdown at 'Create Catalogue Item' 
     manageCataloguePage.selectValueFromGlAccountDropdown(glAccount)
 })
 
-When(/^I select 'auto Prj 1' from 'Project' dropdown at 'Create Catalogue' page$/, () => {
+When(/^I select a project from 'Project' dropdown at 'Create Catalogue' page$/, () => {
     manageCataloguePage.selectValueFromProjectDropdown()
 })
 

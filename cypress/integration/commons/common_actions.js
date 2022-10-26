@@ -39,7 +39,7 @@ class BaseAction {
     }
 
     getPoNumberInPoList(){
-        cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="poNumber"]').then(($el) => {
+        cy.xpath("//*[@role='rowgroup']//*[contains(@class,'ag-row-first')]//*[@col-id='poNumber']").then(($el) => {
             let text = $el.text()
             sessionStorage.setItem("poNumber", text)
         });

@@ -131,7 +131,7 @@ Scenario: MACA-003 Entity admin can update and delete non contracted catalogue
     And I input "10000" to 'Latest Price' textbox at 'Create Catalogue Item' page
     And I input "2" to 'Contracted Quantity' textbox at 'Create Catalogue' page
     And I input "1000000" to 'Contracted Price' textbox at 'Create Catalogue' page
-    And I select 'auto Prj 1' from 'Project' dropdown at 'Create Catalogue' page
+    And I select a project from 'Project' dropdown at 'Create Catalogue' page
     And I click to "Update" button format_2
     Then I see a message "Catalogue updated" appears
 
@@ -152,7 +152,6 @@ Scenario: MACA-003 Entity admin can update and delete non contracted catalogue
     Then I see contracted status of catalogue just created in 'Catalogue' list is "Yes"
     And I see random contracted reference number of catalogue just created in 'Catalogue' list
     And I see contracted quantity of catalogue just created in 'Catalogue' list is "2"
-    And I see project of catalogue just created in 'Catalogue' list is "auto Prj 1"
     And I see unit price of catalogue just created in 'Catalogue' list is "10000"
     And I see contracted price of catalogue just created in 'Catalogue' list is "1000000"
     And I see active status of catalogue just created in 'Catalogue' list is "No"

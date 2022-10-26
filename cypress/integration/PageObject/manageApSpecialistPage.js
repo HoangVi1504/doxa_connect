@@ -9,7 +9,8 @@ const manageApSpecialistPageLocator = new ManageApSpecialistPageLocator()
 
 class ManageApSpecialistPage{
 
-    enterValueToFilterGroupCode(groupCode){
+    enterValueToFilterGroupCode(groupCode) {
+        commonAction.clickToElement(manageApSpecialistPageLocator.filter_group_code_tab_css)
         commonAction.enterValueToTextbox(manageApSpecialistPageLocator.filter_group_code_tab_css, groupCode)
     }
 

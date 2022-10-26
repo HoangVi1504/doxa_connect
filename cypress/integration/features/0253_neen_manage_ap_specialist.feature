@@ -93,12 +93,12 @@ Scenario: NEEN-002-003 Entity admin can update already existing ap specialist
     Then I see company code in 'External Vendor Tagging' list at 'Create New AP Specialist Grouping' page is "AUTO_EXTERNAL_VENDOR_DEFAULT"
 
     When I click to "Add Vendor" button format_2
-    And I input "TEST_SUPPLIER_34" to 'Search Key Word' textbox at 'Create New AP Specialist Grouping' page
-    And I check to "TEST_SUPPLIER_34" checkbox at 'Create New AP Specialist Grouping' page
+    And I input "TEST_SUPPLIER_37" to 'Search Key Word' textbox at 'Create New AP Specialist Grouping' page
+    And I check to "TEST_SUPPLIER_37" checkbox at 'Create New AP Specialist Grouping' page
     And I click to "Add" button format_1
     And Wait for "2" seconds
-    And I input "TEST_SUPPLIER_34" to 'Filter Company Code' in 'External Vendor Tagging' list
-    Then I see company code in 'External Vendor Tagging' list at 'Create New AP Specialist Grouping' page is "TEST_SUPPLIER_34"
+    And I input "TEST_SUPPLIER_37" to 'Filter Company Code' in 'External Vendor Tagging' list
+    Then I see company code in 'External Vendor Tagging' list at 'Create New AP Specialist Grouping' page is "TEST_SUPPLIER_37"
 
     When I click to "Save" button format_1
     Then I see a message "AP Specialist successfully updated" appears
