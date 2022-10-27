@@ -82,6 +82,7 @@ class UrlPageLocator{
         this.create_gr_from_do_detail_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/delivery-order/details/for-gr`;
 
         // INV
+        this.cn_list_url =`https://api-connex-${'%s'}.doxa-holdings.com/invoice/${'%s'}/credit-note/buyer/list-pagination?page=0&size=50&q=&orderBy=submissionDate:desc`    
         this.inv_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/invoice/${'%s'}/invoice/buyer/list-pagination?page=0&size=50&q=&orderBy=invoiceNo:desc`;
         this.inv_pending_approval_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/invoice/${'%s'}/invoice/buyer/list-pagination/pending?page=0&size=50&q=&orderBy=invoiceNo:desc`
 

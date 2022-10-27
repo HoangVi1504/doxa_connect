@@ -96,6 +96,13 @@ class BaseAction {
         });
     }
 
+    getCnNoInList(){
+        cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="creditNoteNumber"]').then(($el) => {
+            let text = $el.text()
+            sessionStorage.setItem("cnNumberList", text)
+        });
+    }
+
     getPasswordFromGetnada(){
         this.wait(5)
         cy.xpath("//*[@id='the_message_iframe']").then(function($ele){

@@ -1,6 +1,6 @@
 @po @p2p
 Feature: 0141 Creator issued PO then cancel PO
-    
+
 Scenario: P2P-PO-S01-001 P2P-PO-S03-001 Creator convert PR to PO and issue PO
     # Entity admin uncheck all function in Approval Configuration
     Given Navigate to Doxa Connect 2.0 site
