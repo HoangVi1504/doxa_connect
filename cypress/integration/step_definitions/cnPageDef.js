@@ -6,11 +6,19 @@ const commonAction = new CommonAction()
 const cnPage = new CreditNotePage()
 
 When(/^I get CN number in list$/, () => {
-    commonAction.getCnNoInList()
+    commonAction.getCreditNoteNoInList()
 })
 
 When(/^I input "([^"]*)" to 'Item Quantity' textbox at 'Create Credit Note' page$/, (quantity) => {
     cnPage.enterValueToItemQuantityTextbox(quantity)
+})
+
+When(/^I input "([^"]*)" to 'Unit Price' textbox at 'Create Credit Note' page$/, (unitPrice) => {
+    cnPage.enterValueToUnitPriceTextbox(unitPrice)
+})
+
+When(/^I input "([^"]*)" to 'Exchange Rate' textbox at 'Create Credit Note' page$/, (exchangeRate) => {
+    cnPage.enterValueToExchangeRateTextbox(exchangeRate)
 })
 
 When(/^I input credit note date as next "([^"]*)" days to 'Creadit Note Date' textbox at 'Create Credit Note' page$/, (date) => {
@@ -22,7 +30,7 @@ When(/^I input INV No to filter INV in 'Credit Notes' list$/, () => {
 })
 
 When(/^I input CN No to filter CN in 'Credit Notes' list$/, () => {
-    cnPage.enterValueToFilterCnNumberInList(sessionStorage.getItem("cnNumberList"))
+    cnPage.enterValueToFilterCreditNoteNumberInList(sessionStorage.getItem("cnNumberList"))
 })
 
 When(/^I input "([^"]*)" to 'Reason' textbox at 'Credit Note Details' page$/, (reason) => {
@@ -30,7 +38,7 @@ When(/^I input "([^"]*)" to 'Reason' textbox at 'Credit Note Details' page$/, (r
 })
 
 When(/^I double click to CN No in 'Credit Notes' list$/, () => {
-    cnPage.doubleClickToCnInList(sessionStorage.getItem("cnNumberList"))
+    cnPage.doubleClickToCreditNoteInList(sessionStorage.getItem("cnNumberList"))
 })
 
 When(/^I select "([^"]*)" from 'Approval Route' dropdown at 'Credit Note Details' page$/, (approvalRoute) => {
@@ -53,6 +61,26 @@ When(/^I click to 'Reject' button in 'Reason Dialog Box' at 'Credit Note Details
     cnPage.clickToRejectButton()
 })
 
+When(/^I click to 'Plus Tax' button at 'Credit Note' page$/, () => {
+    cnPage.clickToPlusTaxButton()
+})
+
+When(/^I click to 'Item Delete' button in 'Add Item' table at 'Create Credit Note' page$/, () => {
+    cnPage.clickToItemDeleteButtonInTable()
+})
+
+Then(/^I see 'CN Sub Total' is equal to "([^"]*)" at 'Credit Note' page$/, (value) => {
+    cnPage.verifyValueCreditNoteSubTotalDisplay(value)
+})
+
+Then(/^I see 'CN Total' is equal to "([^"]*)" at 'Credit Note' page$/, (value) => {
+    cnPage.verifyValueCreditNoteTotalDisplay(value)
+})
+
+Then(/^I see 'CN Tax' is equal to "([^"]*)" at 'Credit Note' page$/, (value) => {
+    cnPage.verifyValueCreditNoteTaxDisplay(value)
+})
+
 Then(/^I see 'Create Credit Note' page$/, () => {
     cnPage.verifyCreateCreditNotePageTitleDisplay()
 })
@@ -73,10 +101,14 @@ Then(/^I see company name "([^"]*)" at 'Create Credit Note' page$/, (companyName
     cnPage.verifyValueInCompanyNameTextboxExits(companyName)
 })
 
-Then(/^I see credit note status in list is "([^"]*)"$/, (status) => {
-    cnPage.getCnStatusInList().should('have.text', status)
-})
-
 Then(/^I see pop-up appears to show preview of credit note$/, () => {
     cnPage.verifyPopUpPreviewCreditNoteDisplay()
+})
+
+Then(/^I see a validation text of 'Supplier Code' "([^"]*)" appears$/, (validation) => {
+    cnPage.verifyValidationTextSupplierCodeDisplay(validation)
+})
+
+Then(/^I see credit note status in list is "([^"]*)"$/, (status) => {
+    cnPage.getCreditNoteStatusInList().should('have.text', status)
 })

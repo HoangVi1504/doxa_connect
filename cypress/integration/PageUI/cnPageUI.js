@@ -23,10 +23,13 @@ class CreditNotePageLocator{
 
         // Xpath - Textbox
         this.quantity_txb_in_table_xpath = "//*[@col-id='itemQuantity']//input[@aria-label='Input Editor']";
+        this.unit_price_txb_in_table_xpath = "//*[@col-id='unitPrice']//input[@aria-label='Input Editor']";
+        this.exchange_rate_txb_in_table_xpath = "//*[@col-id='exchangeRate']//input[@aria-label='Input Editor']";
 
         // Xpath - Button
         this.tax_plus_btn_xpath = "//*[text()='Tax:']/parent::*/following-sibling::*//*[text()='+']";
         this.reject_cn_btn_xpath = "(//button[text()='Reject'])[2]";
+        this.item_delete_btn_xpath = "//*[@col-id='action']//button[contains(@class,'MuiIconButton')]";
 
         // Xpath - Dropdown
         this.supplier_code_dropdown_xpath = "//*[@id='mui-component-select-supplierCode']";
@@ -39,5 +42,12 @@ class CreditNotePageLocator{
         this.cn_detail_page_title_xpath = "//h1//*[text()='Credit Note Details']";
         this.scroll_bar_in_item_table_xpath = "(//*[@class='ag-body-horizontal-scroll-viewport'])[1]";
         this.credit_note_list_page_title_xpath = "//h1//*[text()='Credit Notes List']";
+
+        this.cn_tax_value_xpath = "//*[text()='Tax:']/parent::*/following-sibling::*[2]//*[text()='%s']"
+        this.cn_total_value_xpath = "//*[text()='Total:']/parent::*/following-sibling::*[2]/*[text()='%s']"
+        this.cn_sub_total_value_xpath = "//*[text()='Sub Total:']/parent::*/following-sibling::*[2]/*[text()='%s']"
+
+        // Xpath - Validation
+        this.validation_text_supplier_xpath = "//*[@name='supplierCode']/parent::*/following-sibling::*[text()='%s']";
     }
 } export default CreditNotePageLocator

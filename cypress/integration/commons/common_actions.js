@@ -96,7 +96,7 @@ class BaseAction {
         });
     }
 
-    getCnNoInList(){
+    getCreditNoteNoInList(){
         cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="creditNoteNumber"]').then(($el) => {
             let text = $el.text()
             sessionStorage.setItem("cnNumberList", text)
