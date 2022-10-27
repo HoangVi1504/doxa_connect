@@ -1,5 +1,5 @@
 @cn @inv_cn
-Feature: 0172 Buyer create Credit Note with tax adjustment then AP Specialist and Approver approve Credit Note
+Feature: 0173 Buyer create Credit Note with add or remove item then AP Specialist approve Credit Note
 
 Scenario Outline: Create PO invoice
     # Raise PR then Convert to PO and issue PO to supplier
@@ -97,7 +97,7 @@ Scenario Outline: Create PO invoice
     |quantity|unitPrice|invQty|invSubTotal|tax|invTotal|
     |1000|5000|100|500,000.00|2,500.00|502,500.00|
 
-Scenario Outline: P2P-CN-S01-002-003 Buyer create Credit Note with tax adjustment
+Scenario: P2P-CN-S01-004 Buyer create Credit Note with add or remove item
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And I click to hamburger menu
@@ -109,73 +109,33 @@ Scenario Outline: P2P-CN-S01-002-003 Buyer create Credit Note with tax adjustmen
     And I click to "Create Credit Note" link on the left sub menu
     Then I see 'Create Credit Note' page
 
-    When I click to "Issue" button format_1
-    Then I see a message "Validation error, please check your input." appears
-
-    When I click to "OK" button format_1
-    Then I see a validation text of 'Supplier Code' "Please select valid Supplier" appears
-
     When I select "TEST_SUPPLIER_34" from 'Supplier Code' dropdown at 'Create Credit Note' page
     Then I see company name "TEST SUPPLIER 34" at 'Create Credit Note' page
 
     When I select INV No from 'Reference Invoice' dropdown at 'Create Credit Note' page
     And I input credit note date as next "2" days to 'Creadit Note Date' textbox at 'Create Credit Note' page
-    And I input "<cnQty>" to 'Item Quantity' textbox at 'Create Credit Note' page
+    And I input "50" to 'Item Quantity' textbox at 'Create Credit Note' page
     And I select "G/L auto 1" from 'GL Account' dropdown at 'Create Credit Note' page
-    #bugId: https://doxa-connex.atlassian.net/browse/D0R-5850
-    # Then I see 'CN Sub Total' is equal to "<cnSubTotal>" at 'Credit Note' page
-    # And I see 'CN Tax' is equal to "<tax>" at 'Credit Note' page
-    # And I see 'CN Total' is equal to "<cnTotal>" at 'Credit Note' page
-    
-    When I input "-10" to 'Item Quantity' textbox at 'Create Credit Note' page
-    And I click to "Issue" button format_1
-    Then I see a message "Item Quantity must be greater than 0" appears
-
-    When I click to "OK" button format_1
-    And I input "<cnQty>" to 'Item Quantity' textbox at 'Create Credit Note' page
-    And I input "-5000" to 'Unit Price' textbox at 'Create Credit Note' page
-    And I click to "Issue" button format_1
-    Then I see a message "Item Unit Price must be greater than 0" appears
-
-    When I click to "OK" button format_1
-    And I input "<unitPrice>" to 'Unit Price' textbox at 'Create Credit Note' page
-    And I input "-1" to 'Exchange Rate' textbox at 'Create Credit Note' page
-    And I click to "Issue" button format_1
-    Then I see a message "Item Exchange Rate must be greater than 0" appears
-
-    When I click to "OK" button format_1
-    And I input "<exchangeRate>" to 'Exchange Rate' textbox at 'Create Credit Note' page
-    And I input "a" to 'Item Quantity' textbox at 'Create Credit Note' page
-    Then I see a message "please enter the number!" appears
-    
-    When I click to "OK" button format_1
-    And I input "a" to 'Unit Price' textbox at 'Create Credit Note' page
-    Then I see a message "please enter the number!" appears
-
-    When I click to "OK" button format_1
-    And I input "a" to 'Exchange Rate' textbox at 'Create Credit Note' page
-    Then I see a message "please enter the number!" appears
-
-    When I click to "OK" button format_1
     And I click to 'Item Delete' button in 'Add Item' table at 'Create Credit Note' page
-    And I click to "Issue" button format_1
-    Then I see a message "Please add valid Item Credit Note" appears
+    Then I see the item in 'Add Item' table at 'Create Credit Note' page is deleted
 
-    When I select INV No from 'Reference Invoice' dropdown at 'Create Credit Note' page
-    And I input credit note date as next "2" days to 'Creadit Note Date' textbox at 'Create Credit Note' page
-    And I input "<cnQty>" to 'Item Quantity' textbox at 'Create Credit Note' page
-    And I input "<exchangeRate>" to 'Exchange Rate' textbox at 'Create Credit Note' page
+    When I click to "Add Manual" button format_2
+    Then I see 'Item Delete' button in 'Add Item' table at 'Create Invoice' page
+
+    When I input "auto add manual" to 'CN Description' textbox at 'Create Credit Note' page
+    And I input "10" to 'Item Quantity' textbox at 'Create Credit Note' page
+    And I select "USD" from 'Currency' dropdown at 'Create Credit Note' page
+    And I input "5000" to 'Unit Price' textbox at 'Create Credit Note' page
+    And I select "CEN" from 'UOM' dropdown at 'Create Credit Note' page
+    And I select "11052022" from 'Tax Code' dropdown at 'Create Credit Note' page
+    And I input "1" to 'Exchange Rate' textbox at 'Create Credit Note' page
     And I select "G/L auto 1" from 'GL Account' dropdown at 'Create Credit Note' page
-    Then I see 'CN Sub Total' is equal to "<cnSubTotal>" at 'Credit Note' page
-    And I see 'CN Tax' is equal to "<tax>" at 'Credit Note' page
-    And I see 'CN Total' is equal to "<cnTotal>" at 'Credit Note' page
-
-    When I click to 'Plus Tax' button at 'Credit Note' page
-    Then I see 'CN Sub Total' is equal to "50,000.00" at 'Credit Note' page
-    And I see 'CN Tax' is equal to "250.01" at 'Credit Note' page
-    And I see 'CN Total' is equal to "50,250.01" at 'Credit Note' page
-    
-    When I click to "Preview Credit Note" button format_1
+    And I input "auto item code" to 'Item Code' textbox at 'Create Credit Note' page
+    And I input "auto item description" to 'Item Description' textbox at 'Create Credit Note' page
+    And I input "auto item model" to 'Model' textbox at 'Create Credit Note' page
+    And I input "auto item size" to 'Size' textbox at 'Create Credit Note' page
+    And I input "auto item brand" to 'Brand' textbox at 'Create Credit Note' page
+    And I click to "Preview Credit Note" button format_1
     Then I see pop-up appears to show preview of credit note
     
     When I click to "Close" button format_2
@@ -194,16 +154,13 @@ Scenario Outline: P2P-CN-S01-002-003 Buyer create Credit Note with tax adjustmen
     Then I see 'Credit Note Details' page
     And I see CN No in 'Credit Note No' textbox appears
 
-    Examples:
-    # tax percentage = 0.5
-    # cnSubtotal = cnQty * unitPrice
-    # tax = cnSubTotal * taxPercentage
-    # cnTotal = cnSubTotal + tax
-    |quantity|unitPrice|cnQty|exchangeRate|cnSubTotal|tax|cnTotal|
-    |1000|5000|10|1|50,000.00|250.00|50,250.00|
-
-Scenario: P2P-CN-S03-002 P2P-CN-S04-002 AP Specialist and Approver approve Credit Note
+Scenario: P2P-CN-S03-003 AP Specialist approve Credit Note with otp out Credit Note Approval Configuration
     Given Navigate to Doxa Connect 2.0 site
+    When I login with role "buyer"
+    And Call API opt out approval configuration for "Credit Note" feature
+    And I logout account
+    Then I see 'Doxa Connect' image appears
+
     When I login with role "ap specialist"
     And I click to hamburger menu
     And I click to "Invoices" button format_2
@@ -221,44 +178,18 @@ Scenario: P2P-CN-S03-002 P2P-CN-S04-002 AP Specialist and Approver approve Credi
     And Wait for "6" seconds
     Then I see 'Credit Note Details' page
     And I see CN No in 'Credit Note No' textbox appears
-    And I see 'CN Sub Total' is equal to "50,000.00" at 'Credit Note' page
-    And I see 'CN Tax' is equal to "250.01" at 'Credit Note' page
-    And I see 'CN Total' is equal to "50,250.01" at 'Credit Note' page
-
-    When I select "AUTO CN APPROVER 1" from 'Approval Route' dropdown at 'Credit Note Details' page
-    And I click to "Approve" button format_1
+    And I see 'Approval Route' dropdown at 'Credit Note Details' page is disabled
+    
+    When I click to "Approve" button format_1
     Then I see a message "Credit note has been approved" appears
 
     When I click to "I Understand" button format_1
     Then I see 'Credit Note List' page
 
     When I input INV No to filter INV in 'Credit Notes' list
-    Then I see credit note status in list is "PENDING CN APPROVAL"
-
-    When I logout account
-    And I login with role "approver 1"
-    And I click to 'Dashboard' link on Header menu if it not be selected
-    And I click to "Invoices" link on header menu
-    And I click to "Credit Notes" link on the left menu
-    And I click to "Credit Note List" link on the left sub menu
-    Then I see 'Credit Note List' page
-
-    When I input CN No to filter CN in 'Credit Notes' list
-    Then I see credit note status in list is "PENDING CN APPROVAL"
-
-    When I double click to CN No in 'Credit Notes' list
-    And Wait for "6" seconds
-    Then I see 'Credit Note Details' page
-    And I see CN No in 'Credit Note No' textbox appears
-    And I see 'CN Sub Total' is equal to "50,000.00" at 'Credit Note' page
-    And I see 'CN Tax' is equal to "250.01" at 'Credit Note' page
-    And I see 'CN Total' is equal to "50,250.01" at 'Credit Note' page
-
-    When I click to "Approve" button format_1
-    Then I see a message "Credit Note Approved" appears
-
-    When I click to "I Understand" button format_1
-    Then I see 'Credit Note List' page
-
-    When I input CN No to filter CN in 'Credit Notes' list
     Then I see credit note status in list is "APPROVED"
+
+Scenario: Entity admin uncheck all function in Approval Configuration
+    Given Navigate to Doxa Connect 2.0 site
+    When I login with role "buyer"
+    And Call API uncheck all function in Approval Configuration

@@ -2160,4 +2160,27 @@ class ApiAction{
             expect(response.body).has.property("message", "Update is successful")
         })
     }
+
+    callApiOptOutApprovalConfiguration(featureName){
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.wrap(this.callApiGetDataInApprovalConfiguration(featureName)).then((e) => {
+            cy.request({
+                method: 'POST',
+                url: printf(urlPageLocator.update_approval_configuration_url, this.env, buyerCompanyUuid),
+                headers: {
+                authorization: "Bearer " + token,
+                },
+                body: [
+                    {
+                        featureCode: sessionStorage.getItem("featureCode"),
+                        featureName: featureName,
+                        featureUuid: sessionStorage.getItem("featureUuid")
+                    }
+                ]
+            }).then((response) => {
+                expect(response.body).has.property("message", "Update is successful")
+            })
+        })
+    }
 }export default ApiAction

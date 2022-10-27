@@ -53,6 +53,49 @@ class CreditNotePage{
         })
     }
 
+    enterValueToNoteTextbox(note){
+        commonAction.doubleClickToElement(cnPageLocator.cn_notes_in_table_css)
+        commonAction.enterValueToTextboxAfterClearByXpath(cnPageLocator.notes_txb_in_table_xpath, note)
+        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Notes"))
+    }
+
+    enterValueToCreditNoteDescriptionTextbox(cnDescription){
+        commonAction.doubleClickToElement(cnPageLocator.cn_description_in_table_css)
+        commonAction.enterValueToTextboxAfterClearByXpath(cnPageLocator.description_txb_in_table_xpath, cnDescription)
+        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Description"))
+    }
+
+    enterValueToItemCodeTextbox(itemCode){
+        commonAction.doubleClickToElement(cnPageLocator.inv_item_code_in_table_css)
+        commonAction.enterValueToTextboxAfterClearByXpath(cnPageLocator.inv_item_code_txb_in_table_xpath, itemCode)
+        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Item Code"))
+    }
+
+    enterValueToItemDescriptionTextbox(Description){
+        commonAction.doubleClickToElement(cnPageLocator.inv_item_description_in_table_css)
+        commonAction.enterValueToTextboxAfterClearByXpath(cnPageLocator.inv_item_description_txb_in_table_xpath, Description)
+        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Item Description"))
+    }
+
+    enterValueToSizeTextbox(size) {
+        commonAction.doubleClickToElement(cnPageLocator.inv_item_size_in_table_css)
+        commonAction.enterValueToTextboxAfterClearByXpath(cnPageLocator.inv_item_size_txb_in_table_xpath, size)
+        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Size"))
+    }
+
+    enterValueToModelTextbox(model) {
+        this.scrollToInItemTable("100%")
+        commonAction.doubleClickToElement(cnPageLocator.inv_item_model_in_table_css)
+        commonAction.enterValueToTextboxAfterClearByXpath(cnPageLocator.inv_item_model_txb_in_table_xpath, model)
+        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Model"))
+    }
+
+    enterValueToBrandTextbox(brand) {
+        commonAction.doubleClickToElement(cnPageLocator.inv_item_brand_in_table_css)
+        commonAction.enterValueToTextboxAfterClearByXpath(cnPageLocator.inv_item_brand_txb_in_table_xpath, brand)
+        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Brand"))
+    }
+
     enterValueToItemQuantityTextbox(quantity){
         commonAction.wait(1)
         this.scrollToInItemTable("0%")
@@ -103,6 +146,21 @@ class CreditNotePage{
 
     selectReferenceInvNoFromDropdown(invNumber){
         commonAction.selectValueFromElement(cnPageLocator.reference_inv_dropdown_css, invNumber)
+    }
+
+    selectValueFromCurrencyDropdown(currency){
+        commonAction.selectOptionFromDropdownByXpath(cnPageLocator.cn_currency_in_table_xpath, printf(commonPageLocator.option_value_in_dropdown_xpath, currency))
+        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Currency"))
+    }
+
+    selectValueFromUomDropdown(uom){
+        commonAction.selectOptionFromDropdownByXpath(cnPageLocator.cn_uom_in_table_xpath, printf(commonPageLocator.option_value_in_dropdown_xpath, uom))
+        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "UOM"))
+    }
+
+    selectValueFromTaxCodeDropdown(taxCode){
+        commonAction.selectOptionFromDropdownByXpath(cnPageLocator.cn_tax_code_in_table_xpath, printf(commonPageLocator.option_value_in_dropdown_xpath, taxCode))
+        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Tax Code"))
     }
 
     selectValueFromGlCodeDropdown(glCode){
@@ -160,6 +218,21 @@ class CreditNotePage{
         commonAction.verifyElementByXpathVisible(cnPageLocator.header_preview_cn_xpath)
     }
     
+
+    verifyItemDeleteButtonInTableDisplay() {
+        this.scrollToInItemTable("0%")
+        commonAction.verifyElementByXpathVisible(cnPageLocator.item_delete_btn_xpath)
+    }
+
+    verifyItemDeleteButtonInTableIsDeleted() {
+        this.scrollToInItemTable("0%")
+        commonAction.verifyElementByXpathNotExist(cnPageLocator.item_delete_btn_xpath)
+    }
+
+    verifyApprovalRouteDropdownIsDisable() {
+        commonAction.verifyElementDisable(cnPageLocator.approval_route_dropdown_css)
+    }
+
     verifyValidationTextSupplierCodeDisplay(validation){
         commonAction.verifyElementByXpathVisible(printf(cnPageLocator.validation_text_supplier_xpath, validation))
     }
