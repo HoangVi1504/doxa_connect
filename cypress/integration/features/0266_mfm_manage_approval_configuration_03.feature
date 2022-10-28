@@ -1,60 +1,60 @@
 @manage_approval_configuration @entity_admin
 Feature: 0266 Entity admin setup more Approval Configuration with RFQ, GR
 
-# Scenario: MFM-S002-004 Entity admin able to opt-out approval routing for RFQ Pricing feature
-#     Given Navigate to Doxa Connect 2.0 site
-#     When I login with role "buyer"
-#     And Call API uncheck all function in Approval Configuration
-#     And I click to 'User Profile' button
-#     And I click to "Admin" button format_1
-#     Then I see 'Dashboard' title
+Scenario: MFM-S002-004 Entity admin able to opt-out approval routing for RFQ Pricing feature
+    Given Navigate to Doxa Connect 2.0 site
+    When I login with role "buyer"
+    And Call API uncheck all function in Approval Configuration
+    And I click to 'User Profile' button
+    And I click to "Admin" button format_1
+    Then I see 'Dashboard' title
 
-#     When Wait for "2" seconds
-#     And I click to 'Dashboard' link on Header menu if it not be selected
-#     And I click to "Entity Management" link on header menu
-#     And I click to "Approval Setting" link on the left menu
-#     And I click to "Manage Approval Configuration" link on the left sub menu
-#     Then I see 'Approval Configuration' page
+    When Wait for "2" seconds
+    And I click to 'Dashboard' link on Header menu if it not be selected
+    And I click to "Entity Management" link on header menu
+    And I click to "Approval Setting" link on the left menu
+    And I click to "Manage Approval Configuration" link on the left sub menu
+    Then I see 'Approval Configuration' page
 
-#     When I check to "RFQ Pricing" checkbox at 'Approval Configuration' page
-#     And I click to "Save" button format_1
-#     Then I see a message "Update is successful" appears
+    When I check to "RFQ Pricing" checkbox at 'Approval Configuration' page
+    And I click to "Save" button format_1
+    Then I see a message "Update is successful" appears
 
-#     When I click to "I Understand" button format_1
-#     Then I see "RFQ Pricing" checkbox at 'Approval Configuration' page is checked
+    When I click to "I Understand" button format_1
+    Then I see "RFQ Pricing" checkbox at 'Approval Configuration' page is checked
 
-#     # Creator verify Approval Route dropdown is disabled
-#     When I logout account
-#     And I login with role "creator"
-#     And I click to hamburger menu
-#     And I click to "Purchase" button format_1
-#     And Wait for "3" seconds
-#     And Call API raise RFQ
-#     And I click to "Request for Quotations" link on header menu
-#     And I click to "Request for Quotations" link on the left menu
-#     And I click to "RFQ List" link on the left sub menu
-#     Then I see 'RFQ List' page title
+    # Creator verify Approval Route dropdown is disabled
+    When I logout account
+    And I login with role "creator"
+    And I click to hamburger menu
+    And I click to "Purchase" button format_1
+    And Wait for "3" seconds
+    And Call API raise RFQ
+    And I click to "Request for Quotations" link on header menu
+    And I click to "Request for Quotations" link on the left menu
+    And I click to "RFQ List" link on the left sub menu
+    Then I see 'RFQ List' page title
 
-#     When I input random RFQ title to 'Search RFQ' textbox in 'RFQ' list
-#     And I get RFQ number in list
-#     And I logout account
-#     And I login with role "supplier 1"
-#     And Call API submit RFQ
-#     And I logout account
-#     And I login with role "creator"
-#     And Call API close RFQ
-#     And I click to "Request for Quotations" link on header menu
-#     And I click to "Request for Quotations" link on the left menu
-#     And I click to "RFQ List" link on the left sub menu
-#     Then I see 'RFQ List' page title
+    When I input random RFQ title to 'Search RFQ' textbox in 'RFQ' list
+    And I get RFQ number in list
+    And I logout account
+    And I login with role "supplier 1"
+    And Call API submit RFQ
+    And I logout account
+    And I login with role "creator"
+    And Call API close RFQ
+    And I click to "Request for Quotations" link on header menu
+    And I click to "Request for Quotations" link on the left menu
+    And I click to "RFQ List" link on the left sub menu
+    Then I see 'RFQ List' page title
 
-#     When "buyer" input RFQ number just created to 'Filter RFQ No' in 'RFQ' list
-#     Then I see RFQ status in RFQ list is "RFQ CLOSED"
+    When "buyer" input RFQ number just created to 'Filter RFQ No' in 'RFQ' list
+    Then I see RFQ status in RFQ list is "RFQ CLOSED"
 
-#     When I double click to RFQ number just created in 'RFQ' list
-#     And Wait for "3" seconds
-#     Then I see 'RFQ Detail' page title
-#     And I see 'Approval Route' dropdown at 'RFQ' page is disabled
+    When I double click to RFQ number just created in 'RFQ' list
+    And Wait for "3" seconds
+    Then I see 'RFQ Detail' page title
+    And I see 'Approval Route' dropdown at 'RFQ' page is disabled
 
 Scenario: MFM-S002-005 Entity admin able to opt-out approval routing for Good Receipts feature
     Given Navigate to Doxa Connect 2.0 site
@@ -120,6 +120,9 @@ Scenario: MFM-S002-005 Entity admin able to opt-out approval routing for Good Re
 
     When I click to "I Understand" button format_1
     Then I see 'PO List' page
+
+    When "buyer" input PO No to filter PO in "PO" list
+    Then I see PO status in list is "ISSUED"
 
     When I click to "Receipts" link on header menu
     And I click to "Create Receipt From PO" link on the left menu

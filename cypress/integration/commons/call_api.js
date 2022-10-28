@@ -14,6 +14,7 @@ var vendor2 = require('../data/vendor2.json')
 var hardUuid = require('../data/hardUuid.json');
 var dataBuyer = require('../../../dataBuyer.json');
 var dataSupplier = require('../../../dataSupplier.json');
+var dataSupplier1 = require('../../../dataSupplier1.json');
 var dataApSpecialist = require('../../../dataApSpecialist.json');
 var dataCreatorCompany = require('../data/dataCreatorCompany.json');
 var dataApprover1Company = require('../data/dataApprover1Company.json');
@@ -40,17 +41,19 @@ class ApiAction{
         })
     }
 
-    callApiGetDataItemCatalogue(){
+    callApiGetCatalogueDetail(itemCode){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
-        cy.request({
-            method: 'GET',
-            url: printf(urlPageLocator.item_catalogue_url, this.env, buyerCompanyUuid),            
-            headers: {
-                authorization: "Bearer " + token,
-            }
-        }).then((response)=>{
-            expect(response.body).has.property("status", "OK")
+        cy.wrap(this.callApiGetDataInCatalogueList(itemCode)).then((e) => {
+            cy.request({
+                method: 'GET',
+                url: printf(urlPageLocator.catalogue_detail_url, this.env, buyerCompanyUuid, sessionStorage.getItem("catalogueUuid")),         
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response)=>{
+                expect(response.body).has.property("status", "OK")
+            })
         })
     }
 
@@ -530,12 +533,10 @@ class ApiAction{
     callApiRaiseRFQ(rfqTitle){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
-        // open when switch env stag
-        //cy.wrap(this.callApiGetDataInManageVendorList("AUTO SUPPLIER 1")).then((e)=>{ 
+        cy.wrap(this.callApiGetDataInManageVendorList("AUTO SUPPLIER 1")).then((e)=>{ 
             cy.request({
                 method: 'POST',
-                //url: printf(urlPageLocator.raise_rfq_url, this.env, buyerCompanyUuid),
-                url: urlPageLocator.raise_rfq_dev_url,
+                url: printf(urlPageLocator.raise_rfq_url, this.env, buyerCompanyUuid),
                 headers: {
                     authorization: "Bearer " + token,
                 },
@@ -595,8 +596,7 @@ class ApiAction{
                         {
                             contactPersonEmail: "auto.supplier1@getnada.com",
                             contactPersonName: "auto supplier 1",
-                            supplierUuid: "3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",
-                            //supplierUuid: sessionStorage.getItem("vendorUuid"), 
+                            supplierUuid: sessionStorage.getItem("vendorUuid"), 
                         }
                     ],
                     validityEndDate: "",
@@ -605,23 +605,21 @@ class ApiAction{
             }).then((response) => {
                 expect(response.body).has.property("status", "OK")
             })
-        //})
+        })
     }
 
     callApiGetDataInRfqList(roleName, rfqNumber){
         let urlRequest
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
-        let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
+        let supplierCompanyUuid = dataSupplier1.supplierCompanyUuid
         switch (roleName) {
             case "buyer":
-                //urlRequest = printf(urlPageLocator.rfq_list_url, this.env, buyerCompanyUuid, roleName)
-                urlRequest = printf(urlPageLocator.rfq_list_dev_buyer_url)
+                urlRequest = printf(urlPageLocator.rfq_list_url, this.env, buyerCompanyUuid, roleName)
                 break;
 
             case "supplier":
-                //urlRequest = printf(urlPageLocator.rfq_list_url, this.env, supplierCompanyUuid, roleName)
-                urlRequest = printf(urlPageLocator.rfq_list_dev_supplier_url)
+                urlRequest = printf(urlPageLocator.rfq_list_url, this.env, supplierCompanyUuid, roleName)
                 break;
         
             default:
@@ -645,17 +643,15 @@ class ApiAction{
         let urlRequest
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
-        let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
+        let supplierCompanyUuid = dataSupplier1.supplierCompanyUuid
         cy.wrap(this.callApiGetDataInRfqList(roleName, rfqNumber)).then((e)=>{
             switch (roleName) {
                 case "buyer":
-                    //urlRequest = printf(urlPageLocator.rfq_detail_url, this.env, buyerCompanyUuid, roleName, sessionStorage.getItem("rfqUuid"))
-                    urlRequest = printf(urlPageLocator.rfq_detail_buyer_dev_url, roleName, sessionStorage.getItem("rfqUuid"))
+                    urlRequest = printf(urlPageLocator.rfq_detail_url, this.env, buyerCompanyUuid, roleName, sessionStorage.getItem("rfqUuid"))
                     break;
     
                 case "supplier":
-                    //urlRequest = printf(urlPageLocator.rfq_detail_url, this.env, supplierCompanyUuid, roleName, sessionStorage.getItem("rfqUuid"))
-                    urlRequest = printf(urlPageLocator.rfq_detail_supplier_dev_url, roleName, sessionStorage.getItem("rfqUuid"))
+                    urlRequest = printf(urlPageLocator.rfq_detail_url, this.env, supplierCompanyUuid, roleName, sessionStorage.getItem("rfqUuid"))
                     break;
             
                 default:
@@ -677,12 +673,11 @@ class ApiAction{
 
     callApiSubmitRfq(rfqNumber){
         let token = window.localStorage.getItem("token")
-        let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
+        let supplierCompanyUuid = dataSupplier1.supplierCompanyUuid
         cy.wrap(this.callApiGetDataInRfqDetails("supplier", rfqNumber)).then((e)=>{
             cy.request({
                 method: 'POST',
-                //url: printf(urlPageLocator.submit_rfq_url, this.env, supplierCompanyUuid),
-                url: urlPageLocator.submit_rfq_dev_url,
+                url: printf(urlPageLocator.submit_rfq_url, this.env, supplierCompanyUuid),
                 headers: {
                     authorization: "Bearer " + token,
                 },
@@ -715,8 +710,7 @@ class ApiAction{
         cy.wrap(this.callApiGetDataInRfqList("buyer", rfqNumber)).then((e)=>{
             cy.request({
                 method: 'PUT',
-                //url: printf(urlPageLocator.close_rfq_url, this.env, buyerCompanyUuid),
-                url: urlPageLocator.close_rfq_dev_url,
+                url: printf(urlPageLocator.close_rfq_url, this.env, buyerCompanyUuid),
                 headers: {
                     authorization: "Bearer " + token,
                 },
@@ -737,8 +731,7 @@ class ApiAction{
             cy.wrap(this.callApiGetDataInRfqDetails("buyer", rfqNumber)).then((e)=>{
                 cy.request({
                     method: 'GET',
-                    //url: printf(urlPageLocator.rfq_detail_url, this.env, buyerCompanyUuid, "buyer", sessionStorage.getItem("rfqUuid"))
-                    url: printf(urlPageLocator.rfq_detail_buyer_dev_url, "buyer", sessionStorage.getItem("rfqUuid")),
+                    url: printf(urlPageLocator.rfq_detail_url, this.env, buyerCompanyUuid, "buyer", sessionStorage.getItem("rfqUuid")),
                     headers: {
                         authorization: "Bearer " + token,
                     }
@@ -748,8 +741,7 @@ class ApiAction{
                     sessionStorage.setItem("quoteUuid", quoteUuid)
                     cy.request({
                         method: 'PUT',
-                        //url: printf(urlPageLocator.shortlist_rfq_url, this.env, buyerCompanyUuid),
-                        url: urlPageLocator.shortlist_rfq_dev_url,
+                        url: printf(urlPageLocator.shortlist_rfq_url, this.env, buyerCompanyUuid),
                         headers: {
                             authorization: "Bearer " + token,
                         },
@@ -780,8 +772,7 @@ class ApiAction{
         cy.wrap(this.callApiGetDataInRfqList("buyer", rfqNumber)).then((e)=>{
             cy.request({
                 method: 'PUT',
-                //url: printf(urlPageLocator.approve_rfq_url, this.env, buyerCompanyUuid),
-                url: urlPageLocator.approve_rfq_dev_url,
+                url: printf(urlPageLocator.approve_rfq_url, this.env, buyerCompanyUuid),
                 headers: {
                     authorization: "Bearer " + token,
                 },

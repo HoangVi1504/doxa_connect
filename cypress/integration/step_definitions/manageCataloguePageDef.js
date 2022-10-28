@@ -1,8 +1,10 @@
 import { faker } from '@faker-js/faker';
+import ApiAction from "../commons/call_api"
 import CommonAction from '../commons/common_actions'
 import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
 import ManageCataloguePage from '../PageObject/manageCataloguePage';
 
+const apiAction = new ApiAction()
 const commonAction = new CommonAction()
 const manageCataloguePage = new ManageCataloguePage()
 
@@ -151,6 +153,7 @@ Then(/^I see latest price in 'Latest Price' textbox at 'Catalogue Details' page 
 })
 
 Then(/^I see random contract reference number in 'Contract Reference No' textbox at 'Catalogue Details' page$/, () => {
+    apiAction.callApiGetCatalogueDetail(sessionStorage.getItem("itemCode"))
     manageCataloguePage.verifyValueInContractReferenceNumberTextboxExist(sessionStorage.getItem("contractRefNo"))
 })
 

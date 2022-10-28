@@ -32,8 +32,20 @@ class ManageSupplierBankAccountPage{
         })
     }
 
-    enterValueToFilterBankAccount(number){
-        commonAction.enterValueToTextbox(manageSupplierBankAccountPageLocator.filter_bank_account_number_txb_css, number)
+    enterValueToFilterBankAccount(number) {
+        let token = window.localStorage.getItem("token")
+        cy.request({
+            method: 'GET',
+            url: printf(urlPageLocator.supplier_bank_account_list_url, this.env, dataBuyer.buyerCompanyUuid),
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            expect(response.body).has.property("status", "OK")
+            commonAction.wait(1)
+            commonAction.clickToElement(manageSupplierBankAccountPageLocator.filter_bank_account_number_txb_css)
+            commonAction.enterValueToTextbox(manageSupplierBankAccountPageLocator.filter_bank_account_number_txb_css, number)
+        })
     }
 
     enterValueToBankLabelTextbox(bankLabel){

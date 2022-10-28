@@ -26,6 +26,7 @@ class UrlPageLocator{
         this.create_category_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/category/add`;
         this.create_catalogue_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/catalogue/add`;
         this.update_user_role_url = `https://api-connex-${'%s'}.doxa-holdings.com/auth/api/${'%s'}/rbac/user/${'%s'}`;
+        this.catalogue_detail_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/catalogue/get-catalogue-details/${'%s'}`;
         this.create_gl_account_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/transactional-setting/create-gl-account`;
         this.item_catalogue_pr_url = `https://api-connex-${'%s'}.doxa-holdings.com/entities/${'%s'}/catalogue/v2/list/feature?page=0&size=10&q=item+code+1`;
         this.entity_detail_page_url = `https://connex-${'%s'}.doxa-holdings.com/entity-details?uuid=${'%s'}`;

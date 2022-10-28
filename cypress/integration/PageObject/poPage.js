@@ -5,7 +5,7 @@ import UrlPageLocator from '../PageUI/urlPageUI'
 var printf = require('printf')
 var dataBuyer = require('../../../dataBuyer.json');
 var dataSupplier = require('../../../dataSupplier.json');
-var dataUnconnectedSupplier = require('../../../dataUnconnectedSupplier.json');
+var dataUnconnectedSupplier = require('../../../dataUnConnectSupplier.json');
 
 const commonAction = new CommonAction()
 const poPageLocator = new PoPageLocator()

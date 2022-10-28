@@ -58,6 +58,15 @@ When(/^Write data to 'dataApSpecialist.json' file$/, () => {
     })
 })
 
+When(/^Write data to 'dataSupplier1.json' file$/, () => {
+    commonAction.writeValueToJsonFile("dataSupplier1.json", 
+    {   
+        supplierName: sessionStorage.getItem("userName"),
+        supplierUuid: sessionStorage.getItem("userUuid"),
+        supplierCompanyUuid: sessionStorage.getItem("companyUuid")
+    })
+})
+
 When(/^Write data to 'dataSupplier.json' file$/, () => {
     commonAction.writeValueToJsonFile("dataSupplier.json", 
     {   
@@ -67,7 +76,7 @@ When(/^Write data to 'dataSupplier.json' file$/, () => {
     })
 })
 
-When(/^Write data to 'dataUnconnectedSupplier.json' file$/, () => {
+When(/^Write data to 'dataUnConnectSupplier.json' file$/, () => {
     commonAction.writeValueToJsonFile("dataUnConnectSupplier.json", 
     {   
         supplierName: sessionStorage.getItem("userName"),
