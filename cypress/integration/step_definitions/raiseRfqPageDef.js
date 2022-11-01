@@ -826,39 +826,39 @@ Then(/^I see 'Approval Route' dropdown at 'RFQ' page is disabled$/, () => {
     raiseRfqPage.verifyApprovalRouteDropdownIsDisable()
 })
 
-Then(/^I see a validation text of 'RFQ title' "([^"]*)" appears$/, (validation) => {
+Then(/^I see a validation text of 'RFQ title' at 'Raise RFQ' page "([^"]*)" appears$/, (validation) => {
     raiseRfqPage.verifyValidationTextRfqTitleDisplay(validation)
 })
 
-Then(/^I see a validation text of 'Procurement Type' "([^"]*)" appears$/, (validation) => {
+Then(/^I see a validation text of 'Procurement Type' at 'Raise RFQ' page "([^"]*)" appears$/, (validation) => {
     raiseRfqPage.verifyValidationProcurementTypeDisplay(validation)
 })
 
-Then(/^I see a validation text of 'Currency Code' "([^"]*)" appears$/, (validation) => {
+Then(/^I see a validation text of 'Currency Code' at 'Raise RFQ' page "([^"]*)" appears$/, (validation) => {
     raiseRfqPage.verifyValidationTextCurrencyCodeDisplay(validation)
 })
 
-Then(/^I see a validation text of 'Tax Code' "([^"]*)" appears$/, (validation) => {
+Then(/^I see a validation text of 'Tax Code' at 'Raise RFQ' page "([^"]*)" appears$/, (validation) => {
     raiseRfqPage.verifyValidationTextTaxCodeDisplay(validation)
 })
 
-Then(/^I see a validation text of 'Vendor' "([^"]*)" appears$/, (validation) => {
+Then(/^I see a validation text of 'Vendor' at 'Raise RFQ' page "([^"]*)" appears$/, (validation) => {
     raiseRfqPage.verifyValidationTextVendorsDisplay(validation)
 })
 
-Then(/^I see a validation text of 'RFQ Type' "([^"]*)" appears$/, (validation) => {
+Then(/^I see a validation text of 'RFQ Type' at 'Raise RFQ' page "([^"]*)" appears$/, (validation) => {
     raiseRfqPage.verifyValidationTextRfqTypeDisplay(validation)
 })
 
-Then(/^I see a validation text of 'Due Date' "([^"]*)" appears$/, (validation) => {
+Then(/^I see a validation text of 'Due Date' at 'Raise RFQ' page "([^"]*)" appears$/, (validation) => {
     raiseRfqPage.verifyValidationTextDueDateDisplay(validation)
 })
 
-Then(/^I see a validation text of 'Delivery Address' "([^"]*)" appears$/, (validation) => {
+Then(/^I see a validation text of 'Delivery Address' at 'Raise RFQ' page "([^"]*)" appears$/, (validation) => {
     raiseRfqPage.verifyValidationTextDeliveryAddressDisplay(validation)
 })
 
-Then(/^I see a validation text of 'Delivery Date' "([^"]*)" appears$/, (validation) => {
+Then(/^I see a validation text of 'Delivery Date' at 'Raise RFQ' page "([^"]*)" appears$/, (validation) => {
     raiseRfqPage.verifyValidationTextDeliveryDateDisplay(validation)
 })
 

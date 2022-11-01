@@ -1,5 +1,4 @@
-@rfq
-#@p2p
+@rfq @p2p
 Feature: 0117 Raise Request for Quotations with Project, Contract and add manual items
 
 Scenario: P2P-RFQ-S04-001 Raise Request for Quotations with Project, Contract and add manual items

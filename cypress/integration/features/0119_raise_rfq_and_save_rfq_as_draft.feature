@@ -1,5 +1,4 @@
-@rfq
-#@p2p
+@rfq @p2p
 Feature: 0119 Raise RFQ and save RFQ as draft
 
 Scenario: P2P-RFQ-S05-001-002-003-004 Raise RFQ and save RFQ as draft
@@ -17,13 +16,13 @@ Scenario: P2P-RFQ-S05-001-002-003-004 Raise RFQ and save RFQ as draft
 
     When I click to "OK" button format_2
     And I click to RFQ title textbox
-    Then I see a validation text of 'RFQ title' "Please enter valid RFQ Title" appears
-    And I see a validation text of 'Procurement Type' "Please select valid Procurement Type" appears
-    And I see a validation text of 'Vendor' "Please select valid a Vendor" appears
-    And I see a validation text of 'RFQ Type' "Please enter valid RFQ Type" appears
-    And I see a validation text of 'Due Date' "Please select valid Due Date" appears
-    And I see a validation text of 'Delivery Address' "Please select valid Delivery Address" appears
-    And I see a validation text of 'Delivery Date' "Please select valid Delivery Date" appears
+    Then I see a validation text of 'RFQ title' at 'Raise RFQ' page "Please enter valid RFQ Title" appears
+    And I see a validation text of 'Procurement Type' at 'Raise RFQ' page "Please select valid Procurement Type" appears
+    And I see a validation text of 'Vendor' at 'Raise RFQ' page "Please select valid a Vendor" appears
+    And I see a validation text of 'RFQ Type' at 'Raise RFQ' page "Please enter valid RFQ Type" appears
+    And I see a validation text of 'Due Date' at 'Raise RFQ' page "Please select valid Due Date" appears
+    And I see a validation text of 'Delivery Address' at 'Raise RFQ' page "Please select valid Delivery Address" appears
+    And I see a validation text of 'Delivery Date' at 'Raise RFQ' page "Please select valid Delivery Date" appears
 
     When I fill data in Raise Requisition tab from "rfq_v9" json file at Raise RFQ page
     And I fill data in General Information tab from "rfq_v9" json file at Raise RFQ page
@@ -41,7 +40,7 @@ Scenario: P2P-RFQ-S05-001-002-003-004 Raise RFQ and save RFQ as draft
 
     When I click to "OK" button format_2
     And I click to RFQ title textbox
-    Then I see a validation text of 'Due Date' "Due Date cannot be in the past" appears
+    Then I see a validation text of 'Due Date' at 'Raise RFQ' page "Due Date cannot be in the past" appears
 
     When I clear value in 'Due date' textbox at Raise RFQ page
     And I input due date as next "2" days to 'Due Date' textbox at Raise RFQ page
@@ -50,7 +49,7 @@ Scenario: P2P-RFQ-S05-001-002-003-004 Raise RFQ and save RFQ as draft
 
     When I click to "OK" button format_2
     And I click to 'Note' textbox at Raise RFQ page
-    And I see a validation text of 'Delivery Date' "Delivery Date cannot be in the past" appears
+    And I see a validation text of 'Delivery Date' at 'Raise RFQ' page "Delivery Date cannot be in the past" appears
     And I clear value in 'Delivery date' textbox at Raise RFQ page
     And I input delivery date as next "3" days to 'Delivery Date' textbox at Raise RFQ page
     And I click to "Save As Draft" button format_1

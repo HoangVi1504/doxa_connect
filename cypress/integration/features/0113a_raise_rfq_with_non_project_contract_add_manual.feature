@@ -1,5 +1,4 @@
-@rfq
-#@p2p
+@rfq @p2p
 Feature: 0113a Raise Request for Quotations with non-project, Contract and add manual items
 
 Scenario: P2P-RFQ-S02-001 Raise Request for Quotations with non-project, Contract and add manual items
@@ -40,7 +39,7 @@ Scenario: P2P-RFQ-S07-001 Update RFQ that had already been issued to vendors
     Then I see 'RFQ Detail' page title
     And I see RFQ title at RFQ detail page from "rfq_v3" json file
 
-    When I select "AUTO SUPPLIER 2 (SUPPLIER 2)" from 'Vendor' dropdown at 'RFQ Detail' page
+    When I select "AUTO COMPANY 1 (COMPANY CODE 1)" from 'Vendor' dropdown at 'RFQ Detail' page
     And I select "New City" from 'Delivery Address' dropdown at 'RFQ Detail' page
     And I input due date as next "15" days to 'Due Date' textbox at 'RFQ Detail' page
     And I input delivery date as next "25" days to 'Delivery Date' textbox at 'RFQ Detail' page

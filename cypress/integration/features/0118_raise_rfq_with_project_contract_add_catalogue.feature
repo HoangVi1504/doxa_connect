@@ -1,5 +1,4 @@
-@rfq
-#@p2p
+@rfq @p2p
 Feature: 0118 Raise Request for Quotations with Project, Contrat and add catalogue item
 
 Scenario: P2P-RFQ-S04-002 Raise Request for Quotations with Project, Contrat and add catalogue item

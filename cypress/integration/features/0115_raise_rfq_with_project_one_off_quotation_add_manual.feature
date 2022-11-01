@@ -1,5 +1,4 @@
-@rfq
-#@p2p
+@rfq @p2p
 Feature: 0115 Raise Request for Quotations with Project, One-off-Quotation and add manual items
 
 Scenario: P2P-RFQ-S03-001 P2P-RFQ-S07-002 P2P-RFQ-S016-001 Raise RFQ then close RFQ and Reopen RFQ

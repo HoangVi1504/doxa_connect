@@ -115,7 +115,7 @@ class BaseAction {
     }
 
     getLinkFromGetnada() {
-        this.wait(5)
+        this.wait(15)
         cy.xpath("//*[@id='the_message_iframe']").then(function ($ele) {
             cy.get($ele.contents().find('body').find('div[class="content"]').find('p').last().find('a')).then(($el) => {
                 let link = $el.attr('href')

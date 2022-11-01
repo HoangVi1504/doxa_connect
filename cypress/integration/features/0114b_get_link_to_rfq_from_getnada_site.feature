@@ -1,5 +1,4 @@
-@rfq
-#@p2p
+@rfq @p2p 
 Feature: 0114b Get link to RFQ from Getnada site
 
 Scenario: Navigate to Getnada site to get link RFQ

@@ -1,5 +1,4 @@
-@rfq
-#@p2p
+@rfq @p2p 
 Feature: 0113c Unconnected Supplier Submit RFQ
 
 Scenario: P2P-RFQ-S09-001 Unconnected supplier submits quote to Buyer with valid value

@@ -1,5 +1,4 @@
-@rfq
-#@p2p
+@rfq @p2p 
 Feature: 0114c Unconnected Supplier updated quote
 
 Scenario: Unconnected supplier submit quote to Buyer with valid value

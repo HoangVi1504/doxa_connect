@@ -41,10 +41,13 @@ class RaiseRFQPageLocator{
         this.option_btn_in_dialog_box_xpath = '//*[@class="modal-footer"]/button[text()="%s"]';
 
         // Xpath - Txb
+        this.item_code_txb_xpath = "(//*[@col-id='itemCode'])[2]//input";
+        this.item_name_txb_xpath = "(//*[@col-id='itemName'])[2]//input";
         this.unit_price_txb_xpath = "(//*[@col-id='itemUnitPrice'])[2]//input";
+        this.item_description_txb_xpath = "//textarea[@aria-label='Input Editor']";
         this.awarded_quantity_txb_xpath = "(//*[@col-id='awardedQty0'])[2]//input";
-        this.item_awarded_quantity_txb_xpath = "(//*[@col-id='awardedQty0'])[2]";
         this.conversation_comment_txb_xpath = "//*[text()='%s']/parent::*/parent::*/following-sibling::*//input[@placeholder='Please enter your comment here...']";
+        this.item_awarded_quantity_txb_xpath = "(//*[@col-id='awardedQty0'])[2]";
 
         // Xpath - Ckb
         this.supplier_ckb_xpath = "(//*[@col-id='selected0'])[2]//*[contains(@class,'p-checkbox')]/parent::*//input[@type='checkbox']";

@@ -1,5 +1,4 @@
-@rfq 
-#@p2p
+@rfq @p2p
 Feature: 0111 Raise Request for Quotations with non-project, One-off-Quotation and add manual items
 
 Scenario: P2P-RFQ-S01-001 Raise Request for Quotations with non-project, One-off quotation, add manual item
@@ -47,8 +46,8 @@ Scenario: P2P-RFQ-S08-001-002 Connected supplier submits quote
     Then I see a message "Validation error, please check your input." appears
 
     When I click to "OK" button format_1
-    Then I see a validation text of 'Currency Code' "Please select valid Currency" appears
-    And I see a validation text of 'Tax Code' "Please select valid Tax Code" appears
+    Then I see a validation text of 'Currency Code' at 'Raise RFQ' page "Please select valid Currency" appears
+    And I see a validation text of 'Tax Code' at 'Raise RFQ' page "Please select valid Tax Code" appears
 
     When I select "United States Dollar (+USD)" from 'Currency' dropdown at 'RFQ Detail' page
     And I select "GST7" from 'Tax Code' dropdown at 'Request Terms' table on 'RFQ Detail' page

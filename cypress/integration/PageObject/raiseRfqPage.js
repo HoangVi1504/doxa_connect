@@ -10,7 +10,7 @@ const commonPageLocator = new CommonPageLocator()
 const raiseRFQPageLocator = new RaiseRFQPageLocator()
 
 var dataBuyer = require('../../../dataBuyer.json');
-var dataSupplier = require('../../../dataSupplier.json');
+var dataSupplier1 = require('../../../dataSupplier1.json');
 class RaiseRFQPage{
     constructor() {
         this.env = 'stag'
@@ -83,6 +83,7 @@ class RaiseRFQPage{
         cy.fixture(fileName).then((fileName) =>{
             commonAction.clickToElementByXpath(printf(commonPageLocator.button_format_2_xpath, "Add Manual"))
             this.verifyItemDeleteButtonDisplay()
+            commonAction.wait(1)
             this.enterValueToItemCodeInItemTable(fileName.itemCode)
             this.enterValueToItemNameInItemTable(fileName.itemName)
             this.enterValueToItemDescriptionInItemTable(fileName.itemDescription)
@@ -125,7 +126,7 @@ class RaiseRFQPage{
         let token = window.localStorage.getItem("token")
         let companyUuid;
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
-        let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
+        let supplierCompanyUuid = dataSupplier1.supplierCompanyUuid
         switch (roleName) {
             case "buyer":
                 companyUuid = buyerCompanyUuid
@@ -175,7 +176,7 @@ class RaiseRFQPage{
     }
 
     enterValueToDueDateTextbox(date){
-        commonAction.enterValueToTextbox(raiseRFQPageLocator.due_date_txb_css, date)
+        commonAction.enterValueToTextboxAfterClear(raiseRFQPageLocator.due_date_txb_css, date)
         commonAction.clickToElementByXpath(printf(commonPageLocator.label_xpath, "Due Date"))
     }
 
@@ -205,15 +206,18 @@ class RaiseRFQPage{
     }
 
     enterValueToItemCodeInItemTable(code){
-        commonAction.enterValueToTextboxByXpath(raiseRFQPageLocator.item_code_xpath, code)
+        commonAction.doubleClickToElementByXpath(raiseRFQPageLocator.item_code_xpath)
+        commonAction.enterValueToTextboxByXpath(raiseRFQPageLocator.item_code_txb_xpath, code)
     }
 
     enterValueToItemNameInItemTable(itemName){
-        commonAction.enterValueToTextboxByXpath(raiseRFQPageLocator.item_name_xpath, itemName)
+        commonAction.doubleClickToElementByXpath(raiseRFQPageLocator.item_name_xpath)
+        commonAction.enterValueToTextboxByXpath(raiseRFQPageLocator.item_name_txb_xpath, itemName)
     }
 
     enterValueToItemDescriptionInItemTable(description){
-        commonAction.enterValueToTextboxByXpath(raiseRFQPageLocator.item_description_xpath, description)
+        commonAction.doubleClickToElementByXpath(raiseRFQPageLocator.item_description_xpath)
+        commonAction.enterValueToTextboxByXpath(raiseRFQPageLocator.item_description_txb_xpath, description)
         commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Item Name"))
     }
 
@@ -244,6 +248,7 @@ class RaiseRFQPage{
 
     enterValueToUnitPriceInItemTable(price) {
         this.scrollToQuantityItem("55%")
+        commonAction.wait(1)
         commonAction.enterValueToTextboxByXpath(raiseRFQPageLocator.item_unit_price_xpath, price)
     }
 
@@ -256,11 +261,11 @@ class RaiseRFQPage{
     }
 
     enterValueToCommentInNegotiation(comment){
-        commonAction.enterValueToTextbox(raiseRFQPageLocator.negotiation_comment_txb_css, comment)
+        commonAction.enterValueToTextboxAfterClear(raiseRFQPageLocator.negotiation_comment_txb_css, comment)
     }
 
     enterValueToCommentInConversations(comment, table){
-        commonAction.enterValueToTextboxByXpath(printf(raiseRFQPageLocator.conversation_comment_txb_xpath, table), comment)
+        commonAction.enterValueToTextboxAfterClearByXpath(printf(raiseRFQPageLocator.conversation_comment_txb_xpath, table), comment)
     }
 
     uploadFileNegotiation(file) {

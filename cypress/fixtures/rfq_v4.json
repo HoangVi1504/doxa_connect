@@ -2,7 +2,7 @@
     "requisitionType": "Purchase Requisition",
     "natureOfRequisition": "Non-Project",
     "currencyCode": "Chinese Renminbi (+CNY)",
-    "vendor1": "AUTO SUPPLIER 2 (SUPPLIER 2)",
+    "vendor1": "AUTO COMPANY 1 (COMPANY CODE 1)",
     "rfqTitle": "auto RFQ title ",
     "procurementType": "Service",
     "rfqType": "Contract",
