@@ -15,7 +15,7 @@ Scenario: P2P-PR-S04-002 Cancel draft PR in Pending Submission status
     Then I see PR status in PR list is "PENDING SUBMISSION"
 
     When Get PR number in PR list
-    And Call API navigate to "Edit draft PR" page of PR random
+    And I double click to PR title just created in PR list
     And Wait for "6" seconds
     And I click to "Cancel" button format_1
     Then I see notification PR "Do you wish to cancel this request?" display at PR detail page

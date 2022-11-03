@@ -299,7 +299,8 @@ class RaisePrPage{
         commonAction.selectValueFromElement(raisePrPageLocator.delivery_address_dropdown_css, address)
     }
 
-    doubleClickToPrTitleInPrList(prTitle){
+    doubleClickToPrTitleInPrList(prTitle) {
+        this.scrollToElementInPrList("20%")
         commonAction.doubleClickToElementByXpath(printf(raisePrPageLocator.pr_title_in_pr_list_xpath, prTitle))
     }
 
@@ -416,7 +417,7 @@ class RaisePrPage{
         commonAction.verifyElementByXpathVisible(raisePrPageLocator.raise_pr_page_title_xpath)
     }
 
-    verifyPrDetailPageDisplay(){
+    verifyPrDetailPageDisplay() {
         commonAction.verifyElementByXpathVisible(raisePrPageLocator.pr_detail_page_title_xpath)
     }
 

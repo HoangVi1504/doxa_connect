@@ -49,10 +49,12 @@ class UrlPageLocator{
 
         // PR URL
         this.pr_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-requisition/list-pagination?page=0&size=50&q=&orderBy=prNumber:desc`;
-        this.pr_detail_url = `https://connex-${'%s'}.doxa-holdings.com/requisition/pr-details?uuid=${'%s'}`;
         this.create_pr_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-requisition/create`;
+        this.pr_detail_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-requisition/details?uuid=${'%s'}`;
         this.approval_pr_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-requisition/approve`;
+        this.pr_over_view_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-requisition/overview?uuid=${'%s'}`
         this.edit_draft_pr_url = `https://connex-${'%s'}.doxa-holdings.com/requisition/edit-draft-pr?uuid=${'%s'}`;
+        this.pr_detail_web_url = `https://connex-${'%s'}.doxa-holdings.com/requisition/pr-details?uuid=${'%s'}`;
         this.buyer_view_po_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-order/buyer/pdf/${'%s'}`;
         this.edit_pr_detail_url = `https://connex-${'%s'}.doxa-holdings.com/requisition/edit-pr-details?uuid=${'%s'}`;
         this.convert_pr_to_po_url = `https://connex-${'%s'}.doxa-holdings.com/convert-pr-to-po?uuid=${'%s'}`;
@@ -83,7 +85,7 @@ class UrlPageLocator{
         this.create_gr_from_do_detail_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/delivery-order/details/for-gr`;
 
         // INV
-        this.cn_list_url =`https://api-connex-${'%s'}.doxa-holdings.com/invoice/${'%s'}/credit-note/buyer/list-pagination?page=0&size=50&q=&orderBy=submissionDate:desc`    
+        this.cn_list_url =`https://api-connex-${'%s'}.doxa-holdings.com/invoice/${'%s'}/credit-note/${'%s'}/list-pagination?page=0&size=50&q=&orderBy=submissionDate:desc`    
         this.inv_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/invoice/${'%s'}/invoice/buyer/list-pagination?page=0&size=50&q=&orderBy=invoiceNo:desc`;
         this.inv_pending_approval_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/invoice/${'%s'}/invoice/buyer/list-pagination/pending?page=0&size=50&q=&orderBy=invoiceNo:desc`
 

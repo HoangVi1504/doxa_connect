@@ -126,7 +126,7 @@ Scenario: P2P-CN-S01-001 P2P-CN-S05-001 Buyer create Credit Note without adjusti
     When I click to "I Understand" button format_1
     Then I see 'Credit Note List' page
 
-    When I input INV No to filter INV in 'Credit Notes' list
+    When "buyer" input INV No to filter INV in 'Credit Notes' list
     Then I see credit note status in list is "PENDING APPROVAL"
 
     When I get CN number in list
@@ -162,7 +162,7 @@ Scenario: P2P-CN-S03-001 P2P-CN-S04-001-003 AP Specialist and 2 Approver approve
     When I click to "I Understand" button format_1
     Then I see 'Credit Note List' page
 
-    When I input INV No to filter INV in 'Credit Notes' list
+    When "buyer" input INV No to filter INV in 'Credit Notes' list
     Then I see credit note status in list is "PENDING CN APPROVAL"
 
     When I logout account

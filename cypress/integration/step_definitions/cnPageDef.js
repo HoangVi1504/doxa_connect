@@ -59,8 +59,8 @@ When(/^I input credit note date as next "([^"]*)" days to 'Creadit Note Date' te
     cnPage.enterValueToCreditNoteDateTextbox(commonAction.getDateFormat4(date))
 })
 
-When(/^I input INV No to filter INV in 'Credit Notes' list$/, () => {
-    cnPage.enterValueToFilterInvNumberInList(sessionStorage.getItem("invNumberList"))
+When(/^"([^"]*)" input INV No to filter INV in 'Credit Notes' list$/, (account) => {
+    cnPage.enterValueToFilterInvNumberInList(sessionStorage.getItem("invNumberList"), account)
 })
 
 When(/^I input CN No to filter CN in 'Credit Notes' list$/, () => {
@@ -75,12 +75,20 @@ When(/^I double click to CN No in 'Credit Notes' list$/, () => {
     cnPage.doubleClickToCreditNoteInList(sessionStorage.getItem("cnNumberList"))
 })
 
+When(/^I check "([^"]*)" radio button to choose 'Reference to Existing Invoice' option at 'Create Credit Note' page$/, (option) => {
+    cnPage.checkToChooseReferenceToExistingInvoice(option)
+})
+
 When(/^I select "([^"]*)" from 'Approval Route' dropdown at 'Credit Note Details' page$/, (approvalRoute) => {
     cnPage.selectValueFromApprovalRouteDropdown(approvalRoute)
 })
 
 When(/^I select "([^"]*)" from 'Supplier Code' dropdown at 'Create Credit Note' page$/, (supplierCode) => {
     cnPage.selectSupplierCodeFromDropdown(supplierCode)
+})
+
+When(/^I select "([^"]*)" from 'Buyer Code' dropdown at 'Create Credit Note' page$/, (buyerCode) => {
+    cnPage.selectBuyerCodeFromDropdown(buyerCode)
 })
 
 When(/^I select INV No from 'Reference Invoice' dropdown at 'Create Credit Note' page$/, () => {
@@ -151,6 +159,10 @@ Then(/^I see 'Item Delete' button in 'Add Item' table at 'Create Invoice' page$/
     cnPage.verifyItemDeleteButtonInTableDisplay()
 })
 
+Then(/^I see 'Reference Invoice' field disappear at 'Create Credit Note' page$/, () => {
+    cnPage.verifyReferenceInvoiceFieldDisappear()
+})
+
 Then(/^I see the item in 'Add Item' table at 'Create Credit Note' page is deleted$/, () => {
     cnPage.verifyItemDeleteButtonInTableIsDeleted()
 })
@@ -163,8 +175,12 @@ Then(/^I see pop-up appears to show preview of credit note$/, () => {
     cnPage.verifyPopUpPreviewCreditNoteDisplay()
 })
 
-Then(/^I see a validation text of 'Supplier Code' "([^"]*)" appears$/, (validation) => {
+Then(/^I see a validation text of 'Supplier Code' "([^"]*)" appears at 'Create Credit Note' page$/, (validation) => {
     cnPage.verifyValidationTextSupplierCodeDisplay(validation)
+})
+
+Then(/^I see a validation text of 'Reference Invoice' "([^"]*)" appears at 'Create Credit Note' page$/, (validation) => {
+    cnPage.getValidationTextReferenceInvoice().should('have.text', validation)
 })
 
 Then(/^I see credit note status in list is "([^"]*)"$/, (status) => {

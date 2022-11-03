@@ -26,7 +26,7 @@ Scenario: P2P-PR-S09-001 Approver Reject PR in PENDING APPROVAL status
     When I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING APPROVAL"
 
-    When Call API navigate to "PR detail" page of PR random
+    When I double click to PR title just created in PR list
     And Wait for "6" seconds
     And I click to "Reject" button format_1
     And I input reason send back or reject "auto reject this PR" at Raise PR page
@@ -64,7 +64,7 @@ Scenario: P2P-PR-S08-001 Approver Send back PR in PENDING APPROVAL status
     When I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING APPROVAL"
 
-    When Call API navigate to "PR detail" page of PR random
+    When I double click to PR title just created in PR list
     And Wait for "6" seconds
     And I click to "Send Back" button format_1
     And I input reason send back or reject "auto send back this PR" at Raise PR page
@@ -77,7 +77,7 @@ Scenario: P2P-PR-S08-001 Approver Send back PR in PENDING APPROVAL status
     When I input PR title random to 'Search PR' textbox
     Then I see PR status in PR list is "SENT BACK"
 
-Scenario: P2P-PR-S05-001 Creator recall PR in Pending Approval status then submit PR in Recalled status
+Scenario: P2P-PR-S05-001 P2P-PR-S06-002 Creator recall PR in Pending Approval status then submit PR in Recalled status
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "creator"
     And Call API Raise PR random
@@ -91,7 +91,7 @@ Scenario: P2P-PR-S05-001 Creator recall PR in Pending Approval status then submi
     Then I see PR status in PR list is "PENDING APPROVAL"
 
     When Get PR number in PR list
-    And Call API navigate to "PR detail" page of PR random
+    When I double click to PR title just created in PR list
     And Wait for "6" seconds
     And I click to "Recall" button format_1
     Then I see notification PR "Do you wish to recall this request?" display at PR detail page
@@ -106,7 +106,7 @@ Scenario: P2P-PR-S05-001 Creator recall PR in Pending Approval status then submi
     Then I see PR status in PR list is "RECALLED"
 
     When Get PR number in PR list
-    And Call API navigate to "Edit PR detail" page of PR random
+    And I double click to PR title just created in PR list
     And Wait for "6" seconds
     And I select delivery address from "pr_v1" json file at Raise PR page
     And I click to Item delete button at Raise PR page

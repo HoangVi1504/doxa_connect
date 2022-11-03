@@ -91,7 +91,7 @@ Scenario: P2P-PR-S04-001 Cancel PR in Pending Approval status after Submit PR in
     Then I see PR title in PR list from "pr_v5" json file 
     And I see PR status in PR list is "PENDING APPROVAL"
 
-    When Call API navigate to "PR detail" page of PR random
+    When I double click to PR title in PR list from "pr_v5" json file
     And Wait for "6" seconds
     Then I see 'PR detail' page title
     And I see PR title at PR detail page from "pr_v5" json file

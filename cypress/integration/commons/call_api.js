@@ -128,6 +128,48 @@ class ApiAction{
         })
     }
 
+    callApiGetDataInPrList(prNumber){
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.request({
+            method: 'GET',
+            url: printf(urlPageLocator.pr_list_url, this.env, buyerCompanyUuid),
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            expect(response.body).has.property("status", "OK")
+            let elementRoot = response.body.data.data.find(element => element.prNumber === prNumber);
+            let uuidRoot = elementRoot.uuid;
+            sessionStorage.setItem("prUuid", uuidRoot)
+        })
+    }
+    
+    callApiGetPrDetail(prNumber){
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.wrap(this.callApiGetDataInPrList(prNumber)).then((e) => {
+            cy.request({
+                method: 'GET',
+                url: printf(urlPageLocator.pr_detail_url, this.env, buyerCompanyUuid, sessionStorage.getItem("prUuid")),         
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response)=>{
+                expect(response.body).has.property("status", "OK")
+                cy.request({
+                    method: 'GET',
+                    url: printf(urlPageLocator.pr_over_view_url, this.env, buyerCompanyUuid, sessionStorage.getItem("prUuid")),
+                    headers: {
+                        authorization: "Bearer " + token,
+                    }
+                }).then((response) => {
+                    expect(response.body).has.property("status", "OK")
+                })
+            })
+        })
+    }
+
     callApiNavigateToPrPage(pageName, prNumber){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid

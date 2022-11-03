@@ -43,6 +43,9 @@ class CreditNotePageLocator{
         this.reject_cn_btn_xpath = "(//button[text()='Reject'])[2]";
         this.item_delete_btn_xpath = "//*[@col-id='action']//button[contains(@class,'MuiIconButton')]";
 
+        // Xpath - Radio Button
+        this.reference_to_existing_inv_radio_btn_xpath = "//label[text()='%s']/preceding-sibling::*//input[@name='referenceToInvoice']"
+
         // Xpath - Dropdown
         this.supplier_code_dropdown_xpath = "//*[@id='mui-component-select-supplierCode']";
 
@@ -64,5 +67,6 @@ class CreditNotePageLocator{
 
         // Xpath - Validation
         this.validation_text_supplier_xpath = "//*[@name='supplierCode']/parent::*/following-sibling::*[text()='%s']";
+        this.validation_text_reference_invoice_xpath ="//*[@name='invoiceUuid']/following-sibling::*[@class='invalid-feedback']"
     }
 } export default CreditNotePageLocator

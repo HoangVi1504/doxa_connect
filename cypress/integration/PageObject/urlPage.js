@@ -31,7 +31,7 @@ class UrlPage{
         let url;
         switch (pageName) {
             case "PR detail":
-                url = printf(urlPageLocator.pr_detail_url, this.env, uuid)
+                url = printf(urlPageLocator.pr_detail_web_url, this.env, uuid)
                 break;
 
             case "Edit PR detail":

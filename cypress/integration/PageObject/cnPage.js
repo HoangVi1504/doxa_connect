@@ -5,6 +5,7 @@ import CreditNotePageLocator from '../PageUI/cnPageUI'
 
 var printf = require('printf')
 var dataBuyer = require('../../../dataBuyer.json');
+var dataSupplier = require('../../../dataSupplier.json');
 
 const commonAction = new CommonAction()
 const urlPageLocator = new UrlPageLocator()
@@ -16,11 +17,17 @@ class CreditNotePage{
         this.env = 'stag'
     }
 
-    enterValueToFilterInvNumberInList(invNumber){
+    enterValueToFilterInvNumberInList(invNumber, account){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
         let urlRequest
-        urlRequest = printf(urlPageLocator.cn_list_url, this.env, buyerCompanyUuid)
+        if (account == "buyer") {
+            urlRequest = printf(urlPageLocator.cn_list_url, this.env, buyerCompanyUuid, account)
+        }
+        else if (account == "supplier") {
+            urlRequest = printf(urlPageLocator.cn_list_url, this.env, supplierCompanyUuid, account)
+        }
         cy.request({
             method: 'GET',
             url: urlRequest,
@@ -40,7 +47,7 @@ class CreditNotePage{
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
         let urlRequest
-        urlRequest = printf(urlPageLocator.cn_list_url, this.env, buyerCompanyUuid)
+        urlRequest = printf(urlPageLocator.cn_list_url, this.env, buyerCompanyUuid, "buyer")
         cy.request({
             method: 'GET',
             url: urlRequest,
@@ -65,7 +72,8 @@ class CreditNotePage{
         commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Description"))
     }
 
-    enterValueToItemCodeTextbox(itemCode){
+    enterValueToItemCodeTextbox(itemCode) {
+        this.scrollToInItemTable("70%")
         commonAction.doubleClickToElement(cnPageLocator.inv_item_code_in_table_css)
         commonAction.enterValueToTextboxAfterClearByXpath(cnPageLocator.inv_item_code_txb_in_table_xpath, itemCode)
         commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Item Code"))
@@ -133,6 +141,10 @@ class CreditNotePage{
         commonAction.doubleClickToElementByXpath(printf(cnPageLocator.cn_number_in_list_xpath, cnNumber))
     }
 
+    checkToChooseReferenceToExistingInvoice(option) {
+        commonAction.checkCheckboxByXpath(printf(cnPageLocator.reference_to_existing_inv_radio_btn_xpath, option))
+    }
+
     selectValueFromApprovalRouteDropdown(approvalRoute){
         commonAction.selectValueFromElement(cnPageLocator.approval_route_dropdown_css, approvalRoute)
     }
@@ -141,6 +153,13 @@ class CreditNotePage{
         commonAction.clickToElementByXpath(cnPageLocator.supplier_code_dropdown_xpath)
         commonAction.wait(2)
         commonAction.clickToElementByXpath(printf(commonPageLocator.option_result_xpath, supplierCode))
+        commonAction.wait(5)
+    }
+
+    selectBuyerCodeFromDropdown(buyerCode){
+        commonAction.clickToElementByXpath(cnPageLocator.supplier_code_dropdown_xpath)
+        commonAction.wait(2)
+        commonAction.clickToElementByXpath(printf(commonPageLocator.option_result_xpath, buyerCode))
         commonAction.wait(5)
     }
 
@@ -224,6 +243,10 @@ class CreditNotePage{
         commonAction.verifyElementByXpathVisible(cnPageLocator.item_delete_btn_xpath)
     }
 
+    verifyReferenceInvoiceFieldDisappear() {
+        commonAction.verifyElementNotExist(cnPageLocator.reference_inv_dropdown_css)
+    }
+
     verifyItemDeleteButtonInTableIsDeleted() {
         this.scrollToInItemTable("0%")
         commonAction.verifyElementByXpathNotExist(cnPageLocator.item_delete_btn_xpath)
@@ -235,6 +258,10 @@ class CreditNotePage{
 
     verifyValidationTextSupplierCodeDisplay(validation){
         commonAction.verifyElementByXpathVisible(printf(cnPageLocator.validation_text_supplier_xpath, validation))
+    }
+
+    getValidationTextReferenceInvoice() {
+        return commonAction.getTextElementByXpath(cnPageLocator.validation_text_reference_invoice_xpath)
     }
     
     getCreditNoteStatusInList(){

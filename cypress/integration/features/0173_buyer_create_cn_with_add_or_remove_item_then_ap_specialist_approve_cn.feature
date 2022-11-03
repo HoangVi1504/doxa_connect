@@ -145,7 +145,7 @@ Scenario: P2P-CN-S01-004 Buyer create Credit Note with add or remove item
     When I click to "I Understand" button format_1
     Then I see 'Credit Note List' page
 
-    When I input INV No to filter INV in 'Credit Notes' list
+    When "buyer" input INV No to filter INV in 'Credit Notes' list
     Then I see credit note status in list is "PENDING APPROVAL"
 
     When I get CN number in list
@@ -186,7 +186,7 @@ Scenario: P2P-CN-S03-003 AP Specialist approve Credit Note with otp out Credit N
     When I click to "I Understand" button format_1
     Then I see 'Credit Note List' page
 
-    When I input INV No to filter INV in 'Credit Notes' list
+    When "buyer" input INV No to filter INV in 'Credit Notes' list
     Then I see credit note status in list is "APPROVED"
 
 Scenario: Entity admin uncheck all function in Approval Configuration

@@ -309,6 +309,10 @@ When(/^I double click to PR title in PR list from "([^"]*)" json file$/, (keyWor
     })
 })
 
+When(/^I double click to PR title just created in PR list$/, () => {
+    raisePrPage.doubleClickToPrTitleInPrList(sessionStorage.getItem("prTitleRandom"))
+})
+
 When(/^I click to PR title textbox at Raise PR page$/, () => {
     raisePrPage.clickToPrTitleTextbox()
 })
@@ -475,6 +479,7 @@ Then(/^I see PR title at PR detail page from "([^"]*)" json file$/, (keyWord) =>
         default:
             break;
     }
+    apiAction.callApiGetPrDetail(sessionStorage.getItem("prNumber"))
     raisePrPage.verifyValueInPrTitleTextboxExits(fileName, sessionStorage.getItem("numberPrTitle"))
 })
 
