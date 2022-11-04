@@ -51,9 +51,9 @@ Scenario: P2P-GR-S04-001 P2P-GR-S04-004 P2P-GR-S04-005 Creator create GR from PO
 
     When Get PO number in list
     And I double click to PO No in PO list
-    And Wait for "6" seconds
+    And Wait for "3" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "buyer" see PO No in 'PO No' textbox at 'PO Detail' page
 
     When I select approval route "auto approval PO" at 'PO detail' page
     And I click to "Issue" button format_1
@@ -81,7 +81,6 @@ Scenario: P2P-GR-S04-001 P2P-GR-S04-004 P2P-GR-S04-005 Creator create GR from PO
 
     When I click to "OK" button format_2
     Then I see a validation text of 'Delivery Order No' at 'Create GR' page "Please enter valid Delivery Order No." appears
-    # And I see a validation text of 'Delivery Date' at 'Create GR' page "Please select valid Delivery Date" appears
     And I see a validation text of 'Approval Route' at 'Create GR' page "Please select valid approval route" appears
 
     # Create GR from PO with receiving quantity more than remaining quantity

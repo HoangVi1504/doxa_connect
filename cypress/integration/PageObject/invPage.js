@@ -204,7 +204,8 @@ class InvPage{
         commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "UOM"))
     }
 
-    selectValueFromInvoiceTypeDropdown(invoiceType){
+    selectValueFromInvoiceTypeDropdown(invoiceType) {
+        commonAction.wait(1)
         commonAction.selectValueFromElement(invPageLocator.inv_type_dropdown_css, invoiceType)
     }
 

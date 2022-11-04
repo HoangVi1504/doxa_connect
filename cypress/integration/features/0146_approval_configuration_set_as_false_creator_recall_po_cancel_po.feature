@@ -30,9 +30,9 @@ Scenario: P2P-PO-S03-002-004-005 Approval Configuration set as FALSE, creator re
 
     When Get PO number in list
     And I double click to PO No in PO list
-    And Wait for "6" seconds
+    And Wait for "3" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "buyer" see PO No in 'PO No' textbox at 'PO Detail' page
 
     When I input "4500" to 'Item Unit Price' textbox at 'PO Detail' page
     And I click to "Issue" button format_1
@@ -51,9 +51,9 @@ Scenario: P2P-PO-S03-002-004-005 Approval Configuration set as FALSE, creator re
 
     # P2P-PO-S03-004 Recall PO
     When I double click to PO No in PO list
-    And Wait for "6" seconds
+    And Wait for "3" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "buyer" see PO No in 'PO No' textbox at 'PO Detail' page
 
     When I click to "Recall" button format_1
     Then I see a notification appears "Do you wish to recall this request?"
@@ -69,9 +69,9 @@ Scenario: P2P-PO-S03-002-004-005 Approval Configuration set as FALSE, creator re
 
     # Issue DO with RECALLED status
     When I double click to PO No in PO list
-    And Wait for "6" seconds
+    And Wait for "3" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "buyer" see PO No in 'PO No' textbox at 'PO Detail' page
 
     When I click to "Issue" button format_1
     Then I see a message "PO has been submitted for approval" appears
@@ -84,9 +84,9 @@ Scenario: P2P-PO-S03-002-004-005 Approval Configuration set as FALSE, creator re
 
     # P2P-PO-S03-005 Cancel PO in PENDING APPROVAL status
     When I double click to PO No in PO list
-    And Wait for "6" seconds
+    And Wait for "3" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "buyer" see PO No in 'PO No' textbox at 'PO Detail' page
 
     When I click to "Cancel" button format_1
     Then I see a notification appears "Do you wish to cancel this order?"

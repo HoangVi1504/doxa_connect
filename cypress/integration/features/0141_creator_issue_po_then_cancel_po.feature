@@ -45,7 +45,7 @@ Scenario: P2P-PO-S01-001 P2P-PO-S03-001 Creator convert PR to PO and issue PO
     Then I see PR status in PR list is "PENDING CONVERSION TO PO"
 
     When Call API navigate to Convert PR to PO page
-    And Wait for "6" seconds
+    And Wait for "8" seconds
     Then I see 'PR Convert Detail' page
     And I see PR No in 'PR No' textbox at 'PR Convert Detail' page
     
@@ -66,10 +66,10 @@ Scenario: P2P-PO-S01-001 P2P-PO-S03-001 Creator convert PR to PO and issue PO
     And I see Supplier Ack status is "NOT VIEWED"
 
     When Get PO number in list
-    And "Buyer" call API navigate to PO detail page
-    And Wait for "6" seconds
+    And I double click to PO No in PO list
+    And Wait for "3" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "buyer" see PO No in 'PO No' textbox at 'PO Detail' page
 
     When I select approval route "auto approval PO" at 'PO detail' page
     And I click to "Issue" button format_1
@@ -95,10 +95,10 @@ Scenario: P2P-PO-S05-002 Supplier can view PO once PO is issued to supplier
     Then I see PO status in list is "ISSUED"
     And I see Supplier Ack status is "NOT VIEWED"
 
-    When "Supplier" call API navigate to PO detail page
-    And Wait for "6" seconds
+    When I double click to PO No in PO list
+    And Wait for "3" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "supplier" see PO No in 'PO No' textbox at 'PO Detail' page
 
     When "supplier" call API view PO
     And I click to "Back" button format_1
@@ -121,10 +121,10 @@ Scenario: P2P-PO-S05-001 Creator can view PO then cancel PO in Issued status
     Then I see PO status in list is "ISSUED"
     And I see Supplier Ack status is "VIEWED"
 
-    When "Buyer" call API navigate to PO detail page
-    And Wait for "6" seconds
+    When I double click to PO No in PO list
+    And Wait for "3" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "buyer" see PO No in 'PO No' textbox at 'PO Detail' page
 
     When "buyer" call API view PO
     And I click to "Cancel" button format_1

@@ -49,7 +49,7 @@ class UrlPage{
     }
 
     navigateToPoDetailPage(uuid){
-        commonAction.navigateTo(printf(urlPageLocator.po_detail_url, this.env, uuid))
+        commonAction.navigateTo(printf(urlPageLocator.po_detail_web_url, this.env, uuid))
     }
 
     navigateToConvertPrToPoPage(uuid){

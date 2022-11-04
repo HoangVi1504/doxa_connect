@@ -119,4 +119,4 @@ Scenario: P2P-RFQ-S013-001-002 P2P-RFQ-S017-001 Approve RFQ by 2 approver then c
     And I visit 'PO Detail' page by hyperlink in PO No after convert RFQ type 'One-off-quotation'
     And Wait for "10" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "buyer" see PO No in 'PO No' textbox at 'PO Detail' page

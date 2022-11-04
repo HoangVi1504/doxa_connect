@@ -14,34 +14,10 @@ Scenario: P2P-INV-S01-002 Creator create PO invoice with correct input
     And I logout account
     And I login with role "creator"
     And Call API convert PR just created random to PO
-    And I click to 'Dashboard' link on Header menu if it not be selected
-    And I click to "Requisitions" link on header menu
-    And I click to "Requisitions" link on the left menu
-    And I click to "PRs List" link on the left sub menu
-    Then I see 'PR List' page title
+    And Call API submit PO
 
-    When I input PR title random to 'Search PR' textbox
-    And Get PR number in PR list
-    And I click to "Orders" link on header menu
-    And I click to "Orders List" link on the left menu
-    And I click to "POs List" link on the left sub menu
-    Then I see 'PO List' page
-
-    When I input PR No to filter PR in "PO" list
-    Then I see PO status in list is "PENDING ISSUE"
-    And I see Supplier Ack status is "NOT VIEWED"
-
-    When Get PO number in list
-    And I double click to PO No in PO list
-    And Wait for "6" seconds
-    Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
-
-    When I click to "Issue" button format_1
-    Then I see a message "PO has been issued to supplier" appears
-
-    When I click to "I Understand" button format_1
-    And I logout account
+    # Supplier view PO
+    When I logout account
     And I login with role "supplier 34"
     And Call Api get data after "ENTITY_ADMIN" login
     And I click to 'Dashboard' link on Header menu if it not be selected
@@ -52,9 +28,9 @@ Scenario: P2P-INV-S01-002 Creator create PO invoice with correct input
 
     When "supplier" input PO No to filter PO in "PO" list
     And I double click to PO No in PO list
-    And Wait for "6" seconds
+    And Wait for "3" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "supplier" see PO No in 'PO No' textbox at 'PO Detail' page
 
     When "supplier" call API view PO
     And I click to "Back" button format_1

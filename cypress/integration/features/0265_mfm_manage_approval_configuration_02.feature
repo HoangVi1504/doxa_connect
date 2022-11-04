@@ -146,9 +146,9 @@ Scenario: MFM-S002-003 Entity admin able to opt-out approval routing for Purchas
 
     When Get PO number in list
     And I double click to PO No in PO list
-    And Wait for "6" seconds
+    And Wait for "3" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "buyer" see PO No in 'PO No' textbox at 'PO Detail' page
     And I see 'Approval Route' dropdown at 'PO' page is disabled
 
     When I click to "Issue" button format_1

@@ -72,6 +72,7 @@ class PoPage{
                 }
             }).then((response) => {
                 expect(response.body).has.property("status", "OK")
+                commonAction.clickToElement(poPageLocator.filter_po_number_in_list_css)
                 commonAction.enterValueToTextbox(poPageLocator.filter_po_number_in_list_css, poNumber)
             })
         })

@@ -18,7 +18,7 @@ class LoginPage{
         commonAction.enterValueToTextboxAfterClear(loginPageLocator.email_txb_css, email)
         commonAction.enterValueToTextboxAfterClear(loginPageLocator.password_txb_css, password)
         commonAction.submitForm()
-        commonAction.wait(4)
+        commonAction.wait(5)
         commonAction.verifyElementByXpathVisible(commonPageLocator.dashboard_title_xpath)
     }
 

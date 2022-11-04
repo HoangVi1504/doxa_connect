@@ -26,6 +26,18 @@ When(/^"([^"]*)" call API view PO$/, (roleName) => {
     apiAction.callApiViewPo(roleName, sessionStorage.getItem("poNumber"))
 })
 
+When(/^Call API submit PO$/, () => {
+    apiAction.callApiSubmitPo(sessionStorage.getItem("prNumber"), sessionStorage.getItem("prTitleRandom"))
+})
+
+When(/^Call API issue PO$/, () => {
+    apiAction.callApiIssuePo(sessionStorage.getItem("prNumber"), sessionStorage.getItem("prTitleRandom"))
+})
+
+When(/^Call API approve PO$/, () => {
+    apiAction.callApiApprovePo()
+})
+
 When(/^Supplier call API Acknowledge PO$/, () => {
     apiAction.callApiAcknowledgePo()
 })
@@ -112,7 +124,8 @@ Then(/^I see PR No in 'PR No' textbox at 'PR Convert Detail' page$/, () => {
     poPage.verifyValueInPrNumberTextboxExits(sessionStorage.getItem("prNumber"))
 })
 
-Then(/^I see PO No in 'PO No' textbox at 'PO Detail' page$/, () => {
+Then(/^"([^"]*)" see PO No in 'PO No' textbox at 'PO Detail' page$/, (roleName) => {
+    apiAction.callApiGetPoDetail(roleName, sessionStorage.getItem("poNumber"))
     poPage.verifyValueInPoNumberTextboxExits(sessionStorage.getItem("poNumber"))
 })
 

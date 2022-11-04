@@ -12,37 +12,7 @@ Scenario Outline: Create PO invoice
     And I logout account
     And I login with role "creator"
     And Call API convert PR just created random to PO
-    And I click to 'Dashboard' link on Header menu if it not be selected
-    And I click to "Requisitions" link on header menu
-    And I click to "Requisitions" link on the left menu
-    And I click to "PRs List" link on the left sub menu
-    Then I see 'PR List' page title
-
-    When I input PR title random to 'Search PR' textbox
-    And Get PR number in PR list
-    And I click to "Orders" link on header menu
-    And I click to "Orders List" link on the left menu
-    And I click to "POs List" link on the left sub menu
-    Then I see 'PO List' page
-
-    When I input PR No to filter PR in "PO" list
-    Then I see PO status in list is "PENDING ISSUE"
-    And I see Supplier Ack status is "NOT VIEWED"
-
-    When Get PO number in list
-    And I double click to PO No in PO list
-    And Wait for "6" seconds
-    Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
-
-    When I click to "Issue" button format_1
-    Then I see a message "PO has been issued to supplier" appears
-
-    When I click to "I Understand" button format_1
-    Then I see 'PO List' page
-
-    When "buyer" input PO No to filter PO in "PO" list
-    Then I see PO status in list is "ISSUED"
+    And Call API submit PO
 
     # Create PO Invoice
     When I click to hamburger menu

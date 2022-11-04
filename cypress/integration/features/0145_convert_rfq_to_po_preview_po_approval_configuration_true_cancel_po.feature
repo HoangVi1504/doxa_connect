@@ -1,31 +1,14 @@
-#@po @p2p
+@po @p2p
 Feature: 0145 Convert RFQ to PO, Preview PO, Approval Configuration set as true, cancel PO
-
-Scenario: Entity admin able to opt-out approval routing for Purchase Order feature
-    Given Navigate to Doxa Connect 2.0 site
-    When I login with role "buyer"
-    And Call API uncheck all function in Approval Configuration
-    And I click to 'User Profile' button
-    And I click to "Admin" button format_1
-    Then I see 'Dashboard' title
-
-    When Wait for "2" seconds
-    And I click to 'Dashboard' link on Header menu if it not be selected
-    And I click to "Entity Management" link on header menu
-    And I click to "Approval Setting" link on the left menu
-    And I click to "Manage Approval Configuration" link on the left sub menu
-    Then I see 'Approval Configuration' page
-    
-    When I check to "Purchase Order" checkbox at 'Approval Configuration' page
-    And I click to "Save" button format_1
-    Then I see a message "Update is successful" appears
-
-    When I click to "I Understand" button format_1
-    Then I see "Purchase Order" checkbox at 'Approval Configuration' page is checked
 
 Scenario: P2P-PO-S01-003 P2P-PO-S02-001 P2P-PO-S03-001 P2P-PO-S07-002 Convert RFQ to PO, Preview PO, Approval Configuration set as true, cancel PO
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "creator"
+    # Config opt out approval configuration for Purchase Order feature
+    When I login with role "buyer"
+    And Call API uncheck all function in Approval Configuration
+    And Call API opt out approval configuration for "Purchase Order" feature
+    And I logout account
+    And I login with role "creator"
     And Call API raise RFQ
     And I click to "Request for Quotations" link on header menu
     And I click to "Request for Quotations" link on the left menu
@@ -73,13 +56,13 @@ Scenario: P2P-PO-S01-003 P2P-PO-S02-001 P2P-PO-S03-001 P2P-PO-S07-002 Convert RF
 
     When I input RFQ No to filter RFQ in 'PO' list
     And Get PO number in list
-    And "Buyer" call API navigate to PO detail page
-    And Wait for "6" seconds
+    And I double click to PO No in PO list
+    And Wait for "3" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "buyer" see PO No in 'PO No' textbox at 'PO Detail' page
     And I see 'Approval Route' dropdown at 'PO' page is disabled
 
-    When I click to "PreviewPO" button format_1
+    When I click to "Preview PO" button format_1
     Then I see PO number in Preview PO at 'PO Detail' page
 
     When I click to close preview PO button at 'PO Detail' page
@@ -93,10 +76,10 @@ Scenario: P2P-PO-S01-003 P2P-PO-S02-001 P2P-PO-S03-001 P2P-PO-S07-002 Convert RF
     Then I see PO status in list is "ISSUED"
     And I see Supplier Ack status is "NOT VIEWED"
 
-    When "Buyer" call API navigate to PO detail page
-    And Wait for "6" seconds
+    When I double click to PO No in PO list
+    And Wait for "3" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "buyer" see PO No in 'PO No' textbox at 'PO Detail' page
 
     When I click to "Cancel" button format_1
     Then I see a notification appears "Do you wish to cancel this order?"

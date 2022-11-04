@@ -19,6 +19,7 @@ var dataApSpecialist = require('../../../dataApSpecialist.json');
 var dataCreatorCompany = require('../data/dataCreatorCompany.json');
 var dataApprover1Company = require('../data/dataApprover1Company.json');
 var dataApprover2Company = require('../data/dataApprover2Company.json');
+var dataUnconnectedSupplier = require('../../../dataUnConnectSupplier.json');
 var dataApSpecialistCompany = require('../data/dataApSpecialistCompany.json')
 
 class ApiAction{
@@ -70,6 +71,8 @@ class ApiAction{
             }).then((response)=>{
                 let elementPr = response.body.data.find(element => element.prTitle === prTitle);
                 let prUuid = elementPr.uuid;
+                let prNumber = elementPr.prNumber;
+                sessionStorage.setItem("prNumber", prNumber)
                 cy.request({
                     method: 'POST',
                     url: printf(urlPageLocator.convert_pr_to_po_api_url, this.env, buyerCompanyUuid, prUuid, sessionStorage.getItem("supplierUuid")),           //supplierUuid: 3862f5c9-44f3-4f6d-8c4b-918cf086ac2c
@@ -465,6 +468,92 @@ class ApiAction{
         })
     }
 
+    callApiGetDataInPoList(roleName, poNumber) {
+        let token = window.localStorage.getItem("token")
+        let companyUuid, role;
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
+        let unconnectedSupplierUuid = dataUnconnectedSupplier.supplierCompanyUuid
+        switch (roleName) {
+            case "buyer":
+                companyUuid = buyerCompanyUuid
+                role = "buyer"
+                break;
+
+            case "supplier":
+                companyUuid = supplierCompanyUuid
+                role = "supplier"
+                break;
+            
+            case "unconnected supplier":
+                companyUuid = unconnectedSupplierUuid
+                role = "supplier"
+                break;
+        
+            default:
+                break;
+        }
+        cy.request({
+            method: 'GET',
+            url: printf(urlPageLocator.po_list_url, this.env, companyUuid, role),
+            headers: {
+                authorization: "Bearer " + token,
+            }
+        }).then((response) => {
+            expect(response.body).has.property("status", "OK")
+            let elementRoot = response.body.data.data.find(element => element.poNumber === poNumber);
+            let poUuidRoot = elementRoot.poUuid;
+            sessionStorage.setItem("poUuid", poUuidRoot)
+        })
+    }
+
+    callApiGetPoDetail(roleName, poNumber) {
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
+        let unconnectedSupplierUuid = dataUnconnectedSupplier.supplierCompanyUuid
+        let companyUuid, role
+        switch (roleName) {
+            case "buyer":
+                companyUuid = buyerCompanyUuid
+                role = "buyer"
+                break;
+
+            case "supplier":
+                companyUuid = supplierCompanyUuid
+                role = "supplier"
+                break;
+            
+            case "unconnected supplier":
+                companyUuid = unconnectedSupplierUuid
+                role = "supplier"
+                break;
+        
+            default:
+                break;
+        }
+        cy.wrap(this.callApiGetDataInPoList(roleName, poNumber)).then((e) => {
+            cy.request({
+                method: 'GET',
+                url: printf(urlPageLocator.po_detail_url, this.env, companyUuid, role, sessionStorage.getItem("poUuid")),
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response) =>{
+                expect(response.body).has.property("status", "OK")
+                cy.request({
+                    method: 'GET',
+                    url: printf(urlPageLocator.po_detail_url, this.env, companyUuid, role, sessionStorage.getItem("poUuid")),
+                    headers: {
+                        authorization: "Bearer " + token,
+                    }
+                }).then((response) =>{
+                    expect(response.body).has.property("status", "OK")
+                })
+            })
+        })
+    }
+
     callApiViewPo(roleName, poNumber){
         let token = window.localStorage.getItem("token")
         let companyUuid;
@@ -512,6 +601,94 @@ class ApiAction{
                 }
             }).then((response) =>{
                 expect(response.body).has.property("status", "OK")
+            })
+        })
+    }
+
+    callApiSubmitPo(prNumber, prTitle) {
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.wrap(this.callApiGetDataInVendorDetail("TEST SUPPLIER 34")).then((e) => {
+            cy.request({
+                method: 'GET',
+                url: printf(urlPageLocator.po_list_url, this.env, buyerCompanyUuid, "buyer"),
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response) => {
+                expect(response.body).has.property("status", "OK")
+                let elementPO = response.body.data.data.find(element => element.prNumber === prNumber);
+                let poUuidList = elementPO.poUuid;
+                let poNumber = elementPO.poNumber;
+                sessionStorage.setItem("poNumber", poNumber)
+                sessionStorage.setItem("poUuid", poUuidList)
+                cy.request({
+                    method: 'PUT',
+                    url: printf(urlPageLocator.submit_po_url, this.env, buyerCompanyUuid, poUuidList),
+                    headers: {
+                        authorization: "Bearer " + token,
+                    },
+                    body: {
+                        approvalRoute: "",
+                        notes: "auto test note",
+                        poDocumentDtoList: [],
+                        poItems: [
+                            {
+                                currency: "USD",
+                                deliveryAddress: {
+                                    addressFirstLine: "1 XYZ Buildingg",
+                                    addressLabel: "address auto",
+                                    addressSecondLine: "12 New Industrial Rd Singapore, Singapore 536197",
+                                    city: "Singapore",
+                                    country: "Singapore",
+                                    postalCode: "4000",
+                                    state: "Singapore"
+                                },
+                                exchangeRate: 1,
+                                gl_account: "G/L auto 1",
+                                invoiceQty: 0,
+                                itemBrand: "",
+                                itemCategory: "AUTO EQUIPMENT",
+                                itemCode: "auto item code 2",
+                                itemDescription: "",
+                                itemModel: "",
+                                itemName: "auto item name 2",
+                                itemSize: "",
+                                itemUnitPrice: 5000,
+                                manualEntry: false,
+                                note: "",
+                                pendingDeliveryQty: 0,
+                                pendingInvoiceQty: 0,
+                                priceType: "",
+                                qtyConverted: 0,
+                                qtyReceived: 0,
+                                qtyRejected: 0,
+                                quantity: 1000,
+                                requestedDeliveryDate: commonAction.getDateFormat4(1) + "T00:00:00.000Z",
+                                supplierName: "TEST SUPPLIER 34",
+                                supplierUuid: sessionStorage.getItem("vendorUuid"),
+                                taxCode: "11052022",
+                                taxRate: 0.5,
+                                uomCode: "CEN"
+                            }
+                        ],
+                        poTitle: prTitle,
+                        poUuid: poUuidList,
+                        supplierBillingAddress: {
+                            addressFirstLine: "ad1",
+                            addressLabel: "ad label",
+                            addressSecondLine: "ad2",
+                            city: "Singapore",
+                            country: "Singapore",
+                            postalCode: "6000",
+                            state: "Singapore",
+                            uuid: sessionStorage.getItem("vendorAddressUuid")
+                        },
+                        termsConditions: null
+                    }
+                }).then((response) => {
+                    expect(response.body).has.property("message", "PO has been issued to supplier")
+                })
             })
         })
     }
@@ -1760,6 +1937,24 @@ class ApiAction{
             let elementVendor = response.body.data.find(element => element.companyName === vendorName);
             let vendorUuid = elementVendor.uuid
             sessionStorage.setItem("vendorUuid", vendorUuid)
+        })
+    }
+
+    callApiGetDataInVendorDetail(vendorName) {
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        cy.wrap(this.callApiGetDataInManageVendorList(vendorName)).then((e) => {
+            cy.request({
+                method: 'GET',
+                url: printf(urlPageLocator.vendor_detail_url, this.env, buyerCompanyUuid, sessionStorage.getItem("vendorUuid")),
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response)=>{
+                expect(response.body).has.property("status", "OK")
+                let vendorAddressUuid = response.body.data.addressesDto[0].uuid
+                sessionStorage.setItem("vendorAddressUuid", vendorAddressUuid)
+            })
         })
     }
 

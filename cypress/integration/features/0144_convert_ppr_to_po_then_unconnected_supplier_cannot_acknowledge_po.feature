@@ -7,7 +7,7 @@ Scenario: P2P-PO-S01-002 Convert PPR to PO
     When I login with role "buyer"
     And Call API uncheck all function in Approval Configuration
     # Convert PPR to PO
-    And I logout account 
+    And I logout account
     And I login with role "creator"
     And Call API Raise PPR random with contract item and unconnected supplier
     And I logout account
@@ -50,7 +50,7 @@ Scenario: P2P-PO-S01-002 Convert PPR to PO
     And I double click to PO No in PO list
     And Wait for "3" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "buyer" see PO No in 'PO No' textbox at 'PO Detail' page
 
     When I select approval route "auto approval PO" at 'PO detail' page
     And I input "1500" to 'Item Quantity' textbox at 'PO Detail' page
@@ -78,7 +78,7 @@ Scenario: P2P-PO-S03-003 P2P-PO-S09-001 Approver approve PO
     When I double click to PO No in PO list
     And Wait for "3" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "buyer" see PO No in 'PO No' textbox at 'PO Detail' page
 
     When I click to "Approve" button format_1
     Then I see a message "Approval is successful" appears
@@ -103,7 +103,7 @@ Scenario: P2P-PO-S03-003 P2P-PO-S09-001 Approver approve PO
     When I double click to PO No in PO list
     And Wait for "3" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "buyer" see PO No in 'PO No' textbox at 'PO Detail' page
 
     When I click to "Issue" button format_1
     Then I see a message "The purchase order has successfully been issued" appears
@@ -129,7 +129,7 @@ Scenario: P2P-PO-S09-002 P2P-PO-S04-002 Unconnected supplier cannot acknowledge 
     When I double click to PO No in PO list
     And Wait for "3" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "unconnected supplier" see PO No in 'PO No' textbox at 'PO Detail' page
 
     When I click to "Acknowledge" button format_1
     Then I see a message "You have not connected to this buyer" appears

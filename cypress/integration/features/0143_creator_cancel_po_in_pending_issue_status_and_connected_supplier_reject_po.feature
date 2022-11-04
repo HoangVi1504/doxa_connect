@@ -51,9 +51,9 @@ Scenario: P2P-PO-S07-001 Creator cancel PO in Pending Issue status
 
     When Get PO number in list
     And I double click to PO No in PO list
-    And Wait for "6" seconds
+    And Wait for "3" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "buyer" see PO No in 'PO No' textbox at 'PO Detail' page
 
     When I click to "Cancel" button format_1
     Then I see notification PO "Do you wish to cancel this order?" display at 'PO Detail' page
@@ -117,9 +117,9 @@ Scenario: P2P-PO-S08-001 Connected supplier reject PO
 
     When Get PO number in list
     And I double click to PO No in PO list
-    And Wait for "6" seconds
+    And Wait for "3" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "buyer" see PO No in 'PO No' textbox at 'PO Detail' page
 
     When I select approval route "auto approval PO" at 'PO detail' page
     And I click to "Issue" button format_1
@@ -145,9 +145,9 @@ Scenario: P2P-PO-S08-001 Connected supplier reject PO
     And I see Supplier Ack status is "NOT VIEWED"
 
     When I double click to PO No in PO list
-    And Wait for "6" seconds
+    And Wait for "3" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "supplier" see PO No in 'PO No' textbox at 'PO Detail' page
 
     When I click to "Reject" button format_2
     And I input reason reject PO at 'PO Detail' page is "auto reject this PO"

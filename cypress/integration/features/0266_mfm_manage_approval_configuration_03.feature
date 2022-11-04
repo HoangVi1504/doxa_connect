@@ -111,7 +111,7 @@ Scenario: MFM-S002-005 Entity admin able to opt-out approval routing for Good Re
 
     When Get PO number in list
     And I double click to PO No in PO list
-    And Wait for "6" seconds
+    And Wait for "3" seconds
     Then I see 'PO Detail' page
     And I see PO No in 'PO No' textbox at 'PO Detail' page
 
