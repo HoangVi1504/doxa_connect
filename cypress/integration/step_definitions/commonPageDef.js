@@ -359,6 +359,10 @@ Then(/^I see "([^"]*)" button format_1 is disabled$/, (buttonName) => {
     commonPage.verifyButtonFormat1Disabled(buttonName)
 });
 
+Then(/^I see "([^"]*)" button format_1 disappear$/, (buttonName) => {
+    commonPage.verifyButtonFormat1Disappear(buttonName)
+});
+
 Then(/^I see 'Dashboard' title$/, () => {
     commonPage.verifyDashboardTitleDisplay()
 });

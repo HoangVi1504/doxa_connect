@@ -88,6 +88,10 @@ class CommonPage{
         commonAction.verifyElementByXpathDisable(printf(commonPageLocator.button_format_1_xpath, buttonName))
     }
 
+    verifyButtonFormat1Disappear(buttonName){
+        commonAction.verifyElementByXpathNotExist(printf(commonPageLocator.button_format_1_xpath, buttonName))
+    }
+
     verifyDashboardTitleDisplay(){
         commonAction.verifyElementByXpathVisible(commonPageLocator.dashboard_title_xpath)
     }

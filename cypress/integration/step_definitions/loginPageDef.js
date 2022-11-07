@@ -41,6 +41,10 @@ When(/^I login with role "([^"]*)"$/, (role) => {
             fileName = 'ap_specialist.json'
             break;
 
+        case "ap specialist 2":
+            fileName = 'ap_specialist_2.json'
+            break;
+        
         case "doxa admin":
             fileName = 'doxa_admin.json'
             break;
