@@ -113,7 +113,7 @@ Scenario: MFM-S002-005 Entity admin able to opt-out approval routing for Good Re
     And I double click to PO No in PO list
     And Wait for "3" seconds
     Then I see 'PO Detail' page
-    And I see PO No in 'PO No' textbox at 'PO Detail' page
+    And "buyer" see PO No in 'PO No' textbox at 'PO Detail' page
 
     When I click to "Issue" button format_1
     Then I see a message "PO has been issued to supplier" appears
@@ -131,7 +131,7 @@ Scenario: MFM-S002-005 Entity admin able to opt-out approval routing for Good Re
     When "buyer" input PO No to filter PO in "Create GR From PO" list
     And I check to PO No checkbox at 'Create GR' page
     And I click to "Create Goods Receipt" button format_2
-    And Wait for "5" seconds
+    And Wait for "6" seconds
     Then I see 'Create GR From PO' page
     And I see 'Approval Route' dropdown at 'Create GR' page is disabled
 

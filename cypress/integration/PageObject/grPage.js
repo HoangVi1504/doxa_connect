@@ -117,14 +117,12 @@ class GrPage{
         commonAction.verifyValueInTextboxExist(grPageLocator.do_number_txb_css, doNumber)
     }
 
-    verifyCreateGrFromPoPageTitleDisplay(){
+    verifyCreateGrFromPoPageTitleDisplay() {
         commonAction.verifyElementByXpathVisible(grPageLocator.create_gr_from_po_page_title_xpath)
-        commonAction.wait(2)
     }
 
-    verifyCreateGrFromDoPageTitleDisplay(){
+    verifyCreateGrFromDoPageTitleDisplay() {
         commonAction.verifyElementByXpathVisible(grPageLocator.create_gr_from_do_page_title_xpath)
-        commonAction.wait(1)
     }
 
     verifyGrDetailPageTitleDisplay(){

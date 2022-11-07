@@ -52,7 +52,7 @@ Scenario: P2P-PO-S01-002 Convert PPR to PO
     Then I see 'PO Detail' page
     And "buyer" see PO No in 'PO No' textbox at 'PO Detail' page
 
-    When I select approval route "auto approval PO" at 'PO detail' page
+    When I select "auto approval PO" from 'Approval Route' dropdown at 'PO Detail' page
     And I input "1500" to 'Item Quantity' textbox at 'PO Detail' page
     And I click to "Issue" button format_1
     Then I see a message "PO has been submitted for approval" appears

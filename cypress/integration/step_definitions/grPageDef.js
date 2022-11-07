@@ -37,7 +37,7 @@ When(/^I input delivery date as next "([^"]*)" days to 'Delivery Date' textbox a
     grPage.enterValueToDeliveryDateTextbox(commonAction.getDateFormat4(date))
 })
 
-When(/^I input "([^"]*)" to 'Quantity Receiving' textbox at table$/, (quantity) => {
+When(/^I input "([^"]*)" to 'Quantity Receiving' textbox in 'Items Ordered' table at 'Create GR' page$/, (quantity) => {
     grPage.enterValueToItemQuantityReceiving(quantity)
     commonPage.clickToText("Qty Receiving")
 })
@@ -58,7 +58,7 @@ When(/^I input "([^"]*)" to 'Filter Status' in 'Create GR from DO' list$/, (stat
     grPage.enterValueToFilterStatusInList(status)
 })
 
-When(/^I select approval route "([^"]*)" at 'Create GR' page$/, (value) => {
+When(/^I select "([^"]*)" from 'Approval Route' dropdown at 'Create GR' page$/, (value) => {
     grPage.selectValueFromApprovalRouteDropdown(value)
 })
 

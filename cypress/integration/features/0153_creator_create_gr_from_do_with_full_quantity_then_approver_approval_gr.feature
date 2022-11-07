@@ -97,7 +97,7 @@ Scenario: P2P-GR-S03-001 P2P-GR-S03-004 P2P-GR-S03-005 Creator create GR from DO
 
     When I check to DO No checkbox at 'Create GR' page 
     And I click to "Create Goods Receipt" button format_2
-    And Wait for "5" seconds
+    And Wait for "6" seconds
     Then I see 'Create GR From DO' page
     And I see Do No in 'DO Number' textbox at 'Create GR From DO' page
 
@@ -105,9 +105,9 @@ Scenario: P2P-GR-S03-001 P2P-GR-S03-004 P2P-GR-S03-005 Creator create GR from DO
     And I click to "OK" button format_1
     Then I see a validation text of 'Approval Route' at 'Create GR' page "Please select valid approval route" appears
 
-    When I select approval route "auto approval Goods Receipt" at 'Create GR' page
+    When I select "auto approval Goods Receipt" from 'Approval Route' dropdown at 'Create GR' page
     And I input delivery date as next "4" days to 'Delivery Date' textbox at 'Create GR' page
-    And I input "1200" to 'Quantity Receiving' textbox at table
+    And I input "1200" to 'Quantity Receiving' textbox in 'Items Ordered' table at 'Create GR' page
     Then I see a message "Quantity Receiving cannot be greater than Delivery Order Quantity" appears
 
     When I click to "OK" button format_1

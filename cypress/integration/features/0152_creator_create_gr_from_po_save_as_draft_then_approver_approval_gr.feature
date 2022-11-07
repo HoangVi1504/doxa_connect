@@ -21,12 +21,13 @@ Scenario: P2P-GR-S04-002 Creator create GR from PO with partial PO quantity
     When "buyer" input PO No to filter PO in "Create GR From PO" list
     And I check to PO No checkbox at 'Create GR' page
     And I click to "Create Goods Receipt" button format_2
+    And Wait for "6" seconds
     Then I see 'Create GR From PO' page
 
     When I input random DO No to DO textbox at 'Create GR' page
-    And I select approval route "auto approval Goods Receipt" at 'Create GR' page
+    And I select "auto approval Goods Receipt" from 'Approval Route' dropdown at 'Create GR' page
     And I input delivery date as next "2" days to 'Delivery Date' textbox at 'Create GR' page
-    And I input "500" to 'Quantity Receiving' textbox at table
+    And I input "500" to 'Quantity Receiving' textbox in 'Items Ordered' table at 'Create GR' page
     And I click to "Create" button format_1
     Then I see a message "Goods receipt successfully submitted for" appears
 
@@ -86,12 +87,13 @@ Scenario: P2P-GR-S04-003 Creator save as draft GR from PO then submit GR in Pend
     
     When I check to PO No checkbox at 'Create GR' page
     And I click to "Create Goods Receipt" button format_2
+    And Wait for "6" seconds
     Then I see 'Create GR From PO' page
 
     When I input random DO No to DO textbox at 'Create GR' page
-    And I select approval route "auto approval Goods Receipt" at 'Create GR' page
+    And I select "auto approval Goods Receipt" from 'Approval Route' dropdown at 'Create GR' page
     And I input delivery date as next "2" days to 'Delivery Date' textbox at 'Create GR' page
-    And I input "250" to 'Quantity Receiving' textbox at table
+    And I input "250" to 'Quantity Receiving' textbox in 'Items Ordered' table at 'Create GR' page
     And I click to "Save As Draft" button format_1
     Then I see a message "Goods receipt successfully saved" appears
     

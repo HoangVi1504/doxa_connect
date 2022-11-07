@@ -39,7 +39,7 @@ Scenario: P2P-PO-S03-002-004-005 Approval Configuration set as FALSE, creator re
     Then I see a message "Please select valid approval route" appears
 
     When I click to "OK" button format_1
-    And I select approval route "auto approval PO" at 'PO detail' page
+    And I select "auto approval PO" from 'Approval Route' dropdown at 'PO Detail' page
     And I click to "Issue" button format_1
     Then I see a message "PO has been submitted for approval" appears
 

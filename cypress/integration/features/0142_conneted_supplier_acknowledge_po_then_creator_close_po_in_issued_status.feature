@@ -64,7 +64,7 @@ Scenario: P2P-PO-S01-001 P2P-PO-S03-001 Creator convert PR to PO and issue PO
     Then I see 'PO Detail' page
     And "buyer" see PO No in 'PO No' textbox at 'PO Detail' page
 
-    When I select approval route "auto approval PO" at 'PO detail' page
+    When I select "auto approval PO" from 'Approval Route' dropdown at 'PO Detail' page
     And I click to "Issue" button format_1
     Then I see a message "PO has been issued to supplier" appears
 

@@ -72,7 +72,7 @@ When(/^I input "([^"]*)" to 'Item Quantity' textbox at 'PO Detail' page$/, (quan
     commonPage.clickToText("Quantity")
 })
 
-When(/^I select approval route "([^"]*)" at 'PO detail' page$/, (value) => {
+When(/^I select "([^"]*)" from 'Approval Route' dropdown at 'PO Detail' page$/, (value) => {
     poPage.selectValueFromApprovalRouteDropdown(value)
 })
 

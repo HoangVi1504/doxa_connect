@@ -90,9 +90,9 @@ Scenario: P2P-GR-S03-002 Creator create GR from DO with partial DO quantity
     Then I see 'Create GR From DO' page
     And I see Do No in 'DO Number' textbox at 'Create GR From DO' page
 
-    When I select approval route "auto approval Goods Receipt" at 'Create GR' page
+    When I select "auto approval Goods Receipt" from 'Approval Route' dropdown at 'Create GR' page
     And I input delivery date as next "4" days to 'Delivery Date' textbox at 'Create GR' page
-    And I input "300" to 'Quantity Receiving' textbox at table
+    And I input "300" to 'Quantity Receiving' textbox in 'Items Ordered' table at 'Create GR' page
     And I click to "Create" button format_1
     Then I see a message "Goods receipt successfully submitted" appears
 
@@ -196,13 +196,13 @@ Scenario: P2P-GR-S03-003 Creator creaate GR from DO and save as draft then Submi
 
     When I check to DO No checkbox at 'Create GR' page 
     And I click to "Create Goods Receipt" button format_2
-    And Wait for "5" seconds
+    And Wait for "6" seconds
     Then I see 'Create GR From DO' page
     And I see Do No in 'DO Number' textbox at 'Create GR From DO' page
 
-    When I select approval route "auto approval Goods Receipt" at 'Create GR' page
+    When I select "auto approval Goods Receipt" from 'Approval Route' dropdown at 'Create GR' page
     And I input delivery date as next "4" days to 'Delivery Date' textbox at 'Create GR' page
-    And I input "400" to 'Quantity Receiving' textbox at table
+    And I input "400" to 'Quantity Receiving' textbox in 'Items Ordered' table at 'Create GR' page
     And I click to "Save As Draft" button format_1
     Then I see a message "Goods receipt successfully saved" appears
 
