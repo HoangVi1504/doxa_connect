@@ -1,12 +1,15 @@
 import { faker } from '@faker-js/faker';
 import ApiAction from "../commons/call_api"
+import CommonPage from '../PageObject/commonPage';
 import RaisePrPage from "../PageObject/raisePrPage"
 import CommonAction from '../commons/common_actions'
 import {Given, When, Then} from "cypress-cucumber-preprocessor/steps"
 
 const apiAction = new ApiAction()
+const commonPage = new CommonPage()
 const raisePrPage = new RaisePrPage()
 const commonAction = new CommonAction()
+const globalVariables = require("../commons/global_variables");
 
 When(/^Get PR number in PR list$/, () => {
     raisePrPage.scrollToElementInPrList("0%")
@@ -48,6 +51,10 @@ When(/^Call API navigate to "([^"]*)" page of PR number "([^"]*)" in PR list$/, 
 
 When(/^Call API navigate to "([^"]*)" page of PR random$/, (pageName) => {
     apiAction.callApiNavigateToPrPage(pageName, sessionStorage.getItem("prNumber"))
+})
+
+When(/^I visit 'RFQ Detail' page by hyperlink RFQ No in PR list$/, () => {
+    commonAction.clickToHyperLinkRfqNumber(globalVariables.url)
 })
 
 When(/^I fill data in Raise Requisition tab from "([^"]*)" json file at Raise PR page$/, (keyWord) => {
@@ -221,6 +228,7 @@ When(/^I input PR title random to 'Search PR' textbox$/, () => {
 
 When(/^I input PPR title random to 'Search PR' textbox$/, () => {
     raisePrPage.enterValueToSearchPrTitleTextbox(sessionStorage.getItem("pprTitleRandom"))
+    sessionStorage.setItem("prTitleRandom", sessionStorage.getItem("pprTitleRandom"))
 })
 
 When(/^I input reason send back or reject "([^"]*)" at Raise PR page$/, (reason) => {
@@ -485,6 +493,10 @@ Then(/^I see PR title at PR detail page from "([^"]*)" json file$/, (keyWord) =>
 
 Then(/^I see PR status in PR list is "([^"]*)"$/, (prStatus) => {
     raisePrPage.verifyPrStatusInPrListDisplay(prStatus)
+})
+
+Then(/^I see RFQ No just created at the first row in PR list$/, () => {
+    raisePrPage.verifyRfqNumberInPrListDisplay(sessionStorage.getItem("rfqNumber"))
 })
 
 Then(/^I see 'Raise Requisition' page title$/, () => {

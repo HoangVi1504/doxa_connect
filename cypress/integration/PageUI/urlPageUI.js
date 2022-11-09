@@ -45,7 +45,8 @@ class UrlPageLocator{
         this.create_ppr_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/prerequisition/create`;
         this.approval_ppr_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/prerequisition/approve?pprUuid=${'%s'}`;
         this.save_draft_ppr_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/prerequisition/save-draft`;
-        this.convert_ppr_to_pr_url = `https://connex-${'%s'}.doxa-holdings.com/purchase-pre-requisitions/convert-to-pr?uuid=${'%s'}`;
+        this.convert_ppr_to_pr_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/prerequisition/convert-to-pr/${'%s'}`
+        this.convert_ppr_to_pr_web_url = `https://connex-${'%s'}.doxa-holdings.com/purchase-pre-requisitions/convert-to-pr?uuid=${'%s'}`;
         this.ppr_to_be_converted_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/prerequisition/pending-to-po`;
 
         // PR URL

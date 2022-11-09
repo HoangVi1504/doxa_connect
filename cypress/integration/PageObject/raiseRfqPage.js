@@ -39,15 +39,15 @@ class RaiseRFQPage{
     }
 
     fillDataInRequestTermsTab(fileName){
-        this.selectValueFromRfqTypeDropdown(fileName)
         cy.fixture(fileName).then((fileName) =>{
+            this.selectValueFromRfqTypeDropdown(fileName.rfqType)
             if(fileName.rfqType == "Contract"){
                 this.enterValueToValidityStartDateTextbox(commonAction.getDateFormat4(3))
                 this.enterValueToValidityEndDateTextbox(commonAction.getDateFormat4(5))
             }   
+            this.selectValueToDeliveryAddressDropdown(fileName.deliveryAddress)
         })
         this.enterValueToDueDateTextbox(commonAction.getDateFormat1(5))
-        this.selectValueToDeliveryAddressDropdown(fileName)
         this.enterValueToDeliveryDateTextbox(commonAction.getDateFormat4(7))
         this.enterValueToNoteTextbox(fileName)
     }
@@ -316,16 +316,12 @@ class RaiseRFQPage{
         commonAction.selectValueFromElement(raiseRFQPageLocator.procurement_type_dropdown_css, value)
     }
 
-    selectValueFromRfqTypeDropdown(fileName){
-        cy.fixture(fileName).then((fileName) =>{
-            commonAction.selectValueFromElement(raiseRFQPageLocator.rfq_type_dropdown_css, fileName.rfqType)
-        })
+    selectValueFromRfqTypeDropdown(type){
+        commonAction.selectValueFromElement(raiseRFQPageLocator.rfq_type_dropdown_css, type)
     }
 
-    selectValueToDeliveryAddressDropdown(fileName){
-        cy.fixture(fileName).then((fileName) =>{
-            commonAction.selectValueFromElement(raiseRFQPageLocator.delivery_address_dropdown_css, fileName.deliveryAddress)
-        })
+    selectValueToDeliveryAddressDropdown(deliveryAddress){
+        commonAction.selectValueFromElement(raiseRFQPageLocator.delivery_address_dropdown_css, deliveryAddress)
     }
 
     selectValueFromUom(uom){
@@ -338,6 +334,10 @@ class RaiseRFQPage{
 
     doubleClickToRfqNumberInRfqList(rfqNumber){
         commonAction.doubleClickToElementByXpath(printf(raiseRFQPageLocator.rfq_number_in_list_xpath, rfqNumber))
+    }
+
+    checkToChooseForRfqProcess(option) {
+        commonAction.checkCheckboxByXpath(printf(raiseRFQPageLocator.rfq_process_radio_btn_xpath, option))
     }
 
     clearValueInDueDateTextbox(){
@@ -395,6 +395,10 @@ class RaiseRFQPage{
         commonAction.uncheckCheckboxByXpath(raiseRFQPageLocator.supplier_ckb_xpath)
     }
 
+    verifyPprNumberDisplay(pprNumber) {
+        commonAction.verifyElementByXpathVisible(printf(raiseRFQPageLocator.ppr_number_txb_xpath, pprNumber))
+    }
+
     verifyCommentDisplay(comment){
         commonAction.verifyElementByXpathVisible(printf(raiseRFQPageLocator.comment_in_table_xpath, comment))
     }
@@ -405,6 +409,10 @@ class RaiseRFQPage{
 
     verifyRFQDetailPageTitleDisplay(){
         commonAction.verifyElementByXpathVisible(raiseRFQPageLocator.rfq_detail_page_title_xpath)
+    }
+
+    verifyVendorNameDisplay(vendorName){
+        commonAction.verifyElementByXpathVisible(printf(raiseRFQPageLocator.vendor_name_xpath, vendorName))
     }
 
     verifyApprovalRouteDropdownIsDisable(){

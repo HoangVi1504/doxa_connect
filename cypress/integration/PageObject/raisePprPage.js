@@ -310,7 +310,7 @@ class RaisePprPage{
         commonAction.verifyElementVisible(raisePprPageLocator.project_code_dropdown_css)
     }
 
-    verifyValueInPprTitleTextboxExits(pprTitle){
+    verifyValueInPprTitleTextboxExist(pprTitle){
         commonAction.verifyValueInTextboxExist(raisePprPageLocator.ppr_title_txb_css, pprTitle)
     }
 
@@ -318,7 +318,7 @@ class RaisePprPage{
         commonAction.verifyElementDisable(raisePprPageLocator.approval_route_dropdown_css)
     }
 
-    verifyValueInProjectCodeExits(fileName, status){
+    verifyValueInProjectCodeExist(fileName, status){
         cy.fixture(fileName).then((fileName) =>{
             switch (status) {
                 case "PENDING SUBMISSION":

@@ -18,7 +18,7 @@ class UrlPage{
                 break;
 
             case "Convert to PR":
-                url = printf(urlPageLocator.convert_ppr_to_pr_url, this.env, uuid)
+                url = printf(urlPageLocator.convert_ppr_to_pr_web_url, this.env, uuid)
                 break; 
 
             default:

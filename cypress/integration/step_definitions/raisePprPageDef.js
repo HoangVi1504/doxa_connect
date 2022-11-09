@@ -12,8 +12,16 @@ When(/^Get PPR number in 'PPR' list$/, () => {
     commonAction.getPprNumberInPprList()
 })
 
+When(/^Get PPR number in 'PR' list$/, () => {
+    commonAction.getPprNumberInPrList()
+})
+
 When(/^Call API approver PPR random$/, () => {
     apiAction.callApiApproverPpr()
+})
+
+When(/^Call API convert PPR to PR$/, () => {
+    apiAction.callApiConvertPprToPr()
 })
 
 When(/^Call API save af draft PPR random$/, () => {
@@ -407,12 +415,12 @@ Then(/^I see PPR title at PPR detail page from "([^"]*)" json file$/, (keyWord) 
             break;
     }
     cy.fixture(fileName).then((fileName) =>{
-        raisePprPage.verifyValueInPprTitleTextboxExits(fileName.pprTitle + sessionStorage.getItem("numberPprTitle"))
+        raisePprPage.verifyValueInPprTitleTextboxExist(fileName.pprTitle + sessionStorage.getItem("numberPprTitle"))
     })
 })
 
 Then(/^I see PPR title random at PPR detail page$/, () => {
-    raisePprPage.verifyValueInPprTitleTextboxExits(sessionStorage.getItem("pprTitleRandom"))
+    raisePprPage.verifyValueInPprTitleTextboxExist(sessionStorage.getItem("pprTitleRandom"))
 })
 
 Then(/^I see Project code with status "([^"]*)" at PPR detail page from "([^"]*)" json file$/, (status, keyWord) => {
@@ -429,7 +437,7 @@ Then(/^I see Project code with status "([^"]*)" at PPR detail page from "([^"]*)
         default:
             break;
     }
-    raisePprPage.verifyValueInProjectCodeExits(fileName, status)
+    raisePprPage.verifyValueInProjectCodeExist(fileName, status)
 })
 
 Then(/^I see Item delete button at Raise PPR page$/, () => {

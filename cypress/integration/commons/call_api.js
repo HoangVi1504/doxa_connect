@@ -1541,6 +1541,20 @@ class ApiAction{
         })
     }
 
+    callApiConvertPprToPr(){
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+            cy.request({
+                method: 'POST',
+                url: printf(urlPageLocator.convert_ppr_to_pr_url, this.env, buyerCompanyUuid, sessionStorage.getItem("uuidPpr")),
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response) =>{
+               expect(response.body).has.property("message", "Converted to PR successfully")
+        })
+    }
+
     callApiApproverPr(){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid

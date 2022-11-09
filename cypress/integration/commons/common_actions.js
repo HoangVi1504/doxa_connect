@@ -19,7 +19,6 @@ class BaseAction {
         cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="rfqNumber"]').then(($el) => {
             let text = $el.text()
             sessionStorage.setItem("rfqNumber", text)
-            cy.log(sessionStorage.getItem("rfqNumber"))
         });
     }
 
@@ -27,7 +26,13 @@ class BaseAction {
         cy.xpath("//*[@role='rowgroup']//*[contains(@class,'ag-row-first')]//*[@col-id='pprNumber']").then(($el) => {
             let text = $el.text()
             sessionStorage.setItem("pprNumber", text)
-            cy.log("pprNumber", sessionStorage.getItem("pprNumber"))
+        });
+    }
+
+    getPprNumberInPrList(){
+        cy.xpath("//*[@role='rowgroup']//*[contains(@class,'ag-row-first')]//*[@col-id='pprNumber']//a").then(($el) => {
+            let text = $el.text()
+            sessionStorage.setItem("pprNumber", text)
         });
     }
 
@@ -55,6 +60,14 @@ class BaseAction {
 
     clickToHyperLinkContractNumber(url) {
         cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="contractNumber"]').find('a')
+        .invoke('attr', 'href')
+        .then(href => {
+            this.navigateTo(url + href)
+        });
+    }
+
+    clickToHyperLinkRfqNumber(url) {
+        cy.get('[role="rowgroup"]').find('>div[class*="ag-row-first"]').find('>div[col-id="rfqNumber"]').find('a')
         .invoke('attr', 'href')
         .then(href => {
             this.navigateTo(url + href)

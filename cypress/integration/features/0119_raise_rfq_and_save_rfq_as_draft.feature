@@ -31,8 +31,8 @@ Scenario: P2P-RFQ-S05-001-002-003-004 Raise RFQ and save RFQ as draft
     And I input validity end date as next "20" days to 'Validity End Date' textbox at 'Raise RFQ' page
     And I select delivery address from "rfq_v9" json file at Raise RFQ page
     # Save RFQ as draft with Due date and Delivery Address in the past => check validation text
-    And I input delivery date as previous "4" days to 'Delivery Date' textbox at Raise RFQ page
-    And I input due date as previous "5" days to 'Due Date' textbox at Raise RFQ page
+    And I input delivery date as previous "4" days to 'Delivery Date' textbox at 'Raise RFQ' page
+    And I input due date as previous "5" days to 'Due Date' textbox at 'Raise RFQ' page
     And I input note to from "rfq_v9" json file at Raise RFQ page
     And I add manual item from "rfq_v9" json file at Raise RFQ page
     And I click to "Save As Draft" button format_1
@@ -43,7 +43,7 @@ Scenario: P2P-RFQ-S05-001-002-003-004 Raise RFQ and save RFQ as draft
     Then I see a validation text of 'Due Date' at 'Raise RFQ' page "Due Date cannot be in the past" appears
 
     When I clear value in 'Due date' textbox at Raise RFQ page
-    And I input due date as next "2" days to 'Due Date' textbox at Raise RFQ page
+    And I input due date as next "2" days to 'Due Date' textbox at 'Raise RFQ' page
     And I click to "Save As Draft" button format_1
     Then I see a message "Validation error, please check your input." appears
 
@@ -51,7 +51,7 @@ Scenario: P2P-RFQ-S05-001-002-003-004 Raise RFQ and save RFQ as draft
     And I click to 'Note' textbox at Raise RFQ page
     And I see a validation text of 'Delivery Date' at 'Raise RFQ' page "Delivery Date cannot be in the past" appears
     And I clear value in 'Delivery date' textbox at Raise RFQ page
-    And I input delivery date as next "3" days to 'Delivery Date' textbox at Raise RFQ page
+    And I input delivery date as next "3" days to 'Delivery Date' textbox at 'Raise RFQ' page
     And I click to "Save As Draft" button format_1
     Then I see a message "RFQ successfully saved" appears
 
@@ -112,7 +112,7 @@ Scenario: P2P-RFQ-S05-004 P2P-RFQ-S017-002 Submit the Saved as draft RFQ then co
     When I double click to RFQ number just created in 'RFQ' list
     And Wait for "3" seconds
     Then I see 'RFQ Detail' page title
-    And I see RFQ number just created in 'RFQ No' textbox at 'RFQ Details' page
+    And I see RFQ number just created in 'RFQ No' textbox at 'RFQ Detail' page
 
     When I click to "Convert To Contract" button format_1
     And I click to "I Understand" button format_1

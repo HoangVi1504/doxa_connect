@@ -50,8 +50,8 @@ When(/^I visit 'Contract Detail' page by hyperlink in Contract No after convert 
 })
 
 When(/^Call API raise RFQ$/, () => {
-    sessionStorage.setItem("rfqTitleRandom", "auto RFQ " + faker.random.alphaNumeric(5))
-    apiAction.callApiRaiseRFQ(sessionStorage.getItem("rfqTitleRandom"))
+    sessionStorage.setItem("rfqTitle", "auto RFQ " + faker.random.alphaNumeric(5))
+    apiAction.callApiRaiseRFQ(sessionStorage.getItem("rfqTitle"))
 })
 
 When(/^Call API submit RFQ$/, () => {
@@ -114,6 +114,11 @@ When(/^I fill data in Raise Requisition tab from "([^"]*)" json file at Raise RF
             break;
     }
     raiseRfqPage.fillDataInRaiseRequisitionTab(fileName)
+})
+
+When(/^I input RFQ title random to 'RFQ Title' textbox at 'Raise RFQ' page$/, () => {
+    sessionStorage.setItem("rfqTitle","auto route to Rfq " + faker.random.numeric(5))
+    raiseRfqPage.enterValueToRfqTitleTextbox(sessionStorage.getItem("rfqTitle"))
 })
 
 When(/^I fill data in General Information tab from "([^"]*)" json file at Raise RFQ page$/, (keyWord) => {
@@ -334,7 +339,7 @@ When(/^I input RFQ title from "([^"]*)" json file to 'Search RFQ' textbox$/, (ke
 })
 
 When(/^I input random RFQ title to 'Search RFQ' textbox in 'RFQ' list$/, () => {
-    raiseRfqPage.enterValueToSearchRfqTitleTextbox(sessionStorage.getItem("rfqTitleRandom"))
+    raiseRfqPage.enterValueToSearchRfqTitleTextbox(sessionStorage.getItem("rfqTitle"))
 })
 
 When(/^"([^"]*)" input RFQ number just created to 'Filter RFQ No' in 'RFQ' list$/, (roleName) => {
@@ -475,7 +480,7 @@ When(/^I input "([^"]*)" to 'Comment' textbox in "([^"]*)" table at 'RFQ Detail'
     raiseRfqPage.enterValueToCommentInConversations(comment, table)
 })
 
-When(/^I input delivery date as previous "([^"]*)" days to 'Delivery Date' textbox at Raise RFQ page$/, (date) => {
+When(/^I input delivery date as previous "([^"]*)" days to 'Delivery Date' textbox at 'Raise RFQ' page$/, (date) => {
     raiseRfqPage.enterValueToDeliveryDateTextbox(commonAction.getDateFormat4(-date))
 })
 
@@ -483,15 +488,15 @@ When(/^I input delivery date as next "([^"]*)" days to 'Delivery Date' textbox a
     raiseRfqPage.enterValueToDeliveryDateTextbox(commonAction.getDateFormat4(date))
 })
 
-When(/^I input delivery date as next "([^"]*)" days to 'Delivery Date' textbox at Raise RFQ page$/, (date) => {
+When(/^I input delivery date as next "([^"]*)" days to 'Delivery Date' textbox at 'Raise RFQ' page$/, (date) => {
     raiseRfqPage.enterValueToDeliveryDateTextbox(commonAction.getDateFormat4(date))
 })
 
-When(/^I input due date as previous "([^"]*)" days to 'Due Date' textbox at Raise RFQ page$/, (date) => {
+When(/^I input due date as previous "([^"]*)" days to 'Due Date' textbox at 'Raise RFQ' page$/, (date) => {
     raiseRfqPage.enterValueToDueDateTextbox(commonAction.getDateFormat1(-date))
 })
 
-When(/^I input due date as next "([^"]*)" days to 'Due Date' textbox at Raise RFQ page$/, (date) => {
+When(/^I input due date as next "([^"]*)" days to 'Due Date' textbox at 'Raise RFQ' page$/, (date) => {
     raiseRfqPage.enterValueToDueDateTextbox(commonAction.getDateFormat1(date))
 })
 
@@ -572,6 +577,22 @@ When(/^I double click to RFQ title in RFQ list from "([^"]*)" json file$/, (keyW
 
 When(/^I double click to RFQ number just created in 'RFQ' list$/, () => {
     raiseRfqPage.doubleClickToRfqNumberInRfqList(sessionStorage.getItem("rfqNumber"))
+})
+
+When(/^I check "([^"]*)" radio button to choose 'Do you want to go for RFQ Process' option at 'PR Detail' page$/, (option) => {
+    raiseRfqPage.checkToChooseForRfqProcess(option)
+})
+
+When(/^I select "([^"]*)" from 'Delivery Address' dropdown at 'Raise RFQ' page$/, (deliveryAddress) => {
+    raiseRfqPage.selectValueFromDeliveryAddressDropdown(deliveryAddress)
+})
+
+When(/^I select "([^"]*)" from 'Vendor' dropdown at 'Raise RFQ' page$/, (vendor) => {
+    raiseRfqPage.selectValueFromVendorDropdown(vendor)
+})
+
+When(/^I select "([^"]*)" from 'RFQ Type' dropdown at 'Raise RFQ' page$/, (type) => {
+    raiseRfqPage.selectValueFromRfqTypeDropdown(type)
 })
 
 When(/^I select RFQ type from "([^"]*)" json file at Raise RFQ page$/, (keyWord) => {
@@ -688,6 +709,10 @@ When(/^I see attachment file "([^"]*)" in 'Negotiation' table at 'RFQ Detail' pa
     raiseRfqPage.verifyFileNameInNegotiationExist(fileName)
 })
 
+When(/^I see RFQ title random in 'RFQ Title' textbox at 'RFQ Detail' page$/, () => {
+    raiseRfqPage.verifyValueInRFQTitleTextboxExist(sessionStorage.getItem("rfqTitle"))
+})
+
 When(/^I see RFQ title at RFQ detail page from "([^"]*)" json file$/, (keyWord) => {
     let fileName;
     switch (keyWord) {
@@ -735,7 +760,11 @@ When(/^I see RFQ title at RFQ detail page from "([^"]*)" json file$/, (keyWord) 
     })
 })
 
-Then(/^I see RFQ number just created in 'RFQ No' textbox at 'RFQ Details' page$/, () => {
+Then(/^I see PPR No in 'Pre-Purchase Request No' textbox at 'RFQ' page$/, () => {
+    raiseRfqPage.verifyPprNumberDisplay(sessionStorage.getItem("pprNumber"))
+})
+
+Then(/^I see RFQ number just created in 'RFQ No' textbox at 'RFQ Detail' page$/, () => {
     raiseRfqPage.verifyValueInRfqNumberTextboxExist(sessionStorage.getItem("rfqNumber"))
 })
 
@@ -820,6 +849,10 @@ Then(/^I see 'RFQ List' page title$/, () => {
 
 Then(/^I see 'RFQ Detail' page title$/, () => {
     raiseRfqPage.verifyRFQDetailPageTitleDisplay()
+})
+
+Then(/^I see "([^"]*)" in 'Vendor Information' at 'Raise RFQ' page$/, (vendorName) => {
+    raiseRfqPage.verifyVendorNameDisplay(vendorName)
 })
 
 Then(/^I see 'Approval Route' dropdown at 'RFQ' page is disabled$/, () => {

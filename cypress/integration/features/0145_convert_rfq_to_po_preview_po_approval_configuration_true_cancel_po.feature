@@ -40,7 +40,7 @@ Scenario: P2P-PO-S01-003 P2P-PO-S02-001 P2P-PO-S03-001 P2P-PO-S07-002 Convert RF
     When I double click to RFQ number just created in 'RFQ' list
     And Wait for "3" seconds
     Then I see 'RFQ Detail' page title
-    And I see RFQ number just created in 'RFQ No' textbox at 'RFQ Details' page
+    And I see RFQ number just created in 'RFQ No' textbox at 'RFQ Detail' page
 
     When I click to "Convert to Order" button format_1
     And I click to "I Understand" button format_1

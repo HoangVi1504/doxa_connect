@@ -413,11 +413,16 @@ class RaisePrPage{
         })
     }
 
+    verifyRfqNumberInPrListDisplay(rfqNumber){
+        this.scrollToElementInPrList("0%")
+        commonAction.verifyElementByXpathVisible(printf(raisePrPageLocator.rfq_number_in_pr_list_xpath, rfqNumber))
+    }
+
     verifyRaisePrPageTitleDisplay(){
         commonAction.verifyElementByXpathVisible(raisePrPageLocator.raise_pr_page_title_xpath)
     }
 
-    verifyPrDetailPageDisplay() {
+    verifyPrDetailPageDisplay(){
         commonAction.verifyElementByXpathVisible(raisePrPageLocator.pr_detail_page_title_xpath)
     }
 
