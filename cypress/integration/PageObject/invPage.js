@@ -275,6 +275,10 @@ class InvPage{
         commonAction.verifyElementByXpathVisible(invPageLocator.inv_pending_approval_list_xpath)
     }
 
+    verifyApprovalRouteDropdownIsDisable(){
+        commonAction.verifyElementDisable(invPageLocator.approval_route_dropdown_css)
+    }
+
     verifyItemDeleteButtonInTableDisplay(table) {
         if (table == "Added PO") {
             this.scrollToElementInAddedPoTable("0%")

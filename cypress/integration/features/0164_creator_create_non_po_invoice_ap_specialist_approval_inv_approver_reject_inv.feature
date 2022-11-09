@@ -40,6 +40,7 @@ Scenario Outline: P2P-INV-S02-001-002 Buyer create Non-PO invoice
     Then I see a message "Invoice Quantity must be greater than 0" appears
 
     When I click to "OK" button format_1
+    And I input "100" to 'Invoice Quantity' textbox in "Add Item" table at 'Create Invoice' page
     And I input "-5000" to 'Invoice Unit Price' textbox in "Add Item" table at 'Create Invoice' page
     And I click to "Issue" button format_1
     Then I see a message "Invoice Unit Price must be greater than 0" appears

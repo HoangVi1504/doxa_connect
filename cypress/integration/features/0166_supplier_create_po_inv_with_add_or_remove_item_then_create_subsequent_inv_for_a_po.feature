@@ -166,7 +166,7 @@ Scenario Outline: P2P-INV-S03-003 The supplier creates the subsequent invoice fo
     And I see 'Invoice Total' is equal to "<invTotal>" at 'Create Invoice' page
 
     When I check to 'Expected Amount' checkbox at 'Create Invoice' page
-    And I input "505,000.00" to 'Expected Amount' textbox at 'Create Invoice' page
+    And I input "<invTotal>" to 'Expected Amount' textbox at 'Create Invoice' page
     And I click to "Preview Invoice" button format_1
     Then I see pop-up appears to show preview of invoice
 

@@ -149,6 +149,10 @@ Then(/^I see 'Invoices Pending Approval' page$/, () => {
     invPage.verifyInvoicePendingApprovalPageTitleDisplay()
 })
 
+Then(/^I see 'Approval Route' dropdown at 'Invoice Details' page is disabled$/, () => {
+    invPage.verifyApprovalRouteDropdownIsDisable()
+})
+
 Then(/^I see 'Item Delete' button in "([^"]*)" table at 'Create Invoice' page$/, (table) => {
     invPage.verifyItemDeleteButtonInTableDisplay(table)
 })
@@ -218,5 +222,9 @@ Then(/^I see a validation text of 'Due Date' "([^"]*)" appears$/, (validation) =
 })
 
 Then(/^I see a validation text of 'Supplier' "([^"]*)" appears$/, (validation) => {
+    invPage.verifyValidationTextSupplierDisplay(validation)
+})
+
+Then(/^I see a validation text of 'Buyer' "([^"]*)" appears$/, (validation) => {
     invPage.verifyValidationTextSupplierDisplay(validation)
 })
