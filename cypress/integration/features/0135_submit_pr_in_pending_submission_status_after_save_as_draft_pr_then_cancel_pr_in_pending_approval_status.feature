@@ -9,12 +9,9 @@ Scenario: P2P-PR-S03-001-002-003 Save as draft PR
     And I click to "Raise Requisition" link on the left sub menu
     Then I see 'Raise Requisition' page title
 
+    # Raise PR with no input => check validation text
     When I expand layout sidebar menu if it open
     And I click to "Submit" button format_1
-    Then I see a message "Validation error, please check your input." appears
-
-    # Raise PR with no input => check validation text
-    When I click to "OK" button format_2
     And I click to PR title textbox at Raise PR page
     Then I see a validation text of 'Requisition Type' at 'Raise PR' page "Please select valid Type of Requisition" appears
     And I see a validation text of 'PR title' at 'Raise PR' page "Please enter valid PR Title" appears
@@ -22,12 +19,18 @@ Scenario: P2P-PR-S03-001-002-003 Save as draft PR
     And I see a validation text of 'Approval Route' at 'Raise PR' page "Please select valid approval route" appears
     And I see a validation text of 'Delivery Address' at 'Raise PR' page "Please select valid Delivery Address" appears
     And I see a validation text of 'Delivery Date' at 'Raise PR' page "Please select valid Delivery Date" appears
+    And I see a validation text of 'Delivery Contact Person' at 'Raise PR' page "Please Select Valid Delivery Contact Person" appears
+    And I see a validation text of 'Contact Number' at 'Raise PR' page "Please enter valid Contact Number" appears
 
     When I fill data in Raise Requisition tab from "pr_v5" json file at Raise PR page
     And I fill data in General Information tab from "pr_v5" json file at Raise PR page
     And I fill data in Request Terms tab from "pr_v5" json file at Raise PR page
+    And I select 'auto buyer' from 'Delivery Contact Person' dropdown at Raise PR page
+    Then I see email address of contact person at Raise PR page is "auto.buyer@getnada.com"
+    And I see contact number of contact person at Raise PR page is "987987987"
+
     # Raise PR with no input when adding manual items => check error message
-    And I click to "Add Manual" button format_2
+    When I click to "Add Manual" button format_2
     Then I see Item delete button at Raise PR page
 
     # bugId: https://doxa-connex.atlassian.net/browse/D0R-5757

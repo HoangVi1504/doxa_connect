@@ -244,6 +244,10 @@ When(/^I input PR No to filter PR in "([^"]*)" list$/, (listName) => {
     raisePrPage.enterValueToPrTitleTextbox(sessionStorage.getItem("prTitleRandom"))
 })
 
+When(/^I select 'auto buyer' from 'Delivery Contact Person' dropdown at Raise PR page$/, () => {
+    raisePrPage.selectValueFromDeliveryContactPersonDropdown()
+})
+
 When(/^I select "([^"]*)" from 'Procurement Type' dropdown at 'PR' page$/, (type) => {
     raisePrPage.selectValueFromProcurementTypeDropdown(type)
 })
@@ -491,6 +495,14 @@ Then(/^I see PR title at PR detail page from "([^"]*)" json file$/, (keyWord) =>
     raisePrPage.verifyValueInPrTitleTextboxExits(fileName, sessionStorage.getItem("numberPrTitle"))
 })
 
+When(/^I see email address of contact person at Raise PR page is "([^"]*)"$/, (email) => {
+    raisePrPage.verifyValueInEmailAddressTextboxExist(email)
+})
+
+When(/^I see contact number of contact person at Raise PR page is "([^"]*)"$/, (contactNumber) => {
+    raisePrPage.verifyValueInContactNumberTextboxExist(contactNumber)
+})
+
 Then(/^I see PR status in PR list is "([^"]*)"$/, (prStatus) => {
     raisePrPage.verifyPrStatusInPrListDisplay(prStatus)
 })
@@ -541,4 +553,12 @@ Then(/^I see a validation text of 'Delivery Address' at 'Raise PR' page "([^"]*)
 
 Then(/^I see a validation text of 'Delivery Date' at 'Raise PR' page "([^"]*)" appears$/, (validation) => {
     raisePrPage.verifyValidationTextDeliveryDateDisplay(validation)
+})
+
+Then(/^I see a validation text of 'Delivery Contact Person' at 'Raise PR' page "([^"]*)" appears$/, (validation) => {
+    raisePrPage.verifyValidationTextDeliveryContactPersonDisplay(validation)
+})
+
+Then(/^I see a validation text of 'Contact Number' at 'Raise PR' page "([^"]*)" appears$/, (validation) => {
+    raisePrPage.verifyValidationTextContactNumberDisplay(validation)
 })

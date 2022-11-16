@@ -583,6 +583,14 @@ When(/^I check "([^"]*)" radio button to choose 'Do you want to go for RFQ Proce
     raiseRfqPage.checkToChooseForRfqProcess(option)
 })
 
+When(/^I select 'auto buyer' from 'Delivery Contact Person' dropdown at Raise RFQ page$/, () => {
+    raiseRfqPage.selectValueFromDeliveryContactPersonDropdown()
+})
+
+When(/^I select 'auto buyer' from 'Delivery Contact Person' dropdown at Raise RFQ page after redirect from PPR page$/, () => {
+    raiseRfqPage.selectValueFromContactPersonDropdown()
+})
+
 When(/^I select "([^"]*)" from 'Delivery Address' dropdown at 'Raise RFQ' page$/, (deliveryAddress) => {
     raiseRfqPage.selectValueFromDeliveryAddressDropdown(deliveryAddress)
 })
@@ -595,62 +603,12 @@ When(/^I select "([^"]*)" from 'RFQ Type' dropdown at 'Raise RFQ' page$/, (type)
     raiseRfqPage.selectValueFromRfqTypeDropdown(type)
 })
 
-When(/^I select RFQ type from "([^"]*)" json file at Raise RFQ page$/, (keyWord) => {
-    let fileName;
-    switch (keyWord) {
-        case "rfq_v1":
-            fileName = 'rfq_v1.json'
-            break;
-
-        case "rfq_v3":
-            fileName = 'rfq_v3.json'
-            break;
-
-        case "rfq_v5":
-            fileName = 'rfq_v5.json'
-            break;
-
-        case "rfq_v7":
-            fileName = 'rfq_v7.json'
-            break;
-
-        case "rfq_v9":
-            fileName = 'rfq_v9.json'
-            break;
-
-        default:
-            break;
-    }
-    raiseRfqPage.selectValueFromRfqTypeDropdown(fileName)
+When(/^I select "([^"]*)" from RFQ type dropdown at Raise RFQ page$/, (rfqType) => {
+    raiseRfqPage.selectValueFromRfqTypeDropdown(rfqType)
 })
 
-When(/^I select delivery address from "([^"]*)" json file at Raise RFQ page$/, (keyWord) => {
-    let fileName;
-    switch (keyWord) {
-        case "rfq_v1":
-            fileName = 'rfq_v1.json'
-            break;
-
-        case "rfq_v3":
-            fileName = 'rfq_v3.json'
-            break;
-
-        case "rfq_v5":
-            fileName = 'rfq_v5.json'
-            break;
-
-        case "rfq_v7":
-            fileName = 'rfq_v7.json'
-            break;
-
-        case "rfq_v9":
-            fileName = 'rfq_v9.json'
-            break;
-
-        default:
-            break;
-    }
-    raiseRfqPage.selectValueToDeliveryAddressDropdown(fileName)
+When(/^I select "([^"]*)" from 'Delivery Address' dropdown at Raise RFQ page$/, (deliveryAddress) => {
+    raiseRfqPage.selectValueToDeliveryAddressDropdown(deliveryAddress)
 })
 
 When(/^I select "([^"]*)" from 'Currency' dropdown at 'RFQ Detail' page$/, (currency) => {
@@ -703,6 +661,14 @@ When(/^I check to supplier checkbox at 'RFQ Detail' page$/, () => {
 
 When(/^I uncheck to supplier checkbox at 'RFQ Detail' page$/, () => {
     raiseRfqPage.uncheckToSupplierCheckbox()
+})
+
+When(/^I see email address of contact person at Raise RFQ page is "([^"]*)"$/, (email) => {
+    raiseRfqPage.verifyValueInEmailAddressTextboxExist(email)
+})
+
+When(/^I see contact number of contact person at Raise RFQ page is "([^"]*)"$/, (contactNumber) => {
+    raiseRfqPage.verifyValueInContactNumberTextboxExist(contactNumber)
 })
 
 When(/^I see attachment file "([^"]*)" in 'Negotiation' table at 'RFQ Detail' page$/, (fileName) => {
@@ -897,4 +863,12 @@ Then(/^I see a validation text of 'Delivery Date' at 'Raise RFQ' page "([^"]*)" 
 
 Then(/^I see a validation text of 'Approval Route' at 'RFQ Detail' page "([^"]*)" appears$/, (validation) => {
     raiseRfqPage.verifyValidationTextApprovalRouteDisplay(validation)
+})
+
+Then(/^I see a validation text of 'Delivery Contact Person' at 'Raise RFQ' page "([^"]*)" appears$/, (validation) => {
+    raiseRfqPage.verifyValidationTextDeliveryContactPersonDisplay(validation)
+})
+
+Then(/^I see a validation text of 'Contact Number' at 'Raise RFQ' page "([^"]*)" appears$/, (validation) => {
+    raiseRfqPage.verifyValidationTextContactNumberDisplay(validation)
 })

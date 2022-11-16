@@ -13,7 +13,11 @@ Scenario: P2P-PR-S02-002 Raise PR with Project, add catalogue items to 2 approve
     And I fill data in Raise Requisition tab from "pr_v4" json file at Raise PR page
     And I fill data in General Information tab from "pr_v4" json file at Raise PR page
     And I fill data in Request Terms tab from "pr_v4" json file at Raise PR page
-    And I add catalogue item from "pr_v4" json file at Raise PR page
+    And I select 'auto buyer' from 'Delivery Contact Person' dropdown at Raise PR page
+    Then I see email address of contact person at Raise PR page is "auto.buyer@getnada.com"
+    And I see contact number of contact person at Raise PR page is "987987987"
+
+    When I add catalogue item from "pr_v4" json file at Raise PR page
     And I click to "Submit" button format_2
     Then I see a message "Purchase requisition successfully submitted" appears
 

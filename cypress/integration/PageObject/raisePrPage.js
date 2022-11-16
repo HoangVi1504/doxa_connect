@@ -244,6 +244,11 @@ class RaisePrPage{
         commonAction.enterValueToTextbox(raisePrPageLocator.send_back_reason_txb_css, reason)
     }
 
+    selectValueFromDeliveryContactPersonDropdown(){
+        commonAction.clickToElementByXpath(raisePrPageLocator.delivery_contact_person_dropdown_xpath)
+        commonAction.clickToElement("#react-select-3-option-0")
+    }
+
     selectValueFromItemSupplierDropdown(supplierName){
         commonAction.clickToElementByXpath(raisePrPageLocator.item_supplier_xpath)
         commonAction.clickToElementByXpath(printf(raisePrPageLocator.option_item_from_dropdown_xpath, supplierName))
@@ -465,6 +470,14 @@ class RaisePrPage{
         })
     }
 
+    verifyValueInEmailAddressTextboxExist(email){
+        commonAction.verifyValueInTextboxExist(raisePrPageLocator.email_address_txb_css, email)
+    }
+
+    verifyValueInContactNumberTextboxExist(contactNumber){
+        commonAction.verifyValueInTextboxExist(raisePrPageLocator.contact_number_txb_css, contactNumber)
+    }
+
     verifyValidationTextRequisitionTypeDisplay(validation){
         commonAction.verifyElementByXpathVisible(printf(raisePrPageLocator.validation_text_requisition_type_xpath, validation))
     }
@@ -487,6 +500,14 @@ class RaisePrPage{
 
     verifyValidationTextDeliveryDateDisplay(validation){
         commonAction.verifyElementByXpathVisible(printf(raisePrPageLocator.validation_text_delivery_date_xpath, validation))
+    }
+
+    verifyValidationTextDeliveryContactPersonDisplay(validation){
+        commonAction.verifyElementByXpathVisible(printf(raisePrPageLocator.validation_delivery_contact_person_xpath, validation))
+    }
+
+    verifyValidationTextContactNumberDisplay(validation){
+        commonAction.verifyElementByXpathVisible(printf(raisePrPageLocator.validation_text_contact_number_xpath, validation))
     }
 
     scrollToElementInItemTable(position){

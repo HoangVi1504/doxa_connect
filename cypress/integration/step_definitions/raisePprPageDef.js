@@ -238,6 +238,10 @@ When(/^I select "([^"]*)" from 'Procurement Type' dropdown at 'PPR' page$/, (typ
     raisePprPage.selectValueFromProcurementTypeDropdown(type)
 })
 
+When(/^I select 'auto buyer' from 'Delivery Contact Person' dropdown at Raise PPR page$/, () => {
+    raisePprPage.selectValueFromDeliveryContactPersonDropdown()
+})
+
 When(/^I double click to PPR title in PPR list from "([^"]*)" json file$/, (keyWord) => {
     let fileName;
     switch (keyWord) {
@@ -460,6 +464,14 @@ Then(/^I see 'PPR List' page title$/, () => {
     raisePprPage.verifyPprListPageTitleDisplay()
 })
 
+When(/^I see email address of contact person at Raise PPR page is "([^"]*)"$/, (email) => {
+    raisePprPage.verifyValueInEmailAddressTextboxExist(email)
+})
+
+When(/^I see contact number of contact person at Raise PPR page is "([^"]*)"$/, (contactNumber) => {
+    raisePprPage.verifyValueInContactNumberTextboxExist(contactNumber)
+})
+
 Then(/^I see a validation text of 'Requisition Type' at 'Raise PPR' page "([^"]*)" appears$/, (validation) => {
     raisePprPage.verifyValidationTextRequisitionTypeDisplay(validation)
 })
@@ -486,4 +498,12 @@ Then(/^I see a validation text of 'Delivery Address' at 'Raise PPR' page "([^"]*
 
 Then(/^I see a validation text of 'Delivery Date' at 'Raise PPR' page "([^"]*)" appears$/, (validation) => {
     raisePprPage.verifyValidationTextDeliveryDateDisplay(validation)
+})
+
+Then(/^I see a validation text of 'Delivery Contact Person' at 'Raise PPR' page "([^"]*)" appears$/, (validation) => {
+    raisePprPage.verifyValidationTextDeliveryContactPersonDisplay(validation)
+})
+
+Then(/^I see a validation text of 'Contact Number' at 'Raise PPR' page "([^"]*)" appears$/, (validation) => {
+    raisePprPage.verifyValidationTextContactNumberDisplay(validation)
 })

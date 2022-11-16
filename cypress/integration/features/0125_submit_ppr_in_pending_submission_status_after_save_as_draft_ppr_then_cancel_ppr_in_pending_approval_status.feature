@@ -21,14 +21,20 @@ Scenario: P2P-PPR-S03-001-002-003 Save as draft PPR
     And I see a validation text of 'Procurement Type' at 'Raise PPR' page "Please select valid Procurement Type" appears
     And I see a validation text of 'Approval Route' at 'Raise PPR' page "Please select valid approval route" appears
     And I see a validation text of 'Currency Code' at 'Raise PPR' page "Please select valid Currency" appears
-    # And I see a validation text of 'Delivery Address' at 'Raise PPR' page "Please select valid Delivery Address" appears
     And I see a validation text of 'Delivery Date' at 'Raise PPR' page "Please select valid Delivery Date" appears
+    And I see a validation text of 'Delivery Contact Person' at 'Raise PPR' page "Please Select Valid Delivery Contact Person" appears
+    And I see a validation text of 'Contact Number' at 'Raise PPR' page "Please enter valid Contact Number" appears
+    # And I see a validation text of 'Delivery Address' at 'Raise PPR' page "Please select valid Delivery Address" appears
 
     When I fill data in Raise Requisition tab from "ppr_v5" json file at Raise PPR page
     And I fill data in General Information tab from "ppr_v5" json file at Raise PPR page
     And I fill data in Request Terms tab from "ppr_v5" json file at Raise PPR page
     # Raise PPR with no input when adding manual items => check error message
-    And I click to "Add Manual" button format_2
+    And I select 'auto buyer' from 'Delivery Contact Person' dropdown at Raise PPR page
+    Then I see email address of contact person at Raise PPR page is "auto.buyer@getnada.com"
+    And I see contact number of contact person at Raise PPR page is "987987987"
+
+    When I click to "Add Manual" button format_2
     Then I see Item delete button at Raise PPR page
 
     When I click to "Submit" button format_2

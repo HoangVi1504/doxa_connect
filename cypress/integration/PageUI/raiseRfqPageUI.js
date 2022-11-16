@@ -7,6 +7,8 @@ class RaiseRFQPageLocator{
         this.due_date_txb_css = 'input[placeholder="Please select valid Due Date"]';
         this.rfq_title_txb_css = '[name="rfqTitle"]';
         this.rfq_number_txb_css = "[name='rfqNumber']";
+        this.contact_number_txb_css = "[name='phoneNumber']";
+        this.email_address_txb_css = "[name='emailAddress']";
         this.delivery_date_txb_css = '[name="deliveryDate"]';
         this.validity_end_date_txb_css = '[name="validityEndDate"]';
         this.validity_start_date_txb_css = '[name="validityStartDate"]';
@@ -35,6 +37,9 @@ class RaiseRFQPageLocator{
         // Css - Other
         this.file_name_in_negotiation_btn_css = '[col-id="fileLabel"]>.ag-react-container>[type="button"]'
 
+        // Xpath - Dropdown
+        this.delivery_contact_person_dropdown_xpath = "//label[text()='Delivery Contact Person']/parent::*/parent::*//*[contains(@class,'css-tlfecz-indicatorContainer')]";
+
         // Xpath - Button
         this.file_name_btn_xpath = '//button[text()="Upload Attachment"]/following-sibling::*/button[text()="TestImage.png"]';
         this.item_delete_btn_xpath = "(//button[contains(@class,'MuiIconButton')])[1]";
@@ -55,6 +60,7 @@ class RaiseRFQPageLocator{
         this.item_catalogue_ckb_xpath = "//*[contains(text(),'%s')]/parent::*//input[@type='checkbox']";
 
         // Xpath - Other
+        this.vendor_name_xpath = "//label[text()='Selected Vendor(s)']/parent::*/parent::*//*[text()='%s']"
         this.comment_in_table_xpath = "//*[@col-id='comment' and text()='%s']";
         this.option_menu_table_xpath = '//*[@class="nav-item"]//*[text()="%s"]';
         this.rfq_number_in_list_xpath = "//*[@col-id='rfqNumber' and text()='%s']";
@@ -66,7 +72,6 @@ class RaiseRFQPageLocator{
         this.rfq_status_in_rfq_list_xpath = "//*[@col-id='rfqStatus' and text()='%s']";
         this.scroll_bar_in_item_table_xpath = "(//*[@class='ag-body-horizontal-scroll-viewport'])[1]";
         this.scroll_bar_in_view_quotation_table_xpath = "//*[text()='View Quotations']/parent::*/following-sibling::*[@class='row']//*[@class='ag-body-horizontal-scroll-viewport']";
-        this.vendor_name_xpath = "//label[text()='Selected Vendor(s)']/parent::*/parent::*//*[text()='%s']"
 
         this.upload_file_negotiation_xpath = '//button[text()="Upload Attachment"]/preceding-sibling::input[@type="file"]';
         this.upload_file_conversation_xpath = '//button[text()="Choose File"]/preceding-sibling::input[@type="file"]';
@@ -92,9 +97,11 @@ class RaiseRFQPageLocator{
         this.validation_text_rfq_title_xpath = "//*[@name='rfqTitle']//following-sibling::*[text()='%s']";
         this.validation_text_currency_code_xpath = "//*[@name='currencyCode']/following-sibling::*[text()='%s']";
         this.validation_text_delivery_date_xpath = "//*[@name='deliveryDate']/following-sibling::*[text()='%s']";
+        this.validation_text_contact_number_xpath = "//input[@name='phoneNumber']/following-sibling::*[text()='%s']";
         this.validation_text_approval_route_xpath = "//*[@name='approvalRouteUuid']/following-sibling::*[text()='%s']"; 
         this.validation_text_delivery_address_xpath = "//*[@name='deliveryAddress']/following-sibling::*[text()='%s']";
         this.validation_text_procurement_type_xpath = "//*[@name='procurementType']/following-sibling::*[text()='%s']";
+        this.validation_delivery_contact_person_xpath = "//label[text()='Delivery Contact Person']/parent::*/parent::*//*[contains(@class,'invalid-feedback') and text()='%s']";
     }
 
 }export default RaiseRFQPageLocator

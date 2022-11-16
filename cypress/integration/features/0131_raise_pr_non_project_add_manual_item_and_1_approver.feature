@@ -13,7 +13,11 @@ Scenario: P2P-PR-S01-001 Raise PR with Non-project, add manual item and 1 approv
     And I fill data in Raise Requisition tab from "pr_v1" json file at Raise PR page
     And I fill data in General Information tab from "pr_v1" json file at Raise PR page
     And I fill data in Request Terms tab from "pr_v1" json file at Raise PR page
-    And I add manual item from "pr_v1" json file at Raise PR page
+    And I select 'auto buyer' from 'Delivery Contact Person' dropdown at Raise PR page
+    Then I see email address of contact person at Raise PR page is "auto.buyer@getnada.com"
+    And I see contact number of contact person at Raise PR page is "987987987"
+
+    When I add manual item from "pr_v1" json file at Raise PR page
     And I click to "Submit" button format_2
     Then I see a message "Purchase requisition successfully submitted" appears
 

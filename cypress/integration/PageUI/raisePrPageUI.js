@@ -3,7 +3,9 @@ class RaisePrPageLocator{
         // CSS
         this.note_txb_css = '[name="note"]';
         this.pr_title_txb_css = '[name="prTitle"]';
+        this.email_address_txb_css = "[name='emailAddress']";
         this.delivery_date_txb_css = '[name="deliveryDate"]';
+        this.contact_number_txb_css = "[name='phoneNumber']";
         this.search_catalogue_txb_css = '[type="search"]';
         this.send_back_reason_txb_css = '[name="sendBackReason"]';
         
@@ -34,6 +36,8 @@ class RaisePrPageLocator{
         this.nature_requisition_dropdown_css = '[name="project"]';
         
         // Xpath
+        this.delivery_contact_person_dropdown_xpath = "//label[text()='Delivery Contact Person']/parent::*/parent::*//*[contains(@class,'css-tlfecz-indicatorContainer')]";
+
         this.item_code_txb_xpath = "(//*[@col-id='itemCode'])[2]//input";
         this.item_name_txb_xpath = "(//*[@col-id='itemName'])[2]//input";
         this.item_size_txb_xpath = "(//*[@col-id='itemSize'])[2]//input";
@@ -80,10 +84,12 @@ class RaisePrPageLocator{
 
         this.validation_text_pr_title_xpath = "//*[@name='prTitle']/following-sibling::*[text()='%s']";
         this.validation_text_delivery_date_xpath = "//*[@name='deliveryDate']/following-sibling::*[text()='%s']";
+        this.validation_text_contact_number_xpath = "//input[@name='phoneNumber']/following-sibling::*[text()='%s']";  
         this.validation_text_approval_route_xpath = "//*[@name='approvalRouteUuid']/following-sibling::*[text()='%s']";
         this.validation_text_requisition_type_xpath = "//*[@name='requisitionType']/following-sibling::*[text()='%s']";
         this.validation_text_delivery_address_xpath = "//*[@name='deliveryAddress']/following-sibling::*[text()='%s']";
-        this.validation_text_procurement_type_xpath = "//*[@name='procurementType']/following-sibling::*[text()='%s']";   
+        this.validation_text_procurement_type_xpath = "//*[@name='procurementType']/following-sibling::*[text()='%s']"; 
+        this.validation_delivery_contact_person_xpath = "//label[text()='Delivery Contact Person']/parent::*/parent::*//*[contains(@class,'invalid-feedback') and text()='%s']";
     }
 
 }export default RaisePrPageLocator

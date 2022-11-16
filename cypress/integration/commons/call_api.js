@@ -771,6 +771,13 @@ class ApiAction{
                         postalCode: "4000",
                         state: "Singapore",
                     },
+                    deliveryContactPerson:
+                    {
+                        countryCode: "65",
+                        email: "auto.buyer@getnada.com",
+                        name: "AUTO BUYER",
+                        phoneNumber: "987987987"
+                    },
                     deliveryDate: commonAction.getDateFormat5(30),
                     dueDate: commonAction.getDateFormat5(5,),
                     note: "",
@@ -1034,6 +1041,13 @@ class ApiAction{
                                     approvalSequence: "auto.approver [auto.approver@getnada.com]",
                                     companyUuid: buyerCompanyUuid,                                                           
                                     currencyCode: "SGD",
+                                    deliveryContactPerson:
+                                    {
+                                        countryCode: "65",
+                                        email: "auto.buyer@getnada.com",
+                                        name: "AUTO BUYER",
+                                        phoneNumber: "987987987"
+                                    },
                                     documentDtoList: [],
                                     note: "",
                                     pprItemDtoList: 
@@ -1136,6 +1150,13 @@ class ApiAction{
                                 approvalSequence: "auto.approver [auto.approver@getnada.com]",
                                 companyUuid: buyerCompanyUuid,                                                           //"689fbac5-7291-4cad-b84c-52e95d4499a8",
                                 currencyCode: "SGD",
+                                deliveryContactPerson:
+                                {
+                                    countryCode: "65",
+                                    email: "auto.buyer@getnada.com",
+                                    name: "AUTO BUYER",
+                                    phoneNumber: "987987987"
+                                },
                                 documentDtoList: [],
                                 note: "",
                                 pprItemDtoList: 
@@ -1226,6 +1247,13 @@ class ApiAction{
                         },
                         approvalRouteUuid: sessionStorage.getItem("approvalCodeUuid"),                      //"873bcd64-e460-45b3-8246-390280c81a1b",
                         currencyCode: "USD",
+                        deliveryContactPerson:
+                        {
+                            countryCode: "65",
+                            email: "auto.buyer@getnada.com",
+                            name: "AUTO BUYER",
+                            phoneNumber: "987987987"
+                        },
                         prTitle: prTitle,
                         procurementType: "Goods",
                         project: false,
@@ -1301,6 +1329,13 @@ class ApiAction{
                         },
                         approvalRouteUuid: sessionStorage.getItem("approvalCodeUuid"),                      //"873bcd64-e460-45b3-8246-390280c81a1b",
                         currencyCode: "USD",
+                        deliveryContactPerson:
+                        {
+                            countryCode: "65",
+                            email: "auto.buyer@getnada.com",
+                            name: "AUTO BUYER",
+                            phoneNumber: "987987987"
+                        },
                         prTitle: prTitle,
                         procurementType: "Goods",
                         project: false,
@@ -1380,6 +1415,13 @@ class ApiAction{
                                 approvalSequence: "auto.approver [auto.approver@getnada.com]",
                                 companyUuid: buyerCompanyUuid,                                                           //"689fbac5-7291-4cad-b84c-52e95d4499a8",
                                 currencyCode: "SGD",
+                                deliveryContactPerson:
+                                {
+                                    countryCode: "65",
+                                    email: "auto.buyer@getnada.com",
+                                    name: "AUTO BUYER",
+                                    phoneNumber: "987987987"
+                                },
                                 documentDtoList: [],
                                 note: "",
                                 pprItemDtoList: 
@@ -1468,6 +1510,13 @@ class ApiAction{
                         },
                         approvalRouteUuid: sessionStorage.getItem("approvalCodeUuid"),                              //"873bcd64-e460-45b3-8246-390280c81a1b",
                         currencyCode: "USD",
+                        deliveryContactPerson:
+                        {
+                            countryCode: "65",
+                            email: "auto.buyer@getnada.com",
+                            name: "AUTO BUYER",
+                            phoneNumber: "987987987"
+                        },
                         prTitle: prTitle,
                         procurementType: "Goods",
                         project: false,

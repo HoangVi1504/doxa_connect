@@ -6,6 +6,8 @@ class RaisePprPageLocator{
         this.reason_cancel_txb_css = '[name="reasonCancel"]'
         this.delivery_date_txb_css = '[name="deliveryDate"]';
         this.reason_reject_txb_css = '[name="rejectReason"]';
+        this.email_address_txb_css = "[name='emailAddress']";
+        this.contact_number_txb_css = "[name='phoneNumber']";
         this.reason_send_back_txb_css = '[name="sendBackReason"]';
         this.search_catalogue_item_txb_css = '[type="search"]';
 
@@ -24,6 +26,9 @@ class RaisePprPageLocator{
         this.delivery_address_dropdown_css = '[name="deliveryAddress"]';
         this.nature_requisition_dropdown_css = '[name="project"]';
 
+        // Xpath - Dropdown
+        this.delivery_contact_person_dropdown_xpath = "//label[text()='Delivery Contact Person']/parent::*/parent::*//*[contains(@class,'css-tlfecz-indicatorContainer')]";
+        
         // Xpath - Txb
         this.item_code_txb_in_item_list_xpath = "(//*[@col-id='itemCode'])[2]//input";
         this.item_name_txb_in_item_list_xpath = "(//*[@col-id='itemName'])[2]//input";
@@ -62,9 +67,11 @@ class RaisePprPageLocator{
         this.validation_text_currency_code_xpath = "//*[@name='currencyCode']/following-sibling::*[text()='%s']";
         this.validation_text_delivery_date_xpath = "//*[@name='deliveryDate']/following-sibling::*[text()='%s']";
         this.validation_text_approval_route_xpath = "//*[@name='approvalRoute']/following-sibling::*[text()='%s']";
+        this.validation_text_contact_number_xpath = "//input[@name='phoneNumber']/following-sibling::*[text()='%s']";  
         this.validation_text_requisition_type_xpath = "//*[@name='requisitionType']/following-sibling::*[text()='%s']";
         this.validation_text_delivery_address_xpath = "//*[@name='deliveryAddress']/following-sibling::*[text()='%s']";
         this.validation_text_procurement_type_xpath = "//*[@name='procurementType']/following-sibling::*[text()='%s']";   
+        this.validation_delivery_contact_person_xpath = "//label[text()='Delivery Contact Person']/parent::*/parent::*//*[contains(@class,'invalid-feedback') and text()='%s']";
     }
 
 }export default RaisePprPageLocator

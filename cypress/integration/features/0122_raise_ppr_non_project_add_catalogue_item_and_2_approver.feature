@@ -13,7 +13,11 @@ Scenario: P2P-PPR-S01-002 Raise PPR with Non-project, add catalogue item and 2 a
     And I fill data in Raise Requisition tab from "ppr_v2" json file at Raise PPR page
     And I fill data in General Information tab from "ppr_v2" json file at Raise PPR page
     And I fill data in Request Terms tab from "ppr_v2" json file at Raise PPR page
-    And I add catalogue item from "ppr_v2" json file at Raise PPR page
+    And I select 'auto buyer' from 'Delivery Contact Person' dropdown at Raise PPR page
+    Then I see email address of contact person at Raise PPR page is "auto.buyer@getnada.com"
+    And I see contact number of contact person at Raise PPR page is "987987987"
+
+    When I add catalogue item from "ppr_v2" json file at Raise PPR page
     And I click to "Submit" button format_2
     Then I see a message "PPR created successfully" appears
 

@@ -162,7 +162,7 @@ class RaiseRFQPage{
     }
 
     enterValueToRfqTitleTextbox(rfqTitle){
-        commonAction.enterValueToTextbox(raiseRFQPageLocator.rfq_title_txb_css, rfqTitle)
+        commonAction.enterValueToTextboxAfterClear(raiseRFQPageLocator.rfq_title_txb_css, rfqTitle)
     }
 
     enterValueToValidityStartDateTextbox(date){
@@ -279,6 +279,16 @@ class RaiseRFQPage{
         commonAction.uploadFileByXpath(raiseRFQPageLocator.upload_file_conversation_xpath, file)
         commonAction.setAttributeByXpath(raiseRFQPageLocator.upload_file_conversation_xpath, "style", "display: none;")
     } 
+
+    selectValueFromDeliveryContactPersonDropdown(){
+        commonAction.clickToElementByXpath(raiseRFQPageLocator.delivery_contact_person_dropdown_xpath)
+        commonAction.clickToElement("#react-select-4-option-0")
+    }
+
+    selectValueFromContactPersonDropdown(){
+        commonAction.clickToElementByXpath(raiseRFQPageLocator.delivery_contact_person_dropdown_xpath)
+        commonAction.clickToElement("#react-select-8-option-0")
+    }
 
     selectValueFromRequisitionTypeDropdown(value){
         commonAction.selectValueFromElement(raiseRFQPageLocator.requisition_type_dropdown_css, value)
@@ -431,6 +441,14 @@ class RaiseRFQPage{
         commonAction.verifyValueInTextboxExist(raiseRFQPageLocator.file_name_in_negotiation_btn_css,fileName)
     }
 
+    verifyValueInEmailAddressTextboxExist(email){
+        commonAction.verifyValueInTextboxExist(raiseRFQPageLocator.email_address_txb_css, email)
+    }
+
+    verifyValueInContactNumberTextboxExist(contactNumber){
+        commonAction.verifyValueInTextboxExist(raiseRFQPageLocator.contact_number_txb_css, contactNumber)
+    }
+
     verifyProjectCodeFieldNotDisplay(){
         commonAction.verifyElementNotExist(raiseRFQPageLocator.project_code_dropdown_css)
     }
@@ -493,6 +511,14 @@ class RaiseRFQPage{
 
     verifyValidationTextApprovalRouteDisplay(validation){
         commonAction.verifyElementByXpathVisible(printf(raiseRFQPageLocator.validation_text_approval_route_xpath, validation))
+    }
+
+    verifyValidationTextDeliveryContactPersonDisplay(validation){
+        commonAction.verifyElementByXpathVisible(printf(raiseRFQPageLocator.validation_delivery_contact_person_xpath, validation))
+    }
+
+    verifyValidationTextContactNumberDisplay(validation){
+        commonAction.verifyElementByXpathVisible(printf(raiseRFQPageLocator.validation_text_contact_number_xpath, validation))
     }
 
     scrollToQuantityItem(position){

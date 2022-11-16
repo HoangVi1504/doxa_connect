@@ -36,10 +36,15 @@ Scenario: P2P-RFQ-S06-001 Route a PPR that had been converted to a PR to go thro
     And I select "TEST SUPPLIER 34 (TEST_SUPPLIER_34)" from 'Vendor' dropdown at 'Raise RFQ' page
     Then I see "TEST SUPPLIER 34" in 'Vendor Information' at 'Raise RFQ' page
 
+    When I select 'auto buyer' from 'Delivery Contact Person' dropdown at Raise RFQ page after redirect from PPR page
+    Then I see email address of contact person at Raise RFQ page is "auto.buyer@getnada.com"
+    And I see contact number of contact person at Raise RFQ page is "987987987"
+    
     When I select "One-off quotation" from 'RFQ Type' dropdown at 'Raise RFQ' page
     And I input due date as next "2" days to 'Due Date' textbox at 'Raise RFQ' page
     And I select "address auto" from 'Delivery Address' dropdown at 'Raise RFQ' page
     And I input delivery date as next "5" days to 'Delivery Date' textbox at 'Raise RFQ' page
+
     #bugId: https://doxa-connex.atlassian.net/browse/D0R-6177
     # And I click to "Back" button format_1
     # Then I see a message "" appears

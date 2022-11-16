@@ -23,18 +23,24 @@ Scenario: P2P-RFQ-S05-001-002-003-004 Raise RFQ and save RFQ as draft
     And I see a validation text of 'Due Date' at 'Raise RFQ' page "Please select valid Due Date" appears
     And I see a validation text of 'Delivery Address' at 'Raise RFQ' page "Please select valid Delivery Address" appears
     And I see a validation text of 'Delivery Date' at 'Raise RFQ' page "Please select valid Delivery Date" appears
+    And I see a validation text of 'Delivery Contact Person' at 'Raise RFQ' page "Please Select Valid Delivery Contact Person" appears
+    And I see a validation text of 'Contact Number' at 'Raise RFQ' page "Please enter valid Contact Number" appears
 
     When I fill data in Raise Requisition tab from "rfq_v9" json file at Raise RFQ page
     And I fill data in General Information tab from "rfq_v9" json file at Raise RFQ page
-    And I select RFQ type from "rfq_v9" json file at Raise RFQ page
+    And I select "Contract" from RFQ type dropdown at Raise RFQ page
     And I input validity start date as next "2" days to 'Validity Start Date' textbox at 'Raise RFQ' page
     And I input validity end date as next "20" days to 'Validity End Date' textbox at 'Raise RFQ' page
-    And I select delivery address from "rfq_v9" json file at Raise RFQ page
+    And I select "address auto" from 'Delivery Address' dropdown at Raise RFQ page
     # Save RFQ as draft with Due date and Delivery Address in the past => check validation text
     And I input delivery date as previous "4" days to 'Delivery Date' textbox at 'Raise RFQ' page
     And I input due date as previous "5" days to 'Due Date' textbox at 'Raise RFQ' page
     And I input note to from "rfq_v9" json file at Raise RFQ page
-    And I add manual item from "rfq_v9" json file at Raise RFQ page
+    And I select 'auto buyer' from 'Delivery Contact Person' dropdown at Raise RFQ page
+    Then I see email address of contact person at Raise RFQ page is "auto.buyer@getnada.com"
+    And I see contact number of contact person at Raise RFQ page is "987987987"
+
+    When I add manual item from "rfq_v9" json file at Raise RFQ page
     And I click to "Save As Draft" button format_1
     Then I see a message "Validation error, please check your input." appears
 

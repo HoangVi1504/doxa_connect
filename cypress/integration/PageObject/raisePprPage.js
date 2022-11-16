@@ -223,6 +223,11 @@ class RaisePprPage{
         commonAction.enterValueToTextbox(raisePprPageLocator.reason_reject_txb_css, reason)
     }
 
+    selectValueFromDeliveryContactPersonDropdown(){
+        commonAction.clickToElementByXpath(raisePprPageLocator.delivery_contact_person_dropdown_xpath)
+        commonAction.clickToElement("#react-select-4-option-0")
+    }
+
     selectValueFromRequisitionTypeDropdown(value){
         commonAction.selectValueFromElement(raisePprPageLocator.requisition_type_dropdown_css, value)
     }
@@ -314,6 +319,14 @@ class RaisePprPage{
         commonAction.verifyValueInTextboxExist(raisePprPageLocator.ppr_title_txb_css, pprTitle)
     }
 
+    verifyValueInEmailAddressTextboxExist(email){
+        commonAction.verifyValueInTextboxExist(raisePprPageLocator.email_address_txb_css, email)
+    }
+
+    verifyValueInContactNumberTextboxExist(contactNumber){
+        commonAction.verifyValueInTextboxExist(raisePprPageLocator.contact_number_txb_css, contactNumber)
+    }
+
     verifyApprovalRouteDropdownIsDisable(){
         commonAction.verifyElementDisable(raisePprPageLocator.approval_route_dropdown_css)
     }
@@ -400,6 +413,14 @@ class RaisePprPage{
 
     verifyValidationTextDeliveryDateDisplay(validation){
         commonAction.verifyElementByXpathVisible(printf(raisePprPageLocator.validation_text_delivery_date_xpath, validation))
+    }
+
+    verifyValidationTextDeliveryContactPersonDisplay(validation){
+        commonAction.verifyElementByXpathVisible(printf(raisePprPageLocator.validation_delivery_contact_person_xpath, validation))
+    }
+
+    verifyValidationTextContactNumberDisplay(validation){
+        commonAction.verifyElementByXpathVisible(printf(raisePprPageLocator.validation_text_contact_number_xpath, validation))
     }
 
     scrollToElementInItemTable(position){

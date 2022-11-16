@@ -13,7 +13,11 @@ Scenario: P2P-RFQ-S03-002 Raise Request for Quotations with Project, One-off-Quo
     And I fill data in Raise Requisition tab from "rfq_v6" json file at Raise RFQ page
     And I fill data in General Information tab from "rfq_v6" json file at Raise RFQ page
     And I fill data in Request Terms tab from "rfq_v6" json file at Raise RFQ page
-    And I add catalogue item without scroll bar from "rfq_v6" json file at Raise RFQ page
+    And I select 'auto buyer' from 'Delivery Contact Person' dropdown at Raise RFQ page
+    Then I see email address of contact person at Raise RFQ page is "auto.buyer@getnada.com"
+    And I see contact number of contact person at Raise RFQ page is "987987987"
+
+    When I add catalogue item without scroll bar from "rfq_v6" json file at Raise RFQ page
     And I click to "Send to Vendors" button format_1
     Then I see a message "RFQ successfully submitted" appears
 
