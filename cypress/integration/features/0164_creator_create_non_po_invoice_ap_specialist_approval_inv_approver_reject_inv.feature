@@ -22,7 +22,7 @@ Scenario Outline: P2P-INV-S02-001-002 Buyer create Non-PO invoice
 
     When I select "Non-PO Invoice" from 'Invoice Type' dropdown at 'Create Invoice' page
     And I select "TEST_SUPPLIER_34" from 'Supplier Code' dropdown at 'Create Invoice' page
-    Then I see company name "TEST SUPPLIER 34" at 'Create Invoice' page
+    Then "buyer" see company name "TEST SUPPLIER 34" and "Add Item" table at 'Create Invoice' page
 
     When I click to "Add Manual" button format_2
     Then I see 'Item Delete' button in "Add Item" table at 'Create Invoice' page

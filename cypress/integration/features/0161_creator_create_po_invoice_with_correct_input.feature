@@ -80,7 +80,7 @@ Scenario: P2P-INV-S01-002 Creator create PO invoice with correct input
     And I input invoice date as next "2" days to 'Invoice Date' textbox at 'Create Invoice' page
     And I input invoice due date as next "4" days to 'Invoice Due Date' textbox at 'Create Invoice' page
     And I select "TEST_SUPPLIER_34" from 'Supplier Code' dropdown at 'Create Invoice' page
-    Then I see company name "TEST SUPPLIER 34" at 'Create Invoice' page
+    Then "buyer" see company name "TEST SUPPLIER 34" and "Added PO" table at 'Create Invoice' page
 
     When I input PO No to filter PO in 'Select PO' table at 'Create Invoice' page
     And I check to PO No just created checkbox at 'Create Invoice' page

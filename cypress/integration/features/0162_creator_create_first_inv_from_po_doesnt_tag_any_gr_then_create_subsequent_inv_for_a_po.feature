@@ -26,7 +26,7 @@ Scenario Outline: P2P-INV-S01-001 P2P-INV-S09-002 Buyer create PO invoice that d
 
     When I select "PO Invoice" from 'Invoice Type' dropdown at 'Create Invoice' page
     And I select "TEST_SUPPLIER_34" from 'Supplier Code' dropdown at 'Create Invoice' page
-    Then I see company name "TEST SUPPLIER 34" at 'Create Invoice' page
+    Then "buyer" see company name "TEST SUPPLIER 34" and "Added PO" table at 'Create Invoice' page
 
     When I input PO No to filter PO in 'Select PO' table at 'Create Invoice' page
     And I check to PO No just created checkbox at 'Create Invoice' page
@@ -82,7 +82,7 @@ Scenario Outline: P2P-INV-S01-001 P2P-INV-S09-002 Buyer create PO invoice that d
     |quantity|unitPrice|invQty|invSubTotal|tax|invTotal|
     |1000|5000|100|500,000.00|2,500.00|502,500.00|
 
-Scenario Outline: P2P-INV-S01-003 Creates the subsequent invoice for a PO
+Scenario: AP Specialist and approver approve invoice
     # AP Specialist approve invoice
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "ap specialist"
@@ -144,9 +144,12 @@ Scenario Outline: P2P-INV-S01-003 Creates the subsequent invoice for a PO
     When "buyer" input INV No to filter INV in "INV" list
     Then I see Invoice status in list is "APPROVED TWO WAY"
 
-    # Create subsequent for a PO
-    When I logout account
-    And I login with role "creator"
+Scenario Outline: P2P-INV-S01-003 Creates the subsequent invoice for a PO
+    Given Navigate to Doxa Connect 2.0 site
+    When I login with role "creator"
+    And I click to hamburger menu
+    And I click to "Invoices" button format_2
+    And Wait for "3" seconds
     And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Invoices" link on header menu
     And I click to "Invoices" link on the left menu
@@ -155,7 +158,7 @@ Scenario Outline: P2P-INV-S01-003 Creates the subsequent invoice for a PO
 
     When I select "PO Invoice" from 'Invoice Type' dropdown at 'Create Invoice' page
     And I select "TEST_SUPPLIER_34" from 'Supplier Code' dropdown at 'Create Invoice' page
-    Then I see company name "TEST SUPPLIER 34" at 'Create Invoice' page
+    Then "buyer" see company name "TEST SUPPLIER 34" and "Added PO" table at 'Create Invoice' page
 
     When I input PO No to filter PO in 'Select PO' table at 'Create Invoice' page
     And I check to PO No just created checkbox at 'Create Invoice' page

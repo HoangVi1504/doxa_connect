@@ -29,7 +29,7 @@ Scenario Outline: P2P-INV-S03-001 Supplier creates the first invoice for a PO th
 
     When I select "PO Invoice" from 'Invoice Type' dropdown at 'Create Invoice' page
     And I select "AUTO_BUYER" from 'Buyer Code' dropdown at 'Create Invoice' page
-    Then I see company name "AUTO BUYER" at 'Create Invoice' page
+    Then "supplier" see company name "AUTO BUYER" and "Added PO" table at 'Create Invoice' page
 
     When I input PO No to filter PO in 'Select PO' table at 'Create Invoice' page
     And I check to PO No just created checkbox at 'Create Invoice' page
@@ -169,7 +169,7 @@ Scenario Outline: P2P-INV-S03-004 Supplier create PO invoice with tax adjustment
 
     When I select "PO Invoice" from 'Invoice Type' dropdown at 'Create Invoice' page
     And I select "AUTO_BUYER" from 'Buyer Code' dropdown at 'Create Invoice' page
-    Then I see company name "AUTO BUYER" at 'Create Invoice' page
+    Then "supplier" see company name "AUTO BUYER" and "Added PO" table at 'Create Invoice' page
 
     When I input PO No to filter PO in 'Select PO' table at 'Create Invoice' page
     And I check to PO No just created checkbox at 'Create Invoice' page

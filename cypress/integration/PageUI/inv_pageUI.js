@@ -50,7 +50,8 @@ class InvPageLocator{
         
         // Xpath - Checkbox
         this.expected_amount_ckb_xpath = "//*[@for='expectedAmountGiven']/preceding-sibling::*/*[contains(@class,'checkbox')]";
-        this.po_number_ckb_in_select_po_table_xpath = "//*[contains(text(),'%s')]/parent::*//input[@type='checkbox']";
+        this.po_number_ckb_in_select_po_table_xpath = "//*[contains(text(),'%s')]/parent::*/parent::*[@col-id='poNumber']//input[@type='checkbox']";
+        this.do_number_ckb_in_select_do_table_xpath = "//*[contains(text(),'%s')]/parent::*/parent::*[@col-id='deliveryOrderNumber']//input[@type='checkbox']";
         
         // Xpath Dropdown
         this.tax_code_dropdown_xpath = "//*[contains(@class,'ag-row-first')]//*[@col-id='invoiceTaxCode']";
@@ -61,6 +62,7 @@ class InvPageLocator{
         this.gl_code_in_table_xpath = "//*[contains(@class,'ag-row-first')]//*[@col-id='glCode']";
         this.inv_number_in_list_xpath = "//*[contains(@class,'ag-row-first')]//*[@col-id='invoiceNo' and text()='%s']";
         this.header_preview_invoice_xpath = "//*[@class='modal-header' and text() = 'Preview Invoice']";
+        this.do_number_in_added_do_table_xpath = "//*[contains(@class,'ag-row-first')]//*[@col-id='doNumber']//*[text()='%s']";
         this.po_number_in_added_po_table_xpath = "(//*[contains(@class,'ag-row-first')]//*[@col-id='poNumber'])[2]//*[text()='%s']";
         this.inv_item_name_in_added_po_table_xpath = "(//button[contains(@class,'MuiIconButton')])[2]//parent::*/parent::*[@col-id='poNumber']/parent::*/*[@col-id='itemName']";
 
@@ -71,6 +73,7 @@ class InvPageLocator{
         this.scroll_bar_in_item_table_xpath = "(//*[@class='ag-body-horizontal-scroll-viewport'])[1]";
         this.scroll_bar_in_added_po_table_xpath = "(//*[@class='ag-body-horizontal-scroll-viewport'])[2]";
         
+        this.item_table_title_xpath = "//h3[text()='%s']";
         this.create_inv_page_title_xpath = "//h1//*[text()='Create Invoice']";
         this.invoice_list_page_title_xpath = "//h1//*[text()='Invoices List']";
         this.invoice_detail_page_title_xpath = "//h1//*[text()='Invoice Details']";
@@ -79,6 +82,7 @@ class InvPageLocator{
 
         // Xpath - Filter
         this.filter_inv_number_in_list_xpath = "(//*[@aria-label='Invoice No. Filter Input'])[1]";
+        this.filter_do_number_in_select_do_table_xpath = "(//*[@aria-label='DO No. Filter Input'])[1]";
         this.filter_po_number_in_select_po_table_xpath = "(//*[@aria-label='PO No. Filter Input'])[1]";
         this.filter_po_number_in_inv_approval_list_xpath = "(//*[@aria-label='Purchase Order No. Filter Input'])[1]";
 

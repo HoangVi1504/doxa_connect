@@ -30,7 +30,7 @@ Scenario Outline: P2P-INV-S01-004 Buyer create PO invoice with tax adjustment
     When I select "PO Invoice" from 'Invoice Type' dropdown at 'Create Invoice' page
     And I input Invoice No random to 'Invoice No' textbox at 'Create Invoice' page
     And I select "TEST_SUPPLIER_34" from 'Supplier Code' dropdown at 'Create Invoice' page
-    Then I see company name "TEST SUPPLIER 34" at 'Create Invoice' page
+    Then "buyer" see company name "TEST SUPPLIER 34" and "Added PO" table at 'Create Invoice' page
 
     When I input PO No to filter PO in 'Select PO' table at 'Create Invoice' page
     And I check to PO No just created checkbox at 'Create Invoice' page
@@ -105,7 +105,7 @@ Scenario Outline: P2P-INV-S01-005 The buyer creates the invoice - add/remove ite
     When I select "PO Invoice" from 'Invoice Type' dropdown at 'Create Invoice' page
     And I input Invoice No random to 'Invoice No' textbox at 'Create Invoice' page
     And I select "TEST_SUPPLIER_34" from 'Supplier Code' dropdown at 'Create Invoice' page
-    Then I see company name "TEST SUPPLIER 34" at 'Create Invoice' page
+    Then "buyer" see company name "TEST SUPPLIER 34" and "Added PO" table at 'Create Invoice' page
 
     When I input PO No to filter PO in 'Select PO' table at 'Create Invoice' page
     And I check to PO No just created checkbox at 'Create Invoice' page

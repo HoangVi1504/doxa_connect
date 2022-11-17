@@ -24,7 +24,7 @@ Scenario Outline: P2P-INV-S05-001 P2P-INV-S04-001 Supplier create Non-PO invoice
 
     When I select "Non-PO Invoice" from 'Invoice Type' dropdown at 'Create Invoice' page
     And I select "AUTO_BUYER" from 'Buyer Code' dropdown at 'Create Invoice' page
-    Then I see company name "AUTO BUYER" at 'Create Invoice' page
+    Then "supplier" see company name "AUTO BUYER" and "Add Item" table at 'Create Invoice' page
 
     When I click to "Add Manual" button format_2
     Then I see 'Item Delete' button in "Add Item" table at 'Create Invoice' page
@@ -191,7 +191,7 @@ Scenario Outline: P2P-INV-S03-002 Supplier creates the first invoice for a PO th
 
     When I select "PO Invoice" from 'Invoice Type' dropdown at 'Create Invoice' page
     And I select "AUTO_BUYER" from 'Buyer Code' dropdown at 'Create Invoice' page
-    Then I see company name "AUTO BUYER" at 'Create Invoice' page
+    Then "supplier" see company name "AUTO BUYER" and "Added PO" table at 'Create Invoice' page
 
     When I input PO No to filter PO in 'Select PO' table at 'Create Invoice' page
     And I check to PO No just created checkbox at 'Create Invoice' page

@@ -608,7 +608,7 @@ class ApiAction{
     callApiSubmitPo(prNumber, prTitle) {
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
-        cy.wrap(this.callApiGetDataInVendorDetail("TEST SUPPLIER 34")).then((e) => {
+        cy.wrap(this.callApiGetDataInVendorDetail("TEST SUPPLIER 34", "buyer")).then((e) => {
             cy.request({
                 method: 'GET',
                 url: printf(urlPageLocator.po_list_url, this.env, buyerCompanyUuid, "buyer"),
@@ -752,7 +752,7 @@ class ApiAction{
     callApiRaiseRFQ(rfqTitle){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
-        cy.wrap(this.callApiGetDataInManageVendorList("AUTO SUPPLIER 1")).then((e)=>{ 
+        cy.wrap(this.callApiGetDataInManageVendorList("AUTO SUPPLIER 1", "buyer")).then((e)=>{ 
             cy.request({
                 method: 'POST',
                 url: printf(urlPageLocator.raise_rfq_url, this.env, buyerCompanyUuid),
@@ -1019,7 +1019,7 @@ class ApiAction{
             cy.wrap(this.callApiGetDataInApprovalList("auto approval PPR 1")).then((e)=>{
                 cy.wrap(this.callApiGetDataInCatalogueList("auto item code 4")).then((e)=>{
                     cy.wrap(this.callApiGetDataInManageAddress("address auto")).then((e)=>{
-                        cy.wrap(this.callApiGetDataInManageVendorList("TEST SUPPLIER 36")).then((e)=>{
+                        cy.wrap(this.callApiGetDataInManageVendorList("TEST SUPPLIER 36", "buyer")).then((e)=>{
                             cy.request({
                                 method: 'POST',
                                 url: printf(urlPageLocator.create_ppr_url, this.env, buyerCompanyUuid),
@@ -1986,12 +1986,26 @@ class ApiAction{
         })
     }
 
-    callApiGetDataInManageVendorList(vendorName){
+    callApiGetDataInManageVendorList(vendorName, vendorRole){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
+        let companyUuid
+        switch (vendorRole) {
+            case "buyer":
+                companyUuid = buyerCompanyUuid
+                break;
+
+            case "supplier":
+                companyUuid = supplierCompanyUuid
+                break;
+        
+            default:
+                break;
+        }
         cy.request({
             method: 'GET',
-            url: printf(urlPageLocator.manage_vendor_list_url, this.env, buyerCompanyUuid),
+            url: printf(urlPageLocator.manage_vendor_list_url, this.env, companyUuid),
             headers: {
                 authorization: "Bearer " + token,
             }
@@ -2003,13 +2017,27 @@ class ApiAction{
         })
     }
 
-    callApiGetDataInVendorDetail(vendorName) {
+    callApiGetDataInVendorDetail(vendorName, vendorRole) {
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
-        cy.wrap(this.callApiGetDataInManageVendorList(vendorName)).then((e) => {
+        let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
+        let companyUuid
+        switch (vendorRole) {
+            case "buyer":
+                companyUuid = buyerCompanyUuid
+                break;
+
+            case "supplier":
+                companyUuid = supplierCompanyUuid
+                break;
+        
+            default:
+                break;
+        }
+        cy.wrap(this.callApiGetDataInManageVendorList(vendorName, vendorRole)).then((e) => {
             cy.request({
                 method: 'GET',
-                url: printf(urlPageLocator.vendor_detail_url, this.env, buyerCompanyUuid, sessionStorage.getItem("vendorUuid")),
+                url: printf(urlPageLocator.vendor_detail_url, this.env, companyUuid, sessionStorage.getItem("vendorUuid")),
                 headers: {
                     authorization: "Bearer " + token,
                 }
@@ -2022,7 +2050,7 @@ class ApiAction{
     }
 
     navigateToVendorDetailsPage(vendorName){
-        cy.wrap(this.callApiGetDataInManageVendorList(vendorName)).then((e)=>{
+        cy.wrap(this.callApiGetDataInManageVendorList(vendorName, "buyer")).then((e)=>{
             commonAction.navigateTo(printf(urlPageLocator.vendor_detail_url, this.env, sessionStorage.getItem("vendorUuid")))
         })
     }
@@ -2031,7 +2059,7 @@ class ApiAction{
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
         cy.wrap(this.callApiGetDataInCategoryList("AUTO EQUIPMENT")).then((e)=>{
-            cy.wrap(this.callApiGetDataInManageVendorList("AUTO SUPPLIER 1")).then((e)=>{
+            cy.wrap(this.callApiGetDataInManageVendorList("AUTO SUPPLIER 1", "buyer")).then((e)=>{
                 cy.request({
                     method: 'POST',
                     url: printf(urlPageLocator.create_catalogue_url, this.env, buyerCompanyUuid),
@@ -2237,7 +2265,7 @@ class ApiAction{
     callApiCreateApSpecialistGrouping(groupCode){
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
-        cy.wrap(this.callApiGetDataInManageVendorList("AUTO SUPPLIER 1")).then((e)=>{
+        cy.wrap(this.callApiGetDataInManageVendorList("AUTO SUPPLIER 1", "buyer")).then((e)=>{
             cy.request({
                 method: 'POST',
                 url: printf(urlPageLocator.create_ap_specialist_url, this.env, buyerCompanyUuid),

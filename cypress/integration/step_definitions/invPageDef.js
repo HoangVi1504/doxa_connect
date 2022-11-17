@@ -24,6 +24,10 @@ When(/^I input PO No to filter PO in 'Select PO' table at 'Create Invoice' page$
     invPage.enterValueToFilterPoInSelectPoTable(sessionStorage.getItem("poNumber"))
 })
 
+When(/^I input DO No to filter DO in 'Select DO' table at 'Create Invoice' page$/, () => {
+    invPage.enterValueToFilterDoInSelectDoTable(sessionStorage.getItem("doNumberDoList"))
+})
+
 When(/^I input Invoice No random to 'Invoice No' textbox at 'Create Invoice' page$/, () => {
     sessionStorage.setItem("invNumber", "INV-00" + faker.random.numeric(7))
     invPage.enterValueToInvoiceNoTextbox(sessionStorage.getItem("invNumber"))
@@ -137,6 +141,10 @@ When(/^I check to PO No just created checkbox at 'Create Invoice' page$/, () => 
     invPage.checkToPoNumberCheckbox(sessionStorage.getItem("poNumber"))
 })
 
+When(/^I check to DO No just created checkbox at 'Create Invoice' page$/, () => {
+    invPage.checkToDoNumberCheckbox(sessionStorage.getItem("doNumberDoList"))
+})
+
 When(/^I check to 'Expected Amount' checkbox at 'Create Invoice' page$/, () => {
     invPage.checkToExpectedAmountCheckbox()
 })
@@ -181,8 +189,8 @@ Then(/^I see INV No in 'Invoice No' textbox appears$/, () => {
     invPage.verifyValueInInvoiceNumberTextboxExits(sessionStorage.getItem("invNumberList"))
 })
 
-Then(/^I see company name "([^"]*)" at 'Create Invoice' page$/, (companyName) => {
-    invPage.verifyValueInCompanyNameTextboxExits(companyName)
+Then(/^"([^"]*)" see company name "([^"]*)" and "([^"]*)" table at 'Create Invoice' page$/, (account, companyName, invType) => {
+    invPage.verifyValueInCompanyNameTextboxExits(account, companyName, invType)
 })
 
 Then(/^I see 'Invoice Sub Total' is equal to "([^"]*)" at 'Create Invoice' page$/, (value) => {
@@ -199,6 +207,10 @@ Then(/^I see 'Invoice Tax' is equal to "([^"]*)" at 'Create Invoice' page$/, (va
 
 Then(/^I see PO No in 'Added PO' table at 'Create Invoice' page$/, () => {
     invPage.verifyPoNumberInAddedPoTableDisplay(sessionStorage.getItem("poNumber"))
+})
+
+Then(/^I see DO No in 'Added DO' table at 'Create Invoice' page$/, () => {
+    invPage.verifyDoNumberInAddedDoTableDisplay(sessionStorage.getItem("doNumberDoList"))
 })
 
 Then(/^I see Invoice status in list is "([^"]*)"$/, (invStatus) => {

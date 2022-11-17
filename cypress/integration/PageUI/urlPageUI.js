@@ -73,12 +73,14 @@ class UrlPageLocator{
         this.buyer_po_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-order/buyer/list-pagination?page=0&size=50&q=&orderBy=poNumber:desc`;
         this.po_detail_web_url = `https://connex-${'%s'}.doxa-holdings.com/po-details?uuid=${'%s'}`;
         this.acknowledge_po_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-order/supplier/acknowledge/${'%s'}`;
+        this.po_list_in_invoice = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/invoice/${'%s'}/po/list/${'%s'}/${'%s'}`
         this.supplier_po_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/purchase-order/supplier/list-pagination?page=0&size=50&q=&orderBy=poNumber:desc`;
 
         // DO URL
         this.do_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/delivery-order/list`;
         this.issue_do_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/delivery-order/issue`;
         this.create_do_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/delivery-order/create-do`;
+        this.do_list_in_invoice = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/invoice/${'%s'}/do/list/${'%s'}/${'%s'}`
         this.create_do_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/delivery-order/po/list`
 
         // GR URL

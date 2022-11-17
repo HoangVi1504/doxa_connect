@@ -1,3 +1,4 @@
+import ApiAction from '../commons/call_api'
 import CommonAction from '../commons/common_actions'
 import UrlPageLocator from '../PageUI/urlPageUI'
 import InvPageLocator from '../PageUI/inv_pageUI'
@@ -7,6 +8,7 @@ var printf = require('printf')
 var dataBuyer = require('../../../dataBuyer.json');
 var dataSupplier = require('../../../dataSupplier.json');
 
+const apiAction = new ApiAction()
 const commonAction = new CommonAction()
 const invPageLocator = new InvPageLocator()
 const urlPageLocator = new UrlPageLocator()
@@ -22,9 +24,13 @@ class InvPage{
     }
 
     enterValueToFilterPoInSelectPoTable(poNumber){
-        commonAction.wait(1)
         commonAction.clickToElementByXpath(invPageLocator.filter_po_number_in_select_po_table_xpath)
         commonAction.enterValueToTextboxByXpath(invPageLocator.filter_po_number_in_select_po_table_xpath, poNumber)
+    }
+
+    enterValueToFilterDoInSelectDoTable(doNumber) {
+        commonAction.clickToElementByXpath(invPageLocator.filter_do_number_in_select_do_table_xpath)
+        commonAction.enterValueToTextboxByXpath(invPageLocator.filter_do_number_in_select_do_table_xpath, doNumber)
     }
 
     enterValueToInvoiceNoTextbox(invNumber){
@@ -99,12 +105,12 @@ class InvPage{
     }
 
     enterValueToInvoiceQuantityTextbox(quantity, table){
-        if (table == "Added PO") {
+        if (table == "Add Item") {
             commonAction.wait(1)
-            this.scrollToElementInAddedPoTable("25%")
+            this.scrollToInItemTable("20%")   
         }
         else{
-            this.scrollToInItemTable("20%")       
+            this.scrollToElementInAddedPoTable("25%")
         }
         commonAction.wait(1)
         commonAction.doubleClickToElement(invPageLocator.inv_quantity_in_table_css)
@@ -114,11 +120,11 @@ class InvPage{
     }
 
     enterValueToInvoiceUnitPriceTextbox(price, table) {
-        if (table == "Added PO") {
-            this.scrollToElementInAddedPoTable("20%")
+        if (table == "Add Item") {
+            this.scrollToInItemTable("30%")
         }
         else {
-            this.scrollToInItemTable("30%")
+            this.scrollToElementInAddedPoTable("20%")
         }
         commonAction.wait(1)
         commonAction.doubleClickToElement(invPageLocator.inv_unit_price_in_table_css)
@@ -132,12 +138,12 @@ class InvPage{
     }
 
     enterValueToInvoiceItemNameTextboxInTable(name, table){
-        if (table == "Added PO") {
+        if (table == "Add Item") {
             commonAction.wait(2)
-            commonAction.doubleClickToElementByXpath(invPageLocator.inv_item_name_in_added_po_table_xpath)
+            commonAction.doubleClickToElement(invPageLocator.inv_item_name_in_add_item_table_css)
         }
         else {
-            commonAction.doubleClickToElement(invPageLocator.inv_item_name_in_add_item_table_css)
+            commonAction.doubleClickToElementByXpath(invPageLocator.inv_item_name_in_added_po_table_xpath)
         }
         commonAction.enterValueToTextboxAfterClearByXpath(invPageLocator.inv_item_name_txb_in_table_xpath, name)
         commonAction.clickToElement(invPageLocator.filter_inv_item_name_in_table_css)
@@ -183,11 +189,11 @@ class InvPage{
     }
 
     selectValueFromTaxCodeDropdownInTable(taxCode, table) {
-        if (table == "Added PO") {
-            this.scrollToElementInAddedPoTable("30%")
+        if (table == "Add Item") {
+            this.scrollToInItemTable("50%")
         }
         else {
-            this.scrollToInItemTable("50%")
+            this.scrollToElementInAddedPoTable("30%")
         }
         commonAction.wait(1)
         commonAction.doubleClickToElementByXpath(invPageLocator.tax_code_dropdown_xpath)
@@ -221,16 +227,12 @@ class InvPage{
 
     selectSupplierCodeFromDropdown(supplierCode){
         commonAction.clickToElementByXpath(invPageLocator.supplier_code_dropdown_xpath)
-        commonAction.wait(2)
         commonAction.clickToElementByXpath(printf(commonPageLocator.option_result_xpath, supplierCode))
-        commonAction.wait(5)
     }
 
     selectBuyerCodeFromDropdown(buyerCode){
         commonAction.clickToElementByXpath(invPageLocator.supplier_code_dropdown_xpath)
-        commonAction.wait(2)
         commonAction.clickToElementByXpath(printf(commonPageLocator.option_result_xpath, buyerCode))
-        commonAction.wait(5)
     }
 
     doubleClickToInvoiceInList(invNumber){
@@ -246,25 +248,63 @@ class InvPage{
     }
 
     clickToItemDeleteButtonInTable(table) {
-        if (table == "Added PO") {
-            this.scrollToElementInAddedPoTable("0%")
+        if (table == "Add Item") {
+            this.scrollToInItemTable("0%")
         }
         else {
-            this.scrollToInItemTable("0%")
+            this.scrollToElementInAddedPoTable("0%")
         }
         commonAction.clickToElementByXpath(invPageLocator.item_delete_btn_xpath)
     }
 
-    checkToPoNumberCheckbox(poNumber){
+    checkToPoNumberCheckbox(poNumber) {
         commonAction.checkCheckboxByXpath(printf(invPageLocator.po_number_ckb_in_select_po_table_xpath, poNumber))
     }
 
-    checkToExpectedAmountCheckbox(){
+    checkToDoNumberCheckbox(doNumber) {
+        commonAction.checkCheckboxByXpath(printf(invPageLocator.do_number_ckb_in_select_do_table_xpath, doNumber))
+    }
+
+    checkToExpectedAmountCheckbox() {
         commonAction.clickToElementByXpath(invPageLocator.expected_amount_ckb_xpath)
     }
 
-    verifyValueInCompanyNameTextboxExits(value){
-        commonAction.verifyValueInTextboxExist(invPageLocator.company_name_txb_css, value)
+    verifyValueInCompanyNameTextboxExits(account, companyName, invType) {
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
+        let urlRequest
+        cy.wrap(apiAction.callApiGetDataInVendorDetail(companyName, account)).then((e) => {
+            if (invType == "Added PO" || invType == "Added DO") {
+                if (invType == "Added PO") {
+                    if (account == "buyer") {
+                        urlRequest = printf(urlPageLocator.po_list_in_invoice, this.env, buyerCompanyUuid, account, "supplier", sessionStorage.getItem("vendorUuid"))
+                    }
+                    else {
+                        urlRequest = printf(urlPageLocator.po_list_in_invoice, this.env, supplierCompanyUuid, account, "buyer", sessionStorage.getItem("vendorUuid"))
+                    }
+                }
+                else if (invType == "Added DO") {
+                    if (account == "buyer") {
+                        urlRequest = printf(urlPageLocator.do_list_in_invoice, this.env, buyerCompanyUuid, account, "supplier", sessionStorage.getItem("vendorUuid"))
+                    }
+                    else {
+                        urlRequest = printf(urlPageLocator.do_list_in_invoice, this.env, supplierCompanyUuid, account, "buyer", sessionStorage.getItem("vendorUuid"))
+                    }
+                }
+                cy.request({
+                    method: 'GET',
+                    url: urlRequest,
+                    headers: {
+                        authorization: "Bearer " + token,
+                    }
+                }).then((response) => {
+                    expect(response.body).has.property("status", "OK")
+                })
+            }
+            commonAction.verifyValueInTextboxExist(invPageLocator.company_name_txb_css, companyName)
+            commonAction.verifyElementByXpathVisible(printf(invPageLocator.item_table_title_xpath, invType))
+        })
     }
 
     verifyCreateInvoicePageTitleDisplay(){
@@ -308,6 +348,10 @@ class InvPage{
 
     verifyPoNumberInAddedPoTableDisplay(poNumber){
         commonAction.verifyElementByXpathVisible(printf(invPageLocator.po_number_in_added_po_table_xpath, poNumber))
+    }
+
+    verifyDoNumberInAddedDoTableDisplay(doNumber) {
+        commonAction.verifyElementByXpathVisible(printf(invPageLocator.do_number_in_added_do_table_xpath, doNumber))
     }
 
     verifyValueInvoiceSubTotalDisplay(value) {
