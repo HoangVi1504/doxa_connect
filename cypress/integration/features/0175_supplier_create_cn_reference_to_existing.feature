@@ -26,7 +26,7 @@ Scenario Outline: Create PO invoice
 
     When I select "PO Invoice" from 'Invoice Type' dropdown at 'Create Invoice' page
     And I select "TEST_SUPPLIER_34" from 'Supplier Code' dropdown at 'Create Invoice' page
-    Then I see company name "TEST SUPPLIER 34" at 'Create Invoice' page
+    Then "buyer" see company name "TEST SUPPLIER 34" and "Added PO" table at 'Create Invoice' page
 
     When I input PO No to filter PO in 'Select PO' table at 'Create Invoice' page
     And I check to PO No just created checkbox at 'Create Invoice' page
@@ -80,7 +80,7 @@ Scenario: P2P-CN-S02-001 Supplier create Credit Note reference to Existing Invoi
     Then I see 'Create Credit Note' page
 
     When I select "AUTO_BUYER" from 'Buyer Code' dropdown at 'Create Credit Note' page
-    Then I see company name "AUTO BUYER" at 'Create Credit Note' page
+    Then "supplier" see company name "AUTO BUYER" at 'Create Credit Note' page
 
     When I check "Yes" radio button to choose 'Reference to Existing Invoice' option at 'Create Credit Note' page
     And I select INV No from 'Reference Invoice' dropdown at 'Create Credit Note' page
@@ -118,7 +118,7 @@ Scenario Outline: P2P-CN-S02-003 Supplier create Credit Note reference to Existi
     Then I see 'Create Credit Note' page
 
     When I select "AUTO_BUYER" from 'Buyer Code' dropdown at 'Create Credit Note' page
-    Then I see company name "AUTO BUYER" at 'Create Credit Note' page
+    Then "supplier" see company name "AUTO BUYER" at 'Create Credit Note' page
 
     When I check "Yes" radio button to choose 'Reference to Existing Invoice' option at 'Create Credit Note' page
     And I select INV No from 'Reference Invoice' dropdown at 'Create Credit Note' page
@@ -129,10 +129,17 @@ Scenario Outline: P2P-CN-S02-003 Supplier create Credit Note reference to Existi
     And I see 'CN Tax' is equal to "<tax>" at 'Credit Note' page
     And I see 'CN Total' is equal to "<cnTotal>" at 'Credit Note' page
 
-    When I click to 'Plus Tax' button at 'Credit Note' page
-    Then I see 'CN Sub Total' is equal to "50,000.00" at 'Credit Note' page
-    And I see 'CN Tax' is equal to "250.01" at 'Credit Note' page
-    And I see 'CN Total' is equal to "50,250.01" at 'Credit Note' page
+    When I click to "Plus Tax" button "5" times at 'Credit Note' page
+    Then I see 'CN Sub Total' is equal to "<cnSubTotal>" at 'Credit Note' page
+    And I see 'CN Tax' is equal to "<taxPlus5>" at 'Credit Note' page
+    And I see 'CN Total' is equal to "<cnTotalPlus5>" at 'Credit Note' page
+    And I see "Plus Tax" button disappear at 'Credit Note' page
+
+    When I click to "Minus Tax" button "10" times at 'Credit Note' page
+    Then I see 'CN Sub Total' is equal to "<cnSubTotal>" at 'Credit Note' page
+    And I see 'CN Tax' is equal to "<taxMinus5>" at 'Credit Note' page
+    And I see 'CN Total' is equal to "<cnTotalMinus5>" at 'Credit Note' page
+    And I see "Minus Tax" button disappear at 'Credit Note' page
     
     When I click to "Preview Credit Note" button format_1
     Then I see pop-up appears to show preview of credit note
@@ -158,5 +165,5 @@ Scenario Outline: P2P-CN-S02-003 Supplier create Credit Note reference to Existi
     # cnSubtotal = cnQty * unitPrice
     # tax = cnSubTotal * taxPercentage
     # cnTotal = cnSubTotal + tax
-    |quantity|unitPrice|cnQty|exchangeRate|cnSubTotal|tax|cnTotal|
-    |1000|5000|10|1|50,000.00|250.00|50,250.00|
+    |quantity|unitPrice|cnQty|exchangeRate|cnSubTotal|tax|cnTotal|taxPlus5|cnTotalPlus5|taxMinus5|cnTotalMinus5|
+    |1000|5000|10|1|50,000.00|250.00|50,250.00|250.05|50,250.05|249.95|50,249.95|

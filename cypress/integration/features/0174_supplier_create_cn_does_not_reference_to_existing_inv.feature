@@ -26,7 +26,7 @@ Scenario Outline: Create PO invoice
 
     When I select "PO Invoice" from 'Invoice Type' dropdown at 'Create Invoice' page
     And I select "TEST_SUPPLIER_34" from 'Supplier Code' dropdown at 'Create Invoice' page
-    Then I see company name "TEST SUPPLIER 34" at 'Create Invoice' page
+    Then "buyer" see company name "TEST SUPPLIER 34" and "Added PO" table at 'Create Invoice' page
 
     When I input PO No to filter PO in 'Select PO' table at 'Create Invoice' page
     And I check to PO No just created checkbox at 'Create Invoice' page
@@ -88,7 +88,7 @@ Scenario: P2P-CN-S02-002-006 P2P-CN-S05-001 Supplier create Credit Note with add
     And I see a validation text of 'Reference Invoice' "Please select valid Reference Invoice" appears at 'Create Credit Note' page
 
     When I select "AUTO_BUYER" from 'Buyer Code' dropdown at 'Create Credit Note' page
-    Then I see company name "AUTO BUYER" at 'Create Credit Note' page
+    Then "supplier" see company name "AUTO BUYER" at 'Create Credit Note' page
 
     When I check "Yes" radio button to choose 'Reference to Existing Invoice' option at 'Create Credit Note' page
     And I select INV No from 'Reference Invoice' dropdown at 'Create Credit Note' page
@@ -167,7 +167,7 @@ Scenario: P2P-CN-S02-005 Supplier create Credit Note without adjusting tax amoun
     Then I see 'Create Credit Note' page
 
     When I select "AUTO_BUYER" from 'Buyer Code' dropdown at 'Create Credit Note' page
-    Then I see company name "AUTO BUYER" at 'Create Credit Note' page
+    Then "supplier" see company name "AUTO BUYER" at 'Create Credit Note' page
 
     When I check "No" radio button to choose 'Reference to Existing Invoice' option at 'Create Credit Note' page
     Then I see 'Reference Invoice' field disappear at 'Create Credit Note' page

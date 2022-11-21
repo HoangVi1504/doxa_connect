@@ -1,3 +1,4 @@
+import ApiAction from '../commons/call_api'
 import CommonAction from '../commons/common_actions'
 import UrlPageLocator from '../PageUI/urlPageUI'
 import CommonPageLocator from '../PageUI/commonPageUI'
@@ -7,6 +8,7 @@ var printf = require('printf')
 var dataBuyer = require('../../../dataBuyer.json');
 var dataSupplier = require('../../../dataSupplier.json');
 
+const apiAction = new ApiAction()
 const commonAction = new CommonAction()
 const urlPageLocator = new UrlPageLocator()
 const cnPageLocator = new CreditNotePageLocator()
@@ -151,16 +153,12 @@ class CreditNotePage{
 
     selectSupplierCodeFromDropdown(supplierCode){
         commonAction.clickToElementByXpath(cnPageLocator.supplier_code_dropdown_xpath)
-        commonAction.wait(2)
         commonAction.clickToElementByXpath(printf(commonPageLocator.option_result_xpath, supplierCode))
-        commonAction.wait(5)
     }
 
     selectBuyerCodeFromDropdown(buyerCode){
         commonAction.clickToElementByXpath(cnPageLocator.supplier_code_dropdown_xpath)
-        commonAction.wait(2)
         commonAction.clickToElementByXpath(printf(commonPageLocator.option_result_xpath, buyerCode))
-        commonAction.wait(5)
     }
 
     selectReferenceInvNoFromDropdown(invNumber){
@@ -192,8 +190,15 @@ class CreditNotePage{
         commonAction.clickToElementByXpath(cnPageLocator.reject_cn_btn_xpath)
     }
 
-    clickToPlusTaxButton() {
-        commonAction.clickToElementByXpath(cnPageLocator.tax_plus_btn_xpath)
+    clickToTaxAdjustmentButton(btn, times) {
+        for (let i = 0; i < times; i++) {
+            if (btn == "Plus Tax") {
+                commonAction.clickToElementByXpath(cnPageLocator.tax_plus_btn_xpath)
+            }
+            else if (btn == "Minus Tax") {
+                commonAction.clickToElementByXpath(cnPageLocator.tax_minus_btn_xpath)
+            }
+        }
     }
 
     clickToItemDeleteButtonInTable() {
@@ -217,8 +222,44 @@ class CreditNotePage{
         commonAction.verifyValueInTextboxExist(cnPageLocator.cn_number_txb_css, cnNumber)
     }
 
-    verifyValueInCompanyNameTextboxExits(value){
-        commonAction.verifyValueInTextboxExist(cnPageLocator.company_name_txb_css, value)
+    verifyItemTaxAdjustmentButtonDisappear(btn) {
+        if (btn == "Plus Tax") {
+            commonAction.verifyElementByXpathNotExist(cnPageLocator.tax_plus_btn_xpath)
+        }
+        else if (btn == "Minus Tax") {
+            commonAction.verifyElementByXpathNotExist(cnPageLocator.tax_minus_btn_xpath)
+        }
+    }
+
+    verifyValueInCompanyNameTextboxExits(account, companyName) {
+        let token = window.localStorage.getItem("token")
+        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
+        let urlRequest
+        cy.wrap(apiAction.callApiGetDataInVendorDetail(companyName, account)).then((e) => {
+            switch (account) {
+                case "buyer":
+                    urlRequest = printf(urlPageLocator.inv_list_in_cn_url, this.env, buyerCompanyUuid, account, "supplier", sessionStorage.getItem("vendorUuid"))
+                    break;
+                
+                case "supplier":
+                    urlRequest = printf(urlPageLocator.inv_list_in_cn_url, this.env, supplierCompanyUuid, account, "buyer", sessionStorage.getItem("vendorUuid"))
+                    break;
+                
+                default:
+                    break;
+            }
+            cy.request({
+                method: 'GET',
+                url: urlRequest,
+                headers: {
+                    authorization: "Bearer " + token,
+                }
+            }).then((response) => {
+                expect(response.body).has.property("status", "OK")
+            })
+            commonAction.verifyValueInTextboxExist(cnPageLocator.company_name_txb_css, companyName)
+        })
     }
 
     verifyCreateCreditNotePageTitleDisplay(){

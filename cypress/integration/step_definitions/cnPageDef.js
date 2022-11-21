@@ -115,8 +115,8 @@ When(/^I click to 'Reject' button in 'Reason Dialog Box' at 'Credit Note Details
     cnPage.clickToRejectButton()
 })
 
-When(/^I click to 'Plus Tax' button at 'Credit Note' page$/, () => {
-    cnPage.clickToPlusTaxButton()
+When(/^I click to "([^"]*)" button "([^"]*)" times at 'Credit Note' page$/, (btn, times) => {
+    cnPage.clickToTaxAdjustmentButton(btn, times)
 })
 
 When(/^I click to 'Item Delete' button in 'Add Item' table at 'Create Credit Note' page$/, () => {
@@ -151,8 +151,12 @@ Then(/^I see CN No in 'Credit Note No' textbox appears$/, () => {
     cnPage.verifyCreditNoteNumberTextboxExits(sessionStorage.getItem("cnNumberList"))
 })
 
-Then(/^I see company name "([^"]*)" at 'Create Credit Note' page$/, (companyName) => {
-    cnPage.verifyValueInCompanyNameTextboxExits(companyName)
+Then(/^I see "([^"]*)" button disappear at 'Credit Note' page$/, (btn) => {
+    cnPage.verifyItemTaxAdjustmentButtonDisappear(btn)
+})
+
+Then(/^"([^"]*)" see company name "([^"]*)" at 'Create Credit Note' page$/, (account, companyName) => {
+    cnPage.verifyValueInCompanyNameTextboxExits(account, companyName)
 })
 
 Then(/^I see 'Item Delete' button in 'Add Item' table at 'Create Invoice' page$/, () => {

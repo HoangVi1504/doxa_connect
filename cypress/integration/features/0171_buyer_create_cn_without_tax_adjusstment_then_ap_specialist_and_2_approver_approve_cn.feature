@@ -26,7 +26,7 @@ Scenario Outline: Create PO invoice
 
     When I select "PO Invoice" from 'Invoice Type' dropdown at 'Create Invoice' page
     And I select "TEST_SUPPLIER_34" from 'Supplier Code' dropdown at 'Create Invoice' page
-    Then I see company name "TEST SUPPLIER 34" at 'Create Invoice' page
+    Then "buyer" see company name "TEST SUPPLIER 34" and "Added PO" table at 'Create Invoice' page
 
     When I input PO No to filter PO in 'Select PO' table at 'Create Invoice' page
     And I check to PO No just created checkbox at 'Create Invoice' page
@@ -80,7 +80,7 @@ Scenario: P2P-CN-S01-001 P2P-CN-S05-001 Buyer create Credit Note without adjusti
     Then I see 'Create Credit Note' page
 
     When I select "TEST_SUPPLIER_34" from 'Supplier Code' dropdown at 'Create Credit Note' page
-    Then I see company name "TEST SUPPLIER 34" at 'Create Credit Note' page
+    Then "buyer" see company name "TEST SUPPLIER 34" at 'Create Credit Note' page
 
     When I select INV No from 'Reference Invoice' dropdown at 'Create Credit Note' page
     And I input credit note date as next "2" days to 'Creadit Note Date' textbox at 'Create Credit Note' page
