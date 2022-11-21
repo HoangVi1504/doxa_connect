@@ -41,7 +41,11 @@ Scenario: MFM-S002-001 Entity admin able to opt-out approval routing for Pre Pur
     And I input PPR random to 'PPR Title' textbox at 'PPR' page
     And I select "Goods" from 'Procurement Type' dropdown at 'PPR' page
     And I fill data in Request Terms tab from "ppr_v2" json file at Raise PPR page
-    And I add catalogue item from "ppr_v2" json file at Raise PPR page
+    And I select 'auto buyer' from 'Delivery Contact Person' dropdown at Raise PPR page
+    Then I see email address of contact person at Raise PPR page is "auto.buyer@getnada.com"
+    And I see contact number of contact person at Raise PPR page is "987987987"
+
+    When I add catalogue item from "ppr_v2" json file at Raise PPR page
     And I click to "Submit" button format_2
     Then I see a message "PPR created successfully" appears
 
@@ -89,7 +93,11 @@ Scenario: MFM-S002-002 Entity admin able to opt-out approval routing for Purchas
     And I input PR random to 'PR Title' textbox at 'PR' page
     And I select "Goods" from 'Procurement Type' dropdown at 'PR' page
     And I fill data in Request Terms tab from "pr_v2" json file at Raise PR page
-    And I add catalogue item from "pr_v2" json file at Raise PR page
+    And I select 'auto buyer' from 'Delivery Contact Person' dropdown at Raise PPR page
+    Then I see email address of contact person at Raise PPR page is "auto.buyer@getnada.com"
+    And I see contact number of contact person at Raise PPR page is "987987987"
+
+    When I add catalogue item from "pr_v2" json file at Raise PR page
     And I click to "Submit" button format_2
     Then I see a message "Purchase requisition successfully submitted" appears
 
