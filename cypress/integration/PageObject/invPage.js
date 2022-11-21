@@ -243,8 +243,15 @@ class InvPage{
         commonAction.clickToElementByXpath(invPageLocator.reject_inv_btn_xpath)
     }
 
-    clickToPlusTaxButton() {
-        commonAction.clickToElementByXpath(invPageLocator.tax_plus_btn_xpath)
+    clickToTaxAdjustmentButton(btn, times) {
+        for (let i = 0; i < times; i++) {
+            if (btn == "Plus Tax") {
+                commonAction.clickToElementByXpath(invPageLocator.tax_plus_btn_xpath)
+            }
+            else if (btn == "Minus Tax") {
+                commonAction.clickToElementByXpath(invPageLocator.tax_minus_btn_xpath)
+            }
+        }
     }
 
     clickToItemDeleteButtonInTable(table) {
@@ -360,6 +367,15 @@ class InvPage{
 
     verifyValueInvoiceTotalDisplay(value) {
         commonAction.verifyElementByXpathVisible(printf(invPageLocator.total_invoice_value_xpath, value))
+    }
+
+    verifyItemTaxAdjustmentButtonDisappear(btn) {
+        if (btn == "Plus Tax") {
+            commonAction.verifyElementByXpathNotExist(invPageLocator.tax_plus_btn_xpath)
+        }
+        else if (btn == "Minus Tax") {
+            commonAction.verifyElementByXpathNotExist(invPageLocator.tax_minus_btn_xpath)
+        }
     }
 
     verifyValueInvoiceTaxDisplay(value) {

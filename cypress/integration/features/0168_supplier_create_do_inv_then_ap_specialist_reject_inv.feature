@@ -95,7 +95,7 @@ Scenario Outline: P2P-INV-S03-002 P2P-INV-S09-001 Supplier creates the invoice f
     And I see INV No in 'Invoice No' textbox appears
 
     Examples:
-    # tax percentage = 0.5
+    # tax percentage = 1
     # invSubtotal = invQty * unitPrice
     # tax = invSubTotal * tax percentage 
     # invTotal = invSubTotal + tax

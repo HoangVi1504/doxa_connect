@@ -129,8 +129,8 @@ When(/^I click to 'Reject' button in 'Reason Dialog Box' at 'Invoice Pending App
     invPage.clickToRejectButton()
 })
 
-When(/^I click to 'Plus Tax' button at 'Create Invoice' page$/, () => {
-    invPage.clickToPlusTaxButton()
+When(/^I click to "([^"]*)" button "([^"]*)" times at 'Create Invoice' page$/, (btn, times) => {
+    invPage.clickToTaxAdjustmentButton(btn, times)
 })
 
 When(/^I click to 'Item Delete' button in "([^"]*)" table at 'Create Invoice' page$/, (table) => {
@@ -199,6 +199,10 @@ Then(/^I see 'Invoice Sub Total' is equal to "([^"]*)" at 'Create Invoice' page$
 
 Then(/^I see 'Invoice Total' is equal to "([^"]*)" at 'Create Invoice' page$/, (value) => {
     invPage.verifyValueInvoiceTotalDisplay(value)
+})
+
+Then(/^I see "([^"]*)" button disappear at 'Create Invoice' page$/, (btn) => {
+    invPage.verifyItemTaxAdjustmentButtonDisappear(btn)
 })
 
 Then(/^I see 'Invoice Tax' is equal to "([^"]*)" at 'Create Invoice' page$/, (value) => {

@@ -67,13 +67,20 @@ Scenario Outline: P2P-INV-S02-001-002 Buyer create Non-PO invoice
     And I see 'Invoice Tax' is equal to "<tax>" at 'Create Invoice' page
     And I see 'Invoice Total' is equal to "<invTotal>" at 'Create Invoice' page
 
-    When I click to 'Plus Tax' button at 'Create Invoice' page
-    Then I see 'Invoice Sub Total' is equal to "500,000.00" at 'Create Invoice' page
-    And I see 'Invoice Tax' is equal to "2,500.01" at 'Create Invoice' page
-    And I see 'Invoice Total' is equal to "502,500.01" at 'Create Invoice' page
+    When I click to "Plus Tax" button "5" times at 'Create Invoice' page
+    Then I see 'Invoice Sub Total' is equal to "<invSubTotal>" at 'Create Invoice' page
+    And I see 'Invoice Tax' is equal to "<taxPlus5>" at 'Create Invoice' page
+    And I see 'Invoice Total' is equal to "<invTotalPlus5>" at 'Create Invoice' page
+    And I see "Plus Tax" button disappear at 'Create Invoice' page
+
+    When I click to "Minus Tax" button "10" times at 'Create Invoice' page
+    Then I see 'Invoice Sub Total' is equal to "<invSubTotal>" at 'Create Invoice' page
+    And I see 'Invoice Tax' is equal to "<taxMinus5>" at 'Create Invoice' page
+    And I see 'Invoice Total' is equal to "<invTotalMinus5>" at 'Create Invoice' page
+    And I see "Minus Tax" button disappear at 'Create Invoice' page
 
     When I check to 'Expected Amount' checkbox at 'Create Invoice' page
-    And I input "502,500.01" to 'Expected Amount' textbox at 'Create Invoice' page
+    And I input "<invTotalMinus5>" to 'Expected Amount' textbox at 'Create Invoice' page
     And I click to "Preview Invoice" button format_1
     Then I see pop-up appears to show preview of invoice
 
@@ -100,8 +107,8 @@ Scenario Outline: P2P-INV-S02-001-002 Buyer create Non-PO invoice
     # invSubtotal = invQty * unitPrice
     # tax = invSubTotal * tax percentage 
     # invTotal = invSubTotal + tax
-    |quantity|unitPrice|invQty|invSubTotal|tax|invTotal|
-    |1000|5000|100|500,000.00|2,500.00|502,500.00|
+    |quantity|unitPrice|invQty|invSubTotal|tax|invTotal|taxPlus5|invTotalPlus5|taxMinus5|invTotalMinus5|
+    |1000|5000|100|500,000.00|2,500.00|502,500.00|2,500.05|502,500.05|2,499.95|502,499.95|
 
 Scenario: P2P-INV-S07-003 P2P-INV-S08-003 AP Specialist approve invoice then Approver reject invoice
     # AP Specialist approve invoice

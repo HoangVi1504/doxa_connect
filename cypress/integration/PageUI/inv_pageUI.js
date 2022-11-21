@@ -45,6 +45,7 @@ class InvPageLocator{
         
         // Xpath - Button
         this.tax_plus_btn_xpath = "//*[text()='Tax:']/parent::*/following-sibling::*//*[text()='+']";
+        this.tax_minus_btn_xpath = "//*[text()='Tax:']/parent::*/following-sibling::*//*[@style='width: 6px; height: 1px; background-color: rgb(30, 183, 255);']"
         this.reject_inv_btn_xpath = "(//button[text()='Reject'])[2]";
         this.item_delete_btn_xpath = "(//button[contains(@class,'MuiIconButton')])[2]";
         

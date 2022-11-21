@@ -68,7 +68,7 @@ Scenario Outline: P2P-INV-S03-005 The Supplier creates the invoice - add/remove 
     Then I see Invoice status in list is "PENDING TWO WAY"
 
     Examples:
-    # tax percentage = 0.5
+    # tax percentage = 1
     # invSubtotal = invQty * unitPrice
     # tax = invSubTotal * tax percentage 
     # invTotal = invSubTotal + tax
@@ -185,7 +185,7 @@ Scenario Outline: P2P-INV-S03-003 The supplier creates the subsequent invoice fo
     Then I see Invoice status in list is "PENDING TWO WAY"
 
     Examples:
-    # tax percentage = 0.5
+    # tax percentage = 1
     # invSubtotal = invQty * unitPrice
     # tax = invSubTotal * tax percentage 
     # invTotal = invSubTotal + tax
