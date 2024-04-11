@@ -12,8 +12,8 @@ When(/^Get INV number in list$/, () => {
     commonAction.getInvNoInList()
 })
 
-When(/^Call API set "([^"]*)" 'Document Prefix' as "([^"]*)"$/, (functionName, type) => {
-    apiAction.callApiConfigDocumentPrefix(functionName, type)
+When(/^"([^"]*)" call API set "([^"]*)" 'Document Prefix' as "([^"]*)"$/, (roleName, functionName, type) => {
+    apiAction.callApiConfigDocumentPrefix(roleName, functionName, type)
 })
 
 When(/^I input DO No to filter DO in 'Select PO' table at 'Create Invoice' page$/, () => {

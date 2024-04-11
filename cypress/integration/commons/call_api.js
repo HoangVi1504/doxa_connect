@@ -75,7 +75,7 @@ class ApiAction{
                 sessionStorage.setItem("prNumber", prNumber)
                 cy.request({
                     method: 'POST',
-                    url: printf(urlPageLocator.convert_pr_to_po_api_url, this.env, buyerCompanyUuid, prUuid, sessionStorage.getItem("supplierUuid")),           //supplierUuid: 3862f5c9-44f3-4f6d-8c4b-918cf086ac2c
+                    url: printf(urlPageLocator.convert_pr_to_po_api_url, this.env, buyerCompanyUuid, prUuid, sessionStorage.getItem("supplierUuid")),
                     headers: {
                         authorization: "Bearer " + token,
                     }
@@ -211,7 +211,7 @@ class ApiAction{
         let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
         cy.request({
             method: 'GET',
-            url: printf(urlPageLocator.supplier_po_list_url, this.env, supplierCompanyUuid),                   //"70becfb0-cb73-46b2-b372-8e78714eb507"
+            url: printf(urlPageLocator.supplier_po_list_url, this.env, supplierCompanyUuid),
             headers: {
                 authorization: "Bearer " + token,
             }
@@ -357,7 +357,7 @@ class ApiAction{
                             authorization: "Bearer " + token,
                         },
                         body: {
-                            approvalRouteUuid: sessionStorage.getItem("approvalCodeUuid"),                  //"bddfa103-d8d1-44f0-a714-7b43b5ca3b5b",
+                            approvalRouteUuid: sessionStorage.getItem("approvalCodeUuid"),
                             deliveryDate: commonAction.getDateFormat5(0),
                             goodsReceiptDocumentMetadata: [],
                             grNumber: "",
@@ -372,7 +372,7 @@ class ApiAction{
                                 }
                             ],
                             procurementType: "Goods",
-                            supplierCompanyUuid: supplierCompanyUuid,                                       //"70becfb0-cb73-46b2-b372-8e78714eb507"
+                            supplierCompanyUuid: supplierCompanyUuid,
                         }
                     }).then((response)=>{
                         expect(response.body).has.property("status", "OK")
@@ -413,7 +413,7 @@ class ApiAction{
                             authorization: "Bearer " + token,
                         },
                         body: {
-                            approvalRouteUuid: sessionStorage.getItem("approvalCodeUuid"),                 //"bddfa103-d8d1-44f0-a714-7b43b5ca3b5b",
+                            approvalRouteUuid: sessionStorage.getItem("approvalCodeUuid"),
                             deliveryDate: commonAction.getDateFormat5(0),
                             goodsReceiptDocumentMetadata: [],
                             grType: "DO",
@@ -426,7 +426,7 @@ class ApiAction{
                                 }
                             ],
                             procurementType: "Goods",
-                            supplierCompanyUuid: sessionStorage.getItem("companyUuid"),                 //"70becfb0-cb73-46b2-b372-8e78714eb507",
+                            supplierCompanyUuid: sessionStorage.getItem("companyUuid"),
                             uuid: grUuidList
                         }
                     }).then((response)=>{
@@ -1146,9 +1146,9 @@ class ApiAction{
                                     postalCode: "4000",
                                     state: "Singapore"
                                 },
-                                approvalCodeUuid: sessionStorage.getItem("approvalCodeUuid"),                            //"b921fa2d-e79f-458d-a7c8-726ac3bae307",
+                                approvalCodeUuid: sessionStorage.getItem("approvalCodeUuid"),
                                 approvalSequence: "auto.approver [auto.approver@getnada.com]",
-                                companyUuid: buyerCompanyUuid,                                                           //"689fbac5-7291-4cad-b84c-52e95d4499a8",
+                                companyUuid: buyerCompanyUuid,
                                 currencyCode: "SGD",
                                 deliveryContactPerson:
                                 {
@@ -1170,8 +1170,8 @@ class ApiAction{
                                             active: true,
                                             categoryDescription: "auto equipment",
                                             categoryName: "AUTO EQUIPMENT",
-                                            companyUuid: buyerCompanyUuid,                                                   //"689fbac5-7291-4cad-b84c-52e95d4499a8",
-                                            uuid: sessionStorage.getItem("categoryDtoUuid"),                                 //"3f0fb768-f68c-4895-9b8b-a9805528c56d"
+                                            companyUuid: buyerCompanyUuid,
+                                            uuid: sessionStorage.getItem("categoryDtoUuid"),
                                         },
                                         currencyCode: "SGD",
                                         deliveryAddress: 
@@ -1181,11 +1181,11 @@ class ApiAction{
                                             addressLabel: "address auto",
                                             addressSecondLine: "12 New Industrial Rd Singapore, Singapore 536197",
                                             city: "Singapore",  
-                                            companyUuid: buyerCompanyUuid,                                                   //"689fbac5-7291-4cad-b84c-52e95d4499a8",
+                                            companyUuid: buyerCompanyUuid,
                                             country: "Singapore",
                                             postalCode: "4000",
                                             state: "Singapore",
-                                            uuid: sessionStorage.getItem("addressUuid"),                                     //"f9cdfeca-c150-47ed-8840-f17bdd6ff797"
+                                            uuid: sessionStorage.getItem("addressUuid"),
                                         },
                                         isActive: true,
                                         isEditable: true,
@@ -1197,19 +1197,19 @@ class ApiAction{
                                         requestDeliveryDate: commonAction.getDateFormat5(1),
                                         supplierCode: "TEST_SUPPLIER_34",
                                         supplierName: "TEST SUPPLIER 34",
-                                        supplierUuid: sessionStorage.getItem("supplierUuid"),                           //"3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",         
+                                        supplierUuid: sessionStorage.getItem("supplierUuid"),    
                                         taxCode: "11052022",
                                         taxRate: "0.5",
                                         unitPrice: "5000",
                                         uomCode: "CEN",
-                                        uuid: sessionStorage.getItem("catalogueUuid"),                                  //"ac4e3ff8-1ee4-4596-ad0f-f63981ea5d61"
+                                        uuid: sessionStorage.getItem("catalogueUuid"),
                                     }
                                 ],
                                 pprTitle: pprTitle,
                                 procurementType: "GOODS",
                                 requestedDeliveryDate: commonAction.getDateFormat5(1),
                                 requesterName: "auto creator",
-                                requesterUuid: sessionStorage.getItem("userUuid"),                                //"b809048e-d96c-4897-b5a4-8099f57b53a1",
+                                requesterUuid: sessionStorage.getItem("userUuid"),
                                 status: "PENDING_APPROVAL"
                             }
                         }).then((response)=>{
@@ -1245,7 +1245,7 @@ class ApiAction{
                             postalCode: "4000",
                             state: "Singapore"
                         },
-                        approvalRouteUuid: sessionStorage.getItem("approvalCodeUuid"),                      //"873bcd64-e460-45b3-8246-390280c81a1b",
+                        approvalRouteUuid: sessionStorage.getItem("approvalCodeUuid"),
                         currencyCode: "USD",
                         deliveryContactPerson:
                         {
@@ -1284,7 +1284,7 @@ class ApiAction{
                                 requestedDeliveryDate: commonAction.getDateFormat5(1),
                                 sourceCurrency: "SGD",
                                 supplierName: "TEST SUPPLIER 34",
-                                supplierUuid: sessionStorage.getItem("supplierUuid"),                       //"3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",
+                                supplierUuid: sessionStorage.getItem("supplierUuid"),
                                 taxCode: "11052022",
                                 taxRate: 0.5,
                                 uom: "CEN"
@@ -1327,7 +1327,7 @@ class ApiAction{
                             postalCode: "4000",
                             state: "Singapore"
                         },
-                        approvalRouteUuid: sessionStorage.getItem("approvalCodeUuid"),                      //"873bcd64-e460-45b3-8246-390280c81a1b",
+                        approvalRouteUuid: sessionStorage.getItem("approvalCodeUuid"),
                         currencyCode: "USD",
                         deliveryContactPerson:
                         {
@@ -1366,7 +1366,7 @@ class ApiAction{
                                 requestedDeliveryDate: commonAction.getDateFormat5(1),
                                 sourceCurrency: "SGD",
                                 supplierName: "TEST SUPPLIER 34",
-                                supplierUuid: sessionStorage.getItem("supplierUuid"),                       //"3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",
+                                supplierUuid: sessionStorage.getItem("supplierUuid"),
                                 taxCode: "11052022",
                                 taxRate: 0.5,
                                 uom: "CEN"
@@ -1411,9 +1411,9 @@ class ApiAction{
                                     postalCode: "4000",
                                     state: "Singapore"
                                 },
-                                approvalCodeUuid: sessionStorage.getItem("approvalCodeUuid"),                            //"b921fa2d-e79f-458d-a7c8-726ac3bae307",
+                                approvalCodeUuid: sessionStorage.getItem("approvalCodeUuid"),
                                 approvalSequence: "auto.approver [auto.approver@getnada.com]",
-                                companyUuid: buyerCompanyUuid,                                                           //"689fbac5-7291-4cad-b84c-52e95d4499a8",
+                                companyUuid: buyerCompanyUuid,
                                 currencyCode: "SGD",
                                 deliveryContactPerson:
                                 {
@@ -1435,7 +1435,7 @@ class ApiAction{
                                             active: true,
                                             categoryDescription: "auto equipment",
                                             categoryName: "AUTO EQUIPMENT",
-                                            companyUuid: buyerCompanyUuid,                                                   //"689fbac5-7291-4cad-b84c-52e95d4499a8",
+                                            companyUuid: buyerCompanyUuid,
                                             uuid: sessionStorage.getItem("categoryDtoUuid"),
                                         },
                                         currencyCode: "SGD",
@@ -1446,7 +1446,7 @@ class ApiAction{
                                             addressLabel: "address auto",
                                             addressSecondLine: "12 New Industrial Rd Singapore, Singapore 536197",
                                             city: "Singapore",  
-                                            companyUuid: buyerCompanyUuid,                                      //"689fbac5-7291-4cad-b84c-52e95d4499a8",
+                                            companyUuid: buyerCompanyUuid,
                                             country: "Singapore",
                                             postalCode: "4000",
                                             state: "Singapore",
@@ -1508,7 +1508,7 @@ class ApiAction{
                             postalCode: "4000",
                             state: "Singapore"
                         },
-                        approvalRouteUuid: sessionStorage.getItem("approvalCodeUuid"),                              //"873bcd64-e460-45b3-8246-390280c81a1b",
+                        approvalRouteUuid: sessionStorage.getItem("approvalCodeUuid"),
                         currencyCode: "USD",
                         deliveryContactPerson:
                         {
@@ -1552,7 +1552,7 @@ class ApiAction{
                                 requestedDeliveryDate: commonAction.getDateFormat5(1),
                                 sourceCurrency: "SGD",
                                 supplierName: "TEST SUPPLIER 34",
-                                supplierUuid: sessionStorage.getItem("supplierUuid"),                               //"3862f5c9-44f3-4f6d-8c4b-918cf086ac2c",
+                                supplierUuid: sessionStorage.getItem("supplierUuid"),
                                 taxCode: "11052022",
                                 taxRate: 0.5,
                                 uom: "CEN",
@@ -1633,32 +1633,32 @@ class ApiAction{
             },
             body:{
                 buyer: true,
-                companyRegistrationNumber: entityReg,                           //"REG NO 987"
+                companyRegistrationNumber: entityReg,
                 country: "Singapore",                   
                 documentsMetaDataList: [],                  
-                entityName: entityName,                                         //"AUTO BUYER"
+                entityName: entityName,
                 entityRepresentativeList:
                 [
                     {
                         countryCode: "65",
-                        email: email,                                           //"auto.buyer@getnada.com",
-                        name: entityName,                                       //"AUTO BUYER",
+                        email: email,
+                        name: entityName,
                         userRole: "Entity Representitive",                  
-                        workNumber: workNumber,                                 //"987987987"
+                        workNumber: workNumber,
                     },                  
                     {                   
                         countryCode: "65",                  
-                        email: email,                                           //"auto.buyer@getnada.com",
-                        name: entityName,                                       //"AUTO BUYER",
+                        email: email,
+                        name: entityName,
                         userRole: "Authorized Signatory",                   
-                        workNumber: workNumber,                                 //"987987987"
+                        workNumber: workNumber,
                     },                  
                     {                   
                         countryCode: "65",          
-                        email: email,                                           //"auto.buyer@getnada.com",
-                        name: entityName,                                       //"AUTO BUYER",
+                        email: email,
+                        name: entityName,
                         userRole: "Entity Administrator",                   
-                        workNumber: workNumber,                                 //"987987987"
+                        workNumber: workNumber,
                     }
                 ],
                 entityType: "GENERAL PARTNERSHIP",
@@ -1670,7 +1670,7 @@ class ApiAction{
                     "address", "supplierBankAccount", "bankAccount", "GR", "MPAYM", "HPAYM", "DO", "PO", "PPR", "INV", "PPO", "RFQF", "PR", "CN"
                 ],
                 gstApplicable: true,
-                gstNo: taxReg,                                                  //Tax Reg No 01
+                gstNo: taxReg,
                 industryType: "CONSTRUCTION",
                 remarks: "",
                 supplier: false
@@ -1690,32 +1690,32 @@ class ApiAction{
             },
             body:{
                 buyer: false,
-                companyRegistrationNumber: entityReg,                           //"AUTO REG 1"
+                companyRegistrationNumber: entityReg,
                 country: "Singapore",                   
                 documentsMetaDataList: [],                  
-                entityName: entityName,                                         //"AUTO SUPPLIER 2",
+                entityName: entityName,
                 entityRepresentativeList:                   
                 [                   
                     {                   
                         countryCode: "65",                  
-                        email: email,                                           //"auto.supplier2@getnada.com",
-                        name: name,                                             //"auto supplier 2",
+                        email: email,
+                        name: name,
                         userRole: "Entity Representitive",                  
-                        workNumber: workNumber,                                 //"676786765"
+                        workNumber: workNumber,
                     },                  
                     {                   
                         countryCode: "65",                  
-                        email: email,                                           //"auto.supplier2@getnada.com",
-                        name: name,                                             //"auto supplier 2",
+                        email: email,
+                        name: name,
                         userRole: "Authorized Signatory",                   
-                        workNumber: workNumber,                                 //"676786765"
+                        workNumber: workNumber,
                     },                  
                     {                   
                         countryCode: "65",
-                        email: email,                                           //"auto.supplier2@getnada.com",
-                        name: name,                                             //"auto supplier 2",
+                        email: email,
+                        name: name,
                         userRole: "Entity Administrator",                   
-                        workNumber: workNumber,                                 //"676786765"
+                        workNumber: workNumber,
                     }
                 ],
                 entityType: "GENERAL PARTNERSHIP",
@@ -1767,7 +1767,7 @@ class ApiAction{
             body: {
                 categoryDescription: categoryDescription,
                 categoryName: categoryName,
-                companyUuid: buyerCompanyUuid,                                     //"689fbac5-7291-4cad-b84c-52e95d4499a8"
+                companyUuid: buyerCompanyUuid,
             }
         }).then((response) =>{
             expect(response.body).has.property("status", "OK")
@@ -1789,7 +1789,7 @@ class ApiAction{
                 addressLabel: addressLabel,
                 addressSecondLine: "12 New Industrial Rd Singapore, Singapore 536197",
                 city: "Singapore",
-                companyUuid: buyerCompanyUuid,                                                    //"689fbac5-7291-4cad-b84c-52e95d4499a8",
+                companyUuid: buyerCompanyUuid,
                 country: "Singapore",
                 default: false,
                 postalCode: "4000",
@@ -1955,10 +1955,10 @@ class ApiAction{
                             }
                         ],
                         tax:{
-                            uuid: sessionStorage.getItem("taxUuid"),                            //"47bc6361-be9e-475c-a5dc-90ad17aaf5ff",
+                            uuid: sessionStorage.getItem("taxUuid"),
                         },
                         taxPercentage: 0.5,
-                        taxUuid: sessionStorage.getItem("taxUuid"),                             //"47bc6361-be9e-475c-a5dc-90ad17aaf5ff",
+                        taxUuid: sessionStorage.getItem("taxUuid"),
                         uen: vendorInfo.companyRegNo,
                         workNumber: vendorInfo.workNumber
                     }
@@ -2276,13 +2276,13 @@ class ApiAction{
                     apSpecialistUsers: 
                     [
                         {
-                            userName: dataApSpecialist.apSpecialistName,                  //"auto ap_specialist",
-                            userUuid: dataApSpecialist.apSpecialistUuid                   //"3a92edbf-2f0a-47dd-b258-499301737963"
+                            userName: dataApSpecialist.apSpecialistName,
+                            userUuid: dataApSpecialist.apSpecialistUuid
                         }
                     ],
                     groupCode: groupCode,
                     remarks: "auto remark",
-                    vendorUuid: [sessionStorage.getItem("vendorUuid")]                      //"016cbc2c-45a3-4e93-898f-60115b710cae"
+                    vendorUuid: [sessionStorage.getItem("vendorUuid")]
                 },
             }).then((response)=>{
                expect(response.body).has.property("message", "AP Specialist successfully created")
@@ -2337,7 +2337,7 @@ class ApiAction{
                                             {
                                                 group:
                                                 {
-                                                    uuid: hardUuid.groupUuidLv1                  //"d5c57a8f-a629-4f81-859b-b8d8f4261bd4"
+                                                    uuid: hardUuid.groupUuidLv1
                                                 },
                                                 numberApprovers: 1,
                                                 sequence: 1,
@@ -2395,12 +2395,12 @@ class ApiAction{
                 authorization: "Bearer " + token,
             },
             body: {
-                approvalCode: tmp.approvalCode,                              //"approval code 4545446",
-                approvalName: tmp.approvalName,                              //"approval name 4546",
+                approvalCode: tmp.approvalCode,
+                approvalName: tmp.approvalName,
                 approvalRange: approvalRange,
-                featureCode: tmp.featureCode,                               //sessionStorage.getItem("featureCode"),
-                featureName: tmp.featureName,                               //"Pre Purchase Requisition",
-                featureUuid: tmp.featureUuid,                               //sessionStorage.getItem("featureUuid"),
+                featureCode: tmp.featureCode,
+                featureName: tmp.featureName,
+                featureUuid: tmp.featureUuid,
                 goodReceivers: []
             }
         }).then((response)=>{
@@ -2408,12 +2408,17 @@ class ApiAction{
         })
     }
 
-    callApiGetDataInDocumentPrefixList(functionName) {
+    callApiGetDataInDocumentPrefixList(roleName, functionName) {
         let token = window.localStorage.getItem("token")
-        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
+        let urlRequest
+        if(roleName == "buyer"){
+            urlRequest = printf(urlPageLocator.document_prefix_list_url, this.env, dataBuyer.buyerCompanyUuid)
+        }else if(roleName == "supplier"){
+            urlRequest = printf(urlPageLocator.document_prefix_list_url, this.env, dataSupplier.supplierCompanyUuid)
+        }
         cy.request({
             method: 'GET',
-            url: printf(urlPageLocator.document_prefix_list_url, this.env, buyerCompanyUuid),
+            url: urlRequest,
             headers: {
                 authorization: "Bearer " + token,
             }
@@ -2425,22 +2430,31 @@ class ApiAction{
         })
     }
 
-    callApiConfigDocumentPrefix(functionName, prefixType) {
+    callApiConfigDocumentPrefix(roleName, functionName, prefixType) {
         let token = window.localStorage.getItem("token")
-        let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
-        let buyerName = dataBuyer.buyerName
-        let buyerUuid = dataBuyer.buyerUuid
-        cy.wrap(this.callApiGetDataInDocumentPrefixList(functionName)).then((e) => {
+        let urlRequest
+        let creator
+        let creatorUuid
+        cy.wrap(this.callApiGetDataInDocumentPrefixList(roleName, functionName)).then((e) => {
+            if(roleName == "buyer"){
+                urlRequest = printf(urlPageLocator.update_document_prefix_url, this.env, dataBuyer.buyerCompanyUuid)
+                creator = dataBuyer.buyerName
+                creatorUuid = dataBuyer.buyerUuid
+            }else if(roleName == "supplier"){
+                urlRequest = printf(urlPageLocator.update_document_prefix_url, this.env, dataSupplier.supplierCompanyUuid)
+                creator = dataSupplier.supplierName
+                creatorUuid = dataSupplier.supplierUuid
+            }
             cy.request({
                 method: 'PUT',
-                url: printf(urlPageLocator.update_document_prefix_url, this.env, buyerCompanyUuid),
+                url: urlRequest,
                 headers: {
                 authorization: "Bearer " + token,
                 },
                 body: {
-                    creator: buyerName,
+                    creator: creator,
                     creatorDesignation: "",
-                    creatorUuid: buyerUuid,
+                    creatorUuid: creatorUuid,
                     dateDynamic: false,
                     dateDynamicPrefix: "",
                     defaultCurrentNumber: "",
@@ -2460,7 +2474,7 @@ class ApiAction{
                     type: prefixType
                 }
             }).then((response) => {
-                expect(response.body).has.property("status", "OK")
+                expect(response.body).has.property("message", "Update is successful")
             })
         })
     }

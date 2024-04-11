@@ -4,7 +4,10 @@ Feature: 0164 Creator create non-po invoice, AP Specialist approve invoice, Appr
 Scenario Outline: P2P-INV-S02-001-002 Buyer create Non-PO invoice
     # The buyer creates the invoice with invalid input
     Given Navigate to Invoice Module of Doxa Connect 2.0 site
-    When I login with role "creator"
+    When I login with role "buyer"
+    And "buyer" call API set "Invoice" 'Document Prefix' as "Default"
+    And I logout account
+    And I login with role "creator"
     And I click to 'Dashboard' link on Header menu if it not be selected
     And Wait for "2" seconds
     And I click to "Invoices" link on header menu

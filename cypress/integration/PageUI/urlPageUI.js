@@ -97,6 +97,7 @@ class UrlPageLocator{
         this.inv_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/invoice/${'%s'}/invoice/buyer/list-pagination?page=0&size=50&q=&orderBy=invoiceNo:desc`;
         this.inv_list_in_cn_url = `https://api-connex-${'%s'}.doxa-holdings.com/invoice/${'%s'}/credit-note/${'%s'}/list/invoice/${'%s'}/${'%s'}`
         this.inv_pending_approval_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/invoice/${'%s'}/invoice/buyer/list-pagination/pending?page=0&size=50&q=&orderBy=invoiceNo:desc`
+        
         // RFQ
         this.rfq_list_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/request-for-quotation/${'%s'}/list`;
         this.close_rfq_url = `https://api-connex-${'%s'}.doxa-holdings.com/purchase/${'%s'}/request-for-quotation/close`;

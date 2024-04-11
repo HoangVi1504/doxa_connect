@@ -4,7 +4,10 @@ Feature: 0175 Supplier create Credit Note reference to Existing Invoice
 Scenario Outline: Create PO invoice
     # Raise PR then Convert to PO and issue PO to supplier
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "creator"
+    When I login with role "supplier 34"
+    And "supplier" call API set "Credit Note" 'Document Prefix' as "Default"
+    And I logout account
+    And I login with role "creator"
     And Call API Raise PR random with item quantity "<quantity>", unit price "<unitPrice>"
     And I logout account
     And I login with role "approver 1"
@@ -84,7 +87,7 @@ Scenario: P2P-CN-S02-001 Supplier create Credit Note reference to Existing Invoi
 
     When I check "Yes" radio button to choose 'Reference to Existing Invoice' option at 'Create Credit Note' page
     And I select INV No from 'Reference Invoice' dropdown at 'Create Credit Note' page
-    And I input credit note date as next "2" days to 'Creadit Note Date' textbox at 'Create Credit Note' page
+    And I input credit note date as next "2" days to 'Credit Note Date' textbox at 'Create Credit Note' page
     And I input "50" to 'Item Quantity' textbox at 'Create Credit Note' page
     And I click to "Preview Credit Note" button format_1
     Then I see pop-up appears to show preview of credit note
@@ -122,7 +125,7 @@ Scenario Outline: P2P-CN-S02-003 Supplier create Credit Note reference to Existi
 
     When I check "Yes" radio button to choose 'Reference to Existing Invoice' option at 'Create Credit Note' page
     And I select INV No from 'Reference Invoice' dropdown at 'Create Credit Note' page
-    And I input credit note date as next "2" days to 'Creadit Note Date' textbox at 'Create Credit Note' page
+    And I input credit note date as next "2" days to 'Credit Note Date' textbox at 'Create Credit Note' page
     And I input "<cnQty>" to 'Item Quantity' textbox at 'Create Credit Note' page
     And I input "<exchangeRate>" to 'Exchange Rate' textbox at 'Create Credit Note' page
     Then I see 'CN Sub Total' is equal to "<cnSubTotal>" at 'Credit Note' page

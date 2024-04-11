@@ -27,9 +27,7 @@ When(/^Call API approval GR$/, () => {
 })
 
 When(/^I input random DO No to DO textbox at 'Create GR' page$/, () => {
-    let number = commonAction.getTime()
-    let doNumber = "DO "+ number
-    sessionStorage.setItem("doNumber", doNumber)
+    sessionStorage.setItem("doNumber", "DO " + commonAction.getTime())
     grPage.enterValueToDoNumberTextbox(sessionStorage.getItem("doNumber"))
 })
 

@@ -5,7 +5,7 @@ Scenario Outline: P2P-INV-S01-004 Buyer create PO invoice with tax adjustment
     # Raise PR then Convert to PO and issue PO to supplier
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "buyer"
-    And Call API set "Invoice" 'Document Prefix' as "Manual"
+    And "buyer" call API set "Invoice" 'Document Prefix' as "Manual"
     And I logout account
     And I login with role "creator"
     And Call API Raise PR random with item quantity "<quantity>", unit price "<unitPrice>"
@@ -169,8 +169,3 @@ Scenario Outline: P2P-INV-S01-005 The buyer creates the invoice - add/remove ite
     # invTotal = invSubTotal + tax
     |quantity|unitPrice|invQty|invSubTotal|tax|invTotal|
     |1000|5000|100|500,000.00|2,500.00|502,500.00|
-
-Scenario: Buyer set invoice document prefix as default
-    Given Navigate to Doxa Connect 2.0 site
-    And I login with role "buyer"
-    And Call API set "Invoice" 'Document Prefix' as "Default"

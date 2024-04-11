@@ -15,6 +15,11 @@ When(/^I get CN number in list$/, () => {
     commonAction.getCreditNoteNoInList()
 })
 
+When(/^I input random credit note number to 'Credit Note No' textbox at 'Create Credit Note' page$/, () => {
+    sessionStorage.setItem("cnNumber", "CN-" + commonAction.getTime())
+    cnPage.enterValueToCreditNoteNumberTextbox(sessionStorage.getItem("cnNumber"))
+})
+
 When(/^I input "([^"]*)" to 'CN Description' textbox at 'Create Credit Note' page$/, (cnDescription) => {
     cnPage.enterValueToCreditNoteDescriptionTextbox(cnDescription)
 })
@@ -39,10 +44,6 @@ When(/^I input "([^"]*)" to 'Brand' textbox at 'Create Credit Note' page$/, (bra
     cnPage.enterValueToBrandTextbox(brand)
 })
 
-When(/^I input "([^"]*)" to 'Notes' textbox at 'Create Credit Note' page$/, (note) => {
-    cnPage.enterValueToNoteTextbox(note)
-})
-
 When(/^I input "([^"]*)" to 'Item Quantity' textbox at 'Create Credit Note' page$/, (quantity) => {
     cnPage.enterValueToItemQuantityTextbox(quantity)
 })
@@ -55,7 +56,7 @@ When(/^I input "([^"]*)" to 'Exchange Rate' textbox at 'Create Credit Note' page
     cnPage.enterValueToExchangeRateTextbox(exchangeRate)
 })
 
-When(/^I input credit note date as next "([^"]*)" days to 'Creadit Note Date' textbox at 'Create Credit Note' page$/, (date) => {
+When(/^I input credit note date as next "([^"]*)" days to 'Credit Note Date' textbox at 'Create Credit Note' page$/, (date) => {
     cnPage.enterValueToCreditNoteDateTextbox(commonAction.getDateFormat4(date))
 })
 
@@ -155,8 +156,8 @@ Then(/^I see "([^"]*)" button disappear at 'Credit Note' page$/, (btn) => {
     cnPage.verifyItemTaxAdjustmentButtonDisappear(btn)
 })
 
-Then(/^"([^"]*)" see company name "([^"]*)" at 'Create Credit Note' page$/, (account, companyName) => {
-    cnPage.verifyValueInCompanyNameTextboxExits(account, companyName)
+Then(/^"([^"]*)" see company name "([^"]*)" at 'Create Credit Note' page$/, (roleName, companyName) => {
+    cnPage.verifyValueInCompanyNameTextboxExits(roleName, companyName)
 })
 
 Then(/^I see 'Item Delete' button in 'Add Item' table at 'Create Invoice' page$/, () => {
@@ -179,8 +180,16 @@ Then(/^I see pop-up appears to show preview of credit note$/, () => {
     cnPage.verifyPopUpPreviewCreditNoteDisplay()
 })
 
+Then(/^I see a validation text of 'Credit Note Number' "([^"]*)" appears at 'Create Credit Note' page$/, (validation) => {
+    cnPage.getValidationTextCreditNoteNumber().should('have.text', validation)
+})
+
+Then(/^I see a validation text of 'Buyer Code' "([^"]*)" appears at 'Create Credit Note' page$/, (validation) => {
+    cnPage.getValidationTextBuyerCode().should('have.text', validation)
+})
+
 Then(/^I see a validation text of 'Supplier Code' "([^"]*)" appears at 'Create Credit Note' page$/, (validation) => {
-    cnPage.verifyValidationTextSupplierCodeDisplay(validation)
+    cnPage.getValidationTextSupplierCode().should('have.text', validation)
 })
 
 Then(/^I see a validation text of 'Reference Invoice' "([^"]*)" appears at 'Create Credit Note' page$/, (validation) => {

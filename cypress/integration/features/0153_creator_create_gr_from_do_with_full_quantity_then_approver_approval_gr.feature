@@ -97,7 +97,7 @@ Scenario: P2P-GR-S03-001 P2P-GR-S03-004 P2P-GR-S03-005 Creator create GR from DO
 
     When I check to DO No checkbox at 'Create GR' page 
     And I click to "Create Goods Receipt" button format_2
-    And Wait for "6" seconds
+    And Wait for "7" seconds
     Then I see 'Create GR From DO' page
     And I see Do No in 'DO Number' textbox at 'Create GR From DO' page
 

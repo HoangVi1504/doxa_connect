@@ -113,6 +113,7 @@ class InvPage{
             this.scrollToElementInAddedPoTable("25%")
         }
         commonAction.wait(1)
+        commonAction.clickToElement(invPageLocator.filter_inv_quantity_in_table_css)
         commonAction.doubleClickToElement(invPageLocator.inv_quantity_in_table_css)
         commonAction.doubleClickToElement(invPageLocator.inv_quantity_in_table_css)
         commonAction.enterValueToTextboxAfterClearByXpath(invPageLocator.inv_quantity_txb_in_table_xpath, quantity)

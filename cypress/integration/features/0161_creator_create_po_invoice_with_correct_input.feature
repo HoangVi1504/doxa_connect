@@ -4,7 +4,7 @@ Feature: 0161 Creator create PO invoice with correct input
 Scenario: P2P-INV-S01-002 Creator create PO invoice with correct input
     Given Navigate to Doxa Connect 2.0 site
     When I login with role "buyer"
-    And Call API set "Invoice" 'Document Prefix' as "Default"
+    And "buyer" call API set "Invoice" 'Document Prefix' as "Default"
     And I logout account
     And I login with role "creator"
     And Call API Raise PR random

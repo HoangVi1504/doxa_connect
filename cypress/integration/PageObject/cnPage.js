@@ -62,10 +62,8 @@ class CreditNotePage{
         })
     }
 
-    enterValueToNoteTextbox(note){
-        commonAction.doubleClickToElement(cnPageLocator.cn_notes_in_table_css)
-        commonAction.enterValueToTextboxAfterClearByXpath(cnPageLocator.notes_txb_in_table_xpath, note)
-        commonAction.clickToElementByXpath(printf(commonPageLocator.text_xpath, "Notes"))
+    enterValueToCreditNoteNumberTextbox(cnNumber){
+        commonAction.enterValueToTextbox(cnPageLocator.cn_number_txb_css, cnNumber)
     }
 
     enterValueToCreditNoteDescriptionTextbox(cnDescription){
@@ -109,6 +107,7 @@ class CreditNotePage{
     enterValueToItemQuantityTextbox(quantity){
         commonAction.wait(1)
         this.scrollToInItemTable("0%")
+        commonAction.clickToElement(cnPageLocator.filter_item_quantity_in_table_css)
         commonAction.wait(1)
         commonAction.doubleClickToElement(cnPageLocator.cn_quantity_in_table_css)
         commonAction.doubleClickToElement(cnPageLocator.cn_quantity_in_table_css)
@@ -231,19 +230,19 @@ class CreditNotePage{
         }
     }
 
-    verifyValueInCompanyNameTextboxExits(account, companyName) {
+    verifyValueInCompanyNameTextboxExits(roleName, companyName) {
         let token = window.localStorage.getItem("token")
         let buyerCompanyUuid = dataBuyer.buyerCompanyUuid
         let supplierCompanyUuid = dataSupplier.supplierCompanyUuid
         let urlRequest
-        cy.wrap(apiAction.callApiGetDataInVendorDetail(companyName, account)).then((e) => {
-            switch (account) {
+        cy.wrap(apiAction.callApiGetDataInManageVendorList(companyName, roleName)).then((e) => {
+            switch (roleName) {
                 case "buyer":
-                    urlRequest = printf(urlPageLocator.inv_list_in_cn_url, this.env, buyerCompanyUuid, account, "supplier", sessionStorage.getItem("vendorUuid"))
+                    urlRequest = printf(urlPageLocator.inv_list_in_cn_url, this.env, buyerCompanyUuid, roleName, "supplier", sessionStorage.getItem("vendorUuid"))
                     break;
                 
                 case "supplier":
-                    urlRequest = printf(urlPageLocator.inv_list_in_cn_url, this.env, supplierCompanyUuid, account, "buyer", sessionStorage.getItem("vendorUuid"))
+                    urlRequest = printf(urlPageLocator.inv_list_in_cn_url, this.env, supplierCompanyUuid, roleName, "buyer", sessionStorage.getItem("vendorUuid"))
                     break;
                 
                 default:
@@ -294,11 +293,19 @@ class CreditNotePage{
     }
 
     verifyApprovalRouteDropdownIsDisable() {
-        commonAction.verifyElementDisable(cnPageLocator.approval_route_dropdown_css)
+        commonAction.verifyElementDisable(cnPageLocator.ap_approval_route_dropdown_css)
     }
 
-    verifyValidationTextSupplierCodeDisplay(validation){
-        commonAction.verifyElementByXpathVisible(printf(cnPageLocator.validation_text_supplier_xpath, validation))
+    getValidationTextCreditNoteNumber(){
+        return commonAction.getTextElementByXpath(cnPageLocator.validation_text_credit_note_number_xpath)
+    }
+
+    getValidationTextBuyerCode(){
+        return commonAction.getTextElementByXpath(cnPageLocator.validation_text_buyer_code_xpath)
+    }
+
+    getValidationTextSupplierCode(){
+        return commonAction.getTextElementByXpath(cnPageLocator.validation_text_supplier_xpath)
     }
 
     getValidationTextReferenceInvoice() {

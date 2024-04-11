@@ -4,7 +4,10 @@ Feature: 0162 Create first invoice from po then create subsequent invoice for a 
 Scenario Outline: P2P-INV-S01-001 P2P-INV-S09-002 Buyer create PO invoice that doesn't tag any GR and manage list of invoice and list of invoice pending approval
     # Raise PR then Convert to PO and issue PO to supplier
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "creator"
+    When I login with role "buyer"
+    And "buyer" call API set "Invoice" 'Document Prefix' as "Default"
+    And I logout account
+    And I login with role "creator"
     And Call API Raise PR random with item quantity "<quantity>", unit price "<unitPrice>"
     And I logout account
     And I login with role "approver 1"

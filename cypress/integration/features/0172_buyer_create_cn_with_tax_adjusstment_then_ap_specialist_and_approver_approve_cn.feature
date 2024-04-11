@@ -4,7 +4,10 @@ Feature: 0172 Buyer create Credit Note with tax adjustment then AP Specialist an
 Scenario Outline: Create PO invoice
     # Raise PR then Convert to PO and issue PO to supplier
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "creator"
+    When I login with role "buyer"
+    And "buyer" call API set "Credit Note" 'Document Prefix' as "Manual"
+    And I logout account
+    And I login with role "creator"
     And Call API Raise PR random with item quantity "<quantity>", unit price "<unitPrice>"
     And I logout account
     And I login with role "approver 1"
@@ -84,12 +87,14 @@ Scenario Outline: P2P-CN-S01-002-003 Buyer create Credit Note with tax adjustmen
 
     When I click to "OK" button format_1
     Then I see a validation text of 'Supplier Code' "Please select valid Supplier" appears at 'Create Credit Note' page
+    And I see a validation text of 'Credit Note Number' "Please select valid Credit Note No." appears at 'Create Credit Note' page
 
     When I select "TEST_SUPPLIER_34" from 'Supplier Code' dropdown at 'Create Credit Note' page
     Then "buyer" see company name "TEST SUPPLIER 34" at 'Create Credit Note' page
 
-    When I select INV No from 'Reference Invoice' dropdown at 'Create Credit Note' page
-    And I input credit note date as next "2" days to 'Creadit Note Date' textbox at 'Create Credit Note' page
+    When I input random credit note number to 'Credit Note No' textbox at 'Create Credit Note' page
+    And I select INV No from 'Reference Invoice' dropdown at 'Create Credit Note' page
+    And I input credit note date as next "2" days to 'Credit Note Date' textbox at 'Create Credit Note' page
     And I input "<cnQty>" to 'Item Quantity' textbox at 'Create Credit Note' page
     And I select "G/L auto 1" from 'GL Account' dropdown at 'Create Credit Note' page
     Then I see 'CN Sub Total' is equal to "<cnSubTotal>" at 'Credit Note' page
@@ -131,7 +136,7 @@ Scenario Outline: P2P-CN-S01-002-003 Buyer create Credit Note with tax adjustmen
     Then I see a message "Please add valid Item Credit Note" appears
 
     When I select INV No from 'Reference Invoice' dropdown at 'Create Credit Note' page
-    And I input credit note date as next "2" days to 'Creadit Note Date' textbox at 'Create Credit Note' page
+    And I input credit note date as next "2" days to 'Credit Note Date' textbox at 'Create Credit Note' page
     And I input "<cnQty>" to 'Item Quantity' textbox at 'Create Credit Note' page
     And I input "<exchangeRate>" to 'Exchange Rate' textbox at 'Create Credit Note' page
     And I select "G/L auto 1" from 'GL Account' dropdown at 'Create Credit Note' page

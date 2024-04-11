@@ -4,7 +4,10 @@ Feature: 0168 Supplier create DO invoice then AP Specialist reject invoice
 Scenario Outline: P2P-INV-S03-002 P2P-INV-S09-001 Supplier creates the invoice for a DO that doesn't tag any GR and manage list of invoice
     # Raise PR then Convert to PO and submit PO to supplier
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "creator"
+    When I login with role "supplier 34"
+    And "supplier" call API set "Invoice" 'Document Prefix' as "Manual"
+    And I logout account
+    And I login with role "creator"
     And Call API Raise PR random with item quantity "<quantity>", unit price "<unitPrice>"
     And I logout account
     And I login with role "approver 1"
@@ -61,6 +64,7 @@ Scenario Outline: P2P-INV-S03-002 P2P-INV-S09-001 Supplier creates the invoice f
     Then I see 'Create Invoice' page
 
     When I select "DO Invoice" from 'Invoice Type' dropdown at 'Create Invoice' page
+    And I input Invoice No random to 'Invoice No' textbox at 'Create Invoice' page
     And I select "AUTO_BUYER" from 'Buyer Code' dropdown at 'Create Invoice' page
     Then "supplier" see company name "AUTO BUYER" and "Added DO" table at 'Create Invoice' page
 

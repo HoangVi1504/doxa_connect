@@ -33,11 +33,10 @@ Scenario: P2P-PR-S03-001-002-003 Save as draft PR
     When I click to "Add Manual" button format_2
     Then I see Item delete button at Raise PR page
 
-    # bugId: https://doxa-connex.atlassian.net/browse/D0R-5757
-    # When I click to "Submit" button format_1
-    # Then I see a message "Quantity must be greater than 0." appears
+    When I click to "Submit" button format_1
+    Then I see a message "Quantity must be greater than 0." appears
 
-    # When I click to "OK" button format_2
+    When I click to "OK" button format_2
     When I click to Item delete button at Raise PR page
     And I add catalogue item from "pr_v5" json file at Raise PR page
     # Save as draft PR => PENDING SUBMISSION status
@@ -63,11 +62,11 @@ Scenario: P2P-PR-S06-001 Submit PR in Pending Submission status after save as dr
     And I click to "PRs List" link on the left sub menu
     Then I see 'PR List' page title
 
-    When I input PR title from "pr_v1" json file to 'Search PR' textbox
-    Then I see PR title in PR list from "pr_v1" json file 
+    When I input PR title from "pr_v5" json file to 'Search PR' textbox
+    Then I see PR title in PR list from "pr_v5" json file 
     And I see PR status in PR list is "PENDING SUBMISSION"
 
-    When Call API navigate to "Edit draft PR" page of PR random
+    When I double click to PR title in PR list from "pr_v5" json file
     And Wait for "6" seconds
     Then I see 'PR detail' page title
     And I see PR title at PR detail page from "pr_v5" json file
@@ -78,7 +77,7 @@ Scenario: P2P-PR-S06-001 Submit PR in Pending Submission status after save as dr
     When I click to "I Understand" button format_1
     Then I see 'PR List' page title
 
-    When I input PR title from "pr_v1" json file to 'Search PR' textbox
+    When I input PR title from "pr_v5" json file to 'Search PR' textbox
     Then I see PR status in PR list is "PENDING APPROVAL"
 
 Scenario: P2P-PR-S04-001 Cancel PR in Pending Approval status after Submit PR in Pending Submission status

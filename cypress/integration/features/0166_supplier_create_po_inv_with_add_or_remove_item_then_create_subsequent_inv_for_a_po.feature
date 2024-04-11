@@ -4,7 +4,10 @@ Feature: 0166 Supplier create po inv with add/remove item then create subsequent
 Scenario Outline: P2P-INV-S03-005 The Supplier creates the invoice - add/remove item
     # Raise PR then Convert to PO and issue PO to supplier
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "creator"
+    When I login with role "supplier 34"
+    And "supplier" call API set "Invoice" 'Document Prefix' as "Manual"
+    And I logout account
+    And I login with role "creator"
     And Call API Raise PR random with item quantity "<quantity>", unit price "<unitPrice>"
     And I logout account
     And I login with role "approver 1"
@@ -28,6 +31,7 @@ Scenario Outline: P2P-INV-S03-005 The Supplier creates the invoice - add/remove 
     Then I see 'Create Invoice' page
 
     When I select "PO Invoice" from 'Invoice Type' dropdown at 'Create Invoice' page
+    And I input Invoice No random to 'Invoice No' textbox at 'Create Invoice' page
     And I select "AUTO_BUYER" from 'Buyer Code' dropdown at 'Create Invoice' page
     Then "supplier" see company name "AUTO BUYER" and "Added PO" table at 'Create Invoice' page
 
@@ -153,6 +157,7 @@ Scenario Outline: P2P-INV-S03-003 The supplier creates the subsequent invoice fo
     Then I see 'Create Invoice' page
 
     When I select "PO Invoice" from 'Invoice Type' dropdown at 'Create Invoice' page
+    And I input Invoice No random to 'Invoice No' textbox at 'Create Invoice' page
     And I select "AUTO_BUYER" from 'Buyer Code' dropdown at 'Create Invoice' page
     Then "supplier" see company name "AUTO BUYER" and "Added PO" table at 'Create Invoice' page
 

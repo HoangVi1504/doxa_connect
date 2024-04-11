@@ -127,7 +127,7 @@ Scenario: P2P-PO-S09-002 P2P-PO-S04-002 Unconnected supplier cannot acknowledge 
     Then I see PO status in list is "ISSUED"
 
     When I double click to PO No in PO list
-    And Wait for "3" seconds
+    And Wait for "5" seconds
     Then I see 'PO Detail' page
     And "unconnected supplier" see PO No in 'PO No' textbox at 'PO Detail' page
 

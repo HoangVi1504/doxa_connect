@@ -93,7 +93,7 @@ Scenario: MFM-S002-002 Entity admin able to opt-out approval routing for Purchas
     And I input PR random to 'PR Title' textbox at 'PR' page
     And I select "Goods" from 'Procurement Type' dropdown at 'PR' page
     And I fill data in Request Terms tab from "pr_v2" json file at Raise PR page
-    And I select 'auto buyer' from 'Delivery Contact Person' dropdown at Raise PPR page
+    And I select 'auto buyer' from 'Delivery Contact Person' dropdown at Raise PR page
     Then I see email address of contact person at Raise PPR page is "auto.buyer@getnada.com"
     And I see contact number of contact person at Raise PPR page is "987987987"
 

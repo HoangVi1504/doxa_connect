@@ -4,7 +4,10 @@ Feature: 0173 Buyer create Credit Note with add or remove item then AP Specialis
 Scenario Outline: Create PO invoice
     # Raise PR then Convert to PO and issue PO to supplier
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "creator"
+    When I login with role "buyer"
+    And "buyer" call API set "Credit Note" 'Document Prefix' as "Default"
+    And I logout account
+    And I login with role "creator"
     And Call API Raise PR random with item quantity "<quantity>", unit price "<unitPrice>"
     And I logout account
     And I login with role "approver 1"
@@ -83,7 +86,7 @@ Scenario: P2P-CN-S01-004 Buyer create Credit Note with add or remove item
     Then "buyer" see company name "TEST SUPPLIER 34" at 'Create Credit Note' page
 
     When I select INV No from 'Reference Invoice' dropdown at 'Create Credit Note' page
-    And I input credit note date as next "2" days to 'Creadit Note Date' textbox at 'Create Credit Note' page
+    And I input credit note date as next "2" days to 'Credit Note Date' textbox at 'Create Credit Note' page
     And I input "50" to 'Item Quantity' textbox at 'Create Credit Note' page
     And I select "G/L auto 1" from 'GL Account' dropdown at 'Create Credit Note' page
     And I click to 'Item Delete' button in 'Add Item' table at 'Create Credit Note' page

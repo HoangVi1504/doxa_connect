@@ -246,7 +246,7 @@ class RaisePrPage{
 
     selectValueFromDeliveryContactPersonDropdown(){
         commonAction.clickToElementByXpath(raisePrPageLocator.delivery_contact_person_dropdown_xpath)
-        commonAction.clickToElement("#react-select-4-option-0")
+        commonAction.clickToElement("#react-select-4-option-8")
     }
 
     selectValueFromItemSupplierDropdown(supplierName){

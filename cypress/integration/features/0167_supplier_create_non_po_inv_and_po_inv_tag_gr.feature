@@ -8,6 +8,7 @@ Scenario Outline: P2P-INV-S05-001 P2P-INV-S04-001 Supplier create Non-PO invoice
     And I click to hamburger menu
     And I click to "Invoices" button format_2
     And Wait for "3" seconds
+    And "supplier" call API set "Invoice" 'Document Prefix' as "Default"
     And I click to 'Dashboard' link on Header menu if it not be selected
     And I click to "Invoices" link on header menu
     And I click to "Invoices" link on the left menu

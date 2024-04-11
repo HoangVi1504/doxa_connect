@@ -4,7 +4,10 @@ Feature: 0174 Supplier create Credit Note does not reference to Existing Invoice
 Scenario Outline: Create PO invoice
     # Raise PR then Convert to PO and issue PO to supplier
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "creator"
+    When I login with role "supplier 34"
+    And "supplier" call API set "Credit Note" 'Document Prefix' as "Manual"
+    And I logout account
+    And I login with role "creator"
     And Call API Raise PR random with item quantity "<quantity>", unit price "<unitPrice>"
     And I logout account
     And I login with role "approver 1"
@@ -83,16 +86,17 @@ Scenario: P2P-CN-S02-002-006 P2P-CN-S05-001 Supplier create Credit Note with add
     Then I see a message "Validation error, please check your input." appears
 
     When I click to "OK" button format_1
-    #bugId: https://doxa-connex.atlassian.net/browse/D0R-5945
-    # Then I see a validation text of 'Buyer Code' "Please select valid Buyer" appears at 'Create Credit Note' page
+    Then I see a validation text of 'Buyer Code' "Please select valid Buyer" appears at 'Create Credit Note' page
+    And I see a validation text of 'Credit Note Number' "Please select valid Credit Note No." appears at 'Create Credit Note' page
     And I see a validation text of 'Reference Invoice' "Please select valid Reference Invoice" appears at 'Create Credit Note' page
 
     When I select "AUTO_BUYER" from 'Buyer Code' dropdown at 'Create Credit Note' page
     Then "supplier" see company name "AUTO BUYER" at 'Create Credit Note' page
 
-    When I check "Yes" radio button to choose 'Reference to Existing Invoice' option at 'Create Credit Note' page
+    When I input random credit note number to 'Credit Note No' textbox at 'Create Credit Note' page
+    And I check "Yes" radio button to choose 'Reference to Existing Invoice' option at 'Create Credit Note' page
     And I select INV No from 'Reference Invoice' dropdown at 'Create Credit Note' page
-    And I input credit note date as next "2" days to 'Creadit Note Date' textbox at 'Create Credit Note' page
+    And I input credit note date as next "2" days to 'Credit Note Date' textbox at 'Create Credit Note' page
     And I input "-10" to 'Item Quantity' textbox at 'Create Credit Note' page
     And I click to "Issue" button format_1
     Then I see a message "Item Quantity must be greater than 0" appears
@@ -169,7 +173,8 @@ Scenario: P2P-CN-S02-005 Supplier create Credit Note without adjusting tax amoun
     When I select "AUTO_BUYER" from 'Buyer Code' dropdown at 'Create Credit Note' page
     Then "supplier" see company name "AUTO BUYER" at 'Create Credit Note' page
 
-    When I check "No" radio button to choose 'Reference to Existing Invoice' option at 'Create Credit Note' page
+    When I input random credit note number to 'Credit Note No' textbox at 'Create Credit Note' page
+    And I check "No" radio button to choose 'Reference to Existing Invoice' option at 'Create Credit Note' page
     Then I see 'Reference Invoice' field disappear at 'Create Credit Note' page
 
     When I click to "Add Manual" button format_2

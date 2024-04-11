@@ -4,7 +4,10 @@ Feature: 0165 Supplier create po inv then AP Specialist approve and 2 approver a
 Scenario Outline: P2P-INV-S03-001 Supplier creates the first invoice for a PO that doesn't tag any GR with the correct input.
     # Raise PR then Convert to PO and issue PO to supplier
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "creator"
+    When I login with role "supplier 34"
+    And "supplier" call API set "Invoice" 'Document Prefix' as "Default"
+    And I logout account
+    And I login with role "creator"
     And Call API Raise PR random with item quantity "<quantity>", unit price "<unitPrice>"
     And I logout account
     And I login with role "approver 1"

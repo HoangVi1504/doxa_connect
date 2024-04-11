@@ -4,7 +4,10 @@ Feature: 0169 Supplier create DO invoice then AP Specialist approve invoice
 Scenario Outline: P2P-INV-S06-003 The Supplier creates the DO invoice with tax adjustment
     # Raise PR then Convert to PO and submit PO to supplier
     Given Navigate to Doxa Connect 2.0 site
-    When I login with role "creator"
+    When I login with role "supplier 34"
+    And "supplier" call API set "Invoice" 'Document Prefix' as "Default"
+    And I logout account
+    And I login with role "creator"
     And Call API Raise PR random with item quantity "<quantity>", unit price "<unitPrice>"
     And I logout account
     And I login with role "approver 1"
